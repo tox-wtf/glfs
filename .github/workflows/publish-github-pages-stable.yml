@@ -39,6 +39,7 @@ jobs:
       - name: Build
         run: |
           pwd
+          echo $default-branch
           make
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -57,5 +58,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: glfs-stable
