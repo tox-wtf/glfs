@@ -40,6 +40,896 @@
     -->
 
     <listitem>
+      <para>February 28th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - HarfBuzz: 10.3.0 -&gt; 10.4.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - AMDGPU PRO: Better clarify things.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 27th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - CMake: Remove references to Qt.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Git: Remove testing instructions.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Rustc: 1.84.1 -&gt; 1.85.0;
+          GLib: 2.82.4 -&gt; 2.82.5;
+          HarfBuzz: 10.2.0 -&gt; 10.3.0. Fixes
+          <ulink url="&glfs-issues;/121">#121</ulink>,
+          <ulink url="&glfs-issues;/123">#123</ulink>, and
+          <ulink url="&glfs-issues;/128">#128</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Systemd: 257 -&gt; 257.3;
+          Shadow: 4.17.2 -&gt; 4.17.3;
+          linux: 6.13.1 -&gt; 6.13.4. Fixes
+          <ulink url="&glfs-issues;/124">#124</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 25th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libva: Externally link to intel-*.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SPIRV-LLVM-Translator: Remove outdated note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Xorg-Server: 21.1.15 -&gt; 21.1.16;
+          Xwayland: 24.1.5 -&gt; 24.1.6 (Security Fixes). Fixes
+          <ulink url="&glfs-issues;/126">#126</ulink> and
+          <ulink url="&glfs-issues;/127">#127</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - gpuconfig: Link to linux-firmware.</para>
+        </listitem>
+        <listitem revision="systemd">
+          <para>[zeckma] - Polkit: Add missing ninja command.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 24th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libpsl: Demote libidn2 and libunistring to
+          recommended.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 21st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - {rust-,C}bindgen: Remove -D from install.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wine: 10.1 -&gt; 10.2.
+          Fixes <ulink url="&glfs-issues;/122">#122</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - LLVM: Make it clear an option is needed to build
+          Rustc against system-installed LLVM.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Artwork: Make glfs-logo.png display size
+          smaller.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - gst-plugins-base: Internally link to plugins.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Gstreamer: Internally link to plugins.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 19th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libevdev: Disable tests.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - lib32-Check: Archived. Fixes
+          <ulink url="&glfs-issues;/119">#119</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libxml2: 2.13.5 -&gt; 2.13.6 (Security Update).
+          Fixes <ulink url="&glfs-issues;/117">#117</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 17th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Important: Brace for 12.3.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 16th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - *: Many changes to wording.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: Change download link.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 15th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - FFmpeg: Add <parameter>--enable-libx265</parameter>
+          for lib32.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SDL2: Removed doc instructions.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: Document packaged tarball.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 14th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Wine: Added compatibility patch for
+          MinGW-w64-Binutils-2.44.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 13th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - make-ca: Comment out Python3 configuration
+          section.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: Add xdg-desktop-portal as a recommended
+          dependency. Fixes
+          <ulink url="&glfs-issues;/113">#113</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - cURL: 8.12.0 -&gt; 8.12.1. Fixes
+          <ulink url="&glfs-issues;/114">#114</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libaom: Update test command.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 12th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libaom: 3.9.1 -&gt; 3.12.0. Fixes
+          <ulink url="&glfs-issues;/111">#111</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Python3: 3.13.1 -&gt; 3.13.2. Fixes
+          <ulink url="&glfs-issues;/95">#95</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FLAC: Fix download link.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg: Remove outdated command explanation. Fixes
+          <ulink url="&glfs-issues;/110">#110</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Nettle: 3.10 -&gt; 3.10.1. Fixes
+          <ulink url="&glfs-issues;/109">#109</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 11th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - FLAC: 1.4.3 -&gt; 1.5.0. Fixes
+          <ulink url="&glfs-issues;/108">#108</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: Add text about outdated kernels.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Cython: 3.0.11 -&gt; 3.0.12. Fixes
+          <ulink url="&glfs-issues;/107">#107</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Static MinGW-w64-GCC: Remove make install
+          caution.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 10th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - XKeyboard-Config: 2.43 -&gt; 2.44. Fixes
+          <ulink url="&glfs-issues;/106">#106</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - *: Link to libarchive instead of UnZip.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 9th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - MinGW-w64-Binutils: 2.44 -&gt; 2.43. Properly fixes
+          <ulink url="&glfs-issues;/100">#100</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - make-ca: 1.14 -&gt; 1.15. Fixes
+          <ulink url="&glfs-issues;/105">#105</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - GnuTLS: 3.8.8 -&gt; 3.8.9 (Security Update).
+          Fixes <ulink url="&glfs-issues;/104">#104</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SPIRV-{Headers,Tools}: 1.4.304.0 -&gt; 1.4.304.1.
+          Fixes <ulink url="&glfs-issues;/102">#102</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wine: 10.0 -&gt; 10.1. Fixes
+          <ulink url="&glfs-issues;/103">#103</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 7th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - SDL2; libaom: Added long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SDL2: Remove outdated configuration notice.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - MinGW-w64: Make MSVCRT the default. Fixes
+          <ulink url="&glfs-issues;/97">#97</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 6th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libtasn1: 4.19.0 -&gt; 4.20.0 (security update).
+          Fixes <ulink url="&glfs-issues;/96">#96</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - icu: Add long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - duktape: Add long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - NSS: 3.107 -&gt; 3.108;
+          PCRE2: 10.44 -&gt; 10.45;
+          Xwayland: 24.1.4 -&gt; 24.1.5;
+          libxkbcommon: 1.7.0 -&gt; 1.8.0.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 5th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - cURL: 8.11.1 -&gt; 8.12.0;
+          mako: 1.3.8 -&gt; 1.3.9;
+          hwdata: 0.391 -> 0.392. Fixes
+          <ulink url="&glfs-issues;/92">#92</ulink>,
+          <ulink url="&glfs-issues;/93">#93</ulink>, and
+          <ulink url="&glfs-issues;/94">#94</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: Added more documentation and fixed
+          wording.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 4th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libglvnd: Archived. Fixes
+          <ulink url="&glfs-issues;/68">#68</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - LLVM: Add unpacking LLVM tarball instructions.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - NVIDIA: Archived.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Glslang: Add long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SPIRV-Tools: Add long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - GnuTLS: Add long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - freetype-pass2: Remove documentation step.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - HarfBuzz: Add long build time note.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Mesa: Add make-ca as Recommended (Required for NVK
+          and Vulkan swrast).</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - NSS: Add SQLite to Optional.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 3rd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - credits: Add Douglas Reno to contributors.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg: Add <parameter>--enable-libaom</parameter>
+          to lib32 build.</para>
+        </listitem>
+        <listitem>
+          <para>[renodr] - libaom: fix building the 32-bit libraries. Fixes
+          <ulink url="&glfs-issues;/89">#89</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - linux: 6.12.8 -&gt; 6.13.1.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libX11: 1.8.10 -&gt; 1.8.11;
+          xhost: 1.0.9 -&gt; 1.0.10. Fixes
+          <ulink url="&glfs-issues;/86">#86</ulink> and
+          <ulink url="&glfs-issues;/87">#87</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 2nd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - MinGW-w64-Binutils: 2.43.1 -&gt; 2.44. Fixes
+          <ulink url="&glfs-issues;/72">#72</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - MinGW-w64-Binutils: Remove <filename
+          class="libraryfile">libdep.so</filename> in DESTDIR install.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - MinGW-w64-Binutils: Remove note about rebuild.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Which: 2.22 -&gt; 2.23. Fixes
+          <ulink url="&glfs-issues;/83">#83</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 1st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Gst*: 1.24.11 -&gt; 1.24.12.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SPIRV-LLVM-Translator: 19.1.3 -&gt; 19.1.4. Fixes
+          <ulink url="&glfs-issues;/82">#82</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Fixed several typos book-wide. Fixes
+          <ulink url="&glfs-issues;/79">#79</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 31st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - lib32-Check: Added.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Rustc: 1.84.0 -&gt; 1.84.1. Fixes
+          <ulink url="&glfs-issues;/77">#77</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 30th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Wayland-Protocols: 1.39 -&gt; 1.40. Fixes
+          <ulink url="&glfs-issues;/76">#76</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Artwork: Added. Fixes
+          <ulink url="&glfs-issues;/80">#80</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - whatnow: Link to LFS QOL instructions for i3 and
+          Hyprland.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Polkit: Improved documentation of user and group
+          creation.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - seatd: Disable building the seatd daemon.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 28th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - *: GTK+-3 -&gt; GTK-3. Fixes
+          <ulink url="&glfs-issues;/71">#71</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - CMake: 3.31.4 -&gt; 3.31.5.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Pulseaudio: Add gst-plugins-base as optional.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - duktape: Document <filename
+          class="libraryfile">libduktaped.so</filename>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - duktape: Properly sort duktape in index.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - VKD3D-Proton: Added.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 27th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - DXVK: Add Vulkan-Loader to Required
+          Runtime.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Allow linking to MLFS Systemd online.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libpng: 1.6.45 -&gt; 1.6.46.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 26th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - DXVK: Allow building as &root;. Fixes
+          <ulink url="&glfs-issues;/70">#70</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - DXVK: Properly handle different
+          archetectures.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - DXVK: Fix a few issues.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 25th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - *: Readjust note locations.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wine: 9.22 -&gt; 10.0; DXVK: Added. Fixes
+          <ulink url="&glfs-issues;/69">#69</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 24th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Which: 2.21 -&gt; 2.22.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 23rd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - x7lib: Skip over xtrans for lib32.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 22nd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Mesa: 24.3.3 -&gt; 24.3.4.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 21st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Better document stability.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: ln -&gt; mv (for docs).</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 18th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Fontconfig: Remove doc instructions.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 17th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Fontconfig: 2.15.0 -&gt; 2.16.0.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 16th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - NVIDIA: Recommend kernel version to use.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 15th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Shadow: 4.17.1 -&gt; 4.17.2.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Mesa: Comment out patch.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Cbindgen: 0.27.0 -&gt; 0.28.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - elogind: 255.5 -&gt; 255.17;
+          polkit: 125 -&gt; 126; Vulkan-*: 1.3.301 -&gt; 1.4.304;
+          SPIRV-{Headers,Tools}: 1.3.296.0 -&gt; 1.4.304.0;
+          Glslang: 15.0.0 -&gt; 15.1.0. Fixes
+          <ulink url="&glfs-issues;/32">#32</ulink> and
+          <ulink url="&glfs-issues;/48">#48</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 14th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - *: Multiple fixes, mostly updates and fixes for
+          Systemd. Fixes <ulink url="&glfs-issues;/59">#59</ulink>,
+          <ulink url="&glfs-issues;/62">#62</ulink>,
+          <ulink url="&glfs-issues;/63">#63</ulink>, and
+          <ulink url="&glfs-issues;/64">#64</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Xorg: Mask out createfiles for Systemd.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 13th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - bash-profile: Make i18n.sh Systemd version.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - D-Bus; Systemd: Adjust more for Systemd
+          Edition.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - pkgconfig; mesonfiles: Add &amp;&amp; after each
+          command.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - CMake: 3.31.3 -&gt; 3.31.4.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - HarfBuzz: 10.1.0 -&gt; 10.2.0.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 12th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Systemd Edition: Finised rough draft. Fixes
+          <ulink url="&glfs-issues;/58">#58</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - elogind: Masked out of Systemd Edition. Part of
+          <ulink url="&glfs-issues;/58">#58</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - D-Bus: Adjusted for Systemd Edition. Part of
+          <ulink url="&glfs-issues;/58">#58</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Systemd: Added. Part of
+          <ulink url="&glfs-issues;/58">#58</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 11th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Systemd Revision: Fixed rendering failures. Part of
+          <ulink url="&glfs-issues;/58">#58</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Systemd Revision: Added, although does not render.
+          Part of <ulink url="&glfs-issues;/58">#58</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 10th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - AMDGPU PRO: 24.10 -&gt; 24.20.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - hwdata: 0.390 -&gt; 0.391. Fixes
+          <ulink url="&glfs-issues;/56">#56</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 8th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libinput: 1.27.0 -&gt; 1.27.1;
+          xorg-synaptics-driver: 1.9.2 -&gt; 1.10.0;
+          xinit: 1.4.2 -&gt; 1.4.3;
+          gst*: 1.24.10 -&gt; 1.24.11.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 4th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Mesa: 24.3.2 -&gt; 24.3.3. Fixes
+          <ulink url="&glfs-issues;/57">#57</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libglvnd: Add --buildtype=release.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Python: 3.13.0 -&gt; 3.13.1.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>January 2nd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - D-Bus: 1.14.10 -&gt; 1.16.0. Fixes
+          <ulink url="&glfs-issues;/54">#54</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg: Fix doc generation issue with Texinfo.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SDL2: 2.30.10 -&gt; 2.30.11.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - SPIRV-LLVM-Translator: 19.1.2 -&gt; 19.1.3.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Shadow: 4.16.0 -&gt; 4.17.1. Fixes
+          <ulink url="&glfs-issues;/53">#53</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 30th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Glossary: Added a few LFS related terms.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Index: Added back.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 24th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - cURL: Include patch to fix eventfd regression.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wayland-Protocols: 1.38 -&gt; 1.39.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - CMake: 3.31.2 -&gt; 3.31.3.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wine: Move Gst* to after FFmpeg.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Xorg-Server: 21.1.14 -&gt; 21.1.15.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 20th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - LLVM; libclc: 19.1.0 -&gt; 19.1.6. Fixes
+          <ulink url="&glfs-issues;/40">#40</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 19th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - intro/packages: Add &amp;&amp; after each
+          command.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Mesa: 24.3.1 -&gt; 24.3.2. Fixes
+          <ulink url="&glfs-issues;/51">#51</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Mesa: Move *BINDGEN* var to ninja command.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 16th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - gst-libav: Added. Fixes
+          <ulink url="&glfs-issues;/50">#50</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - gst*: Linked to in-book dependencies. Part of
+          <ulink url="&glfs-issues;/50">#50</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg: Added. Part of
+          <ulink url="&glfs-issues;/50">#50</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg deps: Added. Part of
+          <ulink url="&glfs-issues;/50">#50</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Multimedia: Moved to Wine. Part of
+          <ulink url="&glfs-issues;/50">#50</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - alsa-utils: Fixed an issue with udev rules.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 15th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Updated multiple Xorg libraries.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 14th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - winedeps: Add Samba to Optional.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>December 13th, 2024</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libICE: 1.1.1 -&gt; 1.1.2; libSM: 1.2.4 -&gt; 1.2.5;
+          libXrender: 0.9.11 -&gt; 0.9.12.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - GLib: 2.82.2 -&gt; 2.82.4.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - cURL: 8.11.0 -&gt; 8.11.1 (Security update). Fixes
+          <ulink url="&glfs-issues;/45">#45</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 12th, 2024</para>
       <itemizedlist>
         <listitem>
@@ -416,7 +1306,7 @@
           <para>[zeckma] - Wine: 9.20 -&gt; 9.21.</para>
         </listitem>
         <listitem>
-          <para>[zeckma] - Changelog: Replace zeckma with zeckma.</para>
+          <para>[zeckma] - Changelog: Replace Zeckmathederg with zeckma.</para>
         </listitem>
         <listitem>
           <para>[zeckma] - CMake: Simplify test instructions.</para>

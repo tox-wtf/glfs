@@ -37,8 +37,9 @@
 
     <para>
       Selecting <option>CONFIG_DRM_RADEON</option>,
-      <option>CONFIG_DRM_AMDGPU</option>, or
-      <option>CONFIG_DRM_NOUVEAU</option> as
+      <option>CONFIG_DRM_AMDGPU</option>,
+      <option>CONFIG_DRM_NOUVEAU</option>, or
+      <option>CONFIG_DRM_I915</option> as
       <quote><literal>y</literal></quote> is not recommended. If it is, any
       required firmware must be built as a part of the kernel image or the
       initramfs for the driver to function correctly.
@@ -78,7 +79,8 @@
       <para>
         ATI Radeon GPUs require firmware to be able to use KMS (kernel
         modesetting - the preferred option) as well as for Xorg. The firmware
-        is in <application>linux-firmware</application>.
+        is in
+        <ulink url="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git">linux-firmware</ulink>.
       </para>
 
       <para>
@@ -105,7 +107,7 @@
         then install them:
       </para>
 
-<screen><userinput>mkdir -pv /usr/lib/firmware/radeon &amp;&amp;
+<screen role="root"><userinput>mkdir -pv /usr/lib/firmware/radeon &amp;&amp;
 cp -v &lt;YOUR_BLOBS&gt; /usr/lib/firmware/radeon</userinput></screen>
 
     </sect3>
@@ -136,7 +138,7 @@ cp -v &lt;YOUR_BLOBS&gt; /usr/lib/firmware/radeon</userinput></screen>
         APU now has a 13th file, raven_ta.bin).
       </para>
 
-<screen><userinput>mkdir -pv /usr/lib/firmware/amdgpu &amp;&amp;
+<screen role="root"><userinput>mkdir -pv /usr/lib/firmware/amdgpu &amp;&amp;
 cp -v &lt;YOUR_BLOBS&gt; /usr/lib/firmware/amdgpu</userinput></screen>
 
       <para>
@@ -157,7 +159,7 @@ cp -v &lt;YOUR_BLOBS&gt; /usr/lib/firmware/amdgpu</userinput></screen>
         DMC (Display Microcontroller) to provide additional low-power
         states. The GuC and HuC have had a chequered history in the
         kernel and updated firmware may be disabled by default,
-        depending on your kernel version.Further details may be found at
+        depending on your kernel version. Further details may be found at
         <ulink url="https://01.org/linuxgraphics/downloads/firmware/"/> and
         <ulink url="https://wiki.archlinux.org/index.php/intel_graphics"/>.
       </para>
@@ -171,7 +173,8 @@ cp -v &lt;YOUR_BLOBS&gt; /usr/lib/firmware/amdgpu</userinput></screen>
         Some NVIDIA GPUs from Kepler onwards, including RTX and GTX 9xx series
         onwards, require firmware signed by NVIDIA to work.
         NVIDIA has now released firmware up to Ada (40xx) to
-        <application>linux-firmware</application>. Read
+        <ulink url="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git">linux-firmware</ulink>.
+        Read
         <ulink url='https://nouveau.freedesktop.org/CodeNames.html'>the
         CodeNames page of the Nouveau wiki</ulink> to figure out the code
         name of your NVIDIA GPU (for example, the code name of the GeForce RTX
@@ -190,15 +193,16 @@ cp -v &lt;YOUR_BLOBS&gt; /usr/lib/firmware/amdgpu</userinput></screen>
         cannot find your GPU listed in <filename>WHENCE</filename>, it means
         your GPU either doesn't need firmware or the firmware has not been
         released yet. If you don't want to bother and would rather install all
-        the drivers and symlinks, follow the instructions below in order to
+        the firmware and symlinks, follow the instructions below in order to
         install the newer firmware properly automatically:
       </para>
 
-<screen><userinput>git clone https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git  &amp;&amp;
+<screen role="root"><userinput>git clone https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git  &amp;&amp;
 cd linux-firmware                                                                      &amp;&amp;
 mkdir -pv /usr/lib/firmware/nvidia                                                     &amp;&amp;
 mkdir -pv DESTDIR/usr/lib/firmware                                                     &amp;&amp;
-sh copy-firmware.sh --ignore-duplicates DESTDIR/usr/lib/firmware                       &amp;&amp;
+sed -i 's@^destdir=$@destdir=DESTDIR/usr/lib/firmware@' copy-firmware.sh               &amp;&amp;
+sh copy-firmware.sh                                                                    &amp;&amp;
 cp -vr DESTDIR/usr/lib/firmware/nvidia/* /usr/lib/firmware/nvidia                      &amp;&amp;
 rm -rf DESTDIR</userinput></screen>
 
@@ -209,7 +213,7 @@ rm -rf DESTDIR</userinput></screen>
         NVIDIA runfile:
       </para>
 
-<screen><userinput>wget https://anduin.linuxfromscratch.org/BLFS/nvidia-firmware/extract_firmware.py        &amp;&amp;
+<screen role="root"><userinput>wget https://anduin.linuxfromscratch.org/BLFS/nvidia-firmware/extract_firmware.py        &amp;&amp;
 wget https://us.download.nvidia.com/XFree86/Linux-x86/340.32/NVIDIA-Linux-x86-340.32.run &amp;&amp;
 sh NVIDIA-Linux-x86-340.32.run --extract-only                                            &amp;&amp;
 python3 extract_firmware.py                                                              &amp;&amp;

@@ -55,12 +55,13 @@
 
     <bridgehead renderas="sect4">Recommended (Runtime)</bridgehead>
     <para role="runtime">
-      <xref linkend="elogind"/>
+      <phrase revision="sysv"><xref linkend="elogind"/></phrase>
+      <phrase revision="systemd"><xref linkend="systemd"/></phrase>
     </para>
 
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
-      <ulink url="&lfs-website;/blfs/view/svn/general/doxygen.html">
+      <ulink url="&blfs-svn;/general/doxygen.html">
       Doxygen</ulink>,
       <ulink url="&lfs-website;/blfs/view/12.1/general/python2.html">
       Python2</ulink>, and
@@ -176,6 +177,13 @@ ldconfig</userinput></screen>
 
   </sect2>
 
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-configure;
+
+  </sect2>
+
   <sect2 role="configuration">
     <title>Configuring ALSA Library</title>
 
@@ -210,7 +218,9 @@ ldconfig</userinput></screen>
 
       <para>
         Furthermore, if this package was not built with
-        <xref linkend="elogind"/> support, add any non-root users to the
+        <phrase revision="sysv"><xref linkend="elogind"/> support,</phrase>
+        <phrase revision="systemd">
+        <xref linkend="systemd"/>,</phrase> add any non-root users to the
         <systemitem class='groupname'>audio</systemitem> group as the
         <systemitem class="username">root</systemitem> user:
       </para>

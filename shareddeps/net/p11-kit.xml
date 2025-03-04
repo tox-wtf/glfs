@@ -26,6 +26,9 @@
       enumerate PKCS #11 (a Cryptographic Token Interface Standard) modules.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -43,7 +46,7 @@
 
     <!-- There is a check for libsystemd. It seems to install a systemd service
     in /usr/lib/systemd/user.-->
-    <bridgehead renderas="sect4">Required</bridgehead>
+    <bridgehead renderas="sect4">Required (for <xref linkend="steam"/>, otherwise recommended)</bridgehead>
     <para role="required">
        <xref linkend="libtasn1"/> and <xref role="runtime" linkend="nss"/>
     </para>
@@ -128,7 +131,7 @@ meson setup ..                                   \
       --prefix=/usr                              \
       --libdir=/usr/lib32                        \
       --buildtype=release                        \
-      -Dtrust_paths=/etc/pki/anchors &amp;&amp;
+      -D trust_paths=/etc/pki/anchors &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -146,6 +149,8 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-meson;
+
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../xincludes/meson-buildtype-release.xml"/>
 
@@ -158,12 +163,6 @@ ldconfig</userinput></screen>
       <option>-D hash_impl=freebl</option>: Use this switch if you want to
       use the Freebl library from <application>NSS</application> for SHA1 and
       MD5 hashing.
-    </para>
-
-    <para>
-      <option>-D gtk_doc=true</option>: Use this switch if you have installed
-      <!-- xref linkend="gtk-doc"/ --> and <!-- xref linkend="libxslt"/ --> and wish to
-      rebuild the documentation and generate manual pages.
     </para>
 
   </sect2>
@@ -201,8 +200,7 @@ ln -sfv ./pkcs11/p11-kit-trust.so /usr/lib32/libnssckbi.so</userinput></screen>
           /etc/pkcs11,
           /usr/include/p11-kit-1,
           /usr/lib/pkcs11,
-          /usr/libexec/p11-kit,
-          /usr/share/gtk-doc/html/p11-kit, and
+          /usr/libexec/p11-kit, and
           /usr/share/p11-kit
         </seg>
       </seglistitem>

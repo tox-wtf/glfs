@@ -4,7 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY libxkbcommon-download-http "https://xkbcommon.org/download/libxkbcommon-&libxkbcommon-version;.tar.xz">
+  <!ENTITY libxkbcommon-download-http "https://github.com/xkbcommon/libxkbcommon/archive/refs/tags/xkbcommon-&libxkbcommon-version;.tar.gz">
   <!ENTITY libxkbcommon-download-ftp  " ">
 ]>
 
@@ -76,7 +76,7 @@ cd    build &amp;&amp;
 meson setup ..            \
       --prefix=/usr       \
       --buildtype=release \
-      -Denable-docs=false &amp;&amp;
+      -D enable-docs=false &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -131,6 +131,8 @@ ldconfig</userinput></screen>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-meson;
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../../xincludes/meson-buildtype-release.xml"/>

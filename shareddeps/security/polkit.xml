@@ -69,18 +69,26 @@
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="linux-pam"/> and <xref linkend="elogind"/>
+      <xref linkend="linux-pam"/><phrase revision="sysv"> and
+      <xref linkend="elogind"/></phrase>
     </para>
 
     <note>
       <para>
-        Since <command>elogind</command>
+        Since <phrase revision="sysv"><command>elogind</command></phrase>
+        <phrase revision="systemd"><command>systemd-logind</command></phrase>
         uses PAM to register user sessions, it is a good idea to build
         <application>Polkit</application> with PAM support so
-        <command>elogind</command>
+        <phrase revision="sysv"><command>elogind</command></phrase>
+        <phrase revision="systemd"><command>systemd-logind</command></phrase>
         can track <application>Polkit</application> sessions.
       </para>
     </note>
+
+    <bridgehead renderas="sect4" revision="systemd">Required Runtime Dependencies</bridgehead>
+    <para role="required" revision="systemd">
+      <xref role="runtime" linkend="systemd"/>
+    </para>
 
     <bridgehead renderas="sect4" id="polkit-agent" xreflabel="Polkit Authentication Agent">
       Optional Runtime Dependencies
@@ -98,7 +106,9 @@
     <para>
       There should be a dedicated user and group to take control
       of the <command>polkitd</command> daemon after it is
-      started. Issue the following commands as the
+      started. <emphasis>IF</emphasis> you have not already created a
+      dedicated user and group for <command>polkitd</command>,
+      issue the following commands as the
       <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -111,7 +121,20 @@ useradd -c "PolicyKit Daemon Owner" -d /etc/polkit-1 -u 27 \
       commands:
     </para>
 
-<screen><userinput>mkdir build &amp;&amp;
+<screen revision="systemd"><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson setup ..                   \
+      --prefix=/usr              \
+      --buildtype=release        \
+      -D os_type=lfs             \
+      -D man=false               \
+      -D session_tracking=logind \
+      -D tests=false &amp;&amp;
+
+ninja</userinput></screen>
+
+<screen revision="sysv"><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
 meson setup ..                     \
@@ -131,17 +154,19 @@ ninja</userinput></screen>
 
 <screen role="root"><userinput>ninja install</userinput></screen>
 
-    <para>
+    <para revision="sysv">
       Remove some files that aren't useful on a SysV system as the &root; user:
     </para>
 
-<screen role="root"><userinput>rm -v /tmp/*.service &amp;&amp;
+<screen role="root" revision="sysv"><userinput>rm -v /tmp/*.service &amp;&amp;
 rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
 
   </sect2>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-meson;
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../xincludes/meson-buildtype-release.xml"/>
@@ -150,6 +175,11 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
       <parameter>-D os_type=lfs</parameter>: This switch ensures that
       even if distribution auto detection fails, the distribution/OS type
       will be hardcoded in <application>Polkit</application>.
+    </para>
+
+    <para>
+      <parameter>-D man=false</parameter>: This option disables generating and
+      installing manual pages.
     </para>
 
     <para>
@@ -162,11 +192,6 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
     <para>
       <option>-D introspection=false</option>: This option disables GObject
       Introspection support if you are sure you don't need it.
-    </para>
-
-    <para>
-      <option>-D man=false</option>: This option disables generating and
-      installing manual pages.
     </para>
 
   </sect2>

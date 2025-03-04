@@ -33,6 +33,16 @@
       </para>
     </note>
 
+    <note>
+      <para>
+        An Internet connection is needed for building the Nouveau and swrast
+        Vulkan driver.
+      </para>
+    </note>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -45,7 +55,7 @@
         </para>
       </listitem>
     </itemizedlist>
-
+<!--
     <para>
       <emphasis role="strong">Patch for Seizure Prevention (Recommended)</emphasis>
     </para>
@@ -53,11 +63,11 @@
       <listitem>
         <para>
           Recommended patch:
-          <ulink url="&patch-root;/mesa-seizure_prevention-2.patch"/>
+          <ulink url="&patch-root;/mesa/mesa-seizure_prevention-2.patch"/>
         </para>
       </listitem>
     </itemizedlist>
-
+-->
     <bridgehead renderas="sect3">Mesa Dependencies</bridgehead>
 
     <bridgehead renderas="sect4">Required</bridgehead>
@@ -74,8 +84,9 @@
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            <xref linkend="cbindgen"/>, <xref linkend="rust-bindgen"/>,
-            and <xref linkend="rust"/> (required for NVK and Vulkan swrast)
+            <xref linkend="cbindgen"/>, <xref linkend="make-ca"/>,
+            <xref linkend="rust-bindgen"/>, and <xref linkend="rustc"/>
+            (required for Nouveau and swrast Vulkan)
           </para>
         </listitem>
         <listitem>
@@ -86,11 +97,6 @@
         <listitem>
           <para>
             <xref linkend="libclc"/> (required for the Intel Iris Gallium3D)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <xref linkend="libglvnd"/> (required for <xref linkend="steam"/>)
           </para>
         </listitem>
         <listitem>
@@ -115,11 +121,11 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="mesonfiles"/> (required for multilib 32-bit Nouveau
+            <xref linkend="mesonfiles"/> (required for lib32 Nouveau
             and Swrast Vulkan; if the recommended dependencies are met, setting
             <parameter>auto</parameter> or <parameter>all</parameter> for
             <parameter>vulkan-drivers=</parameter> will build them by default,
-            which is set for the 32-bit build down below)
+            which is set for the lib32 build down below)
           </para>
         </listitem>
         <listitem>
@@ -169,32 +175,12 @@
     </note>
 -->
 
-    <note>
-      <para>
-        An Internet connection is needed for building the Nouveau Vulkan driver.
-      </para>
-    </note>
-
   </sect2>
 
   <sect2 role="installation">
     <title>Installation of Mesa</title>
     
-    <note>
-      <para>
-        If you are using <xref linkend="nvidia"/> and wish to use
-        <xref linkend="steam"/>, this package is still a requirement
-        as <application>Steam</application> depends on Mesa's GBM,
-        or else the webhelper will repeatedly launch and crash.
-        You will need to have at least one
-        gallium driver for this package to compile. Set the option
-        <parameter>-D gallium-drivers=nouveau</parameter> to get this
-        package over and done with as then you can move on. The
-        32-bit version of this package is not necessary if you are doing
-        this.
-      </para>
-    </note>
-
+<!--
     <para>
       The recommended patch fixes behavior in the Gallium3D Zink driver when
       the active Vulkan driver is NVK. Otherwise, many apps flash pretty badly,
@@ -206,7 +192,7 @@
     </para>
 
 <screen><userinput>patch -Np1 -i ../mesa-seizure_prevention-2.patch</userinput></screen>
-
+-->
     <para>
       Install <application>Mesa</application> by running the following
       commands:
@@ -225,7 +211,6 @@ meson setup                    \
       -D valgrind=disabled     \
       -D video-codecs=all      \
       -D libunwind=disabled    \
-      -D glvnd=enabled         \
       ..    &amp;&amp;
 
 ninja</userinput></screen>
@@ -271,24 +256,22 @@ ninja</userinput></screen>
       commands:
     </para>
 
-<screen><userinput>BINDGEN_EXTRA_CLANG_ARGS="-m32" \
-meson setup                     \
-      --cross-file lib32        \
-      --prefix=/usr             \
-      --libdir=/usr/lib32       \
-      --buildtype=release       \
-      -D osmesa=true            \
-      -D platforms=x11,wayland  \
-      -D gallium-drivers=auto   \
-      -D vulkan-drivers=auto    \
-      -D valgrind=disabled      \
-      -D video-codecs=all       \
-      -D libunwind=disabled     \
-      -D glvnd=enabled          \
+<screen><userinput>meson setup                    \
+      --cross-file lib32       \
+      --prefix=/usr            \
+      --libdir=/usr/lib32      \
+      --buildtype=release      \
+      -D osmesa=true           \
+      -D platforms=x11,wayland \
+      -D gallium-drivers=auto  \
+      -D vulkan-drivers=auto   \
+      -D valgrind=disabled     \
+      -D video-codecs=all      \
+      -D libunwind=disabled    \
       .. &amp;&amp;
       sed -i 's/\/usr\/lib\//\/usr\/lib32\//g' ./build.ninja &amp;&amp;
 
-ninja</userinput></screen>
+BINDGEN_EXTRA_CLANG_ARGS="-m32" ninja</userinput></screen>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -306,6 +289,8 @@ ldconfig</userinput></screen>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-meson;
 
     <para>
       <parameter>--buildtype=release</parameter>: This switch ensures a
@@ -452,8 +437,8 @@ ldconfig</userinput></screen>
           <para>
             <literal>nouveau</literal> (for GTX 16XX, RTX 20XX, or newer NVIDIA GPUs;
             this driver is maturing and is already quite performant, although less so
-            than the <xref linkend="nvidia"/> driver; however, it is a good replacement,
-            especially when used with Gallium3D <literal>zink</literal>)
+            than the <application>NVIDIA</application> driver; however, it is a good
+            replacement, especially when used with Gallium3D <literal>zink</literal>)
           </para>
         </listitem>
         <listitem>
@@ -491,14 +476,6 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <parameter>-D glvnd=enabled</parameter>: This parameter disables this
-      package from building its own OpenGL library and uses the libraries
-      provided by <xref linkend="libglvnd"/>. Omit parameter if you do not
-      want to use <xref linkend="steam"/>. Otherwise, keep the parameter and
-      install <xref linkend="libglvnd"/> before compiling this package.
-    </para>
-
-    <para>
       <command>meson configure -D build-tests=true</command>: This command will
       reconfigure the build to set <option>-D build-tests=true</option>, but
       keep the other options specified in the <command>meson setup</command>
@@ -521,7 +498,7 @@ ldconfig</userinput></screen>
     <para>
       <computeroutput>BINDGEN_EXTRA_CLANG_ARGS="-m32"</computeroutput>: This
       variable ensures that <xref linkend="rust-bindgen"/> generates bindings
-      that don't go out of bounds when compiling lib32-NVK.
+      that don't go out of bounds when compiling lib32 Nouveau Vulkan.
     </para>
 
     <para>
@@ -551,7 +528,10 @@ ldconfig</userinput></screen>
           None
         </seg>
         <seg>
-          libEGL_mesa.so,
+          libEGL.so,
+          libGL.so,
+          libGLESv1_CM.so,
+          libGLESv2.so,
           libgallium-&mesa-version;.so,
           libgbm.so,
           libglapi.so,
@@ -580,8 +560,8 @@ ldconfig</userinput></screen>
         <seg>
           <!-- Begin VA-API Drivers -->
           nouveau_drv_video.so,
-          radeonsi_drv_video.so,
-          virtio_gpu_drv_video.so,
+          radeonsi_drv_video.so, and
+          virtio_gpu_drv_video.so
           <!-- End VA-API Drivers -->
         </seg>
         <seg>
@@ -592,28 +572,27 @@ ldconfig</userinput></screen>
         <seg>
           <!-- Begin VDPAU Drivers -->
           libvdpau_nouveau.so,
-          libvdpau_r300.so
-          libvdpau_r600.so, and
-          libvdpau_radeonsi.so
+          libvdpau_r300.so,
+          libvdpau_r600.so,
+          libvdpau_radeonsi.so, and
           libvdpau_virtio_gpu.so
+          (many of these drivers are hard-linked)
           <!-- End VDPAU Drivers -->
-          (Many of these drivers are hard-linked).
         </seg>
         <seg>
           libvulkan_intel_hasvk.so,
           libvulkan_intel.so,
-          libvulkan_lvp.so, and
+          libvulkan_lvp.so,
           libvulkan_nouveau.so, and
           libvulkan_radeon.so
         </seg>
         <seg>
           <!-- /usr/include/GL is installed by xorg-protos -->
-          /usr/include/EGL,
-          /usr/lib/{dri,vdpau},
-          /usr/share/drirc.d (contains workarounds for various applications,
+          $XORG_PREFIX/{include/{EGL,GLES,GLES2,GLES3,KHR},
+          $XORG_PREFIX/lib/{dri,gbm,vdpau}},
+          $XORG_PREFIX/share/drirc.d (contains workarounds for various applications,
           particularly browsers and games),
-          /usr/share/glvnd,
-          /usr/share/vulkan,
+          $XORG_PREFIX/share/vulkan,
           and /usr/share/doc/mesa-&mesa-version;
         </seg>
       </seglistitem>
@@ -624,6 +603,7 @@ ldconfig</userinput></screen>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
+      
       <varlistentry id="dri_gbm">
         <term><filename class='libraryfile'>dri_gbm.so</filename></term>
         <listitem>
@@ -635,15 +615,25 @@ ldconfig</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry id="libEGL_mesa">
-        <term><filename class="libraryfile">libEGL_mesa.so</filename></term>
+      <varlistentry id="libdril_dri">
+        <term><filename class='libraryfile'>libdril_dri.so</filename></term>
         <listitem>
           <para>
-            provides the Mesa platform graphics interface as
+            is a stub allowing Xorg server to co-operate with the Gallium3D
+            drivers
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libEGL">
+        <term><filename class="libraryfile">libEGL.so</filename></term>
+        <listitem>
+          <para>
+            provides a native platform graphics interface as
             defined by the EGL-1.4 specification
           </para>
-          <indexterm zone="mesa libEGL_mesa">
-            <primary sortas="c-libEGL_mesa">libEGL_mesa.so</primary>
+          <indexterm zone="mesa libEGL">
+            <primary sortas="c-libGL">libEGL.so</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -654,9 +644,6 @@ ldconfig</userinput></screen>
           <para>
             contains all the Gallium3D drivers
           </para>
-          <indexterm zone="mesa libgallium">
-            <primary sortas="c-libgallium">libgallium-&mesa-version;.so</primary>
-          </indexterm>
         </listitem>
       </varlistentry>
 
@@ -686,15 +673,38 @@ ldconfig</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry id="libGLX_mesa">
-        <term><filename class="libraryfile">libGLX_mesa.so</filename></term>
+      <varlistentry id="libGLESv1_CM">
+        <term><filename class="libraryfile">libGLESv1_CM.so</filename></term>
         <listitem>
           <para>
-            is the <application>Mesa</application> OpenGL X window extension
-            library.
+            is the <application>Mesa</application> OpenGL ES 1.1 library
           </para>
-          <indexterm zone="mesa libGLX_mesa">
-            <primary sortas="c-libGLX_mesa">libGLX_mesa.so</primary>
+          <indexterm zone="mesa libGLESv1_CM">
+            <primary sortas="c-libGLESv1_CM">libGLESv1_CM.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libGLES2">
+        <term><filename class="libraryfile">libGLES2.so</filename></term>
+        <listitem>
+          <para>
+            is the <application>Mesa</application> OpenGL ES 2.0 library
+          </para>
+          <indexterm zone="mesa libGLES2">
+            <primary sortas="c-libGLES2">libGLES2.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libGL">
+        <term><filename class="libraryfile">libGL.so</filename></term>
+        <listitem>
+          <para>
+            is the main <application>Mesa</application> OpenGL library
+          </para>
+          <indexterm zone="mesa libGL">
+            <primary sortas="c-libGL">libGL.so</primary>
           </indexterm>
         </listitem>
       </varlistentry>

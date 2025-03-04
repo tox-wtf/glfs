@@ -47,16 +47,21 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="libsndfile"/> and <xref linkend="mesonfiles"/> (for lib32)
+      <xref linkend="libsndfile"/> and
+      <xref linkend="mesonfiles"/> (for lib32)
     </para>
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="alsa-lib"/>,
-      <xref linkend="dbus-pass1"/> or <xref linkend="dbus-pass2"/>,
-      <xref linkend="elogind"/>
+      <phrase revision="sysv">
+      <xref linkend="dbus-pass1"/> or
+      </phrase>
+      <xref linkend="dbus"/>,
+      <phrase revision="sysv"><xref linkend="elogind"/>,</phrase>
       <xref linkend="glib2"/>,
-      <ulink url="&blfs-svn;/multimedia/speex.html">Speex</ulink>, and
+      <ulink url="&blfs-svn;/multimedia/speex.html">Speex</ulink>,
+      <phrase revision="systemd"><xref linkend="systemd"/>,</phrase> and
       <xref linkend="xorg7-lib"/>
     </para>
 
@@ -66,7 +71,8 @@
       <ulink url="&blfs-svn;/general/bluez.html">BlueZ</ulink>,
       <ulink url="&blfs-svn;/general/doxygen.html">Doxygen</ulink> (for documentation),
       <ulink url="&blfs-svn;/general/fftw.html">fftw</ulink>,
-      <ulink url="&blfs-svn;/x/gtk3.html">GTK+-3</ulink>,
+      <xref linkend="gst10-plugins-base"/>,
+      <ulink url="&blfs-svn;/x/gtk3.html">GTK-3</ulink>,
       <ulink url="&blfs-svn;/multimedia/libsamplerate.html">libsamplerate</ulink>,
       <ulink url="&blfs-svn;/multimedia/sbc.html">SBC</ulink> (Bluetooth support),
       <ulink url="&blfs-svn;/general/valgrind.html">Valgrind</ulink>,
@@ -106,14 +112,10 @@ meson setup --prefix=/usr       \
             -D database=gdbm    \
             -D doxygen=false    \
             -D bluez5=disabled  \
+            -D tests=false      \
             .. &amp;&amp;
 
 ninja</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>ninja test</command>. One test
-      fails if the tests are not run as the root user, but this can be ignored.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -139,34 +141,6 @@ ninja</userinput></screen>
   <sect2 role="installation">
     <title>lib32 Installation of PulseAudio</title>
 
-    <note>
-      <para>
-        <ulink url="https://&lfs-domainname;/~thomas/multilib/chapter08/check.html">
-        Check</ulink> from LFS Multilib does not contain 32-bit instructions
-        currently and this package depends on <application>Check</application>.
-        Compile 32-bit Check by following the instructions below if you have not
-        installed 32-bit Check if the directory is clean:
-      </para>
-      
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
-./configure --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --host=i686-pc-linux-gnu \
-            --disable-static &amp;&amp;
-
-make</userinput></screen>
-    
-      <para>
-        Now as the <systemitem class="username">root</systemitem> user:
-      </para>
-
-<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
-cp -Rv DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
-rm -rf DESTDIR                        &amp;&amp;
-ldconfig</userinput></screen>
-
-    </note>
-
     <para>
       First clean the build directory:
     </para>
@@ -178,13 +152,14 @@ ldconfig</userinput></screen>
       commands:
     </para>
 
-<screen><userinput>meson setup --cross-file lib32       \
-            --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --buildtype=release      \
-            -D database=gdbm         \
-            -D doxygen=false         \
-            -D bluez5=disabled       \
+<screen><userinput>meson setup --cross-file lib32  \
+            --prefix=/usr       \
+            --libdir=/usr/lib32 \
+            --buildtype=release \
+            -D database=gdbm    \
+            -D doxygen=false    \
+            -D bluez5=disabled  \
+            -D tests=false      \
             .. &amp;&amp;
 
 ninja</userinput></screen>
@@ -203,8 +178,15 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-meson;
+
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../xincludes/meson-buildtype-release.xml"/>
+
+    <para>
+      <parameter>-D doxygen=false</parameter>: This allows the package to
+      compile as Doxygen is not installed.
+    </para>
 
     <para>
       <parameter>-D bluez5=disabled</parameter>: This switch prevents
@@ -214,10 +196,10 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <parameter>-D doxygen=false</parameter>: This allows the package to
-      compile if Doxygen is not installed. Remove this
-      if you have installed this and wish to build the documentation.
+      <parameter>-D tests=false</parameter>: This switch disables building
+      tests as they require <application>Check</application>.
     </para>
+
 <!--
     <para>
       <parameter>- -disable-rpath</parameter>: This switch prevents
@@ -283,9 +265,11 @@ ldconfig</userinput></screen>
       </para>
 
       <para>
-        If you did not build this package with <xref linkend="elogind"/>
-        support, you will also need to add any non-root users to the
-        <systemitem class="groupname">audio</systemitem> group as the
+        Furthermore, if this package was not built with
+        <phrase revision="sysv"><xref linkend="elogind"/> support,</phrase>
+        <phrase revision="systemd">
+        <xref linkend="systemd"/>,</phrase> add any non-root users to the
+        <systemitem class='groupname'>audio</systemitem> group as the
         <systemitem class="username">root</systemitem> user:
       </para>
 

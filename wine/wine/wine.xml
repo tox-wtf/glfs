@@ -24,6 +24,9 @@
       Wine is a compatibility layer for running Windows programs on Unix.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -37,80 +40,45 @@
       </listitem>
     </itemizedlist>
 
+<!--
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&patch-root;/wine/wine-&wine-version;-avoid_idata_section-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+-->
+
     <bridgehead renderas="sect3">Wine Dependencies</bridgehead>
 
     <para>
       <xref linkend="winedeps"/>
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
-
   </sect2>
 
   <sect2 role="installation">
     <title>Installation of Wine</title>
+
+<!--
+    <para>
+      First apply an upstream patch so that delay-load import libraries are
+      unbroken with <xref linkend="mingw-w64-binutils"/> due to <application>
+      Binutils</application> merging .idata sections into read-only .rdata
+      sections for PE formatted software upstream:
+    </para>
+
+<screen><userinput>patch -Np1 -i ../wine-&wine-version;-avoid_idata_section-1.patch</userinput></screen>
+-->
 
     <para>
       Wine has three build types. Scroll down to the build type you want.
       Visit <xref linkend="winedeps"/> for more information about each
       build type.
     </para>
-
-    <sect3>
-      <title>64-bit Only</title>
-
-      <para>
-        Install 64-bit only <application>Wine</application> by running
-        the following commands:
-      </para>
-
-<screen><userinput>mkdir build &amp;&amp;
-cd    build &amp;&amp;
-
-../configure --prefix=/usr --enable-win64 &amp;&amp;
-
-make</userinput></screen>
-
-      <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
-      </para>
-
-<screen role="root"><userinput>make install</userinput></screen>
-
-    </sect3>
-
-    <sect3>
-      <title>32-bit Only</title>
-
-      <note>
-        <para>
-          If you're on 64-bit, invoke <userinput>
-          PKG_CONFIG_PATH=/usr/lib32/pkgconfig</userinput>
-          at the beginning of the following command to build for
-          32-bit.
-        </para>
-      </note>
-
-      <para>
-        Install 32-bit only <application>Wine</application> by running
-        the following commands:
-      </para>
-
-<screen><userinput>mkdir build &amp;&amp;
-cd    build &amp;&amp;
-
-../configure --prefix=/usr &amp;&amp;
-
-make</userinput></screen>
-
-      <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
-      </para>
-
-<screen role="root"><userinput>make install</userinput></screen>
-
-    </sect3>
 
     <sect3>
       <title>WoW64</title>
@@ -146,11 +114,66 @@ cd ../build-win64 &amp;&amp;
 make install</userinput></screen>
 
     </sect3>
+
+    <sect3>
+      <title>64-bit Only</title>
+
+      <para>
+        Install 64-bit only <application>Wine</application> by running
+        the following commands:
+      </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+../configure --prefix=/usr --enable-win64 &amp;&amp;
+
+make</userinput></screen>
+
+      <para>
+        Now, as the <systemitem class="username">root</systemitem> user:
+      </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+
+    </sect3>
+
+    <sect3>
+      <title>32-bit Only</title>
+
+      <note><para>
+        If you're on 64-bit, invoke
+        <userinput>PKG_CONFIG_PATH=/usr/lib32/pkgconfig</userinput> at the
+        beginning of the <command>../configure</command> command to build for
+        32-bit.
+      </para></note>
+
+      <para>
+        Install 32-bit only <application>Wine</application> by running
+        the following commands:
+      </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+../configure --prefix=/usr &amp;&amp;
+
+make</userinput></screen>
+
+      <para>
+        Now, as the <systemitem class="username">root</systemitem> user:
+      </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+
+    </sect3>
   
   </sect2>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-subconfigure;
 
     <para>
       <parameter>--with-wine64=../build-win64</parameter>: This option
@@ -166,14 +189,27 @@ make install</userinput></screen>
     <para>
       This installation should be good enough for most people but there may be
       a few things that you wish to change or do in relation to this package.
-      The <ulink url="https://wiki.archlinux.org/title/Wine">Arch Wiki page</ulink>
-      for Wine covers most of the things you may wish to do. In relation to
-      gaming and Vulkan, don't forget to check the DXVK and VKD3D-Proton
-      sections as Wine will use WineD3D out of the box. WineD3D is much slower
-      than DXVK and VKD3D-Proton. For AUR listings, check the PKGBUILD files
-      and use the scripts as shown in the wiki page to ensure Wine will use
-      DXVK/VKD3D-Proton. It is worth noting that this installation
-      built simple Direct3D libraries but they invoke WineD3D.
+      The <ulink url="https://wiki.archlinux.org/title/Wine">Arch Wiki
+      page</ulink> for Wine covers most of the things you may wish to do. In
+      relation to gaming and Vulkan, you may wish to install
+      <xref linkend="dxvk"/> which converts Direct3D 8-11 calls to Vulkan,
+      unlike WineD3D which converts Direct3D calls to OpenGL in a poor manner
+      and is much slower.
+    </para>
+
+    <para>
+      As for Direct3D 12, you may also wish to install
+      <xref linkend="vkd3d-proton"/> which replaces
+      <application>VKD3D</application> provided by
+      <application>Wine</application>. <application>VKD3D</application> is less
+      aggressive with optimizations and is geared for general use, whereas
+      <application>VKD3D-Proton</application> has aggressive optimizations and
+      is geared towards gaming. Despite the name, it can be used with
+      <application>Wine</application> and works quite well.
+    </para>
+
+    <para>
+      The choice of what to install is up to you.
     </para>
 
   </sect2>
@@ -432,7 +468,7 @@ make install</userinput></screen>
         <term><command>winemaker</command></term>
         <listitem>
           <para>
-            generates a build infrastructure for compililing Windows programs
+            generates a build infrastructure for compiling Windows programs
             on Unix
           </para>
           <indexterm zone="wine winemaker">

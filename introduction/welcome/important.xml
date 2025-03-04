@@ -54,35 +54,25 @@
   <sect2>
     <title>Stability</title>
 
-    <para>
-      This book is in a constant flux of updates, including packages and can
-      be akin to the BLFS Git version. Right now, there is no stable
-      version of GLFS. This may cause problems when you wish to continue onto
-      BLFS. Sometimes, packages in this book will have newer versions than even
-      BLFS development pages. It is recommended to remember what versions of
-      packages you have on your system because of this. Expect build failures
-      at some point, although we try to limit that possibility.
-    </para>
+    &important-stability;
 
   </sect2>
 
   <sect2>
     <title>Init System</title>
 
-    <para>
-      This book doesn't have instructions for Systemd. It is meant for SysV
-      LFS systems, but if you find or make your own bootscripts, you can
-      use the instructions in this book on a system that has Runit or
-      OpenRC. Systemd will take more work and the process involves checking
-      <ulink url="https://&lfs-domainname;/blfs/view/systemd"/> and compare the
-      instructions for each package. There aren't many packages that require
-      this process except ones that may need to be started as a service.
-      The <quote>Security</quote> subsection of the Shared Dependencies chapter
-      is especially different so watch out for it if you are using Systemd. The
-      reason for not using Systemd is that it makes things more complicated,
-      a lot of users use more simplistic init systems like SysVinit for their
-      LFS system, and including instructions for both can result in two book
-      versions which would be rather inconvenient.
+    <para revision="sysv">
+      This version of this book is meant for SysV LFS systems. The Systemd
+      version of the book is not viewable online by &copyholder; due to Github
+      Pages restraints. Thus you will need to download or render the book
+      yourself. Follow the <ulink url="&glfs-repo;">GLFS rendering
+      instructions</ulink> in order to render the book yourself. You will need
+      <xref linkend="git"/> to clone the repository. You can download the book
+      <ulink url="&glfs-repo;/releases">here</ulink>.
+    </para>
+
+    <para revision="systemd">
+      This version of this book is meant for Systemd LFS systems.
     </para>
 
   </sect2>
@@ -120,9 +110,9 @@
     </important>
 
     <para>
-      Next is compiling for 32-bit. There are many packages which will have
+      Next is compiling for lib32. There are many packages which will have
       a lib32 counterpart. If you just got done with a normal compilation
-      of a package and wish to do a 32-bit compilation of that same package,
+      of a package and wish to do a lib32 compilation of that same package,
       make sure to clean the directory first:
     </para>
 
@@ -133,10 +123,10 @@
 
     <screen><userinput>rm -rf *</userinput></screen>
 
-    <para>Then proceed with the 32-bit compilation instructions.</para>
+    <para>Then proceed with the lib32 compilation instructions.</para>
 
     <para>
-      Generally, the format of targetting 32-bit goes like this:
+      Generally, the format of targetting lib32 goes like this:
     </para>
 
     <para>For <command>./configure</command>:</para>
@@ -191,7 +181,7 @@ ldconfig</userinput></screen>
         After you do a DESTDIR installation, it is recommended to
         to use <command>file</command> on one of the libraries in
         <filename>DESTDIR/usr/lib32</filename>. An output of such
-        a command for a 32-bit build of a library should be
+        a command for a lib32 build of a library should be
         comparable to the following:
       </para>
 

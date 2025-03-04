@@ -19,17 +19,18 @@
 
   <para>
     Well, how do you go from here? You could continue straight to the following
-    chapters if you wish. You can even now follow BLFS. But to run graphical
-    software you compile like <xref linkend="steam"/> and
-    <xref linkend="wine"/>, you will need a graphical environment. There are a
-    few components you will need in order to get a graphical environment
-    working and not accidently lock yourself inside of it without a hard reboot.
-    The installation of those components are not covered in this book and which
-    components you will need will depend on if you are going to use
-    <application>X11</application>, <application>Wayland</application>, or
-    both. This page acts as a simple nudge to help point you in the right
-    direction, and when you are done, can come back and continue on with the
-    next chapters.
+    chapters if you wish. But to run graphical compile like <xref
+    linkend="steam"/> and
+    <xref linkend="wine"/> (including <command>wineboot</command> as shown in
+    the setup for <xref linkend="dxvk"/>), you will need a graphical
+    environment. There are a few components you will need in order to get a
+    graphical environment working and not accidently lock yourself inside of it
+    without a hard reboot. The installation of those components are not covered
+    in this book and which components you will need will depend on if you are
+    going to use <application>X11</application>,
+    <application>Wayland</application>, or both. This page acts as a simple
+    nudge to help point you in the right direction, and when you are done, can
+    come back and continue on with the next chapters.
   </para>
 
   <para>
@@ -44,11 +45,11 @@
     <para>
       It is recommended to read up on the BLFS page
       <ulink url="&blfs-svn;/x/xorg-config.html">Xorg-7 Testing and
-      Configuration</ulink>. It is pretty comprehensive. However, using
-      <xref linkend="nvidia"/> with <application>X11</application> requires
-      a slightly different setup.
+      Configuration</ulink>. It is pretty comprehensive. However, there
+      is some extra information you may wish to know.
     </para>
 
+<!--
     <sect3>
       <title>X11 With NVIDIA</title>
 
@@ -89,7 +90,8 @@
         &root; user:
       </para>
 
-      <screen role="root"><userinput>nvidia-xconfig --prime</userinput></screen>
+      NOTE: Remove ! between two dashes for unarchiving NVIDIA.
+      <screen role="root"><userinput>nvidia-xconfig -!-prime</userinput></screen>
 
       <para>
         It will then say you will have to run a few commands. While in a TTY,
@@ -103,7 +105,7 @@
       </para>
 
     </sect3>
-
+-->
     <sect3>
       <title>Using Zink</title>
 
@@ -151,10 +153,11 @@
           how they move, and more. It is a minimal option for a graphical environment,
           not requiring a ton of packages and takes less disk and RAM usage. Good
           window managers include <ulink url="https://awesomewm.org/">AwesomeWM</ulink>,
+          <ulink url="https://github.com/baskerville/bspwm">BSPWM</ulink>,
           <ulink url="https://dwm.suckless.org/">DWM</ulink>, and
-          <ulink url="https://github.com/baskerville/bspwm">BSPWM</ulink>. In order
-          to start these window managers, add a line to <filename>~/.xinitrc
-          </filename>:
+          <ulink url="https://glfs-book.github.io/lfs-qol/i3/i3.html">i3</ulink>.
+          In order to start these window managers, add a line to
+          <filename>~/.xinitrc</filename>:
         </para>
 
 <screen><userinput>echo "exec <replaceable>&lt;WINDOW-MANAGER&gt;</replaceable>" &gt;&gt; ~/.xinitrc</userinput></screen>
@@ -258,16 +261,17 @@
       however.
     </para>
 
+<!--
     <sect3>
       <title>NVIDIA</title>
 
       <para>
         Unlike X11, Wayland requires that the nvidia_drm module has the modeset
         option set to true, which is not by default. Do so by creating the
-        following folder and file, then reboot:
+        following folder and file as the &root; user, then reboot:
       </para>
 
-<screen><userinput>mkdir -pv /etc/modprobe.d &amp;&amp;
+<screen role="root"><userinput>mkdir -pv /etc/modprobe.d &amp;&amp;
 cat &gt; /etc/modprobe.d/nvidia.conf &lt;&lt; "EOF"
 <literal>options nvidia_drm modeset=1</literal>
 EOF</userinput></screen>
@@ -283,6 +287,7 @@ EOF</userinput></screen>
       </para>
 
     </sect3>
+-->
 
     <sect3>
       <title>Window Managers, Desktop Environments, and Compositors</title>
@@ -314,7 +319,8 @@ EOF</userinput></screen>
 
         <para>
           Native <application>Wayland</application> compositors include
-          <ulink url="https://hyprland.org/">Hyprland</ulink>,
+          <ulink url="https://glfs-book.github.io/lfs-qol/hypr/hypr.html">Hyprland</ulink>,
+          <ulink url="https://glfs-book.github.io/lfs-qol/i3/i3.html">i3</ulink>,
           <ulink url="https://github.com/swaywm/sway">Sway</ulink>, and
           <ulink url="https://github.com/WayfireWM/wayfire">Wayfire</ulink>.
           In order to start these compositors, you can start them by using

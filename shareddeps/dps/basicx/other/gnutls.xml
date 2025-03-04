@@ -48,6 +48,9 @@
       extension, and X.509 and OpenPGP certificate handling.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -80,7 +83,9 @@
     <para role="optional">
       <ulink url="&gnu-http;/autogen/">autogen</ulink>,
       <ulink url="https://cmocka.org/">cmocka</ulink> and
-      <ulink url="https://ftp.debian.org/debian/pool/main/d/datefudge/">datefudge</ulink> (used during the test suite if the DANE library is built),
+      <ulink url="https://ftp.debian.org/debian/pool/main/d/datefudge/">datefudge</ulink>
+      (used during the test suite if the DANE library is built),
+      <ulink url="https://github.com/smuellerDD/leancrypto">leancrypto</ulink>,
       <ulink url="https://github.com/open-quantum-safe/liboqs">liboqs</ulink>, and
       <ulink url="&sourceforge-dl;/trousers/">Trousers</ulink> (Trusted Platform Module support)
     </para>
@@ -131,6 +136,8 @@ make</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-configure;
+
     <para>
       <parameter>--with-default-trust-store-pkcs11="pkcs11:"</parameter>: This
       switch tells gnutls to use the PKCS #11 trust store as the default trust.
@@ -151,28 +158,25 @@ make</userinput></screen>
       by default. Use this if <xref linkend="p11-kit"/> is not installed.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../../xincludes/gtk-doc-rebuild.xml"/>
-
     <para>
       <option>--enable-openssl-compatibility</option>:
       Use this switch if you wish to build the OpenSSL compatibility library.
     </para>
 
     <para>
-      <option>--without-p11-kit</option>: use this switch if you have not
-      installed <application>p11-kit</application>.
+      <option>--without-p11-kit</option>: Use this switch if you have not
+      installed <xref linkend="p11-kit"/>.
     </para>
 
     <para>
-      <option>--with-included-unistring</option>: uses the bundled version of
-      libunistring, instead of the system one. Use this switch if you have not
-      installed <xref linkend="libunistring"/>.
+      <option>--with-included-unistring</option>: This switch uses the bundled
+      version of libunistring, instead of the system one. Use this switch if
+      you have not installed <xref linkend="libunistring"/>.
     </para>
 
     <para>
-      <option>--disable-dsa</option>: completely disables DSA algorithm
-      support.
+      <option>--disable-dsa</option>: This option completely disables DSA
+      algorithm support.
     </para>
 
   </sect2>

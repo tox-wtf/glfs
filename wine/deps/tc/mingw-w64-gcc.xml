@@ -26,6 +26,9 @@
       will be dedicated to finishing the MinGW-w64 toolchain.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -43,19 +46,16 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-        <xref linkend="mingw-w64"/>
+      <xref linkend="mingw-w64"/>
     </para>
 
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
-        <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/gdb.html">
-        GDB</ulink> and
-        <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/valgrind.html">
-        Valgrind</ulink> (for tests)
+      <ulink url="&blfs-svn;/general/gdb.html">
+      GDB</ulink> and
+      <ulink url="&blfs-svn;/general/valgrind.html">
+      Valgrind</ulink> (for tests)
     </para>
-
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../../../xincludes/long-build-time.xml"/>
 
   </sect2>
 
@@ -82,13 +82,12 @@
 <screen><userinput>mkdir build-x86_64-mingw-w64 &amp;&amp;
 cd    build-x86_64-mingw-w64 &amp;&amp;
 
-../configure                             \
-    --prefix=/usr                        \
-    --target=x86_64-w64-mingw32          \
-    --enable-threads=posix               \
-    --enable-shared                      \
-    --disable-multilib                   \
-    --enable-languages=c,c++ &amp;&amp;
+../configure --prefix=/usr               \
+             --target=x86_64-w64-mingw32 \
+             --enable-threads=posix      \
+             --enable-shared             \
+             --disable-multilib          \
+             --enable-languages=c,c++ &amp;&amp;
 
 make</userinput></screen>
 
@@ -138,13 +137,12 @@ strip /usr/libexec/gcc/x86_64-w64-mingw32/&mingw-w64-gcc-version;/{cc1*,collect2
 <screen><userinput>mkdir build-i686-mingw-w64 &amp;&amp;
 cd    build-i686-mingw-w64 &amp;&amp;
 
-../configure                             \
-    --prefix=/usr                        \
-    --target=i686-w64-mingw32            \
-    --enable-shared                      \
-    --enable-threads=posix               \
-    --disable-multilib                   \
-    --enable-languages=c,c++ &amp;&amp;
+../configure --prefix=/usr             \
+             --target=i686-w64-mingw32 \
+             --enable-shared           \
+             --enable-threads=posix    \
+             --disable-multilib        \
+             --enable-languages=c,c++ &amp;&amp;
 
 make</userinput></screen>
 
@@ -185,13 +183,12 @@ strip /usr/libexec/gcc/i686-w64-mingw32/&mingw-w64-gcc-version;/{cc1*,collect2,l
   </sect2>
 
   <sect2>
-    <title>Cleaning Up and Testing</title>
+    <title>Testing the Toolchain</title>
 
     <para>
-      Now that <application>MinGW-w64-GCC</application> and friends
-      have been installed, it is time to test the <application>
-      MinGW-w64</application> installation to make sure everything is
-      working as expected.
+      Now that the <application>MinGW-w64</application> cross toolchain has
+      been fully installed, it is time to test the installation to make sure
+      everything is working as expected.
     </para>
 
     <para>
@@ -232,7 +229,7 @@ rm -v a.out main.{c,cpp}</userinput></screen>
       For x86_64:
     </para>
 
-<screen><userinput>cat &gt;&gt; main.c &lt;&lt; "EOF"     &amp;&amp;
+<screen><userinput>cat &gt;&gt; main.c &lt;&lt; "EOF" &amp;&amp;
 <literal>#include &lt;stdio.h&gt;
 int main(){}
 </literal>EOF
@@ -249,7 +246,7 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
       For i686:
     </para>
 
-<screen><userinput>cat &gt;&gt; main.c &lt;&lt; "EOF"     &amp;&amp;
+<screen><userinput>cat &gt;&gt; main.c &lt;&lt; "EOF" &amp;&amp;
 <literal>#include &lt;stdio.h&gt;
 int main(){}
 </literal>EOF
@@ -257,9 +254,9 @@ int main(){}
 cp main.{c,cpp}                        &amp;&amp;
 sed -i 's/stdio.h/iostream/g' main.cpp &amp;&amp;
 
-i686-w64-mingw32-gcc main.c            &amp;&amp;
-rm -v a.exe                            &amp;&amp;
-i686-w64-mingw32-g++ main.cpp          &amp;&amp;
+i686-w64-mingw32-gcc main.c   &amp;&amp;
+rm -v a.exe                   &amp;&amp;
+i686-w64-mingw32-g++ main.cpp &amp;&amp;
 rm -v a.exe main.{c,cpp}</userinput></screen>
 
     <para>
@@ -271,6 +268,8 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-subconfigure;
 
     <para>
       <command>mkdir build; cd build</command>: The
@@ -296,7 +295,7 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
     <para>
       <parameter>--enable-languages=c,c++</parameter>:
       This command builds support for C and C++. Refer to <ulink
-      url="https://www.linuxfromscratch.org/blfs/view/svn/general/gcc.html"/>
+      url="&blfs-svn;/general/gcc.html"/>
       to find what other languages are supported.
     </para>
 
@@ -321,7 +320,7 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
     <para>
       There are no binaries specific to this package besides the format
       the compilers are targetting. For in-depth descriptions, read <ulink
-      url="&lfs-website;/lfs/view/stable/chapter08/gcc.html#contents-gcc"/>
+      url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>
     </para>
 
   </sect2>

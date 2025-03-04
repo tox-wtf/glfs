@@ -29,6 +29,9 @@
       since version 4.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -58,17 +61,18 @@
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="curl"/>,
-      <ulink url="&lfs-website;/blfs/view/svn/general/libarchive.html">
-      libarchive</ulink>,
-      <ulink url="&lfs-website;/blfs/view/svn/general/libuv.html">
-      libuv</ulink>, and
-      <ulink url="&lfs-website;/blfs/view/svn/basicnet/nghttp2.html">
-      nghttp2</ulink>
+      <xref linkend="curl"/>
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../../xincludes/long-build-time.xml"/>
+    <bridgehead renderas="sect4">Optional</bridgehead>
+    <para role="optional">
+      <ulink url="&blfs-svn;/general/libarchive.html">
+      libarchive</ulink>,
+      <ulink url="&blfs-svn;/general/libuv.html">
+      libuv</ulink>, and
+      <ulink url="&blfs-svn;/basicnet/nghttp2.html">
+      nghttp2</ulink>
+    </para>
 
   </sect2>
 
@@ -170,12 +174,6 @@ make</userinput></screen>
     </para>
 
     <para>
-      <option>--qt-gui</option>: This switch enables building the
-      <application>Qt</application>-based  GUI for
-      <application>CMake</application>.
-    </para>
-
-    <para>
       <option>--parallel=</option>: This switch enables performing the
       <application>CMake</application> bootstrap with multiple jobs
       at one time.
@@ -193,7 +191,7 @@ make</userinput></screen>
 
       <seglistitem>
         <seg>
-          ccmake, cmake, cmake-gui (optional), cpack, and ctest
+          ccmake, cmake, cpack, and ctest
         </seg>
         <seg>
           None
@@ -232,19 +230,6 @@ make</userinput></screen>
           </para>
           <indexterm zone="cmake cmake-prog">
             <primary sortas="b-cmake">cmake</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="cmake-gui">
-        <term><command>cmake-gui</command></term>
-        <listitem>
-          <para>
-            (optional) is the <application>Qt</application>-based frontend to
-            <command>cmake</command>
-          </para>
-          <indexterm zone="cmake cmake-gui">
-            <primary sortas="b-cmake-gui">cmake-gui</primary>
           </indexterm>
         </listitem>
       </varlistentry>

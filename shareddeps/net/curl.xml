@@ -42,17 +42,6 @@
         </para>
       </listitem>
     </itemizedlist>
-<!--
-    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Required patch:
-          <ulink url="&patch-root;/curl-&curl-version;-function_naming-1.patch"/>
-        </para>
-      </listitem>
-    </itemizedlist>
--->
 
     <bridgehead renderas="sect3">cURL Dependencies</bridgehead>
 
@@ -64,9 +53,9 @@
     <note>
       <para>
         While there is an option to build the package without libpsl, both
-        the upstream developers, the BLFS, and GLFS editors alike highly
-        recommend not disabling support for libpsl due to severe security
-        implications.
+        the upstream developers, the BLFS and GLFS editors alike highly
+        recommend not disabling support for libpsl to prevent sites from using
+        super cookies which poses security risks.
       </para>
     </note>
 
@@ -80,13 +69,14 @@
       commands:
     </para>
 
-<screen><userinput>mkdir -v build                             &amp;&amp;
-cd       build                             &amp;&amp;
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
 
 ../configure --prefix=/usr                 \
              --disable-static              \
              --with-openssl                \
              --with-ca-path=/etc/ssl/certs &amp;&amp;
+
 make</userinput></screen>
 
 <!--
@@ -197,6 +187,16 @@ ldconfig</userinput></screen>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-subconfigure;
+
+    <para>
+      <command>mkdir build &amp;&amp; cd build</command>: This is not necessary
+      for just the normal installation, but cleaning the directory leads to the
+      documentation in the source being wiped and this package tries to rebuild
+      it for the lib32 installation, so building in a build directory allows
+      for deleting just the build artifacts.
+    </para>
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../xincludes/static-libraries.xml"/>

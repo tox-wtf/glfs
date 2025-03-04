@@ -30,6 +30,9 @@
       better for the MinGW-w64 targets.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -47,88 +50,74 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-        <xref linkend="mingw-w64-binutils"/> and
-        <xref linkend="mingw-w64-headers"/>
+      <xref linkend="mingw-w64-binutils"/> and
+      <xref linkend="mingw-w64-headers"/>
     </para>
 
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
-        <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/gdb.html">
-        GDB</ulink> and
-        <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/valgrind.html">
-        Valgrind</ulink> (for tests)
+      <ulink url="&blfs-svn;/general/gdb.html">
+      GDB</ulink> and
+      <ulink url="&blfs-svn;/general/valgrind.html">
+      Valgrind</ulink> (for tests)
     </para>
-
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../../../xincludes/long-build-time.xml"/>
 
   </sect2>
 
   <sect2 role="installation">
     <title>Installation of Static MinGW-w64-GCC</title>
 
-    <important>
+    <sect3>
+      <title>x86_64 Installation of Static MinGW-w64-GCC</title>
+
       <para>
-        Although you are compiling for another host and running
-        <command>make install</command> is generally safe, it is
-        recommended to not run <command>make install</command>
-        until you are confident the build was successful.
+        Install x86_64 Static <application>MinGW-w64-GCC</application> by
+        running the following commands:
       </para>
-    </important>
-
-  <sect3>
-    <title>x86_64 Installation of Static MinGW-w64-GCC</title>
-
-    <para>
-      Install x86_64 Static <application>MinGW-w64-GCC</application> by
-      running the following commands:
-    </para>
 
 <screen><userinput>mkdir build-x86_64-mingw-w64-static &amp;&amp;
 cd    build-x86_64-mingw-w64-static &amp;&amp;
 
-../configure                             \
-    --prefix=/usr                        \
-    --target=x86_64-w64-mingw32          \
-    --disable-shared                     \
-    --disable-multilib                   \
-    --disable-threads                    \
-    --enable-languages=c,c++ &amp;&amp;
+../configure --prefix=/usr               \
+             --target=x86_64-w64-mingw32 \
+             --disable-shared            \
+             --disable-multilib          \
+             --disable-threads           \
+             --enable-languages=c,c++ &amp;&amp;
 
 make all-gcc</userinput></screen>
 
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
+      <para>
+        Now, as the <systemitem class="username">root</systemitem> user:
+      </para>
 
 <screen role="root"><userinput>make install-gcc &amp;&amp; cd ..</userinput></screen>
 
-  </sect3>
+    </sect3>
 
-  <sect3>
-    <title>i686 Installation of Static MinGW-w64-GCC</title>
+    <sect3>
+      <title>i686 Installation of Static MinGW-w64-GCC</title>
 
-    <para>
-      Install i686 Static <application>MinGW-w64-GCC</application> by running
-      the following commands:
-    </para>
+      <para>
+        Install i686 Static <application>MinGW-w64-GCC</application> by running
+        the following commands:
+      </para>
 
 <screen><userinput>mkdir build-i686-mingw-w64-static &amp;&amp;
 cd    build-i686-mingw-w64-static &amp;&amp;
 
-../configure                             \
-    --prefix=/usr                        \
-    --target=i686-w64-mingw32            \
-    --disable-shared                     \
-    --disable-multilib                   \
-    --disable-threads                    \
-    --enable-languages=c,c++ &amp;&amp;
+../configure --prefix=/usr             \
+             --target=i686-w64-mingw32 \
+             --disable-shared          \
+             --disable-multilib        \
+             --disable-threads         \
+             --enable-languages=c,c++ &amp;&amp;
 
 make all-gcc</userinput></screen>
 
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
+      <para>
+        Now, as the <systemitem class="username">root</systemitem> user:
+      </para>
 
 <screen role="root"><userinput>make install-gcc</userinput></screen>
 
@@ -138,6 +127,8 @@ make all-gcc</userinput></screen>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-subconfigure;
 
     <para>
       <command>mkdir build; cd build</command>: The
@@ -164,7 +155,7 @@ make all-gcc</userinput></screen>
     <para>
       <parameter>--enable-languages=c,c++</parameter>:
       This command builds support for C and C++. Refer to <ulink
-      url="https://www.linuxfromscratch.org/blfs/view/svn/general/gcc.html"/>
+      url="&blfs-svn;/general/gcc.html"/>
       to find what other languages are supported.
     </para>
 
@@ -176,7 +167,7 @@ make all-gcc</userinput></screen>
     <para>
       There are no binaries specific to this package besides the format
       the compilers are targetting. For in-depth descriptions, read <ulink
-      url="&lfs-website;/lfs/view/stable/chapter08/gcc.html#contents-gcc"/>
+      url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>
     </para>
 
   </sect2>

@@ -4,7 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY cython-download-http "https://github.com/cython/cython/releases/download/&cython-version;-1/cython-&cython-version;.tar.gz">
+  <!ENTITY cython-download-http "https://github.com/cython/cython/releases/download/&cython-version;/cython-&cython-version;.tar.gz">
   <!ENTITY cython-download-ftp  " ">
 ]>
 
@@ -24,6 +24,9 @@
       The <application>Cython</application> package provides a compiler for
       writing C extensions for the <application>Python</application> language.
     </para>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
 
     <itemizedlist spacing="compact">
       <listitem>
@@ -92,7 +95,7 @@
             is the <application>Cython</application> debugger
           </para>
           <indexterm zone="cython cydbg">
-            <primary sortas="c-cydbg">cydbg</primary>
+            <primary sortas="b-cydbg">cydbg</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -106,7 +109,7 @@
             compiled with a C/C++ compiler
           </para>
           <indexterm zone="cython cython-bin">
-            <primary sortas="c-cython-bin">cython-bin</primary>
+            <primary sortas="b-cython-bin">cython-bin</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -120,7 +123,7 @@
             directly importable from <application>Python</application>
           </para>
           <indexterm zone="cython cythonize">
-            <primary sortas="c-cythonize">cythonize</primary>
+            <primary sortas="b-cythonize">cythonize</primary>
           </indexterm>
         </listitem>
       </varlistentry>

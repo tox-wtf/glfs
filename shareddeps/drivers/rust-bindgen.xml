@@ -4,7 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY rust-bindgen-download-http "https://github.com/rust-lang/rust-bindgen/archive/v&rust-bindgen-version;.tar.gz">
+  <!ENTITY rust-bindgen-download-http
+    "https://github.com/rust-lang/rust-bindgen/archive/v&rust-bindgen-version;/rust-bindgen-&rust-bindgen-version;.tar.gz">
   <!ENTITY rust-bindgen-download-ftp  " ">
 ]>
 
@@ -21,9 +22,10 @@
     <title>Introduction to rust-bindgen</title>
 
     <para>
-      Automatically generates <application>Rust</application> FFI
-      bindings to C (and some C++) libraries.
+      Automatically generates Rust FFI bindings to C (and some C++) libraries.
     </para>
+
+    &build-use-internet;
 
     <itemizedlist spacing="compact">
       <listitem>
@@ -43,10 +45,8 @@
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="llvm"/> with <application>Clang</application> and
-      <xref linkend="rust"/>
+      <xref linkend="rustc"/>
     </para>
-
-    &build-use-internet;
 
   </sect2>
 
@@ -63,7 +63,7 @@
       Now, as the <systemitem class="username">root</systemitem> user:
     </para>
 
-<screen role="root"><userinput>install -Dm755 target/release/bindgen /usr/bin/</userinput></screen>
+<screen role="root"><userinput>install -v -m755 target/release/bindgen /usr/bin/</userinput></screen>
 
     <para>
       Still as the &root; user, install the Bash and Zsh completion support
@@ -71,7 +71,7 @@
     </para>
 
 <screen role='root'><userinput>bindgen --generate-shell-completions bash \
-    &gt; /usr/share/bash-completion/completions/bindgen
+    &gt; /usr/share/bash-completion/completions/bindgen &amp;&amp;
 bindgen --generate-shell-completions zsh  \
     &gt; /usr/share/zsh/site-functions/_bindgen</userinput></screen>
 

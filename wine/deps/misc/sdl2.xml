@@ -26,6 +26,9 @@
       multimedia software, such as games and emulators.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -95,15 +98,6 @@
 <screen><userinput>./configure --prefix=/usr &amp;&amp;
 make</userinput></screen>
 
-    <para>
-      If you have doxygen installed and want to build the
-      html documentation, run the following commands:
-    </para>
-
-<screen remap="doc"><userinput>pushd docs  &amp;&amp;
-  doxygen   &amp;&amp;
-popd</userinput></screen>
-
     <note>
       <para>
         If you wish to build and run the package regression
@@ -118,15 +112,6 @@ popd</userinput></screen>
 
 <screen role="root"><userinput>make install              &amp;&amp;
 rm -v /usr/lib/libSDL2*.a</userinput></screen>
-
-    <para>
-      If you built the documentation, install it as the <systemitem
-      class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"
-        remap="doc"><userinput>install -v -m755 -d        /usr/share/doc/SDL2-&sdl2-version;/html &amp;&amp;
-cp -Rv  docs/output/html/* /usr/share/doc/SDL2-&sdl2-version;/html</userinput></screen>
 
   </sect2>
 
@@ -190,6 +175,8 @@ make</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-configure;
+
     <para>
       <command>rm -v /usr/lib/libSDL2*.a</command>: Normally
       static libraries can be disabled with a <option>--disable-static</option>
@@ -214,19 +201,6 @@ make</userinput></screen>
 
   </sect2>
 
-  <sect2 role="configuration">
-    <title>Configuring SDL2</title>
-
-    <sect3>
-      <title>Configuration Information</title>
-
-      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-        href="../../../xincludes/lib-config.xml"/>
-
-    </sect3>
-
-  </sect2>
-
   <sect2 role="content">
     <title>Contents</title>
 
@@ -238,9 +212,8 @@ make</userinput></screen>
       <seglistitem>
         <seg>sdl2-config</seg>
         <seg>libSDL2.so</seg>
-        <seg>/usr/include/SDL2,
-             /usr/lib/cmake/SDL2, and
-             /usr/share/doc/SDL-&sdl2-version;</seg>
+        <seg>/usr/include/SDL2 and
+             /usr/lib/cmake/SDL2</seg>
       </seglistitem>
     </segmentedlist>
 

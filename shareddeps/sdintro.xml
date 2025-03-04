@@ -35,6 +35,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/linux-pam.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/shadow.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/elogind.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/systemd.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/duktape.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/pcre2.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="security/glib2.xml"/>
@@ -75,7 +76,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/x/x7lib.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/x/libxcvt.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/other/cmake.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/other/dbus-pass2.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/other/dbus.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/other/libunwind.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/other/nettle.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/basicx/other/gnutls.xml"/>
@@ -87,34 +88,28 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/wl/wayland-protocols.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/wl/seatd.xml"/>
 
-  <!-- GRAPHICS APIS -->
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/gfxapidummy.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/gl/introgl.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/gl/libglvnd.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/vk/introvk.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/vk/vkheaders.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/vk/libvk.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/vk/spirv-headers.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/vk/spirv-tools.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gfxapi/vk/glslang.xml"/>
-
   <!-- GRAPHICS DRIVERS -->
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/driversdummy.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/pciutils.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/hwdata.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/whatdriver.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/gpuconfig.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/amdgpu-pro.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/pciutils.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/hwdata.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/vkheaders.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libvk.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/spirv-headers.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/spirv-tools.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/glslang.xml"/>
+<!--
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/nvidia.xml"/>
+-->
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/llvm.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/rust.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/rustc.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/cbindgen.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/rust-bindgen.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/mako.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libdrm.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libva.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libvdpau.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libvdpau-va-gl.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/spirv-llvm-translator.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libclc.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/ply.xml"/>
@@ -122,6 +117,8 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libyaml.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/pyyaml.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/mesa.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/libvdpau-va-gl.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="drivers/amdgpu-pro.xml"/>
 
   <!-- X11 -->
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/x/xdummy.xml"/>
@@ -138,16 +135,6 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/x/mtdev.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/x/x7driver.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="dps/x/xinit.xml"/>
-
-  <!-- MULTIMEDIA -->
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/multimediadummy.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/gstreamer10.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/gst10-plugins-base.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/gst10-plugins-good.xml"/> 
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/gst10-plugins-bad.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/gst10-plugins-ugly.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/pipewire.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="multimedia/wireplumber.xml"/>
 
   <!-- CHECKPOINT -->
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="checkpoint/checkpointdummy.xml"/>

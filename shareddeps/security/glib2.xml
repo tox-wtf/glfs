@@ -28,6 +28,9 @@
       event loop, threads, dynamic loading and an object system.
     </para>
 
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
+
     <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
@@ -61,7 +64,7 @@
       <listitem>
         <para>
           Optional patch:
-          <ulink url="&patch-root;/glib-skip_warnings-1.patch"/>
+          <ulink url="&patch-root;/glib/glib-skip_warnings-1.patch"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -234,6 +237,8 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-meson;
+
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../xincludes/meson-buildtype-release.xml"/>
 
@@ -246,7 +251,7 @@ ldconfig</userinput></screen>
       <parameter>-D tests=false</parameter>: This switch causes tests
       to be built. It is disabled because it is beyond the scope of GLFS.
       If you'd like to test glib, reference
-      <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/glib2.html">
+      <ulink url="&blfs-svn;/general/glib2.html">
       BLFS's glib page</ulink>.
     </para>
 

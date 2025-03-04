@@ -13,10 +13,10 @@
   <para>
     Upon reading through some of the sections in this book, you may notice
     that a lot of the packages linked in some of the sections aren't in
-    this book but rather in BLFS, and that some optional dependencies aren't
-    even listed. Furthermore, some packages may be outdated. Lastly, some
-    packages that have test suites don't have test instructions. These
-    choices are very much deliberate.
+    this book but rather in BLFS, some optional dependencies aren't
+    listed, some packages may be outdated, and some packages that have test
+    suites don't have test instructions. These choices are very much
+    deliberate.
   </para>
 
   <sect2>
@@ -27,9 +27,9 @@
       the book but rather in the BLFS book. There are multiple reasons
       for this, but the most notable one is the packages that aren't in
       the book aren't important for the main packages in the book, those
-      being <application>Steam</application> and <application>Wine
-      </application>. They are still listed anyway if users want more
-      support out of the specific packages not specific to the main
+      being <application>Steam</application> and
+      <application>Wine</application>. They are still listed anyway if users
+      want more support out of the specific packages not specific to the main
       packages, like media playback for example. Another reason for
       packages not being in the book is that the packages take a lot
       of work to install and require jumping around. They can also require
@@ -47,7 +47,9 @@
       main reason for this is that they just would take up unnecessary
       space. If on the offchance you desire even more out of your system,
       there are plenty more packages in BLFS and BLFS is more geared for
-      everyone, although this book focuses more on gaming.
+      everyone, although this book focuses more on gaming. Usually the
+      optional dependencies that are not listed are those that are needed
+      for testing builds and generating documentation.
     </para>
 
   </sect2>
@@ -55,6 +57,23 @@
   <sect2>
     <title>Packages That Are Outdated and Why</title>
 
+    <para>
+      No packages are currently outdated at time of release.
+    </para>
+
+<!--
+    <para>
+      <xref linkend="mingw-w64-binutils"/>: While
+      <application>Binutils</application>-2.44 exists and can be installed
+      without issue, on the MinGW-w64 side of things, <xref linkend="wine"/>
+      is incompatible with <application>MinGW-w64-Binutils</application>-2.44.
+      Mismatched <application>Binutils</application> versions are fine granted
+      that one toolchain's version does not match with another but separate
+      toolchain's.
+    </para>
+-->
+
+<!--
     <para>
       <xref linkend="nvidia"/>: Newer versions of <application>NVIDIA
       </application> have many issues. For example, the newest version demands
@@ -66,6 +85,7 @@
       and Zink Gallium3D from <xref linkend="mesa"/>. It is pretty competent
       now and is recommended to use those drivers instead.
     </para>
+-->
 
   </sect2>
 
@@ -73,16 +93,18 @@
     <title>Some Package Test Instructions Aren't Included</title>
 
     <para>
-      Many packages have Test Suites, which offer as a way to see if
-      a package you just compiled doesn't have any bugs. However, in
-      GLFS, a lot of these packages have test suites that depend on
-      packages that aren't necessary in the book and would make this
-      book larger than it needs to be. Part of the appeal of LFS is
-      that you install only what you need and this book aims to reflect
-      that. A lot of the tests as well aren't involved with critical
-      components of the system but rather graphical binaries. If you
-      wish to do test suites, BLFS has good instructions for them and
-      covers all the required dependencies.
+      Many packages have test suites which can test a given build for
+      any potential bugs and may tell you if something has gone wrong.
+      However, in GLFS, a lot of these packages have test suites that
+      depend on packages that aren't necessary in the book and would
+      make this book larger than it needs to be. Furthermore, a lot of
+      the packages that do have test suites aren't involved with critical
+      components of the system and don't tend to have bugs that
+      come up as a result of a build, but rather the released source
+      code itself. If you want to do test suites of a given package,
+      BLFS has good instructions for that on each package and covers
+      all the required dependencies, as well as instructions on how to
+      install those dependencies.
     </para>
 
   </sect2>

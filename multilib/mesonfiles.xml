@@ -49,12 +49,11 @@
     <title>Creating the Cross Toolchain File</title>
 
     <para>
-      Create the following toolchain file by running the following
-      commands as the <systemitem class="username">root</systemitem>
-      user:
+      Create the cross toolchain file by running the following commands as the
+      &root; user:
     </para>
 
-<screen role="root"><userinput>mkdir -pv /usr/share/meson/cross
+<screen role="root"><userinput>mkdir -pv /usr/share/meson/cross &amp;&amp;
 
 cat &gt; /usr/share/meson/cross/lib32 &lt;&lt; "EOF"
 <literal>[binaries]
@@ -87,12 +86,11 @@ EOF</userinput></screen>
     <title>Creating the Native Toolchain File</title>
 
     <para>
-      Create the following toolchain file by running the following
-      commands as the <systemitem class="username">root</systemitem>
-      user:
+      Create the native toolchain file by running the following commands as the
+      &root; user:
     </para>
 
-<screen role="root"><userinput>mkdir -pv /usr/share/meson/native
+<screen role="root"><userinput>mkdir -pv /usr/share/meson/native &amp;&amp;
 
 cat &gt; /usr/share/meson/native/x86 &lt;&lt; "EOF"
 <literal>[binaries]

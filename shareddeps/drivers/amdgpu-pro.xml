@@ -20,7 +20,8 @@
     <para>
       The <application>AMDGPU PRO</application> proprietary driver contains
       userland drivers and libraries, providing hardware acceleration encoding,
-      EGL, OpenGL, GLES, and Vulkan support.
+      EGL, OpenGL, GLES, and Vulkan support <emphasis>FOR</emphasis> AMDGPU
+      cards. If you do not have an AMDGPU card, you can skip this page.
     </para>
 
     <bridgehead renderas="sect3">AMDGPU PRO Dependencies</bridgehead>
@@ -28,16 +29,16 @@
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="xorg7-lib"/>,
-      <xref linkend="gpuconfig"/>, and
+      <xref linkend="gpuconfig"/>,
+      <xref linkend="mesa"/>, and
       <xref linkend="wget"/> (for getting the .deb files in the installation
       instructions)
     </para>
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="libglvnd"/>,
-      <xref linkend="libvk"/>,
-      and <xref linkend="wayland"/>
+      <xref linkend="libvk"/> and
+      <xref linkend="wayland"/>
     </para>
 
     <note>
@@ -74,8 +75,8 @@ EOF</userinput></screen>
       Download and unpack the drivers by following the instructions below:
     </para>
 
-<screen><userinput>mkdir -pv x86_64-amdgpu-pro                                                        &amp;&amp;
-cd        x86_64-amdgpu-pro                                                        &amp;&amp;
+<screen><userinput>mkdir x86_64-amdgpu-pro                                                            &amp;&amp;
+cd    x86_64-amdgpu-pro                                                            &amp;&amp;
 
 wget --continue --input-file=../x86_64-amdgpu-pro-wget-list                        &amp;&amp;
 for deb in *.deb; do
@@ -144,8 +145,8 @@ EOF</userinput></screen>
       Download and unpack the drivers by following the instructions below:
     </para>
 
-<screen><userinput>mkdir -pv i386-amdgpu-pro                                                          &amp;&amp;
-cd        i386-amdgpu-pro                                                          &amp;&amp;
+<screen><userinput>mkdir i386-amdgpu-pro                                                              &amp;&amp;
+cd    i386-amdgpu-pro                                                              &amp;&amp;
 
 wget --continue --input-file=../i386-amdgpu-pro-wget-list                          &amp;&amp;
 for deb in *.deb; do
@@ -193,8 +194,8 @@ ldconfig</userinput></screen>
       <para>
         There are many libraries provided by this package that have the same
         name and serve the same purpose. The info below covers the unique
-        libraries. Check the <quote>Contents</quote> section of either
-        <xref linkend="libglvnd"/> and/or <xref linkend="mesa"/>.
+        libraries. Check the <quote>Contents</quote> section of <xref
+        linkend="mesa"/>.
       </para>
     </note>
 

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY dxvk-download-http "https://github.com/doitsujin/dxvk">
+  <!ENTITY dxvk-download-ftp  " ">
+]>
+
+<sect1 id="dxvk" xreflabel="DXVK-&dxvk-version;">
+  <?dbhtml filename="dxvk.html"?>
+
+  <title>DXVK-&dxvk-version;</title>
+
+  <indexterm zone="dxvk">
+    <primary sortas="a-dxvk">DXVK</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to DXVK</title>
+
+    <para>
+      The <application>DXVK</application> package contains DLL files which
+      converts Direct3D 8-11 calls to Vulkan. By default in
+      <application>Wine</application>, Direct3D 8-11 calls are converted to
+      OpenGL calls in a poor manner, leading to bad performance. As such,
+      many people install this package.
+    </para>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download (HTTP): <ulink url="&dxvk-download-http;"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download (FTP): <ulink url="&dxvk-download-ftp;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">DXVK Dependencies</bridgehead>
+
+    <bridgehead renderas="sect4">Required</bridgehead>
+    <para role="required">
+      <xref linkend="git"/> (with <xref linkend="curl"/>;
+      to clone the repository),
+      <xref linkend="glslang"/>,
+      <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support), and
+      <xref linkend="wine"/>
+    </para>
+
+    <bridgehead renderas="sect4">Required (Runtime)</bridgehead>
+    <para role="runtime">
+      <xref linkend="libvk"/>
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of DXVK</title>
+
+    <para>
+      Clone the repository using <xref linkend="git"/> as this project
+      depends on submodules, even if they are installed on the system:
+    </para>
+
+<screen><userinput>git clone --recursive &dxvk-download-http; dxvk-&dxvk-version; &amp;&amp;
+cd dxvk-&dxvk-version; &amp;&amp;
+git checkout v&dxvk-version;</userinput></screen>
+
+    <note><para>
+      If you are doing multilib, it is recommended to install 32-bit along with
+      64-bit <application>DXVK</application> as there are plenty of 32-bit
+      Direct3D applications.
+    </para></note>
+
+    <sect3>
+      <title>64-bit Installation</title>
+
+      <para>
+        Install 64-bit <application>DXVK</application> by running
+        the following commands:
+      </para>
+
+<screen><userinput>mkdir build-win64 &amp;&amp;
+cd    build-win64 &amp;&amp;
+
+meson setup .. --cross-file ../build-win64.txt \
+               --buildtype=release             \
+               --prefix=$PWD/DESTDIR &amp;&amp;
+
+ninja</userinput></screen>
+
+      <para>Now as the &root; user:</para>
+
+<screen role="root"><userinput>ninja install &amp;&amp;
+cd ..         &amp;&amp;
+
+mkdir   -pv     /usr/lib/dxvk/win64 &amp;&amp;
+install -vDm644 build-win64/DESTDIR/bin/*.dll \
+                /usr/lib/dxvk/win64</userinput></screen>
+
+    </sect3>
+
+    <sect3>
+      <title>32-bit Installation</title>
+
+      <para>
+        Install 32-bit <application>DXVK</application> by running
+        the following commands:
+      </para>
+
+<screen><userinput>mkdir build-win32 &amp;&amp;
+cd    build-win32 &amp;&amp;
+
+meson setup .. --cross-file ../build-win32.txt \
+               --buildtype=release             \
+               --prefix=$PWD/DESTDIR &amp;&amp;
+
+ninja</userinput></screen>
+
+      <para>Now as the &root; user:</para>
+
+<screen role="root"><userinput>ninja install &amp;&amp;
+cd ..         &amp;&amp;
+
+mkdir   -pv     /usr/lib/dxvk/win32 &amp;&amp;
+install -vDm644 build-win32/DESTDIR/bin/*.dll \
+                /usr/lib/dxvk/win32</userinput></screen>
+
+    </sect3>
+
+  </sect2>
+
+  <sect2 role="configuration">
+    <title>Setting Up DXVK</title>
+
+    <para>
+      First, create the <application>Wine</application> prefix if it is not
+      already made:
+    </para>
+
+    <screen><userinput>WINEPREFIX=~/.wine wineboot -u</userinput></screen>
+
+    <note><para>
+      <command>wineboot</command> may report an error in the output, but this
+      is normal and frequent. Usually, these errors are non-fatal and you won't
+      need to typically worry about them. <application>Wine</application> is
+      very verbose.
+    </para></note>
+
+    <para>While the DXVK DLL files have been installed, they are not yet in the
+    <application>Wine</application> prefix. Create symlinks so that they can be
+    found by <application>Wine</application>, whilst allowing updating of this
+    package without having to copy everything over again. Along with this, the
+    registry must be updated to use the new DLLs. Do this for each
+    archetecture you have installed.</para>
+
+    <sect3>
+      <title>64-bit Setup</title>
+
+      <para>For 64-bit:</para>
+
+<screen><userinput>for DLL_FILE in /usr/lib/dxvk/win64/*.dll; do
+    ln -sfv $DLL_FILE ~/.wine/drive_c/windows/system32/$(basename $DLL_FILE) &amp;&amp;
+    DLL_FILE=$(basename $DLL_FILE | sed s/.dll//g) &amp;&amp;
+    wine reg add \
+        'HKEY_CURRENT_USER\Software\Wine\DllOverrides' \
+        /v "$DLL_FILE" /d native /f
+done</userinput></screen>
+
+    </sect3>
+
+    <sect3>
+      <title>32-bit Setup</title>
+
+      <para>For 32-bit:</para>
+
+<screen><userinput>for DLL_FILE in /usr/lib/dxvk/win32/*.dll; do
+    if [ ! -d ~/.wine/drive_c/windows/syswow64 ]; then
+        ln -sfv $DLL_FILE ~/.wine/drive_c/windows/system32/$(basename $DLL_FILE)
+    else
+        ln -sfv $DLL_FILE ~/.wine/drive_c/windows/syswow64/$(basename $DLL_FILE)
+    fi
+    DLL_FILE=$(basename $DLL_FILE | sed s/.dll//g) &amp;&amp;
+    wine reg add \
+        'HKEY_CURRENT_USER\Software\Wine\DllOverrides' \
+        /v "$DLL_FILE" /d native /f
+done</userinput></screen>
+
+    </sect3>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-meson;
+
+    <para>
+      <command>git checkout v&dxvk-version;</command>: This command switches to
+      a stable release in the commit history.
+    </para>
+
+    <para>
+      <parameter>--cross-file=../build-win{32,64}.txt</parameter>: This
+      parameter changes what Win archetecture to build for.
+    </para>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/meson-buildtype-release.xml"/>
+
+    <para>
+      <command>WINEPREFIX=~/.wine wineboot -u</command>: This command creates a
+      <application>Wine</application> prefix and copies over any missing files
+      to it. It will not reset an existing prefix.
+    </para>
+
+    <para>
+      <command>wine{,64} reg add ...</command>: This command overrides the
+      registry so that <application>Wine</application> will use the new DLL
+      files instead of the old ones.
+    </para>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Libraries</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          None
+        </seg>
+        <seg>
+          d3d10core.dll,
+          d3d11.dll,
+          d3d8.dll,
+          d3d9.dll, and
+          dxgi.dll
+        </seg>
+        <seg>
+          /usr/lib/dxvk/{win32,win64}
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="d3d10core">
+        <term><filename class="libraryfile">d3d10core.dll</filename></term>
+        <listitem>
+          <para>
+            converts Direct3D 10 calls to Vulkan
+          </para>
+          <indexterm zone="dxvk d3d10core">
+            <primary sortas="c-d3d10core">d3d10core.dll</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="d3d11">
+        <term><filename class="libraryfile">d3d11.dll</filename></term>
+        <listitem>
+          <para>
+            converts Direct3D 11 calls to Vulkan
+          </para>
+          <indexterm zone="dxvk d3d11">
+            <primary sortas="c-d3d11">d3d11.dll</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="d3d8">
+        <term><filename class="libraryfile">d3d8.dll</filename></term>
+        <listitem>
+          <para>
+            converts Direct3D 8 calls to Vulkan
+          </para>
+          <indexterm zone="dxvk d3d8">
+            <primary sortas="c-d3d8">d3d8.dll</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="d3d9">
+        <term><filename class="libraryfile">d3d9.dll</filename></term>
+        <listitem>
+          <para>
+            converts Direct3D 9 calls to Vulkan
+          </para>
+          <indexterm zone="dxvk d3d9">
+            <primary sortas="c-d3d9">d3d9.dll</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dxgi">
+        <term><filename class="libraryfile">dxgi.dll</filename></term>
+        <listitem>
+          <para>
+            handles the Direct3D Graphics Infrastructure
+          </para>
+          <indexterm zone="dxvk dxgi">
+            <primary sortas="c-dxgi">dxgi.dll</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

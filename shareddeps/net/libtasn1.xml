@@ -64,9 +64,7 @@ make</userinput></screen>
 <screen role="root"><userinput>make install</userinput></screen>
 
     <para>
-      If you did not pass the <option>--enable-gtk-doc</option> option
-      to the <command>configure</command> script, you can install the API
-      documentation using the following command as the
+      You can install the API documentation using the following command as the
       <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -111,10 +109,7 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
-    <note><para>
-      Invoke <userinput>./configure --help</userinput> for a full list of
-      options.
-    </para></note>
+    &options-configure;
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
       href="../../xincludes/static-libraries.xml"/>
@@ -137,7 +132,7 @@ ldconfig</userinput></screen>
           libtasn1.so
         </seg>
         <seg>
-          /usr/share/gtk-doc/html/libtasn1
+          None
         </seg>
       </seglistitem>
     </segmentedlist>

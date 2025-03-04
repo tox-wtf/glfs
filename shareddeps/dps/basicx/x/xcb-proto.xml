@@ -49,7 +49,7 @@
 
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
-      <ulink url="&blfs-svn;/general/libxml2.html">libxml2</ulink>
+      <xref linkend="libxml2"/>
       (required to run the tests)
     </para>
 
@@ -82,6 +82,13 @@
     </para>
 
 <screen role="nodump"><userinput>rm -f /usr/lib/pkgconfig/xcb-proto.pc</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-configure;
 
   </sect2>
 

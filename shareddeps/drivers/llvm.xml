@@ -4,18 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY llvm-url "https://github.com/llvm/llvm-project/releases/download/llvmorg-&llvm-version;">
-
-  <!ENTITY llvm-download-http "&llvm-url;/llvm-&llvm-version;.src.tar.xz">
-  <!ENTITY llvm-download-ftp  " ">
-
-  <!ENTITY clang-download-http "&llvm-url;/clang-&llvm-version;.src.tar.xz">
-
-  <!ENTITY compiler-rt-download-http "&llvm-url;/compiler-rt-&llvm-version;.src.tar.xz">
-
-  <!ENTITY cmake-llvm-download-http "&sources-anduin-http;/llvm/llvm-cmake-&llvm-maj-version;.src.tar.xz">
-
-  <!ENTITY llvm-3rdparty-download-http "&sources-anduin-http;/llvm/llvm-third-party-&llvm-maj-version;.src.tar.xz">
+  <!ENTITY llvm-download-http "https://github.com/llvm/llvm-project/releases/download/llvmorg-&llvm-version;/">
 ]>
 
 <sect1 id="llvm" xreflabel="LLVM-&llvm-version;">
@@ -36,7 +25,7 @@
       modular and reusable compiler and toolchain technologies. The Low Level
       Virtual Machine (LLVM) Core libraries provide a modern source and
       target-independent optimizer, along with code generation support for many
-      popular CPUs (as well as some less common ones!). These libraries are
+      popular CPUs, as well as some less common ones. These libraries are
       built around a well specified code representation known as the LLVM
       intermediate representation ("LLVM IR").
     </para>
@@ -44,8 +33,9 @@
     <para>
       <application>Clang</application> provides new C, C++, Objective C
       and Objective C++ front-ends for <application>LLVM</application> and is
-      required by some desktop packages such as <application>firefox</application>
-      and for <application>rust</application> if that is built using the system
+      required by some desktop packages such as
+      <ulink url="&blfs-svn;/xsoft/firefox.html">Firefox</ulink>
+      and for <xref linkend="rustc"/> if that is built using the system
       <application>LLVM</application>.
     </para>
 
@@ -55,66 +45,22 @@
       <application>Clang</application> and <application>LLVM</application>.
     </para>
 
+    <para>
+      The below instructions will install all of these projects, though you may
+      wish to skip installing some of the optional packages.
+    </para>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+      href="../../xincludes/long-build-time.xml"/>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
           Download (HTTP): <ulink url="&llvm-download-http;"/>
         </para>
       </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&llvm-download-ftp;"/>
-        </para>
-      </listitem>
     </itemizedlist>
 
-    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
-    <para>
-      <emphasis role="strong">Cmake modules for LLVM</emphasis>
-    </para>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Download: <ulink url="&cmake-llvm-download-http;"/>
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      <emphasis role="strong">Third-party dependencies for LLVM build system</emphasis>
-    </para>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Download: <ulink url="&llvm-3rdparty-download-http;"/>
-        </para>
-      </listitem>
-    </itemizedlist>
-
-
-    <bridgehead renderas="sect3">Recommended Download</bridgehead>
-    <para>
-      <emphasis role="strong">Clang</emphasis>
-    </para>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Download: <ulink url="&clang-download-http;"/>
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <bridgehead renderas="sect3">Optional Download</bridgehead>
-    <para>
-      <emphasis role="strong">Compiler RT</emphasis>
-    </para>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Download: <ulink url="&compiler-rt-download-http;"/>
-        </para>
-      </listitem>
-    </itemizedlist>
     <bridgehead renderas="sect3">LLVM Dependencies</bridgehead>
 
     <bridgehead renderas="sect4">Required</bridgehead>
@@ -122,8 +68,44 @@
       <xref linkend="cmake"/>
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
+  </sect2>
+
+  <sect2>
+    <title>Downloading LLVM tarballs</title>
+
+    <para>
+      The tarballs that are to be downloaded are poorly named and may conflict
+      with other present tarballs that may be in the current directory. The
+      instructions below work around this by putting the tarballs in a new
+      directory so they are isolated.
+    </para>
+
+    <para>
+      First, create a list of files to be downloaded:
+    </para>
+
+<screen><userinput>cat &gt; llvm-&llvm-version;-list &lt;&lt; "EOF"
+<literal># The three tarballs below are required
+llvm-&llvm-version;.src.tar.xz
+cmake-&llvm-version;.src.tar.xz
+third-party-&llvm-version;.src.tar.xz
+
+# The following clang tarball is for Clang (Recommended)
+clang-&llvm-version;.src.tar.xz
+
+# The following compiler-rt tarball is for Compiler RT (Recommended)
+compiler-rt-&llvm-version;.src.tar.xz</literal>
+EOF</userinput></screen>
+
+    <para>
+      To download the needed files using <xref linkend='wget'/>,
+      use the following commands:
+    </para>
+
+<screen><userinput>mkdir llvm &amp;&amp;
+cd llvm &amp;&amp;
+grep -v '^#' ../llvm-&llvm-version;-list | wget -i- -c \
+    -B &llvm-download-http;</userinput></screen>
 
   </sect2>
 
@@ -131,25 +113,37 @@
     <title>Installation of LLVM</title>
 
     <para>
-      Two additional tarballs
-      <filename>llvm-cmake-&llvm-maj-version;.src.tar.xz</filename> and
-      <filename>llvm-third-party-&llvm-maj-version;.src.tar.xz</filename> are
-      needed by LLVM building system.  The upstream expects them extracted
-      at the same level as the
-      <filename>llvm-&llvm-version;.src.tar.xz</filename> tarball,
-      and the extracted directories renamed to
-      <filename class="directory">cmake</filename> and
-      <filename class="directory">third-party</filename>.  Extract them and
-      modify the build system to avoid creating ambiguously-named
-      directories outside the
-      <filename>llvm-&llvm-version;.src</filename> hierarchy:
+      Extract the <filename>llvm-&llvm-version;.src.tar.xz</filename> tarball
+      and navigate to the extracted
+      <filename class="directory">llvm-&llvm-version;.src</filename> directory:
     </para>
 
-<screen><userinput>tar -xf ../llvm-cmake-&llvm-maj-version;.src.tar.xz                                   &amp;&amp;
-tar -xf ../llvm-third-party-&llvm-maj-version;.src.tar.xz                             &amp;&amp;
-sed '/LLVM_COMMON_CMAKE_UTILS/s@../cmake@llvm-cmake-&llvm-maj-version;.src@'          \
-    -i CMakeLists.txt                                                 &amp;&amp;
-sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@llvm-third-party-&llvm-maj-version;.src@' \
+<screen><userinput>tar -xf llvm-&llvm-version;.src.tar.xz &amp;&amp;
+cd llvm-&llvm-version;.src</userinput></screen>
+
+    <para>
+      The <filename>cmake-&llvm-version;.src.tar.xz</filename> and
+      <filename>third-party-&llvm-version;.src.tar.xz</filename> tarballs are
+      necessary for the LLVM building process. The
+      <filename>cmake-&llvm-version;.src.tar.xz</filename> tarball includes
+      CMake modules that LLVM uses, such as properly setting the version
+      number. The <filename>third-party-&llvm-version;.src.tar.xz</filename>
+      tarball includes dependencies, such as benchmark and unittest. Upstream
+      expects both tarballs to be extracted at the same level as the
+      <filename>llvm-&llvm-version;.src.tar.xz</filename> tarball.
+      Additionally, the extracted directories must be renamed to
+      <filename class="directory">cmake</filename> and
+      <filename class="directory">third-party</filename> respectively. Extract
+      them and modify the build system to avoid creating ambiguously-named
+      directories outside the
+      <filename class="directory">llvm-&llvm-version;.src</filename> hierarchy:
+    </para>
+
+<screen><userinput>tar -xf ../cmake-&llvm-version;.src.tar.xz &amp;&amp;
+tar -xf ../third-party-&llvm-version;.src.tar.xz &amp;&amp;
+sed '/LLVM_COMMON_CMAKE_UTILS/s@../cmake@cmake-&llvm-version;.src@' \
+    -i CMakeLists.txt &amp;&amp;
+sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
     -i cmake/modules/HandleLLVMOptions.cmake</userinput></screen>
 
     <para>
@@ -161,8 +155,8 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@llvm-third-party-&llvm-maj-version;.
 mv tools/clang-&llvm-version;.src tools/clang</userinput></screen>
 
     <para>
-      If you have downloaded <application>compiler-rt</application>,
-      install it into the source tree by running the following commands:
+      Install <application>compiler-rt</application> into
+      the source tree by running the following commands:
     </para>
 
 <screen><userinput>tar -xf ../compiler-rt-&llvm-version;.src.tar.xz -C projects    &amp;&amp;
@@ -180,7 +174,7 @@ mv projects/compiler-rt-&llvm-version;.src projects/compiler-rt</userinput></scr
     <para>
       Ensure installing the <command>FileCheck</command> program which is
       needed by the test suite of some packages (for example
-      rustc-&rust-version;): 
+      <xref linkend="rustc"/>): 
     </para>
 
     <screen><userinput>sed 's/utility/tool/' -i utils/FileCheck/CMakeLists.txt</userinput></screen>
@@ -190,8 +184,8 @@ mv projects/compiler-rt-&llvm-version;.src projects/compiler-rt</userinput></scr
       commands:
     </para>
 
-<screen><userinput>mkdir -v build &amp;&amp;
-cd       build &amp;&amp;
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
 
 CC=gcc CXX=g++                                   \
 cmake -D CMAKE_INSTALL_PREFIX=/usr               \
@@ -267,6 +261,8 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-cmake;
+
     <para>
       <parameter>-D LLVM_ENABLE_FFI=ON</parameter>: This switch allows
       <application>LLVM</application> to use
@@ -276,7 +272,9 @@ ldconfig</userinput></screen>
     <para>
       <parameter>-D LLVM_BUILD_LLVM_DYLIB=ON</parameter>: This switch builds
       the libraries as static and links all of them into an unique shared one.
-      This is the recommended way of building a shared library.
+      This is the recommended way of building a shared library and is required
+      by <xref linkend="rustc"/> in order to build against the system-installed
+      <application>LLVM</application>.
     </para>
 
     <para>
@@ -292,10 +290,10 @@ ldconfig</userinput></screen>
     <para>
       <parameter>-D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU"</parameter>: This
       switch enables building for x86, the same target as the host, and also for
-      the r600 AMD GPU used by the Mesa r600 and radeonsi drivers.
-      The default is
-      all of the targets. You can use a semicolon separated list. Valid targets
-      are: host, AArch64, AMDGPU, ARM, AVR, BPF, Hexagon, Lanai, LoongArch,
+      the r600 AMD GPU used by the <xref linkend="mesa"/> r600 and radeonsi
+      drivers. The default is all of the targets. You can use a semicolon
+      separated list. Valid targets are:
+      host, AArch64, AMDGPU, ARM, AVR, BPF, Hexagon, Lanai, LoongArch,
       Mips, MSP430, NVPTX, PowerPC, RISCV, Sparc, SystemZ, SystemZ, VE,
       WebAssembly, X86, XCore, or all.
     </para>
@@ -311,7 +309,7 @@ ldconfig</userinput></screen>
     <para>
       <parameter>-D LLVM_ENABLE_RTTI=ON</parameter>: This switch is used to
       build LLVM with run-time type information. This is required for building
-      MESA.
+      Gallium3D LLVMpipe from <xref linkend="mesa"/>.
     </para>
 
     <para>
@@ -393,7 +391,8 @@ done</userinput></screen>
           clang-offload-bundler, clang-offload-packager,
           clang-refactor, clang-rename, clang-repl, clang-scan-deps,
           clang-tblgen,
-          diagtool, dsymutil, FileCheck, git-clang-format, hmaptool, intercept-build, llc, lli,
+          diagtool, dsymutil, FileCheck, git-clang-format, hmaptool, intercept-build,
+          llc, lli,
           llvm-addr2line (symlink to llvm-symbolizer),
           llvm-ar, llvm-as, llvm-bcanalyzer,
           llvm-bitcode-strip (symlink to llvm-objcopy), llvm-cat,
@@ -421,12 +420,12 @@ done</userinput></screen>
         </seg>
         <seg>
           libLLVM.so,
-          libLLVM*.a (100 libraries),
+          libLLVM*.a (107 libraries),
           libLTO.so,
           libRemarks.so,
           libclang.so,
           libclang-cpp.so,
-          libclang*.a (42 libraries),
+          libclang*.a (43 libraries),
           and LLVMgold.so
         </seg>
         <seg>
@@ -1524,7 +1523,7 @@ done</userinput></screen>
           <para>
             lists NVIDIA GPUs installed; at runtime it needs
             <filename>libcuda.so</filename> which is installed
-            by <xref linkend="nvidia"/>.
+            by <application>NVIDIA</application> (not in this book)
           </para>
           <indexterm zone="llvm nvptx-arch">
             <primary sortas="b-nvptx-arch">nvptx-arch</primary>

@@ -135,23 +135,13 @@ export XDG_DATA_DIRS=${XDG_DATA_DIRS:-/usr/share}
 export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:-/etc/xdg}
 export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/tmp/xdg-$USER}
 
-# Set up a red prompt for root and a green one for users.
-NORMAL="\[\e[0m\]"
-RED="\[\e[1;31m\]"
-GREEN="\[\e[1;32m\]"
-if [[ $EUID == 0 ]] ; then
-  PS1="$RED\u [ $NORMAL\w$RED ]# $NORMAL"
-else
-  PS1="$GREEN\u [ $NORMAL\w$GREEN ]\$ $NORMAL"
-fi
-
 for script in /etc/profile.d/*.sh ; do
         if [ -r $script ] ; then
                 . $script
         fi
 done
 
-unset script RED GREEN NORMAL
+unset script
 
 # End /etc/profile</literal>
 EOF</userinput></screen>
@@ -206,13 +196,13 @@ EOF</userinput></screen>
 
       <note>
         <para>
-          The <command>man</command> program automatically deduce the search
+          The <command>man</command> program automatically deduces the search
           path for man pages by examining the content of the
           <envar>PATH</envar> variable, see
           <ulink role='man' url='&man;manpath.5'>manpath(5)</ulink> for
           details.  Setting the <envar>MANPATH</envar> variable may override
-          the automatic deduction, so the BLFS editors do not recommend to
-          set it.  If you must set it for any reason, it's better to start
+          the automatic deduction, so the BLFS editors do not recommend
+          setting it.  If you must set it for any reason, it's better to start
           its value with a colon (<literal>:</literal>), for example
           <command>MANPATH=:/opt/somepkg/share/man:/opt/otherpkg/share/man</command>
           so the paths listed in the <envar>MANPATH</envar> variable will
@@ -220,6 +210,29 @@ EOF</userinput></screen>
           overriding it.
         </para>
       </note>
+
+    </sect3>
+
+    <sect3 id="readline.sh">
+      <title>/etc/profile.d/readline.sh</title>
+
+      <indexterm zone="bash-profile readline.sh">
+        <primary sortas="e-etc-profile.d-readline.sh">/etc/profile.d/readline.sh</primary>
+      </indexterm>
+
+      <para>
+        This script sets up the default <filename>inputrc</filename>
+        configuration file. If the user does not have individual settings, it
+        uses the global file.
+      </para>
+
+<screen role="root"><userinput>cat &gt; /etc/profile.d/readline.sh &lt;&lt; "EOF"
+<literal># Set up the INPUTRC environment variable.
+if [ -z "$INPUTRC" -a ! -f "$HOME/.inputrc" ] ; then
+        INPUTRC=/etc/inputrc
+fi
+export INPUTRC</literal>
+EOF</userinput></screen>
 
     </sect3>
 
@@ -265,7 +278,7 @@ EOF</userinput></screen>
         Configuring the System Locale</ulink> page.
       </para>
 
-<screen role="root"><userinput>cat &gt; /etc/profile.d/i18n.sh &lt;&lt; "EOF"
+<screen role="root" revision="sysv"><userinput>cat &gt; /etc/profile.d/i18n.sh &lt;&lt; "EOF"
 <literal># Set up i18n variables
 for i in $(locale); do
   unset ${i%=*}
@@ -275,6 +288,26 @@ if [[ "$TERM" = linux ]]; then
   export LANG=C.UTF-8
 else
   export LANG=<replaceable>&lt;ll&gt;</replaceable>_<replaceable>&lt;CC&gt;</replaceable>.<replaceable>&lt;charmap&gt;</replaceable><replaceable>&lt;@modifiers&gt;</replaceable>
+fi</literal>
+EOF</userinput></screen>
+
+<screen role="root" revision="systemd"><userinput>cat &gt; /etc/profile.d/i18n.sh &lt;&lt; "EOF"
+<literal># Set up i18n variables
+for i in $(locale); do
+  unset ${i%=*}
+done
+
+if [[ "$TERM" = linux ]]; then
+  export LANG=C.UTF-8
+else
+  source /etc/locale.conf
+
+  for i in $(locale); do
+    key=${i%=*}
+    if [[ -v $key ]]; then
+      export $key
+    fi
+  done
 fi</literal>
 EOF</userinput></screen>
 

@@ -50,13 +50,13 @@
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       
-      <ulink url="&lfs-website;/blfs/view/svn/general/python-modules.html#docutils">
+      <ulink url="&blfs-svn;/general/python-modules.html#docutils">
       docutils</ulink>,
-      <ulink url="&lfs-website;/blfs/view/svn/general/fftw.html">
+      <ulink url="&blfs-svn;/general/fftw.html">
       fftw</ulink>,
-      <ulink url="&lfs-website;/blfs/view/svn/multimedia/libsamplerate.html">
+      <ulink url="&blfs-svn;/multimedia/libsamplerate.html">
       libsamplerate</ulink>,
-      <ulink url="&lfs-website;/blfs/view/svn/pst/xmlto.html">
+      <ulink url="&blfs-svn;/pst/xmlto.html">
       xmlto</ulink>, and
       <ulink url="https://hightek.org/projects/dialog/">Dialog</ulink>
     </para>
@@ -66,16 +66,14 @@
   <sect2 role="installation">
     <title>Installation of ALSA Utilities</title>
 
-<!-- Fixed in 1.2.10
     <para>
-      This package provides its own implementation of
-      <literal>strlcpy</literal> and <literal>strlcat</literal> functions.
-      But they are provided by Glibc-2.38 now, so we need to remove the
-      custom implementation to avoid a conflict with the Glibc header:
+      First fix an issue with the distributed udev rules:
     </para>
 
-    <screen><userinput>echo '' > alsactl/init_sysdeps.c</userinput></screen>
--->
+<screen><userinput>sed -e 's/acp-pdm-dmic/acp-dmic-codec/'                   \
+    -e '/LABEL="alsa_restore_go"/s/go/std/'               \
+    -e '/^ENV.ALSA_CARD_NUMBER/i LABEL="alsa_restore_go"' \
+    -i alsactl/90-alsa-restore.rules.in</userinput></screen>
 
     <para>
       Install <application>ALSA Utilities</application> by
@@ -103,6 +101,8 @@ make</userinput></screen>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
+
+    &options-configure;
 
     <para>
       <parameter>--disable-alsaconf</parameter>: This switch disables building
