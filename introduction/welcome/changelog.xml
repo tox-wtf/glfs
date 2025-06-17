@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>June 17th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - NVIDIA: 575.57.08 -&gt; 575.64 (security). Fixes
+          <ulink url="&glfs-issues;/264">#264</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 16th, 2025</para>
       <itemizedlist>
         <listitem>
