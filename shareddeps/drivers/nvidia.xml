@@ -403,6 +403,18 @@ install -vm644 ../manifest-NVIDIA-&nv-manifest-version;       \
           launched via a TTY or a display manager other than GDM as of
           now.</para>
         </listitem>
+        <listitem>
+          <para>
+            <xref linkend="xorg-server"/>: While this package works just fine,
+            the TearFree patch and configuration file will be useless as the
+            Xorg driver (<filename class="libraryfile">nvidia_drv</filename>)
+            will be used instead of the modesetting driver. The TearFree patch
+            and configuration file is modesetting-specific. Thus, you must find
+            another way to get rid of screen tearing if that is your wish. Such
+            fixes may bog down performance drastically such that 144 FPS may
+            drop to 60 FPS.
+          </para>
+        </listitem>
       </itemizedlist>
 
     </sect3>
