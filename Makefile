@@ -245,33 +245,6 @@ $(BASEDIR)/test-links: $(RENDERTMP)/$(GLFSFULL) version
 
 	$(Q)$(CLEAN)
 
-bootscripts:
-	$(Q)trap '$(CLEAN)' EXIT
-	@VERSION=`grep "bootscripts-version " general.ent | cut -d\" -f2`; \
-   BOOTSCRIPTS="glfs-bootscripts-$$VERSION";                          \
-   if [ ! -e $$BOOTSCRIPTS.tar.xz ]; then                             \
-     rm -rf $(RENDERTMP)/$$BOOTSCRIPTS;                               \
-     mkdir $(RENDERTMP)/$$BOOTSCRIPTS;                                \
-     cp -a ../bootscripts/* $(RENDERTMP)/$$BOOTSCRIPTS;               \
-     rm -rf ../bootscripts/archive;                                   \
-     tar  -cJhf $$BOOTSCRIPTS.tar.xz -C $(RENDERTMP) $$BOOTSCRIPTS;   \
-   fi
-
-	$(Q)$(CLEAN)
-
-systemd-units:
-	$(Q)trap '$(CLEAN)' EXIT
-		@VERSION=`grep "systemd-units-version " general.ent | cut -d\" -f2`; \
-	UNITS="glfs-systemd-units-$$VERSION";                                   \
-	if [ ! -e $$UNITS.tar.xz ]; then                                        \
-		rm -rf $(RENDERTMP)/$$UNITS;                                         \
-		mkdir $(RENDERTMP)/$$UNITS;                                          \
-		cp -a ../systemd-units/* $(RENDERTMP)/$$UNITS;                       \
-		tar -cJhf $$UNITS.tar.xz -C $(RENDERTMP) $$UNITS;                    \
-	fi
-
-	$(Q)$(CLEAN)
-
 test-options:
 	$(Q)trap '$(CLEAN)' EXIT
 	$(Q)xsltproc --xinclude --nonet stylesheets/test-options.xsl index.xml
@@ -287,7 +260,7 @@ $(DUMPDIR): $(RENDERTMP)/$(GLFSFULL) version
 	$(Q)$(CLEAN)
 
 .PHONY: glfs all world html validate profile-html wget-list test-links \
-   dump-commands bootscripts systemd-units version test-options
+   dump-commands version test-options
 
 version:
 	$(Q)REV=$(REV) STAB=$(STAB) ./git-version.sh
