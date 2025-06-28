@@ -86,6 +86,7 @@
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="libdrm"/>,
+      <xref linkend="libXdmcp"/>,
       <xref linkend="mako"/>,
       <xref linkend="pyyaml"/>, and
       <xref linkend="xorg7-lib"/>
