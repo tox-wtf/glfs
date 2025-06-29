@@ -84,11 +84,15 @@
     </para>
 
     <note><para>
-      Switching from <application>Mesa</application> OpenGL to
-      <application>libglvnd</application> OpenGL is sort of trivial. However,
-      switching from <application>libglvnd</application> OpenGL to
-      <application>Mesa</application> OpenGL requires a lot of rebuilding.
+      When in doubt, install <xref linkend="libglvnd"/>. First time builders
+      are highly encouraged to install it.
     </para></note>
+
+    <important><para>
+      Switching between vendors is not recommended. You should choose very
+      carefully on which vendor to install from. If you want to switch, it
+      might be best to rebuild the system.
+    </para></important>
 
   </sect2>
 
