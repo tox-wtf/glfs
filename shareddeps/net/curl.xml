@@ -64,12 +64,17 @@
 
     <note>
       <para>
-        While there is an option to build the package without libpsl, both
-        the upstream developers, the BLFS and GLFS editors alike highly
-        recommend not disabling support for libpsl to prevent sites from using
-        super cookies which poses security risks.
+        While you can build the package without libpsl,
+        the upstream developers highly recommend building support for libpsl.
+        It prevents sites from using super cookies which pose security
+        risks.
       </para>
     </note>
+
+    <bridgehead renderas="sect4">Optional</bridgehead>
+    <para role="optional">
+      <xref linkend="libidn2"/>
+    </para>
 
   </sect2>
 
