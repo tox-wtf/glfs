@@ -56,54 +56,7 @@
   <sect2 role="installation">
     <title>Installation of D-Bus - Pass 1</title>
 
-    <para>
-      Install <application>D-Bus</application> by running the following
-      commands (you may wish to review the
-      <filename>meson_options.txt</filename> file first and add any desired
-      parameters to the
-      <command>meson</command> command shown below):
-    </para>
-
-<screen><userinput>mkdir build &amp;&amp;
-cd    build &amp;&amp;
-
-meson setup --prefix=/usr          \
-            --buildtype=release    \
-            --wrap-mode=nofallback \
-            -D systemd=disabled    \
-            .. &amp;&amp;
-
-ninja</userinput></screen>
-
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>ninja install</userinput></screen>
-
-<!-- FIXME: No longer needed with usr merge
-    <para>
-      The shared library needs to be moved to
-      <filename class="directory">/lib</filename>, and as a result the
-      <filename class="extension">.so</filename> file in
-      <filename class="directory">/usr/lib</filename> will need to be
-      recreated. Run the following command as the
-      <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>mv -v /usr/lib/libdbus-1.so.* /lib &amp;&amp;
-ln -sfv ../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so</userinput></screen>
--->
-
-    <para>
-      If you are using a DESTDIR install,
-      <command>dbus-daemon-launch-helper</command> needs to be fixed
-      afterwards. Issue, as <systemitem class="username">root</systemitem>
-      user:
-    </para>
-
-<screen role="root"><userinput>chown -v root:messagebus /usr/libexec/dbus-daemon-launch-helper &amp;&amp;
-chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper</userinput></screen>
+    &dbus-m64;
 
     <para>
       Generate the <application>D-Bus</application> UUID to avoid
