@@ -146,7 +146,7 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
     -i cmake/modules/HandleLLVMOptions.cmake</userinput></screen>
 
     <para>
-      Install <application>clang</application> into
+      Extract <application>clang</application> into
       the source tree by running the following commands:
     </para>
 
@@ -154,7 +154,7 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
 mv tools/clang-&llvm-version;.src tools/clang</userinput></screen>
 
     <para>
-      Install <application>compiler-rt</application> into
+      Extract <application>compiler-rt</application> into
       the source tree by running the following commands:
     </para>
 

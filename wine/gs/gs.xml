@@ -5,14 +5,14 @@
   %general-entities;
 ]>
 
-<chapter id="Gst">
-  <?dbhtml filename="gst.html"?>
+<chapter id="GS">
+  <?dbhtml filename="gs.html"?>
 
-  <title>Gst</title>
+  <title>GS</title>
 
   <para>
-    This chapter covers how to install <application>Gstreamer</application> and
-    its dependencies. <application>Gstreamer</application> is used in
+    This chapter covers how to install <application>GStreamer</application> and
+    its dependencies. <application>GStreamer</application> is used in
     <application>Wine</application> for some codec playback.
   </para>
 
