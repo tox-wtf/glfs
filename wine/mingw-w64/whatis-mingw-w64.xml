@@ -32,17 +32,19 @@
   </para>
 
   <para>
-    A lot of Windows software is dynamically linked. While most of them when
+    Most Windows software is dynamically linked. While most of them when
     shipped include DLLs packaged in the installed directory, or extracted from
-    a ZIP file, not all DLLs will be packaged as a number will be installed on
-    a given Windows machine already, such as libraries for DirectX/Direct3D
-    support. Since we are on a Unix-like operating system, we do not have such
-    DLLs installed on the system, and they were never compiled in LFS or
-    earlier in this book. <xref linkend="nvidia"/> does install two DLL files
-    but are strictly meant for <application>Wine</application> and Proton.
-    <application>MinGW-w64</application> does not install these libraries, so
-    <application>Wine</application> needs to compile them for most Windows
-    software to function.
+    a ZIP file, not all DLLs will be packaged. A number of the dependencies
+    will be installed on a given Windows machine already, such as libraries for
+    DirectX/Direct3D or OpenGL support. Since we are on a Unix-like operating
+    system, we do not have such DLLs installed on the system, and they were
+    never compiled in LFS or earlier in this book. <xref linkend="nvidia"/>
+    does install DLL files but are strictly meant for
+    <application>Wine</application> and Proton as a way of exposing DLSS.
+    <application>MinGW-w64</application> only installs static libraries, which
+    are helpful when compiling Windows software, but are useless at runtime.
+    <application>Wine</application> needs to compile the dynamic libraries for
+    most Windows software to function.
   </para>
 
   <para>
@@ -53,13 +55,12 @@
     your built software you are developing, although it isn't a perfect
     replacement for an accurate Windows environment. While the built software
     may work fine with <application>Wine</application>, it could be totally
-    broken on Windows. An example is linking against libraries installed by
-    <application>Wine</application> or <application>MinGW-w64</application> and
-    Windows complaining that Unixlib can not be found.
+    broken on Windows.
   </para>
 
   <para>
-    The following process works up to building the pieces for a static
+    The following process works up to building the pieces (Windows headers and
+    binutils for linking and assembling Windows software) for a static
     compilation of GCC, which means it cannot do much of anything with dynamic
     libraries besides build them. This is especially a problem with C++
     software as you need <filename class="libraryfile">libstdc++</filename>,

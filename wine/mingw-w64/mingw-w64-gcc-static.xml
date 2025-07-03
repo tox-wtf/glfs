@@ -53,14 +53,6 @@
       <xref linkend="mingw-w64-headers"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
-    <para role="optional">
-      <ulink url="&blfs-svn;/general/gdb.html">
-      GDB</ulink> and
-      <ulink url="&blfs-svn;/general/valgrind.html">
-      Valgrind</ulink> (for tests)
-    </para>
-
   </sect2>
 
   <sect2 role="installation">
@@ -87,7 +79,7 @@ cd    build-x86_64-mingw-w64-static &amp;&amp;
 make all-gcc</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
 <screen role="root"><userinput>make install-gcc &amp;&amp; cd ..</userinput></screen>
@@ -115,7 +107,7 @@ cd    build-i686-mingw-w64-static &amp;&amp;
 make all-gcc</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
 <screen role="root"><userinput>make install-gcc</userinput></screen>
@@ -162,13 +154,13 @@ make all-gcc</userinput></screen>
 
   <sect2 role="content">
     <title>Contents</title>
-
     <para>
       There are no binaries specific to this package besides the format
-      the compilers are targetting. For in-depth descriptions, read <ulink
-      url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>
+      the compilers are targetting, and thus are prefixed with the architecture
+      triplet, such as <command>x86_64-w64-mingw32-gcc</command>. For in-depth
+      descriptions, read <ulink
+      url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>.
     </para>
-
   </sect2>
 
 </sect1>
