@@ -41,6 +41,20 @@
     -->
 
     <listitem>
+      <para>July 3rd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Fontconfig: 2.17.0 -&gt; 2.17.1 (security). Fixes
+          <ulink url="&glfs-issues;/281">#281</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - hwdata: 0.396 -&gt; 0.397. Fixes
+          <ulink url="&glfs-issues;/280">#280</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 1st, 2025</para>
       <itemizedlist>
         <listitem>
