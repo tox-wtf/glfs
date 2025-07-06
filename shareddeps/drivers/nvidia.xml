@@ -509,12 +509,14 @@ done</userinput></screen>
         Nouveau and NVIDIAFB support was compiled into the kernel to make the
         NVIDIA kernel modules build successfully. However, Nouveau and NVIDIAFB
         conflict with the NVIDIA kernel modules, so they should be blacklisted.
+        Furthermore, other modules may have been built that can conflict, and
+        should likewise be disabled.
       </para>
 
       <para>
         As the &root; user, create the file
         <filename>/usr/lib/modprobe.d/nouveau.conf</filename> to blacklist Nouveau
-        and NVIDIAFB:
+        and NVIDIAFB, as well as other conflicting modules:
       </para>
       
 <screen role="root"><userinput>mkdir -pv /usr/lib/modprobe.d &amp;&amp;
@@ -523,6 +525,8 @@ cat &gt; /usr/lib/modprobe.d/nouveau.conf &lt;&lt; "EOF"
 
 blacklist nouveau
 blacklist nvidiafb
+blacklist nova_core
+blacklist nova_drm
 
 # End /usr/lib/modprobe.d/nouveau.conf</literal>
 EOF</userinput></screen>
