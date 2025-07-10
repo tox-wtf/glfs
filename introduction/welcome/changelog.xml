@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>July 10th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - GnuTLS: 3.8.9 -&gt; 3.8.10 (security). Fixes
+          <ulink url="&glfs-issues;/282">#282</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 9th, 2025</para>
       <itemizedlist>
         <listitem>
