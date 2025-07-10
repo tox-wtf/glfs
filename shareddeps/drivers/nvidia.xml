@@ -185,7 +185,11 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
       failure. It is heavily recommended to build them when booted in the LFS
       target to avoid <command>uname -r</command> reporting the kernel version
       of the host rather than the target leading to build files being unable to
-      be found.
+      be found. This can be worked around by specifying
+      <envar>KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></envar> in
+      the <command>make</command> command which will override the kernel
+      version to build against. The kernel version must have already been built
+      for this to work.
     </para></note>
 
     <para>
@@ -205,19 +209,20 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
 
     <para>
       If you are going to build the <emphasis role="bold">open</emphasis>
-      kernel modules, set the <envar>NVIDIA_KERNEL_TYPE</envar> variable:
+      kernel modules, navigate to the <filename
+      class="directory">kernel-open</filename> directory:
     </para>
 
-<screen><userinput>export NVIDIA_KERNEL_TYPE="kernel-open"</userinput></screen>
+<screen><userinput>cd kernel-open</userinput></screen>
 
     <para>
       If you are going to instead build the <emphasis
-      role="bold">proprietary</emphasis> kernel modules, set the
-      <envar>NVIDIA_KERNEL_TYPE</envar> variable:
+      role="bold">proprietary</emphasis> kernel modules, navigate to the
+      <filename class="directory">kernel</filename> directory:
     </para>
 
 <!-- proprietary is the exception, not the rule -->
-<screen><computeroutput>export NVIDIA_KERNEL_TYPE="kernel"</computeroutput></screen>
+<screen><computeroutput>cd kernel</computeroutput></screen>
 
     <para>
       There will be 5 or 6 kernel modules that will be built. Depending on your
@@ -242,55 +247,47 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
     </para>
 
     <para>
-      Now build the kernel modules by running the following commands below
-      (the commands below will navigate to the right directory based on what
-      <envar>NVIDIA_KERNEL_TYPE</envar> is set to):
+      Now build the kernel modules by running the following command:
     </para>
 
-<screen><userinput>pushd $NVIDIA_KERNEL_TYPE &amp;&amp;
-make NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
+<screen><userinput>make NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
 
     <note>
       <para>
         You may encounter various build failures. This usually happens because
-        the kernel version you're using is <quote>too high.</quote> If this
-        happens, it may be necessary to downgrade the kernel to a lower
-        version. When a new driver release happens, the driver will then most
-        likely support the kernel version at the time. At the top of this
-        section, the recommended kernel version to use with this driver is
-        mentioned to ensure that a build failure does not occur. The current
-        kernel version used for kernel parameters and such in this book is
-        linux-&linux-version;.
+        the kernel version is incompatible with the current kernel version.
+        If this happens, in most cases this is fixed by downgrading the kernel.
+        When a new driver release happens, the driver will then most likely
+        support the kernel version at the time. At the top of this section, the
+        recommended kernel series to use with this driver is mentioned to
+        give an idea of what is the idea kernel version to build against.
+        The kernel version used for kernel parameters and such in this book is
+        linux-&linux-version;. As of now, there are no option mismatches.
       </para>
     </note>
 
     <important>
       <para>
-        When you update the kernel, you will also need to reinstall the
-        <application>NVIDIA</application> kernel modules.
+        When you rebuild/upgrade the kernel, you will also need to reinstall
+        the <application>NVIDIA</application> kernel modules.
       </para>
 
       <para>
-        This is because there is glue when kernel modules are built. This glue
-        doesn't matter too much with first party modules (modules in the kernel
-        source tree) as the modules are updated at the same time the kernel is.
-        At that point, there is new glue holding them together. However, when
-        it comes to third party modules, they aren't updated when the kernel
-        updates, so this glue the third party modules had on the kernel breaks.
-        This leads to broken kernel modules. This also applies if you stay on
-        the same kernel version but change some options, this can also break
-        the glue.
+        Kernel modules are installed in a versioned directory that, when they
+        are built against a different kernel version, will no longer match the
+        booted kernel version and cannot be used. Furthermore, there is a
+        glue built, so any changes to the kernel can break that glue. For
+        kernel modules in the Linux source tree, known as first-party modules,
+        they get updated and rebuilt alongside the kernel, so issues aren't ran
+        into for first-party modules. Third-party modules aren't, however,
+        and need to be updated/rebuilt.
       </para>
 
       <para>
-        Be sure that when you reinstall the kernel modules, make sure you are
-        using the new kernel and have the kernel source you built from.
-        Otherwise the modules will fail to build.
-      </para>
-
-      <para>
-        When you upgrade the kernel, you will not have to reinstall the
-        driver software, just the kernel modules.
+        When you rebuild/upgrade the kernel against the same NVIDIA driver
+        version, you will only need to reinstall the kernel modules. You will
+        have to reinstall the driver software as well if you are upgrading from
+        a previous driver version.
       </para>
     </important>
 
@@ -298,11 +295,8 @@ make NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
       Now as the &root; user:
     </para>
 
-<screen role="root"><userinput>for mod in nvidia{,-drm,-modeset,-peermem,-uvm}; do
-  rm -vf /usr/lib/modules/$(uname -r)/kernel/drivers/video/$mod.ko
-done
-make modules_install &amp;&amp;
-popd</userinput></screen>
+<screen role="root"><userinput>make modules_install &amp;&amp;
+cd ..</userinput></screen>
 
     <para>
       Install the firmware as the &root; user:
@@ -446,7 +440,7 @@ done</userinput></screen>
       <para>
         <filename>/usr/lib/modprobe.d/nvidia_drm.conf</filename>
       </para>
-      <para>
+      <para revision="systemd">
         <filename>/usr/lib/modprobe.d/nvidia.conf</filename>
       </para>
     </sect3>
@@ -545,13 +539,18 @@ options nvidia_drm modeset=1
 # End /usr/lib/modprobe.d/nvidia_drm.conf</literal>
 EOF</userinput></screen>
 
-      <para>
+      <!-- Cannot be used on SysVinit yet, and the kernel module will complain
+           as the ability to make use of sleep/hibernate is not yet
+           implemented. We must provide the files, but they do not work as of
+           yet. - Zeckma -->
+      <para revision="systemd">
         When the GPU sleeps/hibernates, it will lose all memory allocations by
         default. You can prevent this by setting two options for the NVIDIA
-        module as the &root; user:
+        module. If you do not use sleep/hibernate, you can skip making the
+        following configuration file. Otherwise, as the &root; user:
       </para>
 
-<screen role="root"><userinput>cat &gt; /usr/lib/modprobe.d/nvidia.conf &lt;&lt; "EOF"
+<screen revision="systemd" role="root"><userinput>cat &gt; /usr/lib/modprobe.d/nvidia.conf &lt;&lt; "EOF"
 <literal># Begin /usr/lib/modprobe.d/nvidia.conf
 
 options nvidia NVreg_PreserveVideoMemoryAllocations=1
@@ -561,12 +560,12 @@ options nvidia NVreg_TemporaryFilePath=/var/tmp
 EOF</userinput></screen>
 
       <para>
-        Furthermore, this driver does not install DRI
+        This driver does not install DRI
         <footnote><para>
           Direct Rendering Infrastructure.
         </para></footnote>
         drivers or driver stubs. Likewise, it does not install a
-        <application>pkg-config</application> file saying where to find the
+        <application>pkgconf</application> file saying where to find the
         associated files. The files aren't needed with this driver. However,
         some applications expect the <application>pkg-config</application> file
         to exist, namely <xref linkend="xorg-server"/>. Create one now as the
