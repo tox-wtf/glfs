@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>July 16th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Vulkan-SDK: 1.4.313.0 -&gt; 1.4.321.0. Fixes
+          <ulink url="&glfs-issues;/283">#283</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 13th, 2025</para>
       <itemizedlist>
         <listitem>

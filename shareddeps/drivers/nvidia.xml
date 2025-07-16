@@ -112,12 +112,12 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="libvk"/> (for using the Vulkan drivers)
+            <xref linkend="nvidia-egl"/> (for EGL driver support)
           </para>
         </listitem>
         <listitem>
           <para>
-            <xref linkend="nvidia-egl"/> (for EGL driver support)
+            <xref linkend="vulkan-sdk"/> (for using the Vulkan drivers)
           </para>
         </listitem>
         <listitem>

@@ -33,14 +33,9 @@
       <xref linkend="dxvk"/>
       (for <filename class="libraryfile">dxgi</filename> and
       the configuration section),
-      <xref linkend="glslang"/>,
-      <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support), and
+      <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support),
+      <xref linkend="vulkan-sdk"/>, and
       <xref linkend="wine"/>
-    </para>
-
-    <bridgehead renderas="sect4">Required (Runtime)</bridgehead>
-    <para role="runtime">
-      <xref linkend="libvk"/>
     </para>
 
   </sect2>

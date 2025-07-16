@@ -46,7 +46,7 @@
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="libvk"/> and
+      <xref linkend="vulkan-sdk"/> and
       <xref linkend="wayland"/>
     </para>
 

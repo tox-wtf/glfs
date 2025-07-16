@@ -45,9 +45,8 @@
     <para role="required">
       <xref linkend="cmake"/>,
       <xref linkend="libxml2"/>,
-      <xref linkend="llvm"/> (with Clang),
-      <xref linkend="spirv-headers"/>, and
-      <xref linkend="spirv-tools"/>
+      <xref linkend="llvm"/> (with Clang), and
+      <xref linkend="vulkan-sdk"/>
     </para>
 
   </sect2>
@@ -130,7 +129,7 @@ ldconfig</userinput></screen>
     
     <para>
       <parameter>-D LLVM_EXTERNAL_SPIRV_HEADERS_*</parameter>: These switches tells the
-      build system that <xref linkend="spirv-headers" role="nodep"/> is
+      build system that <xref linkend="vulkan-sdk" role="nodep"/> is
       installed in /usr. This is needed since the build system
       tries to download and use the downloaded headers not on the system if the switch
       isn't invoked.

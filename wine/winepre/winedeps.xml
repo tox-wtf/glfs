@@ -81,7 +81,7 @@
       </listitem>
       <listitem>
         <para>
-          <xref linkend="libvk"/>: for Vulkan support.
+          <xref linkend="vulkan-sdk"/>: for Vulkan support.
         </para>
       </listitem>
     </itemizedlist>
