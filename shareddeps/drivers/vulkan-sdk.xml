@@ -66,6 +66,26 @@
       <xref linkend="wayland"/>
     </para>
 
+    <bridgehead renderas="sect3">BLFS Equivalent Packages</bridgehead>
+    <para>This combined page installs what would be in BLFS:</para>
+    <itemizedlist>
+      <listitem><para>
+        <ulink url="&blfs-svn;/x/vulkan-headers.html">Vulkan-Headers</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/x/vulkan-loader.html">Vulkan-Loader</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/general/spirv-headers.html">SPIRV-Headers</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/general/spirv-tools.html">SPIRV-Tools</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/x/glslang.html">Glslang</ulink>
+      </para></listitem>
+    </itemizedlist>
+
   </sect2>
 
   <sect2>

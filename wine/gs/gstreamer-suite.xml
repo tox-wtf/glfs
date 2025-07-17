@@ -123,6 +123,29 @@
       list.
     </para></note>
 
+    <bridgehead renderas="sect3">BLFS Equivalent Packages</bridgehead>
+    <para>This combined page installs what would be in BLFS:</para>
+    <itemizedlist>
+      <listitem><para>
+        <ulink url="&blfs-svn;/multimedia/gstreamer10.html">gstreamer</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/multimedia/gst10-plugins-base.html">gst-plugins-base</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/multimedia/gst10-plugins-good.html">gst-plugins-good</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/multimedia/gst10-plugins-bad.html">gst-plugins-bad</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/multimedia/gst10-plugins-ugly.html">gst-plugins-ugly</ulink>
+      </para></listitem>
+      <listitem><para>
+        <ulink url="&blfs-svn;/multimedia/gst10-libav.html">gst-libav</ulink>
+      </para></listitem>
+    </itemizedlist>
+
   </sect2>
 
   <sect2>
