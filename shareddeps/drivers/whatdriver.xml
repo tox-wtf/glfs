@@ -31,8 +31,8 @@
     <title>AMD</title>
 
     <para>
-      There are 3 AMD GPU drivers: AMDGPU (Radeon Southern Islands and later),
-      ATI (r300 and r600), and AMDGPU PRO (proprietary AMDGPU driver).
+      There are two AMD GPU drivers: AMDGPU (Radeon Southern Islands and
+      later) and ATI (r300 and r600).
     </para>
 
     <para>
@@ -55,21 +55,8 @@
     </para>
 
     <para>
-      <emphasis>AMDGPU PRO</emphasis> (<xref linkend="amdgpu-pro"/>):
-      This driver is proprietary. Most users don't install this driver
-      as the open source drivers are already well off. However, it is
-      needed for hardware acceleration encoding, useful for those who
-      wish to record and edit videos. Performance in games varies between
-      the open source and proprietary drivers so the ending factor is if
-      you record and edit videos or not. You will need the firmware and
-      open source kernel driver for this driver.
-    </para>
-
-    <para>
-      Summary: If you are a regular user with a modern AMD GPU, use
-      <emphasis>AMDGPU</emphasis>. If you have an older card, go with
-      <emphasis>ATI</emphasis>. Use <emphasis>AMDGPU PRO</emphasis> if
-      you want an improvement with hardware acceleration encoding.
+      Summary: If you have a modern AMD GPU, use <emphasis>AMDGPU</emphasis>.
+      If you have an older card, go with <emphasis>ATI</emphasis>.
     </para>
 
   </sect2>
