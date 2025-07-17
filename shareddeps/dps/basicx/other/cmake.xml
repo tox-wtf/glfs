@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY cmake-download-http "https://cmake.org/files/v&cmake-major-version;/cmake-&cmake-version;.tar.gz">
-  <!ENTITY cmake-download-ftp  " ">
+  <!ENTITY cmake-download "https://cmake.org/files/v&cmake-major-version;/cmake-&cmake-version;.tar.gz">
 ]>
 
 <sect1 id="cmake" xreflabel="CMake-&cmake-version;">
@@ -21,12 +20,10 @@
     <title>Introduction to CMake</title>
 
     <para>
-      The CMake package contains a modern
-      toolset used for generating Makefiles. It is a successor of the
-      auto-generated <command>configure</command> script and aims to
-      be platform- and compiler-independent. A significant user of
-      CMake is KDE
-      since version 4.
+      The CMake package contains a modern toolset used for generating
+      Makefiles. It is a successor of the auto-generated
+      <command>configure</command> script and aims to be platform and
+      compiler independent. A significant user of CMake is KDE since version 4.
     </para>
 
     &long-build-time;
@@ -34,12 +31,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&cmake-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&cmake-download-ftp;"/>
+          Download: <ulink url="&cmake-download;"/>
         </para>
       </listitem>
     </itemizedlist>

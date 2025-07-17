@@ -4,7 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY mesa-download-http "https://mesa.freedesktop.org/archive/mesa-&mesa-version;.tar.xz">
+  <!ENTITY mesa-download "https://mesa.freedesktop.org/archive/mesa-&mesa-version;.tar.xz">
 ]>
 
 <sect1 id="mesa" xreflabel="Mesa-&mesa-version;">
@@ -41,12 +41,14 @@
       package's OpenGL implementations do not get built.
     </para></important>
 
+<!--
     <note>
       <para>
         Mesa is updated relatively often. You may
         want to use the latest available &mesa-major-minor;.x mesa version.
       </para>
     </note>
+-->
 
     <note>
       <para>
@@ -62,7 +64,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&mesa-download-http;"/>
+          Download: <ulink url="&mesa-download;"/>
         </para>
       </listitem>
     </itemizedlist>

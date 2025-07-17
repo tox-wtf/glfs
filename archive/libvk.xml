@@ -29,7 +29,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&vulkan-loader-download-http;"/>
+          Download: <ulink url="&vulkan-loader-download-http;"/>
         </para>
       </listitem>
       <listitem>

@@ -31,7 +31,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&lib32-check-download-http;"/>
+          Download: <ulink url="&lib32-check-download-http;"/>
         </para>
       </listitem>
       <listitem>

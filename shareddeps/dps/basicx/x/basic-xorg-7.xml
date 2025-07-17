@@ -87,7 +87,7 @@
   <para>
     Additionally, because of the large number of repetitive commands,
     you are encouraged to partially automate the build. Instructions have been
-    given that utilize the
+    given that utilize the BLFS
     <ulink url="&blfs-svn;/postlfs/sudo.html">sudo</ulink> package.
     It is recommended that you use the <parameter>:NOPASSWD</parameter>
     configuration option for the user that will be building the xorg packages.
@@ -95,17 +95,15 @@
     You can use the <command>su</command> utility, invoking <parameter>-c
     </parameter>. This requires that you enter your password each time a
     package needs to get installed. The last accommodation is allow you
-    to build and install each package as the <systemitem class="username">root
-    </systemitem> user. This is not recommended but is an option if you
-    don't want to install sudo and don't want
-    to type a password again and again.
+    to build and install each package as the &root; user.
   </para>
 
   <sect2 id="xorg-env" xreflabel="Xorg build environment">
     <title>Setting up the Xorg Build Environment</title>
 
     <para>
-      Set the <envar>XORG_PREFIX</envar> variable for compatibility with BLFS
+      Set the <envar>XORG_PREFIX</envar> variable for compatibility with
+      installation instructions outside this book (BLFS and SLFS)
       with the following command:
     </para>
 
@@ -114,7 +112,7 @@
     <note>
       <para>The <envar>XORG_PREFIX</envar> variable will not be used in this
       book, but it is a necessary variable to set if you intend to follow
-      certain BLFS instructions. If you aren't just copy and pasting BLFS
+      instructions from BLFS or SLFS. If you aren't just copy and pasting said
       instructions, you may do without the variable but be sure to replace
       the variable in the instructions with <filename>/usr</filename>.</para>
     </note>
@@ -149,10 +147,8 @@ EOF
 chmod 644 /etc/profile.d/xorg.sh</userinput></screen>
 
     <para>
-      If you've installed sudo, ensure that
-      <envar>XORG_CONFIG</envar> is available
-      in the sudo environment. As the
-      <systemitem class="username">root</systemitem> user, run the following
+      If you've installed sudo, ensure that <envar>XORG_CONFIG</envar> is
+      available in the sudo environment. As the &root; user, run the following
       command:
     </para>
 

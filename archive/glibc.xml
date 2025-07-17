@@ -45,7 +45,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&glibc-download-http;"/>
+          Download: <ulink url="&glibc-download-http;"/>
         </para>
       </listitem>
       <listitem>

@@ -30,7 +30,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&spirv-tools-download-http;"/>
+          Download: <ulink url="&spirv-tools-download-http;"/>
         </para>
       </listitem>
       <listitem>
