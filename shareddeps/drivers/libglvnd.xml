@@ -22,9 +22,22 @@
     <title>Introduction to libglvnd</title>
 
     <para>
-      The libglvnd package provides OpenGL
-      implementations that dispatch API calls to a given driver vendor. Some of
-      the libraries are simply wrappers to the main dispatcher.
+      The libglvnd package dispatchs API calls to a given driver vendor at
+      runtime. Some of the libraries are simply wrappers to the main
+      dispatcher. Drivers that are built with libglvnd in mind provide their
+      own OpenGL implementations. For <xref linkend="mesa"/>, it will install
+      <filename class="libraryfile">libEGL_mesa</filename> and <filename
+      class="libraryfile">libGLX_mesa</filename>. For <xref linkend="nvidia"/>,
+      it will provide <filename class="libraryfile">libEGL_nvidia</filename>,
+      <filename class="libraryfile">libGLESv2_nvidia</filename>, and
+      <filename class="libraryfile">libGLX_nvidia</filename>. Each
+      implementation is specific to the driver it comes from.
+    </para>
+
+    <para>
+      The benefit of doing it that way is that a driver doesn't have to obey to
+      the architecture an OpenGL vendor applies nor being absorbed by the
+      vendor.
     </para>
 
     <important><para>
@@ -44,9 +57,17 @@
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="xorg7-lib"/> (for <filename
-      class="libraryfile">libGL</filename> and <filename
-      class="libraryfile">libGLX</filename>)
+      <xref linkend="xorg7-lib"/>
+      <footnote><para>
+        If <xref linkend="xorg7-lib"/> is not installed, this package will not
+        provide <filename class="libraryfile">libGL</filename> or <filename
+        class="libraryfile">libGLX</filename>. <filename
+        class="libraryfile">libOpenGL</filename> will still be built. Many
+        build systems will expect <filename
+        class="libraryfile">libGL</filename> to be present, so it is heavily
+        recommended to install <xref linkend="xorg7-lib"/> before installing
+        this package.
+      </para></footnote>
     </para>
 
   </sect2>
