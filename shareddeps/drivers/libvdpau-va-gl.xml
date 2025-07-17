@@ -25,7 +25,7 @@
       <title>Introduction to libvdpau-va-gl</title>
 
       <para>
-        The <application>libvdpau-va-gl</application> package contains a library
+        The libvdpau-va-gl package contains a library
         which implements the VDPAU library.  Libvdpau_va_gl uses OpenGL under the
         hood to accelerate drawing and scaling and the VA-API (if available) to
         accelerate video decoding. For now VA-API is available on some Intel
@@ -62,7 +62,7 @@
       <title>Installation of libvdpau-va-gl</title>
 
       <para>
-        Install <application>libvdpau-va-gl</application> by running the following
+        Install libvdpau-va-gl by running the following
         commands:
       </para>
 
@@ -93,7 +93,7 @@ make</userinput></screen>
       <title>lib32 Installation of libvdpau-va-gl</title>
 
       <para>
-        Install lib32-<application>libvdpau-va-gl</application> by running the
+        Install lib32-libvdpau-va-gl by running the
         following commands:
       </para>
 

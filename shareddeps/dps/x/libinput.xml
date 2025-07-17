@@ -27,7 +27,7 @@
       <title>Introduction to Libinput</title>
 
       <para>
-        <application>libinput</application> is a library that handles
+        libinput is a library that handles
         input devices for display servers and other applications that
         need to directly deal with input devices.
       </para>
@@ -59,7 +59,7 @@
       <title>Installation of Libinput</title>
 
       <para>
-        Install <application>libinput</application> by running the following
+        Install libinput by running the following
         commands:
       </para>
 
@@ -153,7 +153,7 @@ cp -rv Documentation/* /usr/share/doc/libinput-&libinput-version;/html</userinpu
           <listitem>
             <para>
               is a set of tools to interface with the
-              <application>libinput</application> library
+              libinput library
             </para>
             <indexterm zone="libinput libinput-prog">
               <primary sortas="b-libinput-prog">libinput</primary>

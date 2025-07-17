@@ -21,7 +21,7 @@
     <title>Introduction to MinGW-w64-GCC</title>
 
     <para>
-      <application>MinGW-w64-GCC</application> has been built statically
+      MinGW-w64-GCC has been built statically
       beforehand, and it should be rebuilt to support dynamic linking. This
       section will be dedicated to finishing the MinGW-w64 toolchain.
     </para>
@@ -64,7 +64,7 @@
     <title>x86_64 Installation of MinGW-w64-GCC</title>
 
     <para>
-      Install x86_64 <application>MinGW-w64-GCC</application> by running the
+      Install x86_64 MinGW-w64-GCC by running the
       following commands:
     </para>
 
@@ -96,7 +96,7 @@ strip /usr/libexec/gcc/x86_64-w64-mingw32/&mingw-w64-gcc-version;/{cc1*,collect2
     <title>i686 Installation of MinGW-w64-GCC</title>
 
     <para>
-      Install i686 <application>MinGW-w64-GCC</application> by running the
+      Install i686 MinGW-w64-GCC by running the
       following commands:
     </para>
 
@@ -129,7 +129,7 @@ strip /usr/libexec/gcc/i686-w64-mingw32/&mingw-w64-gcc-version;/{cc1*,collect2,l
     <title>Testing the Toolchain</title>
 
     <para>
-      Now that the <application>MinGW-w64</application> cross toolchain has
+      Now that the MinGW-w64 cross toolchain has
       been fully installed, it is time to test the installation to make sure
       everything is working as expected.
     </para>
@@ -165,7 +165,7 @@ g++ -m32 main.cpp     &amp;&amp;
 rm -v a.out main.{c,cpp}</userinput></screen>
 
     <para>
-      Now test the <application>MinGW-w64</application> cross compiler.
+      Now test the MinGW-w64 cross compiler.
     </para>
 
     <para>
@@ -216,7 +216,7 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
 
     <para>
       <command>mkdir build; cd build</command>: The
-      <application>GCC</application> documentation recommends
+      GCC documentation recommends
       building the package in a dedicated build directory.
     </para>
 

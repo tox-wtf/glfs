@@ -21,7 +21,7 @@
     <title>Introduction to xbitmaps</title>
 
     <para>
-      The <application>xbitmaps</application> package contains bitmap
+      The xbitmaps package contains bitmap
       images used by multiple applications built in Xorg chapter.
     </para>
 
@@ -51,7 +51,7 @@
     <title>Installation of xbitmaps</title>
 
     <para>
-      Install <application>xbitmaps</application> by running the
+      Install xbitmaps by running the
       following commands:
     </para>
 

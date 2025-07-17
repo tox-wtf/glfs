@@ -25,15 +25,15 @@
     <title>Introduction to FreeType2 - Pass 1</title>
 
     <para>
-      The <application>FreeType2</application> package contains
+      The FreeType2 package contains
       a library which allows applications to properly render
-      <application>TrueType</application> fonts.
+      TrueType fonts.
     </para>
 
     <para>
       This package has a circular dependency on <xref
       linkend="harfbuzz"/>, so this package must be installed first,
-      <application>harfBuzz</application> second, then lastly this
+      harfBuzz second, then lastly this
       package again. This is the first pass.
     </para>
 
@@ -132,9 +132,9 @@ rm -v /usr/share/doc/freetype-&freetype2-version;/freetype-config.1</userinput><
 
     <para>
       <option>--without-harfbuzz</option>: If
-      <application>harfbuzz</application> is installed prior to
-      <application>freetype</application> without
-      <application>freetype</application> support, use this switch to avoid a
+      harfbuzz is installed prior to
+      freetype without
+      freetype support, use this switch to avoid a
       build failure.
     </para>
 
@@ -182,7 +182,7 @@ rm -v /usr/share/doc/freetype-&freetype2-version;/freetype-config.1</userinput><
         <term><command>freetype-config</command></term>
         <listitem>
           <para>
-            is used to get <application>FreeType</application> compilation
+            is used to get FreeType compilation
             and linking information
           </para>
           <indexterm zone="freetype2-pass1 freetype-config-pass1">

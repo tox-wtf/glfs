@@ -21,7 +21,7 @@
       <title>Introduction to libclc</title>
 
       <para>
-        The <application>libclc</application> package contains library requirements
+        The libclc package contains library requirements
         of the OpenCL C programming language (provides header files but no
         libraries itself).
       </para>
@@ -53,7 +53,7 @@
       <title>Installation of libclc</title>
 
       <para>
-        Install <application>libclc</application> by running the following
+        Install libclc by running the following
         commands:
       </para>
 

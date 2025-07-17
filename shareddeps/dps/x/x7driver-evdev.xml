@@ -25,7 +25,7 @@
       <title>Introduction to Xorg Evdev Driver</title>
 
       <para>
-        The <application>Xorg Evdev Driver</application> package contains a Generic
+        The Xorg Evdev Driver package contains a Generic
         Linux input driver for the Xorg X server. It handles keyboard, mouse, touchpads
         and wacom devices, though for touchpad and wacom advanced handling,
         additional drivers are required.
@@ -84,7 +84,7 @@
       <title>Installation of Xorg Evdev Driver</title>
 
       <para>
-        Install <application>Xorg Evdev Driver</application> by running the following
+        Install Xorg Evdev Driver by running the following
         commands:
       </para>
 

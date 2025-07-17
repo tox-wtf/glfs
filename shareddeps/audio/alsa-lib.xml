@@ -22,9 +22,9 @@
     <title>Introduction to ALSA Library</title>
 
     <para>
-      The <application>ALSA Library</application> package contains
-      the ALSA library used by programs (including <application>ALSA
-      Utilities</application>) requiring access to the ALSA sound
+      The ALSA Library package contains
+      the ALSA library used by programs (including ALSA
+      Utilities) requiring access to the ALSA sound
       interface.
     </para>
 
@@ -115,7 +115,7 @@ esac</userinput></screen>
 -->
 
     <para>
-      Install <application>ALSA Library</application> by
+      Install ALSA Library by
       running the following commands:
     </para>
 
@@ -123,7 +123,7 @@ esac</userinput></screen>
 make</userinput></screen>
 
    <para>
-     If you have <application>Doxygen</application> installed and you wish to
+     If you have Doxygen installed and you wish to
      build the library API documentation, run the following
      commands from the top-level directory of the source tree:
    </para>

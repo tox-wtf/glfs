@@ -21,7 +21,7 @@
     <title>Introduction to Xorg Libraries</title>
 
     <para>
-      The <application>Xorg</application> libraries provide library
+      The Xorg libraries provide library
       routines that are used within all X Window applications.
     </para>
 
@@ -106,7 +106,7 @@ libXpresent-&libXpresent-version;.tar.xz</literal>
 EOF</userinput></screen>
 
     <para>
-      <application>libFS</application> is commented out and will not be built
+      libFS is commented out and will not be built
       unless you go out of your way to uncomment it. It is not needed for any
       packages in the LFS books and only necessary for some Xorg apps.
     </para>
@@ -141,10 +141,10 @@ grep -v '^#' ../lib-&xorg-version;-list | wget -i- -c \
 <screen><userinput>grep -A9 summary *make_check.log</userinput></screen>
 
     <para>
-      GLFS developers have confirmed that <application>libX11</application>,
-      <application>libXt</application>, <application>libXmu</application>,
-      <application>libXpm</application>, and
-      <application>libxshmfence</application> are distributed with working test
+      GLFS developers have confirmed that libX11,
+      libXt, libXmu,
+      libXpm, and
+      libxshmfence are distributed with working test
       suites.
     </para>
 
@@ -296,7 +296,7 @@ done</userinput></screen>
 
     <para>
       <parameter>--disable-open-zfile</parameter>: Allow
-      <application>libXpm</application> to build without the
+      libXpm to build without the
       optional <command>compress</command> command present.
     </para>
 

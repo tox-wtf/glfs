@@ -21,11 +21,11 @@
     <title>Introduction to CMake</title>
 
     <para>
-      The <application>CMake</application> package contains a modern
+      The CMake package contains a modern
       toolset used for generating Makefiles. It is a successor of the
       auto-generated <command>configure</command> script and aims to
       be platform- and compiler-independent. A significant user of
-      <application>CMake</application> is <application>KDE</application>
+      CMake is KDE
       since version 4.
     </para>
 
@@ -87,7 +87,7 @@
 -->
 
     <para>
-      Install <application>CMake</application> by running the following
+      Install CMake by running the following
       commands:
     </para>
 
@@ -156,13 +156,13 @@ make</userinput></screen>
     <para>
       <parameter>--no-system-jsoncpp</parameter> and
       <parameter>--no-system-cppdap</parameter>: These switches remove the
-      <application>JSON-C++</application> library from the list of system
+      JSON-C++ library from the list of system
       libraries. A bundled version of that library is used instead.
     </para>
 
     <para>
       <parameter>--no-system-librhash</parameter>: This switch removes the
-      <application>librhash</application> library from the list of system
+      librhash library from the list of system
       libraries used. A bundled version of that library is used instead.
     </para>
 
@@ -174,7 +174,7 @@ make</userinput></screen>
 
     <para>
       <option>--parallel=</option>: This switch enables performing the
-      <application>CMake</application> bootstrap with multiple jobs
+      CMake bootstrap with multiple jobs
       at one time.
     </para>
 
@@ -237,7 +237,7 @@ make</userinput></screen>
         <term><command>cpack</command></term>
         <listitem>
           <para>
-            is the <application>CMake</application> packaging program
+            is the CMake packaging program
           </para>
           <indexterm zone="cmake cpack">
             <primary sortas="b-cpack">cpack</primary>

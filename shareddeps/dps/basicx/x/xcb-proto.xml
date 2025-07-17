@@ -22,8 +22,8 @@
     <title>Introduction to xcb-proto</title>
 
     <para>
-      The <application>xcb-proto</application> package provides the
-      XML-XCB protocol descriptions that <application>libxcb</application>
+      The xcb-proto package provides the
+      XML-XCB protocol descriptions that libxcb
       uses to generate the majority of its code and API.
     </para>
 
@@ -59,7 +59,7 @@
     <title>Installation of xcb-proto</title>
 
     <para>
-      Install <application>xcb-proto</application> by running the following
+      Install xcb-proto by running the following
       commands:
     </para>
 

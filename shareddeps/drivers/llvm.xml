@@ -21,7 +21,7 @@
     <title>Introduction to LLVM</title>
 
     <para>
-      The <application>LLVM</application> package contains a collection of
+      The LLVM package contains a collection of
       modular and reusable compiler and toolchain technologies. The Low Level
       Virtual Machine (LLVM) Core libraries provide a modern source and
       target-independent optimizer, along with code generation support for many
@@ -31,18 +31,18 @@
     </para>
 
     <para>
-      <application>Clang</application> provides new C, C++, Objective C
-      and Objective C++ front-ends for <application>LLVM</application> and is
+      Clang provides new C, C++, Objective C
+      and Objective C++ front-ends for LLVM and is
       required by some desktop packages such as
       <ulink url="&blfs-svn;/xsoft/firefox.html">Firefox</ulink>
       and for <xref linkend="rustc"/> if that is built using the system
-      <application>LLVM</application>.
+      LLVM.
     </para>
 
     <para>
-      The <application>Compiler RT</application> package provides
+      The Compiler RT package provides
       runtime sanitizer and profiling libraries for developers who use
-      <application>Clang</application> and <application>LLVM</application>.
+      Clang and LLVM.
     </para>
 
     <para>
@@ -146,7 +146,7 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
     -i cmake/modules/HandleLLVMOptions.cmake</userinput></screen>
 
     <para>
-      Extract <application>clang</application> into
+      Extract clang into
       the source tree by running the following commands:
     </para>
 
@@ -154,7 +154,7 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
 mv tools/clang-&llvm-version;.src tools/clang</userinput></screen>
 
     <para>
-      Extract <application>compiler-rt</application> into
+      Extract compiler-rt into
       the source tree by running the following commands:
     </para>
 
@@ -164,7 +164,7 @@ mv projects/compiler-rt-&llvm-version;.src projects/compiler-rt</userinput></scr
     <para>
      There are many Python scripts in this package which use
      <command>/usr/bin/env python</command> to access the system Python
-     which on LFS is <application>Python3</application>. Use the following
+     which on LFS is Python3. Use the following
      command to fix these scripts:
     </para>
 
@@ -179,7 +179,7 @@ mv projects/compiler-rt-&llvm-version;.src projects/compiler-rt</userinput></scr
     <screen><userinput>sed 's/utility/tool/' -i utils/FileCheck/CMakeLists.txt</userinput></screen>
 
     <para>
-      Install <application>LLVM</application> by running the following
+      Install LLVM by running the following
       commands:
     </para>
 
@@ -264,8 +264,8 @@ ldconfig</userinput></screen>
 
     <para>
       <parameter>-D LLVM_ENABLE_FFI=ON</parameter>: This switch allows
-      <application>LLVM</application> to use
-      <application>libffi</application>.
+      LLVM to use
+      libffi.
     </para>
 
     <para>
@@ -273,7 +273,7 @@ ldconfig</userinput></screen>
       the libraries as static and links all of them into an unique shared one.
       This is the recommended way of building a shared library and is required
       by <xref linkend="rustc"/> in order to build against the system-installed
-      <application>LLVM</application>.
+      LLVM.
     </para>
 
     <para>
@@ -345,7 +345,7 @@ ldconfig</userinput></screen>
       <option>-D BUILD_SHARED_LIBS=ON</option>: if used instead of
       <parameter>-D LLVM_BUILD_LLVM_DYLIB=ON</parameter> and
       <parameter>-D LLVM_LINK_LLVM_DYLIB=ON</parameter>, builds all the
-      <application>LLVM</application> libraries (about 60) as shared
+      LLVM libraries (about 60) as shared
       libraries instead of static.
     </para>
 
@@ -362,7 +362,7 @@ ldconfig</userinput></screen>
         files to make <xref linkend='gSSP'/> enabled by default for
         <command>clang</command> and <command>clang++</command>, so
         the default configuration of their SSP feature will be consistent
-        with <application>GCC</application>:
+        with GCC:
       </para>
 
 <screen role='root'><userinput>mkdir -pv /etc/clang &amp;&amp;
@@ -491,7 +491,7 @@ done</userinput></screen>
         <term><command>clang</command></term>
         <listitem>
           <para>
-            is the <application>Clang</application> C, C++,
+            is the Clang C, C++,
             and Objective-C compiler
           </para>
           <indexterm zone="llvm clang">
@@ -709,7 +709,7 @@ done</userinput></screen>
         <term><command>llc</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> static compiler
+            is the LLVM static compiler
           </para>
           <indexterm zone="llvm llc">
             <primary sortas="b-llc">llc</primary>
@@ -722,7 +722,7 @@ done</userinput></screen>
         <listitem>
           <para>
             is used to directly execute programs from
-            <application>LLVM</application> bitcode
+            LLVM bitcode
           </para>
           <indexterm zone="llvm lli">
             <primary sortas="b-lli">lli</primary>
@@ -747,7 +747,7 @@ done</userinput></screen>
         <term><command>llvm-ar</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> archiver
+            is the LLVM archiver
           </para>
           <indexterm zone="llvm llvm-ar">
             <primary sortas="b-llvm-ar">llvm-ar</primary>
@@ -759,7 +759,7 @@ done</userinput></screen>
         <term><command>llvm-as</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> assembler
+            is the LLVM assembler
           </para>
           <indexterm zone="llvm llvm-as">
             <primary sortas="b-llvm-as">llvm-as</primary>
@@ -771,7 +771,7 @@ done</userinput></screen>
         <term><command>llvm-bcanalyzer</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> bitcode analyzer
+            is the LLVM bitcode analyzer
           </para>
           <indexterm zone="llvm llvm-bcanalyzer">
             <primary sortas="b-llvm-bcanalyzer">llvm-bcanalyzer</primary>
@@ -821,7 +821,7 @@ done</userinput></screen>
         <term><command>llvm-config</command></term>
         <listitem>
           <para>
-            Prints <application>LLVM</application> compilation options
+            Prints LLVM compilation options
           </para>
           <indexterm zone="llvm llvm-config">
             <primary sortas="b-llvm-config">llvm-config</primary>
@@ -943,7 +943,7 @@ done</userinput></screen>
         <term><command>llvm-diff</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> structural
+            is the LLVM structural
             '<command>diff</command>'
           </para>
           <indexterm zone="llvm llvm-diff">
@@ -956,7 +956,7 @@ done</userinput></screen>
         <term><command>llvm-dis</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> disassembler
+            is the LLVM disassembler
           </para>
           <indexterm zone="llvm llvm-dis">
             <primary sortas="b-llvm-dis">llvm-dis</primary>
@@ -1031,7 +1031,7 @@ done</userinput></screen>
         <listitem>
           <para>
             is used to extract a function from an
-            <application>LLVM</application> module
+            LLVM module
           </para>
           <indexterm zone="llvm llvm-extract">
             <primary sortas="b-llvm-extract">llvm-extract</primary>
@@ -1108,7 +1108,7 @@ done</userinput></screen>
         <term><command>llvm-link</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> linker
+            is the LLVM linker
           </para>
           <indexterm zone="llvm llvm-link">
             <primary sortas="b-llvm-link">llvm-link</primary>
@@ -1132,7 +1132,7 @@ done</userinput></screen>
         <term><command>llvm-lto</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> LTO (link time optimization)
+            is the LLVM LTO (link time optimization)
             linker
           </para>
           <indexterm zone="llvm llvm-lto">
@@ -1219,7 +1219,7 @@ done</userinput></screen>
         <term><command>llvm-nm</command></term>
         <listitem>
           <para>
-            is used to list <application>LLVM</application> bitcode
+            is used to list LLVM bitcode
             and object file's symbol table
           </para>
           <indexterm zone="llvm llvm-nm">
@@ -1244,7 +1244,7 @@ done</userinput></screen>
         <term><command>llvm-objdump</command></term>
         <listitem>
           <para>
-            is an <application>LLVM</application> object file dumper
+            is an LLVM object file dumper
           </para>
           <indexterm zone="llvm llvm-objdump">
             <primary sortas="b-llvm-objdump">llvm-objdump</primary>
@@ -1305,7 +1305,7 @@ done</userinput></screen>
         <term><command>llvm-ranlib</command></term>
         <listitem>
           <para>
-            is used to generate an index for a <application>LLVM</application>
+            is used to generate an index for a LLVM
             archive
           </para>
           <indexterm zone="llvm llvm-ranlib">
@@ -1381,7 +1381,7 @@ done</userinput></screen>
         <term><command>llvm-rtdyld</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> MC-JIT tool
+            is the LLVM MC-JIT tool
           </para>
           <indexterm zone="llvm llvm-rtdyld">
             <primary sortas="b-llvm-rtdyld">llvm-rtdyld</primary>
@@ -1393,7 +1393,7 @@ done</userinput></screen>
         <term><command>llvm-size</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> object size dumper
+            is the LLVM object size dumper
           </para>
           <indexterm zone="llvm llvm-size">
             <primary sortas="b-llvm-size">llvm-size</primary>
@@ -1405,7 +1405,7 @@ done</userinput></screen>
         <term><command>llvm-split</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> module splitter
+            is the LLVM module splitter
           </para>
           <indexterm zone="llvm llvm-split">
             <primary sortas="b-llvm-split">llvm-split</primary>
@@ -1455,7 +1455,7 @@ done</userinput></screen>
         <term><command>llvm-tblgen</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> Target Description
+            is the LLVM Target Description
             To C++ Code Generator
           </para>
           <indexterm zone="llvm llvm-tblgen">
@@ -1468,7 +1468,7 @@ done</userinput></screen>
         <term><command>llvm-tli-checker</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> TargetLibraryInfo
+            is the LLVM TargetLibraryInfo
             versus SDK checker
           </para>
           <indexterm zone="llvm llvm-tli-checker">
@@ -1519,7 +1519,7 @@ done</userinput></screen>
         <term><command>opt</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> optimizer
+            is the LLVM optimizer
           </para>
           <indexterm zone="llvm opt">
             <primary sortas="b-opt">opt</primary>
@@ -1555,8 +1555,8 @@ done</userinput></screen>
         <term><command>scan-build</command></term>
         <listitem>
           <para>
-            is a <application>Perl</application> script that invokes the
-            <application>Clang</application> static analyzer
+            is a Perl script that invokes the
+            Clang static analyzer
           </para>
           <indexterm zone="llvm scan-build">
             <primary sortas="b-scan-build">scan-build</primary>
@@ -1568,8 +1568,8 @@ done</userinput></screen>
         <term><command>scan-build-py</command></term>
         <listitem>
           <para>
-            is a <application>Python</application> script that invokes the
-            <application>Clang</application> static analyzer
+            is a Python script that invokes the
+            Clang static analyzer
           </para>
           <indexterm zone="llvm scan-build-py">
             <primary sortas="b-scan-build-py">scan-build-py</primary>
@@ -1581,7 +1581,7 @@ done</userinput></screen>
         <term><command>scan-view</command></term>
         <listitem>
           <para>
-            is a viewer for <application>Clang</application> static analyzer
+            is a viewer for Clang static analyzer
             results
           </para>
           <indexterm zone="llvm scan-view">
@@ -1594,7 +1594,7 @@ done</userinput></screen>
         <term><command>verify-uselistorder</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> tool to verify use-list
+            is the LLVM tool to verify use-list
             order
           </para>
           <indexterm zone="llvm verify-uselistorder">

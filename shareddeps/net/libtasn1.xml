@@ -22,7 +22,7 @@
     <title>Introduction to libtasn1</title>
 
     <para>
-      <application>libtasn1</application> is a highly portable C library
+      libtasn1 is a highly portable C library
       that encodes and decodes DER/BER data following an ASN.1 schema.
     </para>
 
@@ -45,7 +45,7 @@
     <title>Installation of libtasn1</title>
 
     <para>
-      Install <application>libtasn1</application> by running the
+      Install libtasn1 by running the
       following commands:
     </para>
 
@@ -76,7 +76,7 @@ make</userinput></screen>
     <title>lib32 Installation of libtasn1</title>
     
     <para>
-      Install <application>lib32-libtasn1</application>
+      Install lib32-libtasn1
       by running the following commands:
     </para>
 
@@ -165,7 +165,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             is an ASN.1 syntax tree generator for
-            <application>libtasn1</application>
+            libtasn1
           </para>
           <indexterm zone="libtasn1 asn1Parser">
             <primary sortas="b-asn1Parser">asn1Parser</primary>

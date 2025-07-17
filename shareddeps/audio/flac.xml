@@ -22,7 +22,7 @@
     <title>Introduction to FLAC</title>
 
     <para>
-      <application>FLAC</application> is an audio CODEC similar to
+      FLAC is an audio CODEC similar to
       MP3, but lossless, meaning that audio is compressed without losing any
       information.
     </para>
@@ -69,7 +69,7 @@
     <title>Installation of FLAC</title>
 
     <para>
-      Install <application>FLAC</application> by running the
+      Install FLAC by running the
       following commands:
     </para>
 
@@ -100,7 +100,7 @@ make</userinput></screen>
     <title>lib32 Installation of FLAC</title>
 
     <para>
-      Install lib32-<application>FLAC</application> by running the
+      Install lib32-FLAC by running the
       following commands:
     </para>
 
@@ -204,7 +204,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libxmms-flac.{so,a}</filename></term>
         <listitem>
           <para>
-            is a plugin for <application>XMMS</application>.
+            is a plugin for XMMS.
           </para>
           <indexterm zone="flac libxmms-flac">
             <primary sortas="c-libxmms-flac">libxmms-flac.{so,a}</primary>

@@ -11,9 +11,9 @@
   <title>GS</title>
 
   <para>
-    This chapter covers how to install <application>GStreamer</application> and
-    its dependencies. <application>GStreamer</application> is used in
-    <application>Wine</application> for some codec playback.
+    This chapter covers how to install GStreamer and
+    its dependencies. GStreamer is used in
+    Wine for some codec playback.
   </para>
 
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="nasm.xml"/>

@@ -46,11 +46,11 @@
     <title>Introduction to Xorg Legacy</title>
 
     <para>
-      <application>Xorg</application>&apos;s ancestor (X11R1, in 1987) at
+      Xorg&apos;s ancestor (X11R1, in 1987) at
       first only provided bitmap fonts, with a tool
       (<command>bdftopcf</command>) to assist in their installation. With the
-      introduction of <application>xorg-server-1.19.0</application> and
-      <application>libXfont2</application> many people will not need them.
+      introduction of xorg-server-1.19.0 and
+      libXfont2 many people will not need them.
       There are still a few old packages which might require, or benefit from,
       these deprecated fonts and so the following packages are shown here.
     </para>

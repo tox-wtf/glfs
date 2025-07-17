@@ -18,8 +18,8 @@
     <title>Introduction to NVIDIA EGL Libraries</title>
 
     <para>
-      The <application>NVIDIA EGL Libraries</application> allow the EGL drivers
-      for the <application>NVIDIA</application> driver to function properly. If
+      The NVIDIA EGL Libraries allow the EGL drivers
+      for the NVIDIA driver to function properly. If
       you are not installing <xref linkend="nvidia"/>, skip this package.
     </para>
 
@@ -149,7 +149,7 @@ done</userinput></screen>
         <term><filename class="libraryfile">libnvidia-egl-wayland</filename></term>
         <listitem>
           <para>
-            provides client-side <application>Wayland</application> EGL
+            provides client-side Wayland EGL
             application support
           </para>
           <indexterm zone="nvidia-egl libnvidia-egl-wayland">

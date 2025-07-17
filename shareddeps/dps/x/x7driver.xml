@@ -19,7 +19,7 @@
     <title>Introduction to Xorg Input Drivers</title>
 
     <para>
-      The <application>Xorg Input Drivers</application> page contains the
+      The Xorg Input Drivers page contains the
       instructions for building Xorg input drivers that are necessary in
       order for Xorg Server to respond user inputs.
     </para>

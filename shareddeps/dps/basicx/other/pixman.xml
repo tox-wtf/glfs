@@ -21,7 +21,7 @@
     <title>Introduction to Pixman</title>
 
     <para>
-      The <application>Pixman</application> package contains a library that
+      The Pixman package contains a library that
       provides low-level pixel manipulation features such as image
       compositing and trapezoid rasterization.
     </para>
@@ -45,7 +45,7 @@
     <title>Installation of Pixman</title>
 
     <para>
-      Install <application>Pixman</application> by running the following
+      Install Pixman by running the following
       commands:
     </para>
 

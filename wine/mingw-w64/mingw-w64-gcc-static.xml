@@ -21,8 +21,8 @@
     <title>Introduction to Static MinGW-w64-GCC</title>
 
     <para>
-      <application>MinGW-w64-GCC</application> provides
-      <application>GCC</application> compilers for MinGW-w64,
+      MinGW-w64-GCC provides
+      GCC compilers for MinGW-w64,
       allowing users and applications to compile code targetting
       Windows. This will be done in steps to avoid the need for
       already present binaries. This is the static build, which
@@ -62,7 +62,7 @@
       <title>x86_64 Installation of Static MinGW-w64-GCC</title>
 
       <para>
-        Install x86_64 Static <application>MinGW-w64-GCC</application> by
+        Install x86_64 Static MinGW-w64-GCC by
         running the following commands:
       </para>
 
@@ -90,7 +90,7 @@ make all-gcc</userinput></screen>
       <title>i686 Installation of Static MinGW-w64-GCC</title>
 
       <para>
-        Install i686 Static <application>MinGW-w64-GCC</application> by running
+        Install i686 Static MinGW-w64-GCC by running
         the following commands:
       </para>
 
@@ -123,7 +123,7 @@ make all-gcc</userinput></screen>
 
     <para>
       <command>mkdir build; cd build</command>: The
-      <application>GCC</application> documentation recommends
+      GCC documentation recommends
       building the package in a dedicated build directory.
     </para>
 

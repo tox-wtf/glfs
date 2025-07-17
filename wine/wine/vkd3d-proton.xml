@@ -18,12 +18,12 @@
     <title>Introduction to VKD3D-Proton</title>
 
     <para>
-      The <application>VKD3D-Proton</application> package contains DLL files
+      The VKD3D-Proton package contains DLL files
       which converts Direct3D 12 calls to Vulkan. By default in
-      <application>Wine</application>, Direct3D 12 calls are also converted to
+      Wine, Direct3D 12 calls are also converted to
       Vulkan; however, this package makes more aggressive optimizations geared
       towards gaming and replaces the default implementation provided by
-      <application>Wine</application>, <application>VKD3D</application>.
+      Wine, VKD3D.
     </para>
 
     <bridgehead renderas="sect3">VKD3D-Proton Dependencies</bridgehead>
@@ -129,7 +129,7 @@ mv -T SPIRV-Tools-*                                                         \
       <title>64-bit Installation</title>
 
       <para>
-        Install 64-bit <application>VKD3D-Proton</application> by running
+        Install 64-bit VKD3D-Proton by running
         the following commands:
       </para>
 
@@ -157,7 +157,7 @@ install -vDm644 build-win64/DESTDIR/bin/*.dll \
       <title>32-bit Installation</title>
 
       <para>
-        Install 32-bit <application>VKD3D-Proton</application> by running
+        Install 32-bit VKD3D-Proton by running
         the following commands:
       </para>
 
@@ -187,8 +187,8 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
     <title>Setting Up VKD3D-Proton</title>
 
     <para>While the VKD3D-Proton DLL files have been installed, they are not yet in the
-    <application>Wine</application> prefix. Create symlinks so that they can be
-    found by <application>Wine</application>, whilst allowing updating of this
+    Wine prefix. Create symlinks so that they can be
+    found by Wine, whilst allowing updating of this
     package without having to copy everything over again. Along with this, the
     registry must be updated to use the new DLLs. Do this for each
     archetecture you have installed.</para>
@@ -248,7 +248,7 @@ done</userinput></screen>
 
     <para>
       <command>wine reg add ...</command>: This command overrides the
-      registry so that <application>Wine</application> will use the new DLL
+      registry so that Wine will use the new DLL
       files instead of the old ones.
     </para>
 

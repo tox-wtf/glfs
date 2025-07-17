@@ -22,7 +22,7 @@
     <title>Introduction to libxcb</title>
 
     <para>
-      The <application>libxcb</application> package provides an interface to
+      The libxcb package provides an interface to
       the X Window System protocol, which replaces the current Xlib interface.
       Xlib can also use XCB as a transport layer, allowing software to make
       requests and receive responses with both.
@@ -56,7 +56,7 @@
     <title>Installation of libxcb</title>
 
     <para>
-      Install <application>libxcb</application> by running the following
+      Install libxcb by running the following
       commands:
     </para>
 
@@ -90,7 +90,7 @@ make</userinput></screen>
     <title>lib32 Installation of libxcb</title>
 
     <para>
-      Install lib32-<application>libxcb</application> by running the following
+      Install lib32-libxcb by running the following
       commands:
     </para>
 

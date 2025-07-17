@@ -26,7 +26,7 @@
     <title>Introduction to xclock</title>
 
     <para>
-      The <application>xclock</application> package contains a simple
+      The xclock package contains a simple
       clock application which is used in the default xinit configuration.
     </para>
 
@@ -82,7 +82,7 @@
     <title>Installation of xclock</title>
 
     <para>
-      Install <application>xclock</application> by running the
+      Install xclock by running the
       following commands:
     </para>
 

@@ -23,18 +23,18 @@
     <title>Introduction to Git</title>
 
     <para>
-      <application>Git</application> is a free and open source, distributed
+      Git is a free and open source, distributed
       version control system designed to handle everything from small to very
       large projects with speed and efficiency. Every
-      <application>Git</application> clone is a full-fledged repository with
+      Git clone is a full-fledged repository with
       complete history and full revision tracking capabilities, not dependent
       on network access or a central server. Branching and merging are fast and
-      easy to do. <application>Git</application> is used for version control of
-      files, much like tools such as <application>Mercurial</application>,
-      <application>Bazaar</application>, <application>Subversion</application>,
+      easy to do. Git is used for version control of
+      files, much like tools such as Mercurial,
+      Bazaar, Subversion,
       <ulink url="https://www.nongnu.org/cvs/">CVS</ulink>,
-      <application>Perforce</application>, and
-      <application>Team Foundation Server</application>.
+      Perforce, and
+      Team Foundation Server.
     </para>
 
     <itemizedlist spacing="compact">
@@ -71,7 +71,7 @@
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="curl"/> (needed to use <application>Git</application> over
+      <xref linkend="curl"/> (needed to use Git over
       http, https, ftp or ftps)
     </para>
 
@@ -81,7 +81,7 @@
     <title>Installation of Git</title>
 
     <para>
-      Install <application>Git</application> by running the following
+      Install Git by running the following
       commands:
     </para>
 
@@ -242,14 +242,14 @@ sed -i '/^\* link:/s|howto/|&amp;html/|' /usr/share/doc/git-&git-version;/howto-
     <para>
       <parameter>--with-gitconfig=/etc/gitconfig</parameter>: This sets
       <filename>/etc/gitconfig</filename> as the file that stores
-      the default, system wide, <application>Git</application>
+      the default, system wide, Git
       settings.
     </para>
 
     <para>
       <parameter>--with-python=python3</parameter>: Use this switch to use
-      <application>Python 3</application>, instead of the EOL'ed
-      <application>Python 2</application>. Python is used for the
+      Python 3, instead of the EOL'ed
+      Python 2. Python is used for the
       <command>git p4</command> interface to Perforce repositories,
       and also used in some tests.
     </para>
@@ -257,7 +257,7 @@ sed -i '/^\* link:/s|howto/|&amp;html/|' /usr/share/doc/git-&git-version;/howto-
 <!--
     <para>
       <option>- -with-libpcre2</option>: Use this switch if
-      <application>PCRE2</application> is installed.
+      PCRE2 is installed.
     </para>
 -->
 
@@ -354,7 +354,7 @@ sed -i '/^\* link:/s|howto/|&amp;html/|' /usr/share/doc/git-&git-version;/howto-
         <term><command>git-cvsserver</command></term>
         <listitem>
           <para>
-            is a CVS server emulator for <application>Git</application>
+            is a CVS server emulator for Git
           </para>
           <indexterm zone="git git-cvsserver">
             <primary sortas="b-git-cvsserver">git-cvsserver</primary>
@@ -366,7 +366,7 @@ sed -i '/^\* link:/s|howto/|&amp;html/|' /usr/share/doc/git-&git-version;/howto-
         <term><command>gitk</command></term>
         <listitem>
           <para>
-            is a graphical <application>Git</application> repository browser
+            is a graphical Git repository browser
             (needs <ulink url="&blfs-svn;/general/tk.html">Tk</ulink>)
           </para>
           <indexterm zone="git gitk">

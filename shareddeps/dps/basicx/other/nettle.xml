@@ -21,7 +21,7 @@
     <title>Introduction to Nettle</title>
 
     <para>
-      The <application>Nettle</application> package contains a low-level
+      The Nettle package contains a low-level
       cryptographic library that is designed to fit easily in many contexts.
     </para>
 
@@ -44,7 +44,7 @@
     <title>Installation of Nettle</title>
 
     <para>
-      Install <application>Nettle</application> by running the following
+      Install Nettle by running the following
       commands:
     </para>
 

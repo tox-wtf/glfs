@@ -35,7 +35,7 @@
 
     <para>
       The first option is to install the actual GNU
-      <application>which</application> package.
+      which package.
     </para>
 
     <itemizedlist spacing="compact">
@@ -57,7 +57,7 @@
     <title>Installation of Which</title>
 
     <para>
-      Install <application>which</application> by running the following
+      Install which by running the following
       commands:
     </para>
 

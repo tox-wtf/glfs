@@ -22,7 +22,7 @@
     <title>Introduction to libunistring</title>
 
     <para>
-      <application>libunistring</application> is a library that provides
+      libunistring is a library that provides
       functions for manipulating Unicode strings and for manipulating C
       strings according to the Unicode standard.
     </para>
@@ -48,7 +48,7 @@
     <title>Installation of libunistring</title>
 
     <para>
-      Install <application>libunistring</application> by running the following
+      Install libunistring by running the following
       commands:
     </para>
 
@@ -74,7 +74,7 @@ make</userinput></screen>
     <title>lib32 Installation of lib32-libunistring</title>
 
     <para>
-      Install <application>lib32-libunistring</application>
+      Install lib32-libunistring
       by running the following commands:
     </para>
 

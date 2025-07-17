@@ -17,8 +17,8 @@
 
 
   <para>
-    <application>Xorg</application> is a freely redistributable,
-    open-source implementation of the <application>X</application> Window
+    Xorg is a freely redistributable,
+    open-source implementation of the X Window
     System. This system provides a client/server interface between display
     hardware (the mouse, keyboard, and video displays) and the desktop
     environment, while also providing both the windowing infrastructure and a
@@ -28,15 +28,15 @@
   <para>
     This section however doesn't install <xref linkend="xorg-server"/>, but
     instead installs basic software that a lot of other software depend on,
-    including the <application>Xorg</application> server, compositors, window
+    including the Xorg server, compositors, window
     managers or desktop environments, and <xref linkend="xwayland"/>.
   </para>
   
   <note><para>
-    <application>Xwayland</application> is a necessary part of Wayland if you
-    want to use <application>Xorg</application>-only software like <xref
+    Xwayland is a necessary part of Wayland if you
+    want to use Xorg-only software like <xref
     linkend="steam"/>. <xref linkend="wine"/> has an experimental
-    <application>Wayland</application> mode but it is still a good idea to
+    Wayland mode but it is still a good idea to
     install <xref linkend="xwayland"/> for now.
   </para></note>
     
@@ -50,7 +50,7 @@
     packages that need to be fetched from the download location. To assist
     with such a large task, installing <xref linkend="wget"/> is strongly
     recommended for downloading the needed files.  A complete
-    <application>wget</application> file list is provided for each page
+    wget file list is provided for each page
     that includes multiple packages.
   </para>
 
@@ -74,12 +74,12 @@
       work well with each other. Further, the wget file lists contain comments
       for specific packages that are deprecated or are not recommended to
       install. Newer packages are likely intended for the
-      next release of <application>Xorg</application> and have already proved
+      next release of Xorg and have already proved
       to be incompatible with current versions of software installed in GLFS.
-      The installed size of <application>Xorg</application> can be reduced
+      The installed size of Xorg can be reduced
       considerably by installing only the packages that you will need and use,
       however, the GLFS book cannot account for all dependencies and build
-      options for the individual <application>Xorg</application> packages.
+      options for the individual Xorg packages.
       The instructions assume that all packages have been built.
     </para>
   </note>
@@ -97,7 +97,7 @@
     package needs to get installed. The last accommodation is allow you
     to build and install each package as the <systemitem class="username">root
     </systemitem> user. This is not recommended but is an option if you
-    don't want to install <application>sudo</application> and don't want
+    don't want to install sudo and don't want
     to type a password again and again.
   </para>
 
@@ -149,9 +149,9 @@ EOF
 chmod 644 /etc/profile.d/xorg.sh</userinput></screen>
 
     <para>
-      If you've installed <application>sudo</application>, ensure that
+      If you've installed sudo, ensure that
       <envar>XORG_CONFIG</envar> is available
-      in the <application>sudo</application> environment. As the
+      in the sudo environment. As the
       <systemitem class="username">root</systemitem> user, run the following
       command:
     </para>

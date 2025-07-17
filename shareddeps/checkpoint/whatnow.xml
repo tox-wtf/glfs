@@ -27,7 +27,7 @@
     and not accidentally lock yourself inside of it without a hard reboot. The
     installation of those components is not covered in this book, as the
     specific components will depend on if you plan to use
-    <application>X11</application>, <application>Wayland</application>, or
+    X11, Wayland, or
     both. This page acts as a simple nudge to help point you in the right
     direction. When you are done setting up your graphical environment, you can
     come back and continue with the next chapters.
@@ -53,7 +53,7 @@
       It is recommended to read up on the BLFS page <ulink
       url="&blfs-svn;/x/xorg-config.html">Xorg-7 Testing and
       Configuration</ulink>. It is pretty comprehensive. However, using <xref
-      linkend="nvidia"/> with <application>X11</application> requires a
+      linkend="nvidia"/> with X11 requires a
       slightly different setup, and there may be extra information you wish to
       know.
     </para>
@@ -63,9 +63,9 @@
 
       <para>
         Using a conventional <filename>/etc/X11/xorg.conf</filename>
-        can lead to issues, if <application>X11</application> manages to
-        even start. In order to use the <application>NVIDIA</application>
-        driver when starting <application>X11</application>, run the following
+        can lead to issues, if X11 manages to
+        even start. In order to use the NVIDIA
+        driver when starting X11, run the following
         command as the &root; user:
       </para>
 
@@ -118,8 +118,8 @@
 
       <para>
         If you compiled Zink in <xref linkend="mesa"/>, chances are
-        <application>X11</application> or any
-        <application>Wayland</application> compositors will use the Gallium3D
+        X11 or any
+        Wayland compositors will use the Gallium3D
         driver meant for your GPU specifically. You can override this by
         setting the following variable:
       </para>
@@ -242,7 +242,7 @@
           A compositor talks with <xref linkend="xorg-server"/> and can change
           what is seen on screen. Compositors can add animations, borders,
           shadows, opacity, etc. to windows. They can also enable vsync.
-          Though compositors aren't needed on <application>X11</application>,
+          Though compositors aren't needed on X11,
           they make the graphical environment look nicer. These visual
           enhancements can be GPU-intensive if the GPU is weak or the graphics
           driver isn't that performant<footnote><para>If you decide to use a
@@ -276,9 +276,9 @@
     <title>Wayland</title>
 
     <para>
-      Wayland is much simpler to set up than <application>X11</application>.
+      Wayland is much simpler to set up than X11.
       You should still read the X11 section above, as much of the information
-      is also relevant to <application>Wayland</application>. There are a few
+      is also relevant to Wayland. There are a few
       changes, however.
     </para>
 
@@ -288,10 +288,10 @@
       <para>
         You will only need to worry about the refresh rate if it's
         applicable to you. You won't need to worry about making sure the
-        <application>NVIDIA</application> driver is used when starting
-        <application>Wayland</application>. However, read through the
+        NVIDIA driver is used when starting
+        Wayland. However, read through the
         installation instructions for your chosen graphical environment, as
-        they may have information regarding <application>NVIDIA</application>.
+        they may have information regarding NVIDIA.
         Results can be shotty, and sometimes the environment won't be able to
         start. Do your research first.
       </para>
@@ -302,9 +302,9 @@
       <title>Window Managers, Desktop Environments, and Compositors</title>
 
       <para>
-        Unlike on <application>X11</application>, the window manager and
+        Unlike on X11, the window manager and
         compositor will always be combined on
-        <application>Wayland</application>. Minimal graphical environments are
+        Wayland. Minimal graphical environments are
         called compositors instead of window managers, but desktop environments
         are still called desktop environments. For compositors, the only
         additional components that need to be installed are a terminal and
@@ -315,10 +315,10 @@
         <title>Compositors</title>
 
         <para>
-          Many <application>X11</application> window managers do not support
-          <application>Wayland</application>. There are some unofficial
+          Many X11 window managers do not support
+          Wayland. There are some unofficial
           ports that use certain reusable frameworks which would
-          be called an <application>X11</application> compositor, like
+          be called an X11 compositor, like
           <ulink url="https://gitlab.freedesktop.org/wlroots/wlroots/">
           wlroots</ulink> (these are called compositor libraries). You can
           try some ports if you wish but some of them do their own thing
@@ -326,7 +326,7 @@
         </para>
 
         <para>
-          Native <application>Wayland</application> compositors include
+          Native Wayland compositors include
           <ulink url="&slfs-website;/wm/hypr.html">Hyprland</ulink>,
           <ulink url="https://github.com/swaywm/sway">Sway</ulink>, and
           <ulink url="&slfs-website;/wm/wf.html">Wayfire</ulink>.
@@ -342,8 +342,8 @@
         <para>
           Go with <ulink url="&blfs-svn;/gnome/gnome.html">GNOME</ulink> or
           <ulink url="&blfs-svn;/kde/kde.html">KDE Plasma</ulink>. They have
-          good <application>Wayland</application> support. Like with
-          <application>X11</application>, you can launch these using a display
+          good Wayland support. Like with
+          X11, you can launch these using a display
           manager.
         </para>
 

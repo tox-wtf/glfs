@@ -21,7 +21,7 @@
     <title>Introduction to cURL</title>
 
     <para>
-      The <application>cURL</application> package contains a utility
+      The cURL package contains a utility
       and a library used for transferring files with URL syntax to any of
       the following protocols: DICT, FILE, FTP, FTPS, GOPHER, GOPHERS, HTTP,
       HTTPS, IMAP, IMAPS, LDAP, LDAPS, MQTT, POP3, POP3S, RTSP, SMB, SMBS,
@@ -90,7 +90,7 @@
 -->
 
     <para>
-      Install <application>cURL</application> by running the following
+      Install cURL by running the following
       commands:
     </para>
 
@@ -136,7 +136,7 @@ cp -v -R docs -T /usr/share/doc/curl-&curl-version;</userinput></screen>
     <title>lib32 Installation of cURL</title>
     
     <para>
-      Install <application>lib32-cURL</application>
+      Install lib32-cURL
       by running the following commands:
     </para>
 
@@ -185,34 +185,34 @@ ldconfig</userinput></screen>
 
     <para>
       <parameter>--with-openssl</parameter>: This parameter chooses
-      <application>OpenSSL</application> as SSL/TLS implementation.
+      OpenSSL as SSL/TLS implementation.
       This option is not needed if <option>--with-gnutls</option> is
       selected instead.
     </para>
 
     <para>
       <option>--with-gssapi</option>: This parameter adds
-      <application>Kerberos 5</application> support to
+      Kerberos 5 support to
       <filename class="libraryfile">libcurl</filename>.
     </para>
 
     <para>
       <option>--with-gnutls</option>: Use this switch to
-      build with <application>GnuTLS</application> support
-      instead of <application>OpenSSL</application> for SSL/TLS. This requires
+      build with GnuTLS support
+      instead of OpenSSL for SSL/TLS. This requires
       <xref linkend="gnutls"/> to be installed already.
     </para>
 
     <para>
       <option>--with-ca-bundle=/etc/pki/tls/certs/ca-bundle.crt</option>: Use
       this switch instead of <parameter>--with-ca-path</parameter> if
-      building with <application>GnuTLS</application> support
-      instead of <application>OpenSSL</application> for SSL/TLS.
+      building with GnuTLS support
+      instead of OpenSSL for SSL/TLS.
     </para>
 
     <para>
       <option>--with-libssh2</option>: This parameter adds
-      <application>SSH</application> support to cURL. This is disabled
+      SSH support to cURL. This is disabled
       by default.
     </para>
 

@@ -22,9 +22,9 @@
     <title>Introduction to util-macros</title>
 
     <para>
-      The <application>util-macros</application> package contains the
-      <application>m4</application> macros used by all of the
-      <application>Xorg</application> packages.
+      The util-macros package contains the
+      m4 macros used by all of the
+      Xorg packages.
     </para>
 
     <itemizedlist spacing="compact">
@@ -55,7 +55,7 @@
     <title>Installation of util-macros</title>
 
     <para>
-      Install <application>util-macros</application> by running the following
+      Install util-macros by running the following
       commands:
     </para>
 

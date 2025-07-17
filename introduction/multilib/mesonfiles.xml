@@ -15,16 +15,16 @@
     <title>Introduction to Meson Toolchain Files</title>
     
     <para>
-      Most applications that rely on the <application>Meson</application>
+      Most applications that rely on the Meson
       build system have decent support for cross compilation, ie. compiling
       32-bit binaries on a 64-bit system. It can be as easy as setting the
       <envar>CC</envar>, <envar>CXX</envar>, and <envar>PKG_CONFIG_PATH
       </envar> variables before using the <userinput>meson setup ..
       </userinput> command to compile 32-bit binaries on a 64-bit system.
       However, some projects are more complicated for many different
-      reasons, leading to the necessity of <application>Meson
-      </application> toolchain files. They specify compilers,
-      options that should be invoked, the <application>pkg-conf</application>
+      reasons, leading to the necessity of Meson
+       toolchain files. They specify compilers,
+      options that should be invoked, the pkg-conf
       binary (or rather symlink that uses a certain personality file) to use,
       <command>llvm-config</command> to use, etc. This is required for many
       Meson projects, especially if you have followed BLFS before this book.
@@ -32,7 +32,7 @@
     </para>
 
     <para>
-      There are two <application>Meson</application> files: the cross
+      There are two Meson files: the cross
       toolchain file and the native toolchain file. There are different situations
       for using either.
     </para>

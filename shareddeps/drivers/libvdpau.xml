@@ -25,7 +25,7 @@
       <title>Introduction to libvdpau</title>
 
       <para>
-        The <application>libvdpau</application> package contains a library which
+        The libvdpau package contains a library which
         implements the VDPAU library.
       </para>
 
@@ -101,7 +101,7 @@
       <title>Installation of libvdpau</title>
 
       <para>
-        Install <application>libvdpau</application> by running the following
+        Install libvdpau by running the following
         commands:
       </para>
 
@@ -130,7 +130,7 @@ ninja</userinput></screen>
       <title>lib32 Installation of libvdpau</title>
 
       <para>
-        Install lib32-<application>libvdpau</application> by running the following
+        Install lib32-libvdpau by running the following
         commands:
       </para>
 

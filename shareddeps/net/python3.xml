@@ -23,15 +23,15 @@
     <title>Introduction to Python 3</title>
 
     <para>
-      The <application>Python 3</application> package contains the
-      <application>Python</application> development environment.
+      The Python 3 package contains the
+      Python development environment.
       This is useful for object-oriented programming, writing scripts,
       prototyping large programs or developing entire applications.
     </para>
 
     <note>
       <para>
-        <application>Python 3</application> was installed in LFS.
+        Python 3 was installed in LFS.
         The only reason to rebuild it here is if <xref linkend="sqlite"/> is
         installed or if upgrading.
       </para>
@@ -93,7 +93,7 @@
     <title>Installation of Python 3</title>
 
     <para>
-      Install <application>Python 3</application> by running the following
+      Install Python 3 by running the following
       commands:
     </para>
 
@@ -122,7 +122,7 @@ make</userinput></screen>
 
     <para>
       <parameter>--with-system-expat</parameter>: This switch enables linking
-      against the system version of <application>Expat</application>.
+      against the system version of Expat.
     </para>
 
 <!--
@@ -144,7 +144,7 @@ make</userinput></screen>
       Time Optimization. Unusually, it creates a much larger <filename
       class="libraryfile">/usr/lib/python&python3-majorver;/config-&python3-majorver;-&lt;arch&gt;-linux-gnu/libpython&python3-majorver;.a</filename>
       with a small increase in the time to compile
-      <application>Python</application>. Run-time results do not appear to show
+      Python. Run-time results do not appear to show
       any benefit from doing this.
     </para>
 
@@ -230,9 +230,9 @@ make</userinput></screen>
         <term><command>idle3</command></term>
         <listitem>
           <para>
-            is a wrapper script that opens a <application>Python</application>
+            is a wrapper script that opens a Python
             aware GUI editor. For this script to run, you must have installed
-            <application>Tk</application> before Python so that the Tkinter
+            Tk before Python so that the Tkinter
             Python module is built
           </para>
           <indexterm zone="python3 idle3">
@@ -245,7 +245,7 @@ make</userinput></screen>
         <term><command>pydoc3</command></term>
         <listitem>
           <para>
-            is the <application>Python</application> documentation
+            is the Python documentation
             tool
           </para>
           <indexterm zone="python3 pydoc3">
@@ -284,7 +284,7 @@ make</userinput></screen>
         <term><command>pyvenv</command></term>
         <listitem>
           <para>
-            creates virtual <application>Python</application> environments in
+            creates virtual Python environments in
             one or more target directories.
           </para>
           <indexterm zone="python3 pyvenv">

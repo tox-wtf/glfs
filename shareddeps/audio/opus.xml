@@ -21,7 +21,7 @@
     <title>Introduction to Opus</title>
 
     <para>
-      <application>Opus</application> is a lossy audio compression format
+      Opus is a lossy audio compression format
       developed by the Internet Engineering Task Force (IETF) that is
       particularly suitable for interactive speech and audio transmission over
       the Internet. This package provides the Opus development library and
@@ -55,7 +55,7 @@
     <title>Installation of Opus</title>
 
     <para>
-      Install <application>Opus</application> by running the following
+      Install Opus by running the following
       commands:
     </para>
 
@@ -84,7 +84,7 @@ ninja</userinput></screen>
     <title>lib32 Installation of Opus</title>
 
     <para>
-      Install lib32-<application>Opus</application> by running the following
+      Install lib32-Opus by running the following
       commands:
     </para>
 

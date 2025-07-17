@@ -21,7 +21,7 @@
     <title>Introduction to Mako</title>
 
     <para>
-      <application>Mako</application> is a Python module that implements hyperfast
+      Mako is a Python module that implements hyperfast
       and lightweight templating for the Python platform.
     </para>
 

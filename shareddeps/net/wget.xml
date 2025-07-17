@@ -22,7 +22,7 @@
     <title>Introduction to Wget</title>
 
     <para>
-      The <application>Wget</application> package contains a utility useful for
+      The Wget package contains a utility useful for
       non-interactive downloading of files from the Web.
     </para>
 
@@ -65,7 +65,7 @@
     <title>Installation of Wget</title>
 
     <para>
-      Install <application>Wget</application> by running the following commands:
+      Install Wget by running the following commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr      \
@@ -126,7 +126,7 @@ make</userinput></screen>
 <!--
       <para>
         If you have installed <xref linkend="make-ca"/> and you want
-        <application>Wget</application> to use them, as the
+        Wget to use them, as the
         <systemitem class="username">root</systemitem> user:
       </para>
 

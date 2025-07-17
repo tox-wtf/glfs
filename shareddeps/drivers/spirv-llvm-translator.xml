@@ -22,7 +22,7 @@
     <title>Introduction to SPIRV-LLVM-Translator</title>
 
     <para>
-      <application>SPIRV-LLVM-Translator</application> is a tool and a library
+      SPIRV-LLVM-Translator is a tool and a library
       for bi-directional translation between SPIR-V and LLVM IR.
     </para>
 
@@ -55,7 +55,7 @@
     <title>Installation of SPIRV-LLVM-Translator</title>
 
     <para>
-      Install <application>SPIRV-LLVM-Translator</application> by running the following
+      Install SPIRV-LLVM-Translator by running the following
       commands:
     </para>
 
@@ -87,7 +87,7 @@ ninja</userinput></screen>
     <title>lib32 Installation of SPIRV-LLVM-Translator</title>
 
     <para>
-      Install lib32-<application>SPIRV-LLVM-Translator</application> by running the following
+      Install lib32-SPIRV-LLVM-Translator by running the following
       commands:
     </para>
 

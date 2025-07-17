@@ -26,7 +26,7 @@
     <title>Introduction to xterm</title>
 
     <para>
-      <application>xterm</application> is a terminal emulator for
+      xterm is a terminal emulator for
       the X Window System.
     </para>
 
@@ -97,7 +97,7 @@
     <title>Installation of xterm</title>
 
     <para>
-      Install <application>xterm</application> by running the
+      Install xterm by running the
       following commands:
     </para>
 
@@ -155,7 +155,7 @@ cp -v *.desktop /usr/share/applications/</userinput></screen>
     <para>
       <command>make install-ti</command>: This command installs corrected
       terminfo description files for use with
-      <application>xterm</application>.
+      xterm.
     </para>
 -->
   </sect2>

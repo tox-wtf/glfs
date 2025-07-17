@@ -21,7 +21,7 @@
     <title>Introduction to PyYAML</title>
 
     <para>
-      <application>PyYAML</application> is a Python module that implements the
+      PyYAML is a Python module that implements the
       next generation YAML parser and emitter.
     </para>
 

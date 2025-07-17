@@ -21,7 +21,7 @@
     <title>Introduction to SPIRV-Headers</title>
 
     <para>
-      The <application>SPIRV-Headers</application> package contains headers
+      The SPIRV-Headers package contains headers
       that allow for applications to the SPIR-V language and instruction set
       with Vulkan. SPIR-V is a binary intermediate language for representing
       graphical shader stages and compute kernels for multiple Khronos APIs,
@@ -63,7 +63,7 @@
     </note>
 
     <para>
-      Install <application>SPIRV-Headers</application> by running the following
+      Install SPIRV-Headers by running the following
       commands:
     </para>
 

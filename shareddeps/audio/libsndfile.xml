@@ -22,7 +22,7 @@
     <title>Introduction to libsndfile</title>
 
     <para>
-      <application>Libsndfile</application> is a library of C routines for
+      Libsndfile is a library of C routines for
       reading and writing files containing sampled audio data.
     </para>
 
@@ -69,7 +69,7 @@
 <screen><userinput>sed '/typedef enum/,/bool ;/d' -i src/ALAC/alac_{en,de}coder.c</userinput></screen>
 
     <para>
-      Install <application>libsndfile</application> by running the following
+      Install libsndfile by running the following
       commands:
     </para>
 
@@ -93,7 +93,7 @@ make</userinput></screen>
     <title>lib32 Installation of libsndfile</title>
 
     <para>
-      Install lib32-<application>libsndfile</application> by running the following
+      Install lib32-libsndfile by running the following
       commands:
     </para>
 
@@ -280,7 +280,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libsndfile</filename></term>
         <listitem>
           <para>
-            contains the <application>libsndfile</application> API functions
+            contains the libsndfile API functions
           </para>
           <indexterm zone="libsndfile libsndfile-lib">
             <primary sortas="c-libsndfile">libsndfile</primary>

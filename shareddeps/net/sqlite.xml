@@ -22,7 +22,7 @@
     <title>Introduction to SQLite</title>
 
     <para>
-      The <application>SQLite</application> package is a software library that
+      The SQLite package is a software library that
       implements a self-contained, serverless, zero-configuration, transactional
       SQL database engine. This package is required by <ulink
       url="&blfs-svn;/xsoft/firefox.html">Firefox</ulink>.
@@ -47,7 +47,7 @@
     <title>Installation of SQLite</title>
 
     <para>
-      Install <application>SQLite</application> by running the following
+      Install SQLite by running the following
       commands:
     </para>
 
@@ -126,7 +126,7 @@ make</userinput></screen>
         <term><command>sqlite3</command></term>
         <listitem>
           <para>
-            is a terminal-based front-end to the <application>SQLite</application>
+            is a terminal-based front-end to the SQLite
             library that can evaluate queries interactively and display the
             results
           </para>
@@ -140,7 +140,7 @@ make</userinput></screen>
         <term><filename class="libraryfile">libsqlite3</filename></term>
         <listitem>
           <para>
-            contains the <application>SQLite</application> API functions
+            contains the SQLite API functions
           </para>
           <indexterm zone="sqlite libsqlite3">
             <primary sortas="c-libsqlite3">libsqlite3</primary>

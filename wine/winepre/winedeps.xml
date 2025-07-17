@@ -27,16 +27,16 @@
 
   <para>
     If you don't want a WoW64 build, follow the instructions
-    normally and skip the lib32 instructions. When you reach the <application>
-    MinGW-w64</application> section, follow only the x86_64 instructions.
+    normally and skip the lib32 instructions. When you reach the 
+    MinGW-w64 section, follow only the x86_64 instructions.
   </para>
 
   <para>
     If you want a 32-bit only build, follow only the lib32
-    instructions. When you reach <application>MinGW-w64</application>, follow
+    instructions. When you reach MinGW-w64, follow
     the i686 instructions. However, for the sake of continuing onto BLFS, it is
     recommended to do the normal installations as well, save for
-    <application>MinGW-w64</application>.
+    MinGW-w64.
   </para>
 
   <para>

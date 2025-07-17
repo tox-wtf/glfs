@@ -24,14 +24,14 @@
     </para>
 
     <para>
-      So, <application>Mesa</application> came in and implemented drivers and
+      So, Mesa came in and implemented drivers and
       functions for OpenGL. They also implement GLX and EGL which provide
-      interfaces to window systems like <application>Xorg</application>.
+      interfaces to window systems like Xorg.
       However, their method doesn't dispatch the calls in a vendor-neutral way.
       For the most part, this approach is fine and doesn't lead to any issues.
-      <application>NVIDIA</application> has decided that this was a bad enough
+      NVIDIA has decided that this was a bad enough
       approach to warrant making another implementation of OpenGL called
-      <application>libglvnd</application>. It only provides the implementations
+      libglvnd. It only provides the implementations
       for OpenGL, OpenGL ES, GLX, and EGL. This had led to legacy OpenGL vs new
       OpenGL on Linux.
     </para>
@@ -50,7 +50,7 @@
 
     <para>
       This is only a problem for binary only packages and some
-      <application>CMake</application> build systems. For this book and in
+      CMake build systems. For this book and in
       BLFS, you shouldn't run into any of those issues unless you wish to use
       <xref linkend="nvidia"/>, which specifically requires <xref
       linkend="libglvnd"/>. SLFS aims to work around issues that arise from
@@ -62,7 +62,7 @@
       url="https://www.shipofharkinian.com/">Ship of Harkinian</ulink>, a PC
       port of the Nintendo 64 game, Legend of Zelda: Ocarina of Time, links
       against new OpenGL and will be broken with only
-      <application>Mesa</application> installed; furthermore, trying to get
+      Mesa installed; furthermore, trying to get
       around the issue by building from source also leads to many issues.
       However, the binary of the PC port made from statically recompiling the
       Nintendo 64 game, Legend of Zelda: Majora's Mask, called <ulink
@@ -75,11 +75,11 @@
       If you only want legacy OpenGL, you can just install <xref
       linkend="mesa"/>. If you want new OpenGL, support for some binary-only
       packages, <xref linkend="nvidia"/>, and get past some
-      <application>CMake</application> build systems, install <xref
+      CMake build systems, install <xref
       linkend="libglvnd"/>. If you want a driver from <xref
       linkend="mesa"/>, you can build that after
-      <application>libglvnd</application>. <application>Mesa</application> will
-      auto-detect <application>libglvnd</application> and will skip building
+      libglvnd. Mesa will
+      auto-detect libglvnd and will skip building
       its OpenGL implementations.
     </para>
 
@@ -113,11 +113,11 @@
 
       <para>
         GLES, specifically v2 and v3, are used sometimes, but mostly in one
-        area. Such an area is in <application>Wayland</application>
+        area. Such an area is in Wayland
         compositors and compositor libraries, such as
-        <application>Hyprland</application>, <application>Mutter</application>,
-        <application>Wayfire</application>, and
-        <application>Wlroots</application>. While compositors can utilize
+        Hyprland, Mutter,
+        Wayfire, and
+        Wlroots. While compositors can utilize
         Vulkan, most compositors require GLES rendering and don't offer a Vulkan
         solution, or any other rendering API solution. GLESv1 on the otherhand
         is an outdated specification of the GLES API that has been phased out
@@ -131,12 +131,12 @@
       <title>History of Wayland and GLES</title>
 
       <para>
-        When the <application>Wayland</application> set of protocols were made, a
+        When the Wayland set of protocols were made, a
         reference implementation had to be made for it to show what was possible,
         and how to create a compositor for the new protocol. The result was
-        <application>Weston</application>. For its rendering API, it used, and
+        Weston. For its rendering API, it used, and
         uses, GLES and EGL. This was done so that the dependency on the
-        libraries from the <application>X</application> Window System wasn't
+        libraries from the X Window System wasn't
         needed, that a Wayland-only setup was possible. A small benefit of using
         GLES was that it could run on embedded systems like Raspberry Pis.
       </para>
@@ -168,7 +168,7 @@
       </para>
 
       <para>
-        On the otherhand, if you are using the <application>X</application>
+        On the otherhand, if you are using the X
         Window System, GLES will almost never be used and that support for the
         API can be disabled without much worry. However, you kill off the
         ability to use Wayland compositors that require GLES rendering if you

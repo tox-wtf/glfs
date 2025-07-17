@@ -21,7 +21,7 @@
     <title>Introduction to Libdrm</title>
 
     <para>
-      <application>Libdrm</application> provides a userspace library for
+      Libdrm provides a userspace library for
       accessing the direct rendering manager (DRM) on operating systems that
       support the ioctl interface. Libdrm is a low-level library, typically used
       by graphics drivers such as the Mesa DRI drivers, the X drivers, libva and
@@ -68,7 +68,7 @@
 -->
 
     <para>
-      Install <application>libdrm</application> by running the following
+      Install libdrm by running the following
       commands:
     </para>
 
@@ -96,7 +96,7 @@ ninja</userinput></screen>
     <title>lib32 Installation of Libdrm</title>
 
     <para>
-      Install lib32-<application>libdrm</application> by running the following
+      Install lib32-libdrm by running the following
       commands:
     </para>
 
@@ -138,7 +138,7 @@ ldconfig</userinput></screen>
 
     <para>
       <parameter>-D udev=true</parameter>: This parameter enables support for using
-      <application>Udev</application> instead of <command>mknod</command>.
+      Udev instead of <command>mknod</command>.
     </para>
 
     <para>

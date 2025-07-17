@@ -21,7 +21,7 @@
     <title>Introduction to xcursor-themes</title>
 
     <para>
-      The <application>xcursor-themes</application> package contains the
+      The xcursor-themes package contains the
       redglass and whiteglass animated cursor themes.
     </para>
 
@@ -51,7 +51,7 @@
     <title>Installation of xcursor-themes</title>
 
     <para>
-      Install <application>xcursor-themes</application> by running the
+      Install xcursor-themes by running the
       following commands:
     </para>
 

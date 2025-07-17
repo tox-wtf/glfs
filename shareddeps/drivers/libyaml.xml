@@ -21,7 +21,7 @@
     <title>Introduction to libyaml</title>
 
     <para>
-      The <application>yaml</application> package contains a C
+      The yaml package contains a C
       library for parsing and emitting YAML (YAML Ain't Markup
       Language) code.
     </para>
@@ -52,7 +52,7 @@
     <title>Installation of libyaml</title>
 
     <para>
-      Install <application>libyaml</application> by running the following
+      Install libyaml by running the following
       commands:
     </para>
 

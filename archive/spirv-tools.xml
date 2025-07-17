@@ -21,7 +21,7 @@
     <title>Introduction to SPIRV-Tools</title>
 
     <para>
-      The <application>SPIRV-Tools</application> package contains libraries
+      The SPIRV-Tools package contains libraries
       and utilities for processing SPIR-V modules.
     </para>
 
@@ -63,7 +63,7 @@
     </note>
 
     <para>
-      Install <application>SPIRV-Tools</application> by running the following
+      Install SPIRV-Tools by running the following
       commands:
     </para>
 
@@ -96,7 +96,7 @@ ninja</userinput></screen>
     <title>lib32 Installation of SPIRV-Tools</title>
 
     <para>
-      Install lib32-<application>SPIRV-Tools</application> by running the following
+      Install lib32-SPIRV-Tools by running the following
       commands:
     </para>
 

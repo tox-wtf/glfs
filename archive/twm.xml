@@ -26,7 +26,7 @@
     <title>Introduction to twm</title>
 
     <para>
-      The <application>twm</application> package contains a very minimal
+      The twm package contains a very minimal
       window manager.
     </para>
 
@@ -87,7 +87,7 @@
     <title>Installation of twm</title>
 
     <para>
-      Install <application>twm</application> by running the
+      Install twm by running the
       following commands:
     </para>
 
@@ -111,7 +111,7 @@ make</userinput></screen>
     <title>Command Explanations</title>
     <para>
       <command>sed -i -e '/^rcdir =/s...</command>: This command ensures
-      the <application>twm</application> configuration file gets installed in
+      the twm configuration file gets installed in
       the proper location.
     </para>
   </sect2>

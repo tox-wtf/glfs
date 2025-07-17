@@ -22,7 +22,7 @@
     <title>Introduction to XKeyboard-Config</title>
 
     <para>
-      The <application>XKeyboard-Config</application> package contains
+      The XKeyboard-Config package contains
       the keyboard configuration database for the X Window System.
     </para>
 
@@ -52,7 +52,7 @@
     <title>Installation of XKeyboard-Config</title>
 
     <para>
-      Install <application>XKeyboard-Config</application> by running the
+      Install XKeyboard-Config by running the
       following commands:
     </para>
 

@@ -24,7 +24,7 @@
     <title>Introduction to NVIDIA</title>
 
     <para>
-      The <application>NVIDIA</application> proprietary driver contains
+      The NVIDIA proprietary driver contains
       firmware, kernel drivers, userland drivers pertaining to OpenGL,
       Vulkan, and hardware acceleration, and provides useful utilites.
     </para>
@@ -96,8 +96,8 @@
 
     <note>
       <para>
-        Make sure to execute the following command when an <application>Xorg
-        </application> instance isn't running, or else the driver will
+        Make sure to execute the following command when an Xorg
+         instance isn't running, or else the driver will
         complain and quit. Alternatively, you can pass <parameter>
         --allow-installation-with-running-driver --no-x-check</parameter> to
         override NVIDIA's warnings. This is not recommended as it skips
@@ -126,7 +126,7 @@
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="nvidia-kernel.xml"/>
 
     <para>
-      Install x86_64 <application>NVIDIA</application> by running the following
+      Install x86_64 NVIDIA by running the following
       commands as the <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -137,7 +137,7 @@
 
     <para>
       If you are only interested in the 32-bit driver, install x86
-      <application>NVIDIA</application> by running the following
+      NVIDIA by running the following
       commands as the <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -183,7 +183,7 @@
     <important>
       <para>
         When you update the kernel, you will also need to reinstall the
-        <application>NVIDIA</application> driver.
+        NVIDIA driver.
       </para>
 
       <para>
@@ -344,7 +344,7 @@
         <term><command>nvidia-bug-report.sh</command></term>
         <listitem>
           <para>
-            is the <application>NVIDIA</application> bug reporting shell script.
+            is the NVIDIA bug reporting shell script.
           </para>
           <indexterm zone="nvidia nvidia-bug-report.sh">
             <primary sortas="b-nvidia-bug-report.sh">nvidia-bug-report.sh</primary>
@@ -393,8 +393,8 @@
         <term><command>nvidia-installer</command></term>
         <listitem>
           <para>
-            installs, upgrades, and uninstalls the <application>NVIDIA
-            </application> driver (running the runfile directly is
+            installs, upgrades, and uninstalls the NVIDIA
+             driver (running the runfile directly is
             recommended)
           </para>
           <indexterm zone="nvidia nvidia-installer">
@@ -407,8 +407,8 @@
         <term><command>nvidia-modprobe</command></term>
         <listitem>
           <para>
-            creates Linux device files and loads the <application>NVIDIA
-            </application> kernel module
+            creates Linux device files and loads the NVIDIA
+             kernel module
           </para>
           <indexterm zone="nvidia nvidia-modprobe">
             <primary sortas="b-nvidia-modprobe">nvidia-modprobe</primary>
@@ -444,7 +444,7 @@
         <term><command>nvidia-powerd</command></term>
         <listitem>
           <para>
-            provides support for the <application>NVIDIA</application>
+            provides support for the NVIDIA
             Dynamic Boost feature
           </para>
           <indexterm zone="nvidia nvidia-powerd">
@@ -495,8 +495,8 @@
         <term><command>nvidia-uninstall</command></term>
         <listitem>
           <para>
-            installs, upgrades, and uninstalls the <application>NVIDIA
-            </application> driver (running the runfile directly is
+            installs, upgrades, and uninstalls the NVIDIA
+             driver (running the runfile directly is
             recommended)
           </para>
           <indexterm zone="nvidia nvidia-uninstall">
@@ -509,9 +509,9 @@
         <term><command>nvidia-xconfig</command></term>
         <listitem>
           <para>
-            manipulates <application>X11</application> configuration files
-            to allow the <application>NVIDIA</application> driver to be used
-            when starting <application>X11</application>
+            manipulates X11 configuration files
+            to allow the NVIDIA driver to be used
+            when starting X11
           </para>
           <indexterm zone="nvidia nvidia-xconfig">
             <primary sortas="b-nvidia-xconfig">nvidia-xconfig</primary>
@@ -523,7 +523,7 @@
         <term><filename class="libraryfile">libEGL_nvidia.so</filename></term>
         <listitem>
           <para>
-            provides <application>NVIDIA</application> implementations
+            provides NVIDIA implementations
             of OpenGL functionality
           </para>
           <indexterm zone="nvidia libEGL_nvidia">
@@ -560,7 +560,7 @@
         <term><filename class="libraryfile">libGLX_nvidia.so</filename></term>
         <listitem>
           <para>
-            provides <application>NVIDIA</application> implementations
+            provides NVIDIA implementations
             of OpenGL functionality
           </para>
           <indexterm zone="nvidia libGLX_nvidia">
@@ -597,8 +597,8 @@
         <term><filename class="libraryfile">libglxserver_nvidia.so</filename></term>
         <listitem>
           <para>
-            is the <application>NVIDIA</application> GLX extension module for
-            <application>X11</application>
+            is the NVIDIA GLX extension module for
+            X11
           </para>
           <indexterm zone="nvidia libglxserver_nvidia">
             <primary sortas="c-libglxserver_nvidia">libglxserver_nvidia.so</primary>
@@ -670,7 +670,7 @@
         <term><filename class="libraryfile">libnvidia-egl-wayland.so</filename></term>
         <listitem>
           <para>
-            provides client-side <application>Wayland</application> EGL
+            provides client-side Wayland EGL
             application support
           </para>
           <indexterm zone="nvidia libnvidia-egl-wayland">
@@ -708,7 +708,7 @@
         <listitem>
           <para>
             provides an interface to capture and optionally encode the
-            framebuffer of an <application>X11</application> server screen
+            framebuffer of an X11 server screen
           </para>
           <indexterm zone="nvidia libnvidia-fbc">
             <primary sortas="c-libnvidia-fbc">libnvidia-fbc.so</primary>
@@ -828,7 +828,7 @@
         <term><filename class="libraryfile">libnvidia-opencl.so</filename></term>
         <listitem>
           <para>
-            provides <application>NVIDIA</application>'s implementation of
+            provides NVIDIA's implementation of
             the OpenCL API standard
           </para>
           <indexterm zone="nvidia libnvidia-opencl">
@@ -907,8 +907,8 @@
         <term><filename class="libraryfile">libnvidia-tls.so</filename></term>
         <listitem>
           <para>
-            provides thread local storage support for the <application>NVIDIA
-            </application> OpenGL libraries
+            provides thread local storage support for the NVIDIA
+             OpenGL libraries
           </para>
           <indexterm zone="nvidia libnvidia-tls">
             <primary sortas="c-libnvidia-tls">libnvidia-tls.so</primary>
@@ -921,7 +921,7 @@
         <listitem>
           <para>
             is required for <command>nvidia-settings</command> on
-            <application>Wayland</application>
+            Wayland
           </para>
           <indexterm zone="nvidia libnvidia-wayland-client">
             <primary sortas="c-libnvidia-wayland-client">libnvidia-wayland-client.so</primary>
@@ -945,7 +945,7 @@
         <term><filename class="libraryfile">libvdpau_nvidia.so</filename></term>
         <listitem>
           <para>
-            provides the <application>NVIDIA</application> implementation for
+            provides the NVIDIA implementation for
             the VDPAU library
           </para>
           <indexterm zone="nvidia libvdpau_nvidia">
@@ -958,7 +958,7 @@
         <term><filename class="libraryfile">_nvngx.dll</filename></term>
         <listitem>
           <para>
-            provides DLSS support for use with <application>Wine</application>
+            provides DLSS support for use with Wine
           </para>
           <indexterm zone="nvidia _nvngx">
             <primary sortas="c-_nvngx">_nvngx.dll</primary>
@@ -982,7 +982,7 @@
         <term><filename class="libraryfile">nvidia-drm_gbm.so</filename></term>
         <listitem>
           <para>
-            is the <application>NVIDIA</application> implementation of GBM
+            is the NVIDIA implementation of GBM
           </para>
           <indexterm zone="nvidia nvidia-drm_gbm">
             <primary sortas="c-nvidia-drm_gbm">nvidia-drm_gbm.so</primary>
@@ -994,8 +994,8 @@
         <term><filename class="libraryfile">nvidia_drv.so</filename></term>
         <listitem>
           <para>
-            is the <application>NVIDIA</application> <application>X11
-            </application> driver
+            is the NVIDIA X11
+             driver
           </para>
           <indexterm zone="nvidia nvidia_drv">
             <primary sortas="c-nvidia_drv">nvidia_drv.so</primary>

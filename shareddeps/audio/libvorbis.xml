@@ -22,7 +22,7 @@
     <title>Introduction to libvorbis</title>
 
     <para>
-      The <application>libvorbis</application> package contains a general
+      The libvorbis package contains a general
       purpose audio and music encoding format. This is useful for creating
       (encoding) and playing (decoding) sound in an open (patent free)
       format.
@@ -70,7 +70,7 @@
 <screen><userinput>sed -i '/components.png \\/{n;d}' doc/Makefile.in</userinput></screen>
 -->
     <para>
-      Install <application>libvorbis</application> by running the following
+      Install libvorbis by running the following
       commands:
     </para>
 
@@ -94,7 +94,7 @@ install -v -m644 doc/Vorbis* /usr/share/doc/libvorbis-&libvorbis-version;</useri
     <title>lib32 Installation of libvorbis</title>
 
     <para>
-      Install lib32-<application>libvorbis</application> by running the following
+      Install lib32-libvorbis by running the following
       commands:
     </para>
 

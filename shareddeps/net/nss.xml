@@ -28,7 +28,7 @@
     <title>Introduction to NSS</title>
 
     <para>
-      The Network Security Services (<application>NSS</application>) package is
+      The Network Security Services (NSS) package is
       a set of libraries designed to support cross-platform development of
       security-enabled client and server applications. Applications built with
       NSS can support SSL v2 and v3, TLS, PKCS #5, PKCS #7, PKCS #11, PKCS #12,
@@ -122,7 +122,7 @@ fi</userinput></screen>
     </important>
 
     <para>
-      Install <application>NSS</application> by running the following commands:
+      Install NSS by running the following commands:
     </para>
 
 <screen><userinput>patch -Np1 -i ../nss-standalone-1.patch &amp;&amp;
@@ -181,7 +181,7 @@ fi</userinput></screen>
     </important>
 
     <para>
-      Install <application>lib32-NSS</application> by running the following commands:
+      Install lib32-NSS by running the following commands:
     </para>
 
 <screen><userinput>cd ../nss                                         &amp;&amp;
@@ -235,13 +235,13 @@ ldconfig</userinput></screen>
       <parameter>USE_SYSTEM_ZLIB=1</parameter>: This option is passed to
       <command>make</command> to ensure that the
       <filename class="libraryfile">libssl3.so</filename> library is linked to
-      the system installed <application>zlib</application> instead of the
+      the system installed zlib instead of the
       in-tree version.
     </para>
 
     <para>
       <parameter>ZLIB_LIBS=-lz</parameter>: This option provides the
-      linker flags needed to link to the system <application>zlib</application>.
+      linker flags needed to link to the system zlib.
     </para>
 
     <para>
@@ -258,7 +258,7 @@ ldconfig</userinput></screen>
     <para>
       <command>$([ -f /usr/lib{,32}/libsqlite3.so ] &amp;&amp; echo
       NSS_USE_SYSTEM_SQLITE=1)</command>: This tests if
-      <application>sqlite</application> is installed and if so it
+      sqlite is installed and if so it
       <command>echo</command>s the option NSS_USE_SYSTEM_SQLITE=1 to
       <command>make</command> so that
       <filename class="libraryfile">libsoftokn3.so</filename> will link against

@@ -22,7 +22,7 @@
     <title>Introduction to ALSA Utilities</title>
 
     <para>
-      The <application>ALSA Utilities</application> package contains
+      The ALSA Utilities package contains
       various utilities which are useful for controlling your sound
       card.
     </para>
@@ -78,7 +78,7 @@
 -->
 
     <para>
-      Install <application>ALSA Utilities</application> by
+      Install ALSA Utilities by
       running the following commands:
     </para>
 
@@ -109,7 +109,7 @@ make</userinput></screen>
     <para>
       <parameter>--disable-alsaconf</parameter>: This switch disables building
       the <command>alsaconf</command> configuration tool which is incompatible
-      with <application>Udev</application>.
+      with Udev.
     </para>
 
     <para>
@@ -166,7 +166,7 @@ make</userinput></screen>
 
       <para>
         The <filename>alsactl</filename> program is normally run from a
-        standard <application>udev</application> rule. The first time it
+        standard udev rule. The first time it
         is run, it will complain that there is no state in
         <filename>/var/lib/alsa/asound.state</filename>. You can prevent
         this by running the following command as the
@@ -177,7 +177,7 @@ make</userinput></screen>
 
       <para>
         The volume settings should be restored from the saved state by
-        <application>Udev</application> when the device is detected
+        Udev when the device is detected
         (during boot or when plugged in for USB devices).
       </para>
 <!-- not needed with elogind or systemd-logind

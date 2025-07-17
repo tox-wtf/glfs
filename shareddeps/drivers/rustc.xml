@@ -27,7 +27,7 @@
 
     <para>
       As with many other programming languages,
-      <application>Rustc</application> (the Rust compiler) needs a binary from
+      Rustc (the Rust compiler) needs a binary from
       which to bootstrap. It will download a stage0 binary at the start of the
       build, so you cannot compile it without an Internet connection.
     </para>
@@ -36,7 +36,7 @@
       <para>
         Although GLFS usually installs in <filename
         class="directory">/usr</filename>, when you later upgrade to a newer
-        version of <application>rust</application> the old libraries in <filename
+        version of rust the old libraries in <filename
         class="directory">/usr/lib/rustlib</filename> will remain, with various
         hashes in their names, but will not be usable and will waste space. The
         editors recommend placing the files in the <filename
@@ -57,7 +57,7 @@
     </note>
 
     <para>
-      The current <application>rustbuild</application> build-system will use
+      The current rustbuild build-system will use
       all processors, although it does not scale well and often falls
       back to just using one core while waiting for a library to compile.
       However it can be mostly limited to a specified number of processors by
@@ -84,8 +84,8 @@
 
     <note>
       <para>
-        <application>Rustc</application> defaults to building for ALL supported
-        architectures, using a shipped copy of <application>LLVM</application>.
+        Rustc defaults to building for ALL supported
+        architectures, using a shipped copy of LLVM.
         In GLFS the build is only for the X86 architecture family.
         If you intend to develop Rust crates, this build may not be good
         enough for your purposes.
@@ -141,14 +141,14 @@
     <para role="recommended">
       <xref linkend="llvm"/>
       (built with <parameter>-D LLVM_LINK_LLVM_DYLIB=ON</parameter> so that
-      <application>Rustc</application> can link to the system-installed
-      <application>LLVM</application> instead of building its shipped version)
+      Rustc can link to the system-installed
+      LLVM instead of building its shipped version)
     </para>
 
     <note>
       <para>
         If a recommended dependency is not installed, a shipped copy in the
-        <application>Rustc</application> source tarball will be built and used.
+        Rustc source tarball will be built and used.
       </para>
     </note>
 
@@ -172,7 +172,7 @@ ln -svfn rustc-&rustc-version; /opt/rustc</userinput></screen>
 
     <note>
       <para>
-        If multiple versions of <application>Rustc</application> are installed
+        If multiple versions of Rustc are installed
         in <filename class="directory">/opt</filename>, changing to another
         version only requires changing the <filename> /opt/rustc</filename>
         symbolic link and then running <command>ldconfig</command>.
@@ -309,7 +309,7 @@ fi</userinput></screen>
 -->
 
     <para>
-      Compile <application>Rust</application> by running the following
+      Compile Rust by running the following
       commands:
     </para>
 
@@ -328,9 +328,9 @@ fi</userinput></screen>
 
     <para>
       Still as the &root; user, fix the installation of the documentation
-      and symlink a <application>Zsh</application> completion file into the
-      correct location and move a <application>Bash</application> completion
-      file into the location recommended by the <application>Bash</application>
+      and symlink a Zsh completion file into the
+      correct location and move a Bash completion
+      file into the location recommended by the Bash
       completion maintainers:
     </para>
 
@@ -397,9 +397,9 @@ mv -v /etc/bash_completion.d/cargo \
       <title>Configuration Information</title>
 
       <para>
-        If you installed <application>Rustc</application> in
+        If you installed Rustc in
         <filename class="directory">/opt</filename>, you need to update the
-        following configuration files so that <application>Rustc</application>
+        following configuration files so that Rustc
         is correctly found by other packages and system processes.
       </para>
 

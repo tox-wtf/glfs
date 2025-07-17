@@ -25,7 +25,7 @@
       <title>Introduction to Xorg Libinput Driver</title>
 
       <para>
-        The <application>X.Org Libinput Driver</application> is a thin wrapper
+        The X.Org Libinput Driver is a thin wrapper
         around libinput and allows for libinput to be used for input devices in
         X. This driver can be used as drop-in replacement for evdev and
         synaptics.
@@ -58,7 +58,7 @@
       <title>Installation of Xorg Libinput Driver</title>
 
       <para>
-        Install <application>Xorg Libinput Driver</application> by running the following
+        Install Xorg Libinput Driver by running the following
         commands:
       </para>
 

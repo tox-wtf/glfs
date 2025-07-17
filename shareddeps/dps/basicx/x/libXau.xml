@@ -22,7 +22,7 @@
     <title>Introduction to libXau</title>
 
     <para>
-      The <application>libXau</application> package contains a library
+      The libXau package contains a library
       implementing the X11 Authorization Protocol. This is useful for
       restricting client access to the display.
     </para>
@@ -53,7 +53,7 @@
     <title>Installation of libXau</title>
 
     <para>
-      Install <application>libXau</application> by running the following
+      Install libXau by running the following
       commands:
     </para>
 
@@ -76,7 +76,7 @@ make</userinput></screen>
     <title>lib32 Installation of libXau</title>
 
     <para>
-      Install lib32-<application>libXau</application> by running the following
+      Install lib32-libXau by running the following
       commands:
     </para>
 

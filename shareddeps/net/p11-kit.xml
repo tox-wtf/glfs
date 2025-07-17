@@ -22,7 +22,7 @@
     <title>Introduction to p11-kit</title>
 
     <para>
-      The <application>p11-kit</application> package provides a way to load and
+      The p11-kit package provides a way to load and
       enumerate PKCS #11 (a Cryptographic Token Interface Standard) modules.
     </para>
 
@@ -81,7 +81,7 @@ cat &gt;&gt; trust/trust-extract-compat &lt;&lt; "EOF"
 EOF</userinput></screen>
 
     <para>
-      Install <application>p11-kit</application> by running the following
+      Install p11-kit by running the following
       commands:
     </para>
 
@@ -114,7 +114,7 @@ ln -sfv /usr/libexec/p11-kit/trust-extract-compat \
     <title>lib32 Installation of p11-kit</title>
 
     <para>
-      Install <application>lib32-p11-kit</application>
+      Install lib32-p11-kit
       by running the following commands:
     </para>
 
@@ -156,7 +156,7 @@ ldconfig</userinput></screen>
 
     <para>
       <option>-D hash_impl=freebl</option>: Use this switch if you want to
-      use the Freebl library from <application>NSS</application> for SHA1 and
+      use the Freebl library from NSS for SHA1 and
       MD5 hashing.
     </para>
 

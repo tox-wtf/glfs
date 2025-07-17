@@ -24,7 +24,7 @@
     <title>Introduction to libpng</title>
 
     <para>
-      The <application>libpng</application> package contains libraries used
+      The libpng package contains libraries used
       by other programs for reading and writing PNG files. The PNG format
       was designed as a replacement for GIF and, to a lesser extent, TIFF,
       with many improvements and extensions and lack of patent problems.
@@ -48,11 +48,11 @@
       <listitem>
         <para>
           Recommended patch to include animated png functionality in
-          <application>libpng</application> (required to use the system
-          <application>libpng</application> in
-          <application>Firefox</application>,
-          <application>Seamonkey</application>, and
-          <application>Thunderbird</application>): <ulink url="&apng-patch;"/>
+          libpng (required to use the system
+          libpng in
+          Firefox,
+          Seamonkey, and
+          Thunderbird): <ulink url="&apng-patch;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -69,7 +69,7 @@
 <screen><userinput>gzip -cd ../libpng-&apng-version;-apng.patch.gz | patch -p1</userinput></screen>
 
     <para>
-      Install <application>libpng</application> by running the following
+      Install libpng by running the following
       commands:
     </para>
 
@@ -94,7 +94,7 @@ cp -v README libpng-manual.txt /usr/share/doc/libpng-&libpng-version;</userinput
     <title>lib32 Installation of libpng</title>
 
     <para>
-      Install lib32-<application>libpng</application> by running the following
+      Install lib32-libpng by running the following
       commands:
     </para>
 
@@ -187,7 +187,7 @@ ldconfig</userinput></screen>
           <para>
             is a shell script that provides configuration information
             for applications wanting to use
-            <application>libpng</application>
+            libpng
           </para>
           <indexterm zone="libpng libpng-config">
             <primary sortas="b-libpng-config">libpng-config</primary>

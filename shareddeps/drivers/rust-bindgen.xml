@@ -44,7 +44,7 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="llvm"/> with <application>Clang</application> and
+      <xref linkend="llvm"/> with Clang and
       <xref linkend="rustc"/>
     </para>
 
@@ -53,7 +53,7 @@
   <sect2 role="installation">
     <title>Installation of rust-bindgen</title>
     <para>
-      Install <application>rust-bindgen</application> by running the following
+      Install rust-bindgen by running the following
       commands:
     </para>
 
@@ -107,7 +107,7 @@ bindgen --generate-shell-completions zsh  \
         <term><command>bindgen</command></term>
         <listitem>
           <para>
-            generates <application>Rust</application> FFI bindings to
+            generates Rust FFI bindings to
             C (and some C++) libraries
           </para>
           <indexterm zone="rust-bindgen bindgen">

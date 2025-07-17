@@ -21,8 +21,8 @@
     <title>Introduction to Wireplumber</title>
 
     <para>
-      The <application>Wireplumber</application> package contains a session and
-      policy manager for <application>Pipewire</application>.
+      The Wireplumber package contains a session and
+      policy manager for Pipewire.
     </para>
 
     <itemizedlist spacing="compact">
@@ -58,7 +58,7 @@
     <title>Installation of Wireplumber</title>
 
     <para>
-      Install <application>Wireplumber</application> by running the following
+      Install Wireplumber by running the following
       commands:
     </para>
 

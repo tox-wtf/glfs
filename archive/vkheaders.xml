@@ -21,7 +21,7 @@
     <title>Introduction to Vulkan-headers</title>
 
     <para>
-      The <application>Vulkan-Headers</application> package contains a set of
+      The Vulkan-Headers package contains a set of
       header files necessary to build and link applications against the Vulkan
       API.
     </para>
@@ -52,7 +52,7 @@
     <title>Installation of Vulkan-Headers</title>
 
     <para>
-      Install <application>Vulkan-Headers</application> by running the following
+      Install Vulkan-Headers by running the following
       commands:
     </para>
 

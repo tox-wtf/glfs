@@ -22,7 +22,7 @@
     <title>Introduction to Fontconfig</title>
 
     <para>
-      The <application>Fontconfig</application> package contains
+      The Fontconfig package contains
       a library and support programs used for configuring and
       customizing font access.
     </para>
@@ -70,7 +70,7 @@
     <title>Installation of Fontconfig</title>
 
     <para>
-      Install <application>Fontconfig</application> by running the following
+      Install Fontconfig by running the following
       commands:
     </para>
 
@@ -98,7 +98,7 @@ ninja</userinput></screen>
     <title>lib32 Installation of Fontconfig</title>
 
     <para>
-      Install lib32-<application>Fontconfig</application> by running the
+      Install lib32-Fontconfig by running the
       following commands:
     </para>
 
@@ -161,7 +161,7 @@ ldconfig</userinput></screen>
       <title>Configuration Information</title>
 
       <para>
-        The main configuration file for <application>Fontconfig</application> is
+        The main configuration file for Fontconfig is
         <filename>/etc/fonts/fonts.conf</filename>. Generally you do not want
         to edit this file. It will also read <filename>/etc/fonts/local.conf</filename>
         and any files in <filename class="directory">/etc/fonts/conf.d</filename>.
@@ -169,7 +169,7 @@ ldconfig</userinput></screen>
         (or update) the <filename>/etc/fonts/local.conf</filename> file with your
         local information or add a new file in
         <filename class="directory">/etc/fonts/conf.d</filename>. The default
-        location of fonts in <application>Fontconfig</application> is:
+        location of fonts in Fontconfig is:
       </para>
 
       <itemizedlist spacing="compact">
@@ -192,7 +192,7 @@ ldconfig</userinput></screen>
       </itemizedlist>
 
       <para>
-        <application>Fontconfig</application> also ships many example
+        Fontconfig also ships many example
         configuration files in the
         <filename class="directory">/usr/share/fontconfig/conf.avail</filename>
         directory. Symlinking specific files to
@@ -211,7 +211,7 @@ ldconfig</userinput></screen>
       </indexterm>
 
       <para>
-        More information about configuring <application>Fontconfig</application>
+        More information about configuring Fontconfig
         can be found in the user's manual in <ulink
         url="file:///usr/share/doc/fontconfig-&fontconfig-version;/fontconfig-user.html"/>.
       </para>
@@ -366,7 +366,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libfontconfig</filename></term>
         <listitem>
           <para>
-            contains functions used by the <application>Fontconfig</application>
+            contains functions used by the Fontconfig
             programs and also by other programs to configure or customize font
             access
           </para>

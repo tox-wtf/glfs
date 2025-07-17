@@ -12,11 +12,11 @@
 
   <para>
     Sometime after my first install of LFS, I had a question that others had:
-    how do I install <application>Steam</application> on this system? I kept
+    how do I install Steam on this system? I kept
     that thought in the back of my head as I went for Beyond LFS, a book that
     covered a good number of packages I needed. However, the issue of
-    <application>Steam</application> was not cleared up yet. So I just tried to
-    install the <application>Steam</application> tarball. Because I did not
+    Steam was not cleared up yet. So I just tried to
+    install the Steam tarball. Because I did not
     have 32-bit libraries, this ended in failure.
   </para>
 
@@ -34,12 +34,12 @@
     Rahul Chandra in the same thread mentioned his scripts for his distro,
     Tucana. These scripts gave me a basic idea of how to do lib32 installations
     for BLFS packages which were necessary for
-    <application>Steam.</application>. While this wasn't exactly difficult,
+    Steam.. While this wasn't exactly difficult,
     it was a big timesink as I had to manually type in all the lib32
     compilation options to successfully build 32-bit libraries. Even after
     having built all the 32-bit libraries required, a few more fixes and files
     were necessary. After about a week, I managed to get
-    <application>Steam</application> working. I realized that this was a lot of
+    Steam working. I realized that this was a lot of
     work, and many users who'd want to do the same thing would get stuck and
     not know what to do. In the worst case, they'd give up before even reaching
     their goal. I had made a pretty lackluster <ulink
@@ -54,7 +54,7 @@
     Sometime afterwards, I decided to do a <ulink
     url="https://www.youtube.com/playlist?list=PL_vcsK5qbWSv-70zpfFcol_D9yovtf6N6">stream
     series</ulink> that included that installation of
-    <application>Wine</application>, not just <application>Steam</application>.
+    Wine, not just Steam.
     My general idea was to compile all the stream footage (roughly 40 GB worth)
     into a single video master guide. When some time passed, I came to the
     conclusion that for a installation guide for two complex packages on an LFS

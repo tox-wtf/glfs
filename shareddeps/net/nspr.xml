@@ -21,7 +21,7 @@
     <title>Introduction to NSPR</title>
 
     <para>
-      <application>Netscape Portable Runtime</application> (NSPR) provides a
+      Netscape Portable Runtime (NSPR) provides a
       platform-neutral API for system level and libc like functions.
     </para>
 
@@ -44,7 +44,7 @@
     <title>Installation of NSPR</title>
 
     <para>
-      Install <application>NSPR</application> by running the following commands:
+      Install NSPR by running the following commands:
     </para>
 
 <screen><userinput>cd nspr &amp;&amp;
@@ -77,7 +77,7 @@ make</userinput></screen>
      <title>lib32 Installation of NSPR</title>
 
      <para>
-       Install <application>lib32-NSPR</application> by running the following commands:
+       Install lib32-NSPR by running the following commands:
      </para>
 
 <screen><userinput>make distclean &amp;&amp;
@@ -174,7 +174,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             provides compiler and linker options to other packages that use
-            <application>NSPR</application>
+            NSPR
           </para>
           <indexterm zone="nspr nspr-config">
             <primary sortas="b-nspr-config">nspr-config</primary>

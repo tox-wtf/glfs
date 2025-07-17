@@ -23,7 +23,7 @@
     <title>Introduction to libidn2</title>
 
     <para>
-      <application>libidn2</application> is a package designed for
+      libidn2 is a package designed for
       internationalized string handling based on standards from the
       Internet Engineering Task Force (IETF)'s IDN working group, designed for
       internationalized domain names.
@@ -56,7 +56,7 @@
     <title>Installation of libidn2</title>
 
     <para>
-      Install <application>libidn2</application> by running the following
+      Install libidn2 by running the following
       commands:
     </para>
 
@@ -79,7 +79,7 @@ make</userinput></screen>
     <title>lib32 Installation of lib32-libidn2</title>
 
     <para>
-      Install <application>lib32-libidn2</application>
+      Install lib32-libidn2
       by running the following commands:
     </para>
 

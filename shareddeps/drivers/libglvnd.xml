@@ -21,7 +21,7 @@
     <title>Introduction to libglvnd</title>
 
     <para>
-      The <application>libglvnd</application> package provides OpenGL
+      The libglvnd package provides OpenGL
       implementations that dispatch API calls to a given driver vendor. Some of
       the libraries are simply wrappers to the main dispatcher.
     </para>
@@ -142,14 +142,14 @@ ldconfig</userinput></screen>
       While installing this package can help prevent a lot of issues down the
       road, this package can come with some caveats and all of them are in
       relation to BLFS. BLFS naturally expects that the only OpenGL vendor is
-      <application>Mesa</application>, so the instructions will thus assume
+      Mesa, so the instructions will thus assume
       that this package has not been installed. The following have known
       issues, and solutions:
     </para>
 
     <itemizedlist>
       <listitem>
-        <para><application>Mesa:</application> In BLFS, a patch is listed in
+        <para>Mesa: In BLFS, a patch is listed in
         the <ulink url="&blfs-svn;/x/mesa.html">Mesa</ulink> page and will
         instruct you to apply it. This will cause an issue unless you explictly
         tell the build system not to link against this package's libraries,
@@ -160,23 +160,23 @@ ldconfig</userinput></screen>
         package it tries to link against.</para>
         <para>Either don't apply that patch or follow this book's <xref
         linkend="mesa"/> page instead. Thanks to
-        <application>Mesa's</application> build system autodetecting if
-        <application>libglvnd</application> is installed, the installation
+        Mesa's build system autodetecting if
+        libglvnd is installed, the installation
         instructions don't change that much between this book and BLFS. The
         main differences are lib32 support and not listing the demos
         patch.</para>
       </listitem>
       <listitem>
-        <para><application>GLU:</application> In BLFS, the <ulink
+        <para>GLU: In BLFS, the <ulink
         url="&blfs-svn;/x/glu.html">GLU</ulink> page explictly sets the GL
-        vendor to be <application>Mesa</application> as the build system will
-        otherwise expect <application>libglvnd</application> and
+        vendor to be Mesa as the build system will
+        otherwise expect libglvnd and
         <filename class="libraryfile">libOpenGL</filename> to be installed.
         While the BLFS page instructions lead to a successful compilation, the
         resulting library does not function properly. You should follow the
         <ulink url="&slfs-website;/general/glu.html">SLFS GLU</ulink> page
         instead. It also does check if the vendor is
-        <application>Mesa</application>.</para>
+        Mesa.</para>
       </listitem>
     </itemizedlist>
 

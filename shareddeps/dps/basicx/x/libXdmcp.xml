@@ -22,7 +22,7 @@
     <title>Introduction to libXdmcp</title>
 
     <para>
-      The <application>libXdmcp</application> package contains a library
+      The libXdmcp package contains a library
       implementing the X Display Manager Control Protocol. This is useful for
       allowing clients to interact with the X Display Manager.
     </para>
@@ -53,7 +53,7 @@
     <title>Installation of libXdmcp</title>
 
     <para>
-      Install <application>libXdmcp</application> by running the following
+      Install libXdmcp by running the following
       commands:
     </para>
 
@@ -76,7 +76,7 @@ make</userinput></screen>
     <title>lib32 Installation of libXdmcp</title>
 
     <para>
-      Install lib32-<application>libXdmcp</application> by running the following
+      Install lib32-libXdmcp by running the following
       commands:
     </para>
 

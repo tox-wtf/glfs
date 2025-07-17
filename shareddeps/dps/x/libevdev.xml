@@ -25,7 +25,7 @@
       <title>Introduction to libevdev</title>
 
       <para>
-        The <application>libevdev</application> package contains common
+        The libevdev package contains common
         functions for Xorg input drivers.
       </para>
 
@@ -64,7 +64,7 @@
       <title>Installation of libevdev</title>
 
       <para>
-        Install <application>libevdev</application> by running the following
+        Install libevdev by running the following
         commands:
       </para>
 
@@ -106,7 +106,7 @@ ninja</userinput></screen>
 
       <para>
         <parameter>-D tests=disabled</parameter>: This switch disables building
-        tests as they depend on <application>Check</application>.
+        tests as they depend on Check.
       </para>
 
     </sect3>

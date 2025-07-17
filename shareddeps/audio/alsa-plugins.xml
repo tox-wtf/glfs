@@ -21,7 +21,7 @@
     <title>Introduction to ALSA Plugins</title>
 
     <para>
-      The <application>ALSA Plugins</application> package contains
+      The ALSA Plugins package contains
       plugins for various audio libraries and sound servers.
     </para>
 
@@ -65,7 +65,7 @@
     <title>Installation of ALSA Plugins</title>
 
     <para>
-      Install <application>ALSA Plugins</application> by
+      Install ALSA Plugins by
       running the following commands:
     </para>
 
@@ -88,7 +88,7 @@ make</userinput></screen>
     <title>lib32 Installation of ALSA Plugins</title>
 
     <para>
-      Install 32-bit <application>ALSA Plugins</application> by
+      Install 32-bit ALSA Plugins by
       running the following commands:
     </para>
 
@@ -170,8 +170,8 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libasound_module_pcm_oss</filename></term>
         <listitem>
           <para>
-            Allows native <application>ALSA</application> applications to
-            run on <application>OSS</application>
+            Allows native ALSA applications to
+            run on OSS
           </para>
           <indexterm zone="alsa-plugins libasound_module_pcm_oss">
             <primary sortas="c-libasound_module_pcm_oss">libasound_module_pcm_oss</primary>
@@ -208,7 +208,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libasound_module_pcm_jack</filename></term>
         <listitem>
           <para>
-            Allows native <application>ALSA</application> applications to
+            Allows native ALSA applications to
             work with <command>jackd</command>
           </para>
           <indexterm zone="alsa-plugins libasound_module_pcm_jack">
@@ -221,8 +221,8 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libasound_module_pcm_pulse</filename></term>
         <listitem>
           <para>
-            Allows native <application>ALSA</application> applications
-            to access a <application>PulseAudio</application> sound
+            Allows native ALSA applications
+            to access a PulseAudio sound
             daemon
           </para>
           <indexterm zone="alsa-plugins libasound_module_pcm_pulse">

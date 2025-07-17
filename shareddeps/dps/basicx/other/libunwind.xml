@@ -21,7 +21,7 @@
     <title>Introduction to libunwind</title>
 
     <para>
-      The <application>libunwind</application> package contains a portable and
+      The libunwind package contains a portable and
       efficient C programming interface (API) to determine the call-chain of a
       program. The API additionally provides the means to manipulate the
       preserved (callee-saved) state of each call-frame and to resume execution
@@ -64,7 +64,7 @@
 <screen><userinput>patch -Np1 -i ../libunwind-&libunwind-version;-fix_malloc.patch</userinput></screen>
 
     <para>
-      Install <application>libunwind</application> by running the following
+      Install libunwind by running the following
       commands:
     </para>
 
@@ -89,7 +89,7 @@ make</userinput></screen>
     <title>lib32 Installation of libunwind</title>
 
     <para>
-      Install lib32-<application>libunwind</application> by running the following
+      Install lib32-libunwind by running the following
       commands:
     </para>
 

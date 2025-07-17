@@ -21,7 +21,7 @@
     <title>Introduction to Speex</title>
 
     <para>
-      <application>Speex</application> is an audio compression format
+      Speex is an audio compression format
       designed specifically for speech. It is well-adapted to internet
       applications and provides useful features that are not present in most
       other CODECs.
@@ -76,7 +76,7 @@
     </para>
 
     <para>
-      Install <application>Speex</application> by running the
+      Install Speex by running the
       following commands:
     </para>
 
@@ -121,7 +121,7 @@ popd</userinput></screen>
     <title>lib32 Installation of Speex</title>
 
     <para>
-      Install lib32-<application>Speex</application> by running the
+      Install lib32-Speex by running the
       following commands:
     </para>
 
@@ -216,7 +216,7 @@ popd</userinput></screen>
         <term><command>speexdec</command></term>
         <listitem>
           <para>
-            decodes a <application>Speex</application> file and
+            decodes a Speex file and
             produces a WAV or raw file
           </para>
           <indexterm zone="speex speexdec">
@@ -229,7 +229,7 @@ popd</userinput></screen>
         <term><command>speexenc</command></term>
         <listitem>
           <para>
-            encodes a WAV or raw file using <application>Speex</application>
+            encodes a WAV or raw file using Speex
           </para>
           <indexterm zone="speex speexenc">
             <primary sortas="b-speexenc">speexenc</primary>
@@ -254,7 +254,7 @@ popd</userinput></screen>
         <listitem>
           <para>
             is a speech processing library that goes along with the
-            <application>Speex</application> codec
+            Speex codec
           </para>
           <indexterm zone="speex libspeexdsp">
             <primary sortas="c-libspeexdsp">libspeexdsp.so</primary>

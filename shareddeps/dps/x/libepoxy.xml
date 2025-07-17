@@ -21,7 +21,7 @@
     <title>Introduction to libepoxy</title>
 
     <para>
-      <application>libepoxy</application> is a library for handling OpenGL
+      libepoxy is a library for handling OpenGL
       function pointer management.
     </para>
 
@@ -51,7 +51,7 @@
     <title>Installation of libepoxy</title>
 
     <para>
-      Install <application>libepoxy</application> by running the following
+      Install libepoxy by running the following
       commands:
     </para>
 

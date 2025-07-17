@@ -21,7 +21,7 @@
     <title>Introduction to ply</title>
 
     <para>
-      The <application>ply</application> is a zero-dependency Python implementation
+      The ply is a zero-dependency Python implementation
       of the traditional parsing tools lex and yacc.
     </para>
 
@@ -50,7 +50,7 @@
 <screen><userinput>pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD</userinput></screen>
 
     <para>
-      Now install the <application>Python</application>
+      Now install the Python
       <systemitem class="username">root</systemitem> user:
     </para>
 

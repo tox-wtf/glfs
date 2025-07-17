@@ -21,8 +21,8 @@
     <title>Introduction to Cython</title>
 
     <para>
-      The <application>Cython</application> package provides a compiler for
-      writing C extensions for the <application>Python</application> language.
+      The Cython package provides a compiler for
+      writing C extensions for the Python language.
     </para>
 
     &long-build-time;
@@ -91,7 +91,7 @@
         <term><command>cydbg</command></term>
         <listitem>
           <para>
-            is the <application>Cython</application> debugger
+            is the Cython debugger
           </para>
           <indexterm zone="cython cydbg">
             <primary sortas="b-cydbg">cydbg</primary>
@@ -103,8 +103,8 @@
         <term><command>cython</command></term>
         <listitem>
           <para>
-            is a compiler for code written in the <application>Cython
-            </application> language. It outputs a C/C++ program which can be
+            is a compiler for code written in the Cython
+             language. It outputs a C/C++ program which can be
             compiled with a C/C++ compiler
           </para>
           <indexterm zone="cython cython-bin">
@@ -117,9 +117,9 @@
         <term><command>cythonize</command></term>
         <listitem>
           <para>
-            is a compiler for code written in the <application>Cython
-            </application> language. It outputs an extension module which is
-            directly importable from <application>Python</application>
+            is a compiler for code written in the Cython
+             language. It outputs an extension module which is
+            directly importable from Python
           </para>
           <indexterm zone="cython cythonize">
             <primary sortas="b-cythonize">cythonize</primary>

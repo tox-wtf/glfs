@@ -21,7 +21,7 @@
     <title>Introduction to XCB Utils</title>
 
     <para>
-      The <application>XCB</application> collection of utilities provide
+      The XCB collection of utilities provide
       useful libraries for developers to use for X window manager and Wayland
       compositor development. The installed packages below should be good
       enough for most packages.

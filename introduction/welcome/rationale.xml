@@ -27,8 +27,8 @@
       the book but rather in the BLFS book. There are multiple reasons
       for this, but the most notable one is the packages that aren't in
       the book aren't important for the main packages in the book, those
-      being <application>Steam</application> and
-      <application>Wine</application>. They are still listed anyway if users
+      being Steam and
+      Wine. They are still listed anyway if users
       want more support out of the specific packages not specific to the main
       packages, like media playback for example. Another reason for
       packages not being in the book is that the packages take a lot
@@ -64,10 +64,10 @@
 <!--
     <para>
       <xref linkend="mingw-w64-binutils"/>: While
-      <application>Binutils</application>-2.44 exists and can be installed
+      Binutils-2.44 exists and can be installed
       without issue, on the MinGW-w64 side of things, <xref linkend="wine"/>
-      is incompatible with <application>MinGW-w64-Binutils</application>-2.44.
-      Mismatched <application>Binutils</application> versions are fine granted
+      is incompatible with MinGW-w64-Binutils-2.44.
+      Mismatched Binutils versions are fine granted
       that one toolchain's version does not match with another but separate
       toolchain's.
     </para>
@@ -75,8 +75,8 @@
 
 <!--
     <para>
-      <xref linkend="nvidia"/>: Newer versions of <application>NVIDIA
-      </application> have many issues. For example, the newest version demands
+      <xref linkend="nvidia"/>: Newer versions of NVIDIA
+       have many issues. For example, the newest version demands
       that users disable framebuffer emulation support in the kernel in order
       to install and use the driver. The one before that requires a
       <command>sed</command> command after extraction of the runfile.

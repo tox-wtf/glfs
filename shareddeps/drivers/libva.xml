@@ -25,7 +25,7 @@
       <title>Introduction to libva</title>
 
       <para>
-        The <application>libva</application> package contains a library which
+        The libva package contains a library which
         provides access to hardware accelerated video processing, using hardware
         to accelerate video processing in order to offload the central
         processing unit (CPU) to decode and encode compressed digital video. The VA
@@ -102,7 +102,7 @@
       </caution>
       -->
       <para>
-        Install <application>libva</application> by running the following
+        Install libva by running the following
         commands:
       </para>
 
@@ -128,7 +128,7 @@ ninja</userinput></screen>
       <title>lib32 Installation of libva</title>
       
       <para>
-        Install lib32-<application>libva</application> by running the following
+        Install lib32-libva by running the following
         commands:
       </para>
 

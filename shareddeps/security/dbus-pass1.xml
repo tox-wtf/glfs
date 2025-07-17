@@ -21,9 +21,9 @@
     <title>Introduction to D-Bus - Pass 1</title>
 
     <para>
-      <application>D-Bus</application> is a message bus system, a simple way
+      D-Bus is a message bus system, a simple way
       for applications to talk to one another.
-      <application>D-Bus</application> supplies both a system daemon (for
+      D-Bus supplies both a system daemon (for
       events such as <quote>new hardware device added</quote> or <quote>printer
       queue changed</quote>) and a per-user-login-session daemon (for general
       IPC needs among user applications). Also, the message bus is built on top
@@ -59,7 +59,7 @@
     &dbus-m64;
 
     <para>
-      Generate the <application>D-Bus</application> UUID to avoid
+      Generate the D-Bus UUID to avoid
       warnings when compiling some packages with the following command as the
       <systemitem class="username">root</systemitem> user:
     </para>

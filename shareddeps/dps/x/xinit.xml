@@ -21,7 +21,7 @@
     <title>Introduction to xinit</title>
 
     <para>
-      The <application>xinit</application> package contains a usable script
+      The xinit package contains a usable script
       to start the xserver.
     </para>
 
@@ -51,7 +51,7 @@
     <title>Installation of xinit</title>
 
     <para>
-      Install <application>xinit</application> by running the
+      Install xinit by running the
       following commands:
     </para>
 

@@ -21,7 +21,7 @@
     <title>Introduction to hwdata</title>
 
     <para>
-      The <application>hwdata</application> package contains
+      The hwdata package contains
       current PCI and vendor id data.
     </para>
 
@@ -44,7 +44,7 @@
     <title>Installation of hwdata</title>
 
     <para>
-      Install <application>hwdata</application> by
+      Install hwdata by
       running the following commands:
     </para>
 

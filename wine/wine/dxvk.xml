@@ -18,9 +18,9 @@
     <title>Introduction to DXVK</title>
 
     <para>
-      The <application>DXVK</application> package contains DLL files which
+      The DXVK package contains DLL files which
       converts Direct3D 8-11 calls to Vulkan. By default in
-      <application>Wine</application>, Direct3D 8-11 calls are converted to
+      Wine, Direct3D 8-11 calls are converted to
       OpenGL calls in a poor manner, leading to bad performance. As such,
       many people install this package.
     </para>
@@ -97,7 +97,7 @@ mv -T Vulkan-Headers-*                        \
 
     <note><para>
       If you are doing multilib, it is recommended to install 32-bit along with
-      64-bit <application>DXVK</application> as there are plenty of 32-bit
+      64-bit DXVK as there are plenty of 32-bit
       Direct3D applications.
     </para></note>
 
@@ -105,7 +105,7 @@ mv -T Vulkan-Headers-*                        \
       <title>64-bit Installation</title>
 
       <para>
-        Install 64-bit <application>DXVK</application> by running
+        Install 64-bit DXVK by running
         the following commands:
       </para>
 
@@ -133,7 +133,7 @@ install -vDm644 build-win64/DESTDIR/bin/*.dll \
       <title>32-bit Installation</title>
 
       <para>
-        Install 32-bit <application>DXVK</application> by running
+        Install 32-bit DXVK by running
         the following commands:
       </para>
 
@@ -169,7 +169,7 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
     </para></note>
 
     <para>
-      First, create the <application>Wine</application> prefix if it is not
+      First, create the Wine prefix if it is not
       already made:
     </para>
 
@@ -178,13 +178,13 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
     <note><para>
       <command>wineboot</command> may report an error in the output, but this
       is normal and frequent. Usually, these errors are non-fatal and you won't
-      need to typically worry about them. <application>Wine</application> is
+      need to typically worry about them. Wine is
       very verbose.
     </para></note>
 
     <para>While the DXVK DLL files have been installed, they are not yet in the
-    <application>Wine</application> prefix. Create symlinks so that they can be
-    found by <application>Wine</application>, whilst allowing updating of this
+    Wine prefix. Create symlinks so that they can be
+    found by Wine, whilst allowing updating of this
     package without having to copy everything over again. Along with this, the
     registry must be updated to use the new DLLs. Do this for each
     archetecture you have installed.</para>
@@ -244,13 +244,13 @@ done</userinput></screen>
 
     <para>
       <command>WINEPREFIX=~/.wine wineboot -u</command>: This command creates a
-      <application>Wine</application> prefix and copies over any missing files
+      Wine prefix and copies over any missing files
       to it. It will not reset an existing prefix.
     </para>
 
     <para>
       <command>wine reg add ...</command>: This command overrides the
-      registry so that <application>Wine</application> will use the new DLL
+      registry so that Wine will use the new DLL
       files instead of the old ones.
     </para>
 

@@ -21,7 +21,7 @@
     <title>Introduction to PCI Utils</title>
 
     <para>
-      The <application>PCI Utils</application> package contains
+      The PCI Utils package contains
       a set of programs for listing PCI devices, inspecting
       their status and setting their configuration registers.
     </para>
@@ -60,7 +60,7 @@
     -i Makefile</userinput></screen>
 
     <para>
-      Install <application>PCI Utils</application> by
+      Install PCI Utils by
       running the following commands:
     </para>
 

@@ -21,9 +21,9 @@
     <title>Introduction to GnuTLS</title>
 
     <para>
-      The <application>GnuTLS</application> package contains libraries and
+      The GnuTLS package contains libraries and
       userspace tools which provide a secure layer over a reliable transport
-      layer. Currently the <application>GnuTLS</application> library implements
+      layer. Currently the GnuTLS library implements
       the proposed standards by the IETF's TLS working group. Quoting from the
       <ulink url="https://datatracker.ietf.org/doc/rfc8446/">
         TLS 1.3 protocol specification
@@ -39,7 +39,7 @@
     </para>
 
     <para>
-      <application>GnuTLS</application> provides support for TLS 1.3, TLS 1.2,
+      GnuTLS provides support for TLS 1.3, TLS 1.2,
       TLS 1.1, TLS 1.0, and (optionally) SSL 3.0 protocols. It also supports
       TLS extensions, including server name and max record size. Additionally,
       the library supports authentication using the SRP protocol, X.509
@@ -95,7 +95,7 @@
  <!-- Note that if you do not install <xref linkend="libtasn1"/>, an older
        3.8.0 includes minitasn1 4.19 which is currnet at the moment. ken -->
       Note that if you do not install <xref linkend="libtasn1"/>, a
-      version shipped in the <application>GnuTLS</application> tarball will be
+      version shipped in the GnuTLS tarball will be
       used instead.
     </para></note>
 
@@ -105,7 +105,7 @@
     <title>Installation of GnuTLS</title>
 
     <para>
-      Install <application>GnuTLS</application> by running the
+      Install GnuTLS by running the
       following commands:
     </para>
 

@@ -25,7 +25,7 @@
       <title>Introduction to Xorg Synaptics Driver</title>
 
       <para>
-        The <application>Xorg Synaptics Driver</application> package contains
+        The Xorg Synaptics Driver package contains
         the X.Org Input Driver, support programs and SDK for Synaptics
         touchpads. Even though the evdev driver can handle touchpads very well,
         this driver is required if you want to use advanced features like multi
@@ -60,7 +60,7 @@
       <title>Installation of Xorg Synaptics Driver</title>
 
       <para>
-        Install <application>Xorg Synaptics Driver</application> by running the following
+        Install Xorg Synaptics Driver by running the following
         commands:
       </para>
 
