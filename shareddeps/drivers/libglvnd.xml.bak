@@ -22,7 +22,7 @@
     <title>Introduction to libglvnd</title>
 
     <para>
-      The libglvnd package dispatches API calls to a given driver vendor at
+      The libglvnd package dispatchs API calls to a given driver vendor at
       runtime. Some of the libraries are simply wrappers to the main
       dispatcher. Drivers that are built with libglvnd in mind provide their
       own OpenGL implementations. For <xref linkend="mesa"/>, it will install
@@ -141,7 +141,7 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <parameter>-D hgl=false</parameter>: This disables targeting Haiku by
+      <parameter>-D hgl=false</parameter>: This disables targetting Haiku by
       default as this guide is for Linux, not Haiku.
     </para>
 
@@ -168,7 +168,7 @@ ldconfig</userinput></screen>
       <listitem>
         <para>Mesa: In BLFS, a patch is listed in
         the <ulink url="&blfs-svn;/x/mesa.html">Mesa</ulink> page and will
-        instruct you to apply it. This will cause an issue unless you explicitly
+        instruct you to apply it. This will cause an issue unless you explictly
         tell the build system not to link against this package's libraries,
         which means having it build its own OpenGL implementations, which will
         cause issues of its own. The exact error the patch causes is a linking
@@ -177,7 +177,7 @@ ldconfig</userinput></screen>
         package it tries to link against.</para>
         <para>Either don't apply that patch or follow this book's <xref
         linkend="mesa"/> page instead. Thanks to
-        Mesa's build system auto-detecting if
+        Mesa's build system autodetecting if
         libglvnd is installed, the installation
         instructions don't change that much between this book and BLFS. The
         main differences are lib32 support and not listing the demos
@@ -185,7 +185,7 @@ ldconfig</userinput></screen>
       </listitem>
       <listitem>
         <para>GLU: In BLFS, the <ulink
-        url="&blfs-svn;/x/glu.html">GLU</ulink> page explicitly sets the GL
+        url="&blfs-svn;/x/glu.html">GLU</ulink> page explictly sets the GL
         vendor to be Mesa as the build system will
         otherwise expect libglvnd and
         <filename class="libraryfile">libOpenGL</filename> to be installed.
