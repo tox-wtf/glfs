@@ -168,13 +168,13 @@ ldconfig</userinput></screen>
       <listitem>
         <para>Mesa: In BLFS, a patch is listed in
         the <ulink url="&blfs-svn;/x/mesa.html">Mesa</ulink> page and will
-        instruct you to apply it. This will cause an issue unless you explicitly
-        tell the build system not to link against this package's libraries,
-        which means having it build its own OpenGL implementations, which will
-        cause issues of its own. The exact error the patch causes is a linking
-        error in the final set of steps when building the demos as it expects
-        functions that are not found in the specific libraries from this
-        package it tries to link against.</para>
+        instruct you to apply it. This will cause an issue unless you
+        explicitly tell the build system not to link against this package's
+        libraries, which means having it build its own OpenGL implementations,
+        which will cause issues of its own. The exact error the patch causes is
+        a linking error in the final set of steps when building the demos as it
+        expects functions that are not found in the specific libraries from
+        this package it tries to link against.</para>
         <para>Either don't apply that patch or follow this book's <xref
         linkend="mesa"/> page instead. Thanks to
         Mesa's build system auto-detecting if
