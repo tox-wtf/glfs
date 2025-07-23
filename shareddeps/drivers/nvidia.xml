@@ -308,12 +308,6 @@ cd ..</userinput></screen>
 mkdir -pv /usr/lib/firmware/nvidia/&nvidia-version; &amp;&amp;
 cp -v firmware/*.bin /usr/lib/firmware/nvidia/&nvidia-version;</userinput></screen>
 
-    <para>
-      Finally, unset the <envar>NVIDIA_KERNEL_TYPE</envar> variable:
-    </para>
-        
-<screen><userinput>unset NVIDIA_KERNEL_TYPE</userinput></screen>
-
   </sect2>
 
   <sect2 role="installation">
