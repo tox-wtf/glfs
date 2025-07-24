@@ -12,15 +12,15 @@
 
 # Adjust these to suit your installation, or include the variables
 # you wish to change in local.mk, which must be created manually.
-AUTO_CLEAN      ?= 1
-GLFS_THEME_PATH ?= stylesheets/lfs-xsl
-GLFS_THEME      ?= dark
-RENDERTMP       := $(shell mktemp -d)
-HTML_ROOT       ?= $(HOME)/public_html
-DUMP_ROOT       ?= $(HOME)
-CHUNK_QUIET     ?= 1
-ROOT_ID          =
-SHELL            = /bin/bash
+AUTO_CLEAN  ?= 1
+THEME_PATH  ?= stylesheets/lfs-xsl
+THEME       ?= dark
+RENDERTMP   := $(shell mktemp -d)
+HTML_ROOT   ?= $(HOME)/public_html
+DUMP_ROOT   ?= $(HOME)
+CHUNK_QUIET ?= 1
+ROOT_ID      =
+SHELL        = /bin/bash
 
 ALLXML := $(filter-out $(RENDERTMP)/%, \
 	$(wildcard *.xml */*.xml */*/*.xml */*/*/*.xml */*/*/*/*.xml))
@@ -80,27 +80,27 @@ help:
 	@echo ""
 	@echo "Parameters:"
 	@echo ""
-	@echo "  REV=<rev>              Build variation of book"
-	@echo "                         Valid values for REV are:"
-	@echo "                         * sysv    - Build book for SysV"
-	@echo "                         * systemd - Build book for systemd"
-	@echo "                         Defaults to 'sysv'"
+	@echo "  REV=<rev>            Build variation of book"
+	@echo "                       Valid values for REV are:"
+	@echo "                       * sysv    - Build book for SysV"
+	@echo "                       * systemd - Build book for systemd"
+	@echo "                       Defaults to 'sysv'"
 	@echo ""
-	@echo "  BASEDIR=<dir>          Put the output in directory <dir>."
-	@echo "                         Defaults to"
-	@echo "                         '$(HTML_ROOT)/glfs' if REV=sysv (or unset)"
-	@echo "                         or to"
-	@echo "                         '$(HTML_ROOT)/glfs-systemd' if REV=systemd"
+	@echo "  BASEDIR=<dir>        Put the output in directory <dir>."
+	@echo "                       Defaults to"
+	@echo "                       '$(HTML_ROOT)/glfs' if REV=sysv (or unset)"
+	@echo "                       or to"
+	@echo "                       '$(HTML_ROOT)/glfs-systemd' if REV=systemd"
 	@echo ""
-	@echo "  V=<val>                If <val> is a non-empty value, all"
-	@echo "                         steps to produce the output is shown."
-	@echo "                         Default is unset."
+	@echo "  V=<val>              If <val> is a non-empty value, all"
+	@echo "                       steps to produce the output is shown."
+	@echo "                       Default is unset."
 	@echo ""
-	@echo "  GLFS_THEME_PATH=<PATH> Sets the path of themes (CSS files)."
-	@echo "                         'stylesheets/lfs-xsl' is the default."
+	@echo "  THEME_PATH=<PATH>    Sets the path of themes (CSS files)."
+	@echo "                       stylesheets/lfs-xsl' is the default."
 	@echo ""
-	@echo "  GLFS_THEME=<theme>     Sets the theme of the book, ie. light/dark."
-	@echo "                         'dark' is the default."
+	@echo "  THEME=<theme>        Sets the theme of the book, ie. light/dark."
+	@echo "                       'dark' is the default."
 	@echo ""
 	@echo "Targets:"
 	@echo "  help                 Show this help text."
@@ -138,7 +138,7 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
       mkdir -p $(BASEDIR)/stylesheets;          \
    fi;
 
-	$(Q)cp $(GLFS_THEME_PATH)/$(GLFS_THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
+	$(Q)cp $(THEME_PATH)/$(THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
 	$(Q)cp stylesheets/lfs-xsl/lfs-print.css $(BASEDIR)/stylesheets
 	$(Q)sed -i 's|../stylesheet|stylesheet|' $(BASEDIR)/index.html
 
