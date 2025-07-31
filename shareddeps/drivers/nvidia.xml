@@ -31,7 +31,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Recommended kernel version to use: linux-&nvidia-linux-version;
+          Recommended kernel version to use: linux &nvidia-linux-version;
         </para>
       </listitem>
       <listitem>
@@ -189,9 +189,12 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
       of the host rather than the target leading to build files being unable to
       be found. This can be worked around by specifying
       <envar>KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></envar> in
-      the <command>make</command> command which will override the kernel
-      version to build against. The kernel version must have already been built
-      for this to work.
+      each <command>make</command> command which will override the kernel
+      version to build against and install to. The kernel version must have
+      already been built for this to work. If the kernel version doesn't have a
+      third digit, like 6.16 instead of 6.16.1, append a <envar>.0</envar> at
+      the end, like <envar>6.16.0</envar>. It should match the version found in
+      <filename class="directory">/usr/lib/modules</filename>.
     </para></note>
 
     <para>
