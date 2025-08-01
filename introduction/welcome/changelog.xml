@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>August 1st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - mtdev; libevdev; libinput: Move to Basic X11
+          Software and out of Xorg Input Drivers.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 31st, 2025</para>
       <itemizedlist>
         <listitem>

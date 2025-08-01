@@ -123,6 +123,9 @@
 <!ENTITY nettle-version               "3.10.1">
 <!ENTITY gnutls-version               "3.8.10">
 <!ENTITY pixman-version               "0.46.4">
+<!ENTITY mtdev-version                "1.1.7">
+<!ENTITY libevdev-version             "1.13.4">
+<!ENTITY libinput-version             "1.28.1">
 <!-- Wayland -->
 <!ENTITY wayland-version              "1.24.0">
 <!ENTITY wayland-protocols-version    "1.45">
@@ -230,11 +233,8 @@
 <!ENTITY libepoxy-version             "&libepoxy-minor;.10">
 <!ENTITY xorg-server-version          "21.1.18">
 <!ENTITY xwayland-version             "24.1.8">
-<!ENTITY mtdev-version                "1.1.7">
 <!-- BEGIN X7DRIVER -->
-<!ENTITY libevdev-version             "1.13.4">
 <!ENTITY xorg-evdev-driver-version    "2.11.0">
-<!ENTITY libinput-version             "1.28.1">
 <!ENTITY xorg-libinput-driver-version "1.5.0">
 <!ENTITY xorg-synaptics-driver-version "1.10.0">
 <!ENTITY xorg-wacom-driver-version    "1.2.3">
