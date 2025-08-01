@@ -198,10 +198,10 @@ character limit.
 
 ## 3.2. Making an update
 First, you're going to need
-[Git](https://glfs-book.github.io/glfs/shareddeps/git.html) in order to clone,
-pull, and push. Once you have it installed, you are going to need to fork this
-repository to your Github account. Once you have it forked, you are going to
-need to clone that fork:
+[Git](https://linuxfromscratch.org/blfs/view/stable/general/git.html) in order
+to clone, pull, and push. Once you have it installed, you are going to need to
+fork this repository to your Github account. Once you have it forked, you are
+going to need to clone that fork:
 ```Bash
 git clone https://github.com/<username>/glfs
 ```
