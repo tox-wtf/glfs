@@ -194,7 +194,7 @@ code blocks. That is fine. But if you can help it, please keep under the 80
 character limit.
 3. Use oxford commas (subject1, subject2, and subject3) instead of
 (subject1, subject2 and subject3).
-4. Edit `changelog.xml` as necessary. See section 3.1.2.9.
+4. Edit `changelog.xml` as necessary. See section 3.1.2.8.
 
 ## 3.2. Making an update
 First, you're going to need
