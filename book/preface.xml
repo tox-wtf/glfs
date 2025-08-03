@@ -34,7 +34,7 @@
     Rahul Chandra in the same thread mentioned his scripts for his distro,
     Tucana. These scripts gave me a basic idea of how to do lib32 installations
     for BLFS packages which were necessary for
-    Steam.. While this wasn't exactly difficult,
+    Steam. While this wasn't exactly difficult,
     it was a big timesink as I had to manually type in all the lib32
     compilation options to successfully build 32-bit libraries. Even after
     having built all the 32-bit libraries required, a few more fixes and files
