@@ -44,6 +44,11 @@
       <para>August 4th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - NVIDIA: 575.64.05 -&gt; 580.65.06
+          <superscript>BETA</superscript>. Fixes
+          <ulink url="&glfs-issues;/293">#293</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - *: Removed tests. Fixes
           <ulink url="&glfs-issues;/292">#292</ulink>.</para>
         </listitem>
