@@ -81,10 +81,10 @@
     <para role="optional">
       <xref linkend="libunwind"/>,
       <xref linkend="nettle"/>,
-      <xref linkend="xcb-utils"/> (to build Xephyr),
-      <xref linkend="xkeyboard-config"/> (for tests),
-      <ulink url="https://gitlab.freedesktop.org/xorg/test/rendercheck">rendercheck</ulink> (for tests), and
-      <ulink url="https://www.x.org/archive/individual/doc/">xorg-sgml-doctools</ulink> (to build documentation)
+      <xref linkend="xcb-utils"/> (to build Xephyr), and
+      <ulink
+        url="https://www.x.org/archive/individual/doc/">xorg-sgml-doctools</ulink>
+      (to build documentation)
     </para>
   </sect2>
 
@@ -178,12 +178,6 @@ meson setup ..              \
       -D xkb_output_dir=/var/lib/xkb &amp;&amp;
 
 ninja</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>ninja test</command>. You will need
-      to run <command>ldconfig</command> as the &root; user first or some tests
-      may fail.
-    </para>
 
     <para>
       Now as the &root; user:

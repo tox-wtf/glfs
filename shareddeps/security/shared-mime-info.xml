@@ -37,16 +37,6 @@ xreflabel="shared-mime-info-&shared-mime-info-version;">
       </listitem>
     </itemizedlist>
 
-    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Optional download, required to run the test suite:
-          <ulink url="&xdgmime-download-http;"/>
-        </para>
-      </listitem>
-    </itemizedlist>
-
     <bridgehead renderas="sect3">Shared Mime Info Dependencies</bridgehead>
 
     <bridgehead renderas="sect4">Required</bridgehead>
@@ -65,30 +55,11 @@ xreflabel="shared-mime-info-&shared-mime-info-version;">
       following commands:
     </para>
 
-    <para>
-      If you wish to run the test suite, you must first extract the
-      <filename>xdgmime</filename> tarball into the current directory,
-      and compile it so that <command>meson</command> can find it:
-    </para>
-
-<screen remap="test"><userinput>tar -xf ../xdgmime.tar.xz &amp;&amp;
-make -C xdgmime</userinput></screen>
-
-    <para>
-      Now build the package:
-    </para>
-
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
 meson setup --prefix=/usr --buildtype=release -D update-mimedb=true .. &amp;&amp;
 ninja</userinput></screen>
-
-    <para role="optional">
-      If you have followed the instructions above to build
-      xdgmime, to test the result issue
-      <command>ninja test</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

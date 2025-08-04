@@ -46,8 +46,7 @@
       <ulink url="&blfs-svn;/multimedia/libsamplerate.html">
       libsamplerate</ulink>,
       <xref linkend="pulseaudio"/>,
-      <ulink url="&blfs-svn;/multimedia/speex.html">
-      Speex</ulink>,
+      <xref linkend="speex"/>,
       <ulink url="https://jackaudio.org/">JACK</ulink>,
       <ulink url="https://github.com/AVnu/libavtp/">libavtp</ulink>, and
       <ulink url="http://maemo.org/">maemo</ulink>
@@ -65,10 +64,6 @@
 
 <screen><userinput>./configure --sysconfdir=/etc --disable-libav &amp;&amp;
 make</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

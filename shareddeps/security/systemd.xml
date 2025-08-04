@@ -131,23 +131,6 @@ meson setup ..                 \
 
 ninja</userinput></screen>
 
-    <note>
-      <para>
-        For the best test results, make sure you run the test suite from
-        a system that is booted by the same
-        Systemd version you are rebuilding.
-      </para>
-    </note>
-
-    <para>
-      To test the results, issue: <command>ninja test</command>.
-      The test named <filename>test-stat-util</filename> is known to fail
-      if some kernel features are not enabled.
-      If the test suite is run as the &root; user, some
-      other tests may fail because they depend on various kernel
-      configuration options.
-    </para>
-
    <para>
      Now, as the &root; user:
    </para>

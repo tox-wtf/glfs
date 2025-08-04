@@ -196,11 +196,6 @@ meson setup                    \
 ninja</userinput></screen>
 
     <para>
-      To test the results, issue:
-      <command>meson configure -D build-tests=true &amp;&amp; ninja test</command>.
-    </para>
-
-    <para>
       Now, as the <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -479,14 +474,6 @@ ldconfig</userinput></screen>
       This package can be stubborn and likes to link against LLVM libraries in
       <filename>/lib</filename>, even on a multilib installation, so this command
       tells this package to link against libraries in the proper directory.
-    </para>
-
-    <para>
-      <command>meson configure -D build-tests=true</command>: This command will
-      reconfigure the build to set <option>-D build-tests=true</option>, but
-      keep the other options specified in the <command>meson setup</command>
-      command unchanged.  It allows <command>ninja test</command> to build and
-      run unit tests.
     </para>
 
   </sect2>

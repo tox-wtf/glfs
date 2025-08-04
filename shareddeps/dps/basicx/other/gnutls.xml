@@ -72,19 +72,6 @@
       <xref linkend="p11-kit"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
-    <para role="optional">
-      <ulink url="&gnu-http;/autogen/">autogen</ulink>,
-      <ulink url="https://cmocka.org/">cmocka</ulink> and
-      <ulink
-      url="https://ftp.debian.org/debian/pool/main/d/datefudge/">datefudge</ulink>
-      (used during the test suite if the DANE library is built),
-      <ulink url="https://github.com/smuellerDD/leancrypto">leancrypto</ulink>,
-      and <ulink
-      url="&sourceforge-dl;/trousers/">Trousers</ulink> (Trusted Platform
-      Module support)
-    </para>
-
     <note><para>
  <!-- Note that if you do not install <xref linkend="libtasn1"/>, an older
        3.8.0 includes minitasn1 4.19 which is currnet at the moment. ken -->
@@ -92,6 +79,14 @@
       version shipped in the GnuTLS tarball will be
       used instead.
     </para></note>
+
+    <bridgehead renderas="sect4">Optional</bridgehead>
+    <para role="optional">
+      <ulink url="https://github.com/smuellerDD/leancrypto">leancrypto</ulink>
+      and <ulink
+      url="&sourceforge-dl;/trousers/">Trousers</ulink> (Trusted Platform
+      Module support)
+    </para>
 
   </sect2>
 
@@ -115,10 +110,6 @@ make</userinput></screen>
      disable-rpath option: rpath pointing to the build tree when libraries
      are first linked, but rpath removed when libraries are relinked at
      install time. -->
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
 
     <para>
       Now, as the &root; user:

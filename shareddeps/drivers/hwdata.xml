@@ -47,10 +47,6 @@
 <screen><userinput>./configure --prefix=/usr --disable-blacklist</userinput></screen>
 
     <para>
-      This package does not come with a test suite.
-    </para>
-
-    <para>
       Now, as the &root; user:
     </para>
 

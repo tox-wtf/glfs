@@ -105,10 +105,6 @@ This is the default:            - -with-group-name-max-length=32 &amp;&amp;-->
 make</userinput></screen>
 
     <para>
-      This package does not come with a test suite.
-    </para>
-
-    <para>
       Now, as the <systemitem class="username">root</systemitem> user:
     </para>
 

@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>August 4th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - *: Removed tests. Fixes
+          <ulink url="&glfs-issues;/292">#292</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>August 1st, 2025</para>
       <itemizedlist>
         <listitem>

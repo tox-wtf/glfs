@@ -26,12 +26,6 @@
   <xref role='required' linkend='make-ca'/> before building this
   package.</para></note>">
 
-<!ENTITY test-use-internet
-  "<note><para>An Internet connection is needed for some tests of
-  this package. The system certificate store may need to be set up
-  with <xref role='nodep' linkend='make-ca'/> before testing this
-  package.</para></note>">
-
 <!ENTITY options-configure
   "<note><para>Run <command>./configure --help</command> for a full list
   of options.</para></note>">

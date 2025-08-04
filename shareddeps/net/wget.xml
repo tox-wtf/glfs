@@ -90,11 +90,6 @@ make</userinput></screen>
       openssl instead of GnuTLS.
     </para>
 
-    <para>
-      <option>--enable-valgrind-tests</option>: This allows the tests to be
-      run under valgrind.
-    </para>
-
   </sect2>
 
   <sect2 role="configuration">

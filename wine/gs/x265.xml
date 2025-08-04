@@ -80,9 +80,6 @@ cmake -D CMAKE_INSTALL_PREFIX=/usr        \
 
 make</userinput></screen>
 
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <!-- To editors: hard coded versions "209", "212", and "3.6" are not a
          bug.  This <important> block should be removed when we update x265
@@ -137,10 +134,6 @@ cmake -D CMAKE_INSTALL_PREFIX=/usr        \
       -W no-dev ../source &amp;&amp;
 
 make</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       To install the package, first remove any old library versions.

@@ -63,8 +63,7 @@
       a combination of adding the switch <literal>--jobs &lt;N&gt;</literal>
       (e.g. '--jobs 4' to limit to 4 processors) on each invocation of
       <command>./x.py</command> <emphasis>and</emphasis> using an
-      environment variable <envar>CARGO_BUILD_JOBS=&lt;N&gt;</envar>. At the
-      moment this is not effective when some of the rustc tests are run.
+      environment variable <envar>CARGO_BUILD_JOBS=&lt;N&gt;</envar>.
     </para>
 
     <para>

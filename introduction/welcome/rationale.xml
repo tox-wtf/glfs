@@ -14,7 +14,7 @@
     Upon reading through some of the sections in this book, you may notice
     that a lot of the packages linked in some of the sections aren't in
     this book but rather in BLFS, some optional dependencies aren't
-    listed, some packages may be outdated, and some packages that have test
+    listed, some packages may be outdated, and packages that have test
     suites don't have test instructions. These choices are very much
     deliberate.
   </para>
@@ -90,18 +90,20 @@
   </sect2>
 
   <sect2>
-    <title>Some Package Test Instructions Aren't Included</title>
+    <title>Package Test Instructions Aren't Included</title>
 
     <para>
       Many packages have test suites which can test a given build for
       any potential bugs and may tell you if something has gone wrong.
-      However, in GLFS, a lot of these packages have test suites that
+      However, in GLFS, many of these packages have test suites that
       depend on packages that aren't necessary in the book and would
       make this book larger than it needs to be. Furthermore, a lot of
       the packages that do have test suites aren't involved with critical
       components of the system and don't tend to have bugs that
       come up as a result of a build, but rather the released source
-      code itself. If you want to do test suites of a given package,
+      code itself. The final reason is the GLFS editors don't run the test
+      suites and instead see the results of a complete GLFS build.
+      If you want to do test suites of a given package,
       BLFS has good instructions for that on each package and covers
       all the required dependencies, as well as instructions on how to
       install those dependencies.

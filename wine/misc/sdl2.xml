@@ -91,14 +91,6 @@
 <screen><userinput>./configure --prefix=/usr &amp;&amp;
 make</userinput></screen>
 
-    <note>
-      <para>
-        If you wish to build and run the package regression
-        tests, do not delete the static libraries below until after
-        the tests are built.
-      </para>
-    </note>
-
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
     </para>
@@ -134,29 +126,6 @@ rm -v DESTDIR/usr/lib32/libSDL2*.a    &amp;&amp;
 cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
 rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
-
-  </sect2>
-
-  <sect2 role="testing">
-    <title>Testing SDL2</title>
-
-    <para>
-      If you wish to, test the installation of SDL2
-      using the included test programs.  None of the resulting binaries need
-      to be installed.  Issue the following commands to build the test
-      programs:
-    </para>
-
-<screen><userinput>cd test &amp;&amp;
-./configure &amp;&amp;
-make</userinput></screen>
-
-    <para>
-      Each of the test programs (they are listed in the
-      <filename>README</filename> file in this directory) will need to be run
-      individually.  Many of them will need to be manually killed. Additionally,
-      speakers need to be on with the volume at a suitable level.
-    </para>
 
   </sect2>
 

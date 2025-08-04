@@ -89,20 +89,13 @@ meson setup ..        \
 
 ninja</userinput></screen>
 
-    <para>
-      To test the results, a suitable <filename>/etc/pam.d/other</filename>
-      configuration file must exist.
-    </para>
-
     <caution>
       <title>Reinstallation or Upgrade of Linux PAM</title>
       <para>
         If you have a system with Linux PAM installed and working, be careful
         when modifying the files in
         <filename class="directory">/etc/pam.d</filename>, since your system
-        may become totally unusable. If you want to run the tests, you do not
-        need to create another <filename>/etc/pam.d/other</filename> file. The
-        existing file can be used for the tests.
+        may become totally unusable.
       </para>
 
       <para>
@@ -113,35 +106,6 @@ ninja</userinput></screen>
          have modified those files, be sure to back them up.
       </para>
     </caution>
-
-    <para>
-      For a first-time installation, create a configuration file by issuing the
-      following commands as the <systemitem class="username">root</systemitem>
-      user:
-    </para>
-
-<screen role="root"><userinput>install -v -m755 -d /etc/pam.d &amp;&amp;
-
-cat &gt; /etc/pam.d/other &lt;&lt; "EOF"
-<literal>auth     required       pam_deny.so
-account  required       pam_deny.so
-password required       pam_deny.so
-session  required       pam_deny.so</literal>
-EOF</userinput></screen>
-
-    <para>
-      Now run the tests by issuing <command>ninja test</command>.
-      Be sure the tests produced no errors before continuing the
-      installation.
-    </para>
-
-    <para>
-      For a first-time installation, remove the configuration file
-      created earlier by issuing the following command as the
-      &root; user:
-    </para>
-
-<screen role="root"><userinput>rm -fv /etc/pam.d/other</userinput></screen>
 
     <para>
       Now, as the &root; user:

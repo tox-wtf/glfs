@@ -43,10 +43,8 @@
     </para>
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
-      <ulink url="&slfs-website;/general/ncompress.html">ncompress</ulink>
-      (for some tests) and
       <ulink url="&w3m-url;">W3m</ulink> (to generate additional PDF or text
-      documentation for the libXfont package).
+      documentation for the libXfont package)
     </para>
 <!--
     <bridgehead renderas="sect4" revision="systemd">Recommended at runtime</bridgehead>
@@ -123,26 +121,6 @@ grep -v '^#' ../lib-&xorg-version;-list | wget -i- -c \
 &as_root;
 
     <para>
-      Some libraries come with a test suite. If you wish to execute them,
-      either comment out the <command>rm -rf ...</command> below, so that,
-      after all libraries are installed, you can come back to the corresponding
-      directory and run <command>make check</command>, or do individual builds,
-      running the tests for each of those distributed with working test suites.
-      Alternatively, you can uncomment the line #<command>make check
-      ...</command>, and at the end, check the test results with:
-    </para>
-
-<screen><userinput>grep -A9 summary *make_check.log</userinput></screen>
-
-    <para>
-      GLFS developers have confirmed that libX11,
-      libXt, libXmu,
-      libXpm, and
-      libxshmfence are distributed with working test
-      suites.
-    </para>
-
-    <para>
       First, start a subshell that will exit on error:
     </para>
 
@@ -180,7 +158,6 @@ do
       cd    build
         meson setup --prefix=/usr --buildtype=release ..
         ninja
-        #ninja test
         as_root ninja install
       popd     # $packagedir
       rm -rf $packagedir
@@ -193,7 +170,6 @@ do
   esac
 
   make
-  #make check 2>&amp;1 | tee ../$packagedir-make_check.log
   as_root make install
   popd
   rm -rf $packagedir
@@ -243,7 +219,6 @@ do
         CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
         meson setup --prefix=/usr $libdir --buildtype=release ..
         ninja
-        #ninja test
         DESTDIR=$PWD/DESTDIR ninja install
         as_root cp -vr DESTDIR/usr/lib32/* /usr/lib32
         rm -rf DESTDIR
@@ -261,7 +236,6 @@ do
   esac
 
   make
-  #make check 2>&amp;1 | tee ../$packagedir-make_check.log
   make DESTDIR=$PWD/DESTDIR install
   as_root cp -vr DESTDIR/usr/lib32/* /usr/lib32
   rm -rf DESTDIR
