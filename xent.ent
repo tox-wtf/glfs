@@ -87,7 +87,7 @@
   parameters to the <command>meson</command> command shown below):
 </para>
 
-<screen><userinput revision='sysv'>mkdir  build &amp;&amp;
+<screen><userinput>mkdir  build &amp;&amp;
 cd     build &amp;&amp;
 
 meson setup --prefix=/usr          \
