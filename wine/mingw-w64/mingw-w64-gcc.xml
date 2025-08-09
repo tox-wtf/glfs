@@ -55,12 +55,14 @@
       the toolchain entirely.
     </para></note>
 
+<!--
     <para>
       Ensure compatibility with glibc-2.42 or later:
     </para>
 
 <screen><userinput remap="pre">sed -i '/struct_termio_sz/d' \
   libsanitizer/sanitizer_common/*</userinput></screen>
+-->
 
   <sect3>
     <title>x86_64 Installation of MinGW-w64-GCC</title>
