@@ -38,6 +38,7 @@
       </listitem>
     </itemizedlist>
 
+<!--
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
@@ -47,6 +48,7 @@
         </para>
       </listitem>
     </itemizedlist>
+-->
 
   </sect2>
 
@@ -57,7 +59,7 @@
       Fix an incorrect prototype for <envar>malloc()</envar>:
     </para>
 
-<screen><userinput>patch -Np1 -i ../libunwind-&libunwind-version;-fix_malloc.patch</userinput></screen>
+<screen><userinput>sed -i '/func.s/s/s//' tests/Gtest-nomalloc.c</userinput></screen>
 
     <para>
       Install libunwind by running the following
