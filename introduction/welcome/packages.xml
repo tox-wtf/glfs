@@ -68,6 +68,21 @@
 
 <screen><userinput>wget -N --input-file=wget-list --continue</userinput></screen>
 
+    <para>
+      To verify every file has been downloaded, you can run the following:
+    </para>
+
+<screen><userinput>for file in $(grep -v '^#' wget-list); do
+  if [ ! -f $(basename $file) ]; then
+    echo "$(basename $file) NOT found"
+  fi
+done</userinput></screen>
+
+    <para>
+      If every file got downloaded, there should be no output from the above
+      commands.
+    </para>    
+
   </sect2>
 
 </sect1>
