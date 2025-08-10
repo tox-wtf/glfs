@@ -28,9 +28,13 @@
     <para revision="sysv">
       D-Bus was already compiled before, but not a useful program,
       <command>dbus-launch</command>. This pass will cover it, and some setup
-      required. Please remove the previous extracted source code you built from
-      and extract from the tarball again to have a clean source tree.
+      required.
     </para>
+
+    <note revision="sysv"><para>
+      Please remove the previous extracted source code you built from
+      and extract from the tarball again to have a clean source tree.
+    </para></note>
 
     <itemizedlist spacing="compact">
       <listitem>
