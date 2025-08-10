@@ -20,8 +20,10 @@
     <title>Introduction to Wget</title>
 
     <para>
-      The Wget package contains a utility useful for
-      non-interactive downloading of files from the Web.
+      The Wget package contains a utility useful for non-interactive
+      downloading of files from the Web. It is used in pages in this book,
+      BLFS, and SLFS that lump packages together, like downloading Xorg or KDE
+      packages, or when a package depends on a wealth of submodules.
     </para>
 
     <itemizedlist spacing="compact">
