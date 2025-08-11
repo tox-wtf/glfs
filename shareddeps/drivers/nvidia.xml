@@ -182,21 +182,6 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
   <sect2>
     <title>Installation of the NVIDIA Kernel Modules</title>
 
-    <note><para>
-      Building the kernel modules in a chroot will likely cause a build
-      failure. It is heavily recommended to build them when booted in the LFS
-      target to avoid <command>uname -r</command> reporting the kernel version
-      of the host rather than the target leading to build files being unable to
-      be found. This can be worked around by specifying
-      <envar>KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></envar> in
-      each <command>make</command> command which will override the kernel
-      version to build against and install to. The kernel version must have
-      already been built for this to work. If the kernel version doesn't have a
-      third digit, like 6.16 instead of 6.16.1, append a <envar>.0</envar> at
-      the end, like <envar>6.16.0</envar>. It should match the version found in
-      <filename class="directory">/usr/lib/modules</filename>.
-    </para></note>
-
     <para>
       Now you will need to build the kernel modules for the driver. There are
       two types: <emphasis role="bold">open</emphasis> and
@@ -251,16 +236,40 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
       nothing. Add to it as you see fit.
     </para>
 
+    <note><para>
+      Building the kernel modules in a chroot will likely cause a build
+      failure. It is recommended to build them when booted in the LFS target.
+      The default variable that the kernel build system uses to check for the
+      kernel version will use <command>uname -r</command>, in turn reporting
+      the kernel version of the host rather than the target. This leads to
+      build files being unable to be found. This can be worked around by
+      specifying
+      <envar>KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></envar> in
+      each <command>make</command> command which will override the kernel
+      version to build against and install to. The kernel version must have
+      already been built for this to work. If the kernel version doesn't have a
+      third digit, like 6.16 instead of 6.16.1, append a <envar>.0</envar> at
+      the end, like <envar>6.16.0</envar>. It should match the version found in
+      <filename class="directory">/usr/lib/modules</filename>. The
+      <command>make</command> command specifies
+      <envar>KERNEL_UNAME=`uname -r`</envar> as it would normally by the build
+      system. Edit it if you need to. The <literal>`</literal> characters
+      specify a command that returns an output when surrounded by the
+      characters. When specifying a kernel version to it, remove the
+      surrounding <literal>`</literal> characters so the version doesn't get
+      parsed as a command, which will return nothing.
+    </para></note>
+
     <para>
       Now build the kernel modules by running the following command:
     </para>
 
-<screen><userinput>make NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
+<screen><userinput>make KERNEL_UNAME=<replaceable>`uname -r`</replaceable> NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
 
     <note>
       <para>
         You may encounter various build failures. This usually happens because
-        the kernel version is incompatible with the current kernel version.
+        the module code is incompatible with the current kernel version.
         If this happens, in most cases this is fixed by downgrading the kernel.
         When a new driver release happens, the driver will then most likely
         support the kernel version at the time. At the top of this section, the
@@ -300,7 +309,7 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
       Now as the &root; user:
     </para>
 
-<screen role="root"><userinput>make modules_install &amp;&amp;
+<screen role="root"><userinput>make KERNEL_UNAME=<replaceable>`uname -r`</replaceable> modules_install &amp;&amp;
 cd ..</userinput></screen>
 
     <para>
