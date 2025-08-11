@@ -25,6 +25,14 @@
       multimedia software, such as games and emulators.
     </para>
 
+    <note><para>
+      If you want, you can instead install <ulink
+      url="&slfs-website;/graph/sdl3.html">SDL3</ulink> and
+      <ulink url="&slfs-website;/graph/sdl2.html">sdl2-compat</ulink> as
+      suitable replacements for this package. Wine and
+      <command>ffplay</command> from FFmpeg are known to work with sdl2-compat.
+    </para></note>
+
     &long-build-time;
 
     <itemizedlist spacing="compact">

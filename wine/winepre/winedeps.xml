@@ -69,19 +69,19 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          <xref linkend="gstreamer-suite"/>: allows consuming and working with
+          <xref linkend="gstreamer-suite"/>: Allows consuming and working with
           multimedia such as music and videos. Most games and some software
           work without it, although some will need it for WMA decoding.
         </para>
       </listitem>
       <listitem>
         <para>
-          <xref linkend="sdl2"/>: for input and other neat stuff.
+          &sdl2;: For input handling and other features.
         </para>
       </listitem>
       <listitem>
         <para>
-          <xref linkend="vulkan-sdk"/>: for Vulkan support.
+          <xref linkend="vulkan-sdk"/>: For Vulkan support.
         </para>
       </listitem>
     </itemizedlist>
