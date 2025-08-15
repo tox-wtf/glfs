@@ -61,7 +61,7 @@
         The VA API driver suitable for the hardware in your system:
         <ulink url="&blfs-svn;/multimedia/intel-vaapi-driver.html">intel-vaapi-driver</ulink>
         (for Intel GPUs provided with Haswell CPUs or earlier),
-        <ulink url="&blfs-svn;/multimedia/intel-media.html">intel-media</ulink>
+        <ulink url="&blfs-svn;/multimedia/intel-media-driver.html">intel-media-driver</ulink>
         (for Intel GPUs provided with Broadwell CPUs or later), and
         <xref linkend="mesa"/> (providing the <literal>r600</literal>,
         <literal>radeonsi</literal>, and <literal>nouveau</literal> VA API
