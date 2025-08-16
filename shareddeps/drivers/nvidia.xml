@@ -458,12 +458,12 @@ done</userinput></screen>
 
       <para>
         Using this driver can come with compromises. So far, these issues seem
-        limited to Wayland, desktop environments, and display managers. The
-        list below documents the known packages that have issues with this
-        driver.
+        to be limited to Wayland and window managers. The list below documents
+        the known packages that have issues with this driver.
       </para>
 
       <itemizedlist>
+<!-- Fixed in BLFS at 4e1859c178
         <listitem revision="sysv">
           <para><ulink url="&blfs-svn;/x/gdm.html">GDM</ulink>: Using this
           package on SysVinit systems will result in failure as GDM does not
@@ -478,6 +478,7 @@ done</userinput></screen>
           This must be launched via a TTY or a display manager other than GDM
           for now on SysVinit systems.
         </para></listitem>
+-->
         <listitem>
           <para><ulink url="&blfs-svn;/gnome/mutter.html">Mutter</ulink>:
           Compile this package with
@@ -485,9 +486,11 @@ done</userinput></screen>
           <parameter>-D egl_device=true</parameter> to enable launching with
           Wayland. Ensure the <xref linkend="nvidia-egl"/> are
           installed.</para>
+<!--
           <para revision="sysv">On SysVinit systems, Mutter can only be
           launched via a TTY or a display manager other than GDM as of
           now.</para>
+-->
         </listitem>
         <listitem>
           <para>
