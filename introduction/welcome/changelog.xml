@@ -44,6 +44,15 @@
       <para>August 15th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[renodr] - Cython: 3.1.2 -&gt; 3.1.3.</para>
+        </listitem>
+        <listitem>
+          <para>[renodr] - Python: 3.13.6 -&gt; 3.13.7.</para>
+        </listitem>
+        <listitem>
+          <para>[renodr] - systemd: 257.6 -&gt; 257.8.</para>
+        </listitem>
+        <listitem>
           <para>[renodr] - NVIDIA: Updated documentation regarding GNOME after
           changes were performed in BLFS to allow GDM to work correctly. Fixes
           <ulink url="&glfs-issues;/256">#256</ulink>.</para>
