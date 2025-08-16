@@ -416,12 +416,7 @@ pathprepend /opt/rustc/bin           PATH
 # End /etc/profile.d/rustc.sh</literal>
 EOF</userinput></screen>
 
-      <para>
-        Immediately after installation, update the current PATH
-        for your current shell:
-      </para>
-
-      <screen><userinput>source /etc/profile.d/rustc.sh</userinput></screen>
+    &source-profile;
 
     </sect3>
   </sect2>
