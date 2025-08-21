@@ -46,6 +46,19 @@
     section set necessary variables.
   </para>
 
+  <para>
+    Lastly, it would be a good idea to create a normal user and add it to three
+    groups (<literal>audio</literal>, <literal>input</literal>, and
+    <literal>video</literal>) as the &root; user:
+  </para>
+
+<screen role="root"><literal>useradd -mG audio,input,video <replaceable>&lt;username&gt;</replaceable></literal></screen>
+
+  <para>
+    A lot of software will need the user to be apart of those groups to access
+    the proper APIs and devices.
+  </para>
+
   <sect2>
     <title>X11</title>
 
