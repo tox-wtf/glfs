@@ -55,13 +55,13 @@
         by an application or a library, run:
       </para>
 
-<screen><userinput>ldd &lt;application or library&gt; </userinput></screen>
+<screen role='nodump'><userinput>ldd &lt;application or library&gt; </userinput></screen>
 
       <para>
         or to see only programs and libraries that directly use a library:
       </para>
 
-<screen><userinput>readelf -d  &lt;application or library&gt; | grep NEEDED</userinput></screen>
+<screen role='nodump'><userinput>readelf -d  &lt;application or library&gt; | grep NEEDED</userinput></screen>
 
     </warning>
 
