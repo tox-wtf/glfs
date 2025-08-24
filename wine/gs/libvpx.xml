@@ -68,13 +68,15 @@
 mkdir libvpx-build            &amp;&amp;
 cd    libvpx-build            &amp;&amp;
 
-../configure --prefix=/usr    \
-             --enable-shared  \
-             --disable-static &amp;&amp;
+../configure --prefix=/usr         \
+             --enable-shared       \
+             --disable-static      \
+             --disable-examples    \
+             --disable-unit-tests &amp;&amp;
 make</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make install</userinput></screen>
@@ -96,7 +98,9 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig  \
              --libdir=/usr/lib32      \
              --target=x86-linux-gcc   \
              --enable-shared          \
-             --disable-static &amp;&amp;
+             --disable-static         \
+             --disable-examples       \
+             --disable-unit-tests    &amp;&amp;
 
 make</userinput></screen>
 
@@ -128,6 +132,16 @@ ldconfig</userinput></screen>
     </para>
 
     &static-libraries;
+
+    <para>
+      <parameter>--disable-examples</parameter>: This parameter disables
+      building examples that take a while to build.
+    </para>
+
+    <para>
+      <parameter>--disable-unit-tests</parameter>: This parameter disables
+      building tests that take a while to build.
+    </para>
 
     <para>
       <option>--disable-vp8</option>: This switch prevents building support for
