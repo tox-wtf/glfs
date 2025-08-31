@@ -165,7 +165,10 @@
       Summary: If you want good performance and care about workstation use
       cases, install <emphasis>NVIDIA</emphasis>. If you don't want to use the
       proprietary NVIDIA driver, use <emphasis>Nouveau</emphasis>. Installing
-      <computeroutput>zink</computeroutput> is a good idea, too.
+      <computeroutput>zink</computeroutput> is a good idea, too. As long as you
+      install <xref linkend="libglvnd"/>, you will be able to install all these
+      drivers side by side so you can switch between them if you want to,
+      although not required.
     </para>
 
   </sect2>
