@@ -4,24 +4,26 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY wayland-protocols-download-http "https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/&wayland-protocols-version;/downloads/wayland-protocols-&wayland-protocols-version;.tar.xz">
-  <!ENTITY wayland-protocols-download-ftp  " ">
+  <!ENTITY wp-root
+    "https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases">
+  <!ENTITY wayland-protocols-download
+    "&wp-root;/&wayland-protocols-version;/downloads/wayland-protocols-&wayland-protocols-version;.tar.xz">
 ]>
 
-<sect1 id="wayland-protocols" xreflabel="wayland-protocols-&wayland-protocols-version;">
+<sect1 id="wayland-protocols" xreflabel="Wayland-Protocols-&wayland-protocols-version;">
   <?dbhtml filename="wayland-protocols.html"?>
 
   <title>Wayland-Protocols-&wayland-protocols-version;</title>
 
   <indexterm zone="wayland-protocols">
-    <primary sortas="a-wayland-protocols">wayland-protocols</primary>
+    <primary sortas="a-wayland-protocols">Wayland-Protocols</primary>
   </indexterm>
 
   <sect2 role="package">
     <title>Introduction to Wayland-Protocols</title>
 
     <para>
-      The <application>Wayland-Protocols</application> package contains
+      The Wayland-Protocols package contains
       additional Wayland protocols that add functionality outside of
       protocols already in the Wayland core.
     </para>
@@ -29,12 +31,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&wayland-protocols-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&wayland-protocols-download-ftp;"/>
+          Download: <ulink url="&wayland-protocols-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -52,7 +49,7 @@
     <title>Installation of Wayland-Protocols</title>
 
     <para>
-      Install <application>Wayland-Protocols</application> by running the following
+      Install Wayland-Protocols by running the following
       commands:
     </para>
 
@@ -61,10 +58,6 @@ cd    build &amp;&amp;
 
 meson setup --prefix=/usr --buildtype=release &amp;&amp;
 ninja</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>ninja test</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

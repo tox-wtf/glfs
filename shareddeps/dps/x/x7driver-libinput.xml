@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xorg-libinput-driver-download-http "&xorg-download-http;/driver/xf86-input-libinput-&xorg-libinput-driver-version;.tar.xz">
-  <!ENTITY xorg-libinput-driver-download-ftp  " ">
+  <!ENTITY xorg-libinput-driver-download
+    "&xorg-dl;/driver/xf86-input-libinput-&xorg-libinput-driver-version;.tar.xz">
 ]>
 
   <!-- Begin Xorg input-libinput Driver -->
@@ -25,7 +25,7 @@
       <title>Introduction to Xorg Libinput Driver</title>
 
       <para>
-        The <application>X.Org Libinput Driver</application> is a thin wrapper
+        The X.Org Libinput Driver is a thin wrapper
         around libinput and allows for libinput to be used for input devices in
         X. This driver can be used as drop-in replacement for evdev and
         synaptics.
@@ -34,12 +34,7 @@
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            Download (HTTP): <ulink url="&xorg-libinput-driver-download-http;"/>
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Download (FTP): <ulink url="&xorg-libinput-driver-download-ftp;"/>
+            Download: <ulink url="&xorg-libinput-driver-download;"/>
           </para>
         </listitem>
       </itemizedlist>
@@ -58,16 +53,12 @@
       <title>Installation of Xorg Libinput Driver</title>
 
       <para>
-        Install <application>Xorg Libinput Driver</application> by running the following
+        Install Xorg Libinput Driver by running the following
         commands:
       </para>
 
 <screen><userinput>./configure $XORG_CONFIG &amp;&amp;
 make</userinput></screen>
-
-      <para>
-        To test the results, issue <command>make check</command>.
-      </para>
 
       <para>
         Now, as the <systemitem class="username">root</systemitem> user:
@@ -91,7 +82,7 @@ make</userinput></screen>
 
         <seglistitem>
           <seg>
-            libinput_drv.so
+            libinput_drv
           </seg>
         </seglistitem>
       </segmentedlist>
@@ -102,14 +93,14 @@ make</userinput></screen>
         <?dbhtml list-presentation="table"?>
 
         <varlistentry id="libinput_drv">
-          <term><filename class="libraryfile">libinput_drv.so</filename></term>
+          <term><filename class="libraryfile">libinput_drv</filename></term>
           <listitem>
             <para>
               is an Xorg input driver for mouse, keyboard, touchpad,
               touchscreen, and tablet devices
             </para>
             <indexterm zone="xorg-libinput-driver libinput_drv">
-              <primary sortas="c-libinput_drv">libinput_drv.so</primary>
+              <primary sortas="c-libinput_drv">libinput_drv</primary>
             </indexterm>
           </listitem>
         </varlistentry>

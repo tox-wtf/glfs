@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY libunistring-download-http "&gnu-http;/libunistring/libunistring-&libunistring-version;.tar.xz">
-  <!ENTITY libunistring-download-ftp  " ">
+  <!ENTITY libunistring-download "&gnu-http;/libunistring/libunistring-&libunistring-version;.tar.xz">
 ]>
 
 <sect1 id="libunistring" xreflabel="libunistring-&libunistring-version;">
@@ -22,23 +21,17 @@
     <title>Introduction to libunistring</title>
 
     <para>
-      <application>libunistring</application> is a library that provides
+      libunistring is a library that provides
       functions for manipulating Unicode strings and for manipulating C
       strings according to the Unicode standard.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&libunistring-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&libunistring-download-ftp;"/>
+          Download: <ulink url="&libunistring-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -49,7 +42,7 @@
     <title>Installation of libunistring</title>
 
     <para>
-      Install <application>libunistring</application> by running the following
+      Install libunistring by running the following
       commands:
     </para>
 
@@ -58,10 +51,6 @@
             --docdir=/usr/share/doc/libunistring-&libunistring-version; &amp;&amp;
 
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -75,17 +64,12 @@ make</userinput></screen>
     <title>lib32 Installation of lib32-libunistring</title>
 
     <para>
-      First clean the directory by running the following command:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Install <application>lib32-libunistring</application>
+      Install lib32-libunistring
       by running the following commands:
     </para>
 
-    <screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 ./configure --prefix=/usr            \
             --libdir=/usr/lib32      \
@@ -110,8 +94,7 @@ ldconfig</userinput></screen>
 
     &options-configure;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/static-libraries.xml"/>
+    &static-libraries;
 
   </sect2>
 
@@ -125,7 +108,7 @@ ldconfig</userinput></screen>
 
       <seglistitem>
         <seg>None</seg>
-        <seg>libunistring.so</seg>
+        <seg>libunistring</seg>
         <seg>
           /usr/include/unistring and
           /usr/share/doc/libunistring-&libunistring-version;
@@ -139,13 +122,13 @@ ldconfig</userinput></screen>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libunistring-lib">
-        <term><command>libunistring.so</command></term>
+        <term><command>libunistring</command></term>
         <listitem>
           <para>
             provides the unicode string library API
           </para>
           <indexterm zone="libunistring libunistring-lib">
-            <primary sortas="c-libunistring-lib">libunistring.so</primary>
+            <primary sortas="c-libunistring-lib">libunistring</primary>
           </indexterm>
         </listitem>
       </varlistentry>

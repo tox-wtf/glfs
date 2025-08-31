@@ -4,9 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY harfbuzz-download-http
-           "https://github.com/harfbuzz/harfbuzz/releases/download/&harfbuzz-version;/harfbuzz-&harfbuzz-version;.tar.xz">
-  <!ENTITY harfbuzz-download-ftp  " ">
+  <!ENTITY harfbuzz-root "https://github.com/harfbuzz/harfbuzz/releases/download">
+  <!ENTITY harfbuzz-download
+    "&harfbuzz-root;/&harfbuzz-version;/harfbuzz-&harfbuzz-version;.tar.xz">
 ]>
 
 <sect1 id="harfbuzz" xreflabel="HarfBuzz-&harfbuzz-version;">
@@ -22,22 +22,16 @@
     <title>Introduction to HarfBuzz</title>
 
     <para>
-      The <application>HarfBuzz</application> package contains an OpenType text
+      The HarfBuzz package contains an OpenType text
       shaping engine.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&harfbuzz-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&harfbuzz-download-ftp;"/>
+          Download: <ulink url="&harfbuzz-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -59,17 +53,18 @@
     <title>Installation of HarfBuzz</title>
 
     <para>
-      Install <application>HarfBuzz</application> by running the following
+      Install HarfBuzz by running the following
       commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..            \
-      --prefix=/usr       \
-      --buildtype=release \
-      -D graphite2=disabled &amp;&amp;
+meson setup ..              \
+      --prefix=/usr         \
+      --buildtype=release   \
+      -D graphite2=disabled \
+      -D tests=disabled &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -89,22 +84,19 @@ ninja</userinput></screen>
     <title>lib32 Installation of HarfBuzz</title>
 
     <para>
-      First clean the build directory:
-    </para>
-
-    <screen><userinput>rm -rf *</userinput></screen>
-
-    <para>
-      Install lib32-<application>HarfBuzz</application> by running the following
+      Install lib32-HarfBuzz by running the following
       commands:
     </para>
 
-<screen><userinput>meson setup ..                       \
-      --cross-file lib32             \
-      --prefix=/usr                  \
-      --libdir=/usr/lib32            \
-      --buildtype=release            \
-      -D graphite2=disabled &amp;&amp;
+<screen><userinput>rm -rf * &amp;&amp;
+meson setup ..              \
+      --cross-file=lib32    \
+      --prefix=/usr         \
+      --libdir=/usr/lib32   \
+      --buildtype=release   \
+      -D cairo=disabled     \
+      -D graphite2=disabled \
+      -D tests=disabled &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -124,18 +116,29 @@ ldconfig</userinput></screen>
 
     &options-meson;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../../xincludes/meson-buildtype-release.xml"/>
-    
+    &meson-buildtype-release;
+
+    <para>
+      <parameter>-D cairo=disabled</parameter>: This switch forces this package
+      to not link against Cairo for the lib32 build
+      as it will mistakenly believe that lib32-Cairo
+      is installed if the 64-bit version is installed.
+    </para>
+
     <para>
       <parameter>-D graphite2=disabled</parameter>: This switch disables
-      <application>Graphite2</application> support, which isn't in GLFS.
+      Graphite2 support, which isn't in GLFS.
+    </para>
+
+    <para>
+      <parameter>-D tests=disabled</parameter>: This switch disables building
+      tests.
     </para>
 
 <!--
     <para>
       <parameter>-Dbenchmark=disabled</parameter>: This switch disables
-      downloading and building the <application>google-benchmark</application>
+      downloading and building the google-benchmark
       subproject, which requires <xref linkend="git"/>, and is of no
       use for non developers.
     </para>
@@ -162,16 +165,14 @@ ldconfig</userinput></screen>
         <seg>
           hb-info,
           hb-ot-shape-closure,
-          hb-shape,
-          hb-subset, and
-          hb-view (only if Cairo is installed)
+          hb-shape, and
+          hb-subset
         </seg>
         <seg>
-          libharfbuzz.so,
-          libharfbuzz-cairo.so (only if Cairo is installed),
-          libharfbuzz-gobject.so,
-          libharfbuzz-icu.so, and
-          libharfbuzz-subset.so
+          libharfbuzz,
+          libharfbuzz-gobject,
+          libharfbuzz-icu, and
+          libharfbuzz-subset
         </seg>
         <seg>
           /usr/include/harbuzz,
@@ -256,62 +257,50 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libharfbuzz">
-        <term><filename class="libraryfile">libharfbuzz.so</filename></term>
+        <term><filename class="libraryfile">libharfbuzz</filename></term>
         <listitem>
           <para>
             is the HarfBuzz text shaping library
           </para>
           <indexterm zone="harfbuzz libharfbuzz">
-            <primary sortas="c-libharfbuzz">libharfbuzz.so</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libharfbuzz-cairo">
-        <term><filename class="libraryfile">libharfbuzz-cairo.so</filename></term>
-        <listitem>
-          <para>
-            provides Cairo integration for the Harfbuzz text shaping library
-          </para>
-          <indexterm zone="harfbuzz libharfbuzz-cairo">
-            <primary sortas="c-libharfbuzz-cairo">libharfbuzz-cairo</primary>
+            <primary sortas="c-libharfbuzz">libharfbuzz</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libharfbuzz-gobject">
-        <term><filename class="libraryfile">libharfbuzz-gobject.so</filename></term>
+        <term><filename class="libraryfile">libharfbuzz-gobject</filename></term>
         <listitem>
           <para>
             provides GObject integration for the HarfBuzz text shaping library
           </para>
           <indexterm zone="harfbuzz libharfbuzz-gobject">
-            <primary sortas="c-libharfbuzz-gobject">libharfbuzz-gobject.so</primary>
+            <primary sortas="c-libharfbuzz-gobject">libharfbuzz-gobject</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libharfbuzz-icu">
-        <term><filename class="libraryfile">libharfbuzz-icu.so</filename></term>
+        <term><filename class="libraryfile">libharfbuzz-icu</filename></term>
         <listitem>
           <para>
             provides ICU integration for the HarfBuzz text shaping library
           </para>
           <indexterm zone="harfbuzz libharfbuzz-icu">
-            <primary sortas="c-libharfbuzz-icu">libharfbuzz-icu.so</primary>
+            <primary sortas="c-libharfbuzz-icu">libharfbuzz-icu</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libharfbuzz-subset">
-        <term><filename class="libraryfile">libharfbuzz-subset.so</filename></term>
+        <term><filename class="libraryfile">libharfbuzz-subset</filename></term>
         <listitem>
           <para>
             provides API functions for performing subsetting operations on font
             files
           </para>
           <indexterm zone="harfbuzz libharfbuzz-subset">
-            <primary sortas="c-libharfbuzz-subset">libharfbuzz-subset.so</primary>
+            <primary sortas="c-libharfbuzz-subset">libharfbuzz-subset</primary>
           </indexterm>
         </listitem>
       </varlistentry>

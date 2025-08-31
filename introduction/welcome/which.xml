@@ -23,22 +23,19 @@
   </para>
 
   <para>
-    Not every chapter will be necessary depending on what you
+    Not every chapter/section will be necessary depending on what you
     want. Some packages may also not be necessary.
   </para>
 
   <para>
-    By default, every user should read the multilib chapter as
-    most users that want <application>Steam</application> and/or
-    <application>Wine</application> should have a x86_64
-    CPU capable of 32-bit emulation. If that chapter is skipped,
-    you might get a headache later on.
+    By default, every user should read the multilib chapter.
+    If that chapter is skipped, you might get a headache later on.
   </para>
 
   <para>
-    The following chapter is Shared Dependencies. Every user
-    who wants <application>Steam</application> and/or
-    <application>Wine</application> will want to read this chapter
+    The following section is Shared Dependencies. Every user
+    who wants Steam and/or
+    Wine will want to read this chapter
     as both projects use the packages. Most of this chapter is
     necessary. However, it is recommended to check the dependency
     lists of Steam and Wine to see what exactly you need from a
@@ -48,31 +45,25 @@
   </para>
 
   <para>
-    The next chapter is Steam, which covers all the packages,
+    The next section is Steam, which covers all the packages,
     patches, configuration, and setup necessary to get
-    <application>Steam</application> working and capable of the
+    Steam working and capable of the
     playing the following: Linux games, Windows games via Proton,
-    and games using OpenGL, Vulkan, and Direct3D. It covers both
-    regular compilation of packages and lib32 compilation of some
-    of the same packages. If you read the multilib section and
-    decided that you desire NOT to go with multilib (despite any
-    warnings), you can ignore the lib32 variants of packages.
-    Otherwise, follow every step unless told otherwise in the
-    respective sections or are presented with options.
+    and games using OpenGL, Vulkan, and Direct3D.
   </para>
 
   <para>
-    The following chapter that most users will need is Wine. Likewise
-    with the Steam chapter, users should follow every step in this
-    chapter if they want to install <application>Wine</application>
-    and use it. The Wine chapter at the moment does not consider
+    The following section that most users will need is Wine. Users
+    should follow every step in this chapter if they want to install
+    WoW64 Wine, but more information is covered
+    in that chapter. The Wine chapter at the moment does not consider
     retrofitting and will handle it in a similar manner to Arch: build the
     MinGW-w64 toolchain, install the audio and video components, then finally
-    <application>Wine</application> itself.
+    Wine itself.
   </para>
 
   <para>
-    The last chapter covers quality of life improvements and packages.
+    The last section covers quality of life improvements and packages.
     This chapter is not required but recommended.
   </para>
 

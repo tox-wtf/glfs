@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY flac-download-http "https://github.com/xiph/flac/releases/download/&flac-version;/flac-&flac-version;.tar.xz">
-  <!ENTITY flac-download-ftp  " ">
+  <!ENTITY flac-root "https://github.com/xiph/flac/releases/download">
+  <!ENTITY flac-download "&flac-root;/&flac-version;/flac-&flac-version;.tar.xz">
 ]>
 
 <sect1 id="flac" xreflabel="FLAC-&flac-version;">
@@ -22,7 +22,7 @@
     <title>Introduction to FLAC</title>
 
     <para>
-      <application>FLAC</application> is an audio CODEC similar to
+      FLAC is an audio CODEC similar to
       MP3, but lossless, meaning that audio is compressed without losing any
       information.
     </para>
@@ -30,12 +30,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&flac-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&flac-download-ftp;"/>
+          Download: <ulink url="&flac-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -69,7 +64,7 @@
     <title>Installation of FLAC</title>
 
     <para>
-      Install <application>FLAC</application> by running the
+      Install FLAC by running the
       following commands:
     </para>
 
@@ -78,15 +73,6 @@
             --docdir=/usr/share/doc/flac-&flac-version; &amp;&amp;
 
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>. Note that
-      if you passed the <option>--enable-exhaustive-tests</option> and
-      <option>--enable-valgrind-testing</option> parameters to
-      <command>configure</command> and then run the test suite, it will take a
-      <emphasis>very</emphasis> long time (up to 300 SBUs) and use about 375 MB
-      of disk space.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -100,17 +86,12 @@ make</userinput></screen>
     <title>lib32 Installation of FLAC</title>
 
     <para>
-      First clean the directory:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Install lib32-<application>FLAC</application> by running the
+      Install lib32-FLAC by running the
       following commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 CFLAGS+=" -L/usr/lib32"              \
 CXXFLAGS+=" -L/usr/lib32"            \
 ./configure --prefix=/usr            \
@@ -138,8 +119,7 @@ ldconfig</userinput></screen>
 
     <para>
       <parameter>--disable-thorough-tests</parameter>: This parameter is
-      used so that the test suite will complete in a reasonable amount of time.
-      Remove it if you desire more extensive tests.
+      used so that only basic tests are built. Tests can't be fully disabled.
     </para>
 
   </sect2>
@@ -154,7 +134,7 @@ ldconfig</userinput></screen>
 
       <seglistitem>
         <seg>flac and metaflac</seg>
-        <seg>libFLAC.so and libFLAC++.so</seg>
+        <seg>libFLAC and libFLAC++</seg>
         <seg>/usr/include/FLAC, /usr/include/FLAC++ and
         /usr/share/doc/flac-&flac-version;</seg>
       </seglistitem>
@@ -192,14 +172,14 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libflac">
-        <term><filename class="libraryfile">libFLAC{,++}.so</filename></term>
+        <term><filename class="libraryfile">libFLAC{,++}</filename></term>
         <listitem>
           <para>
             these libraries provide native FLAC and Ogg FLAC C/C++ APIs
             for programs utilizing FLAC
           </para>
           <indexterm zone="flac libflac">
-            <primary sortas="c-libFLAC">libFLAC{,++}.so</primary>
+            <primary sortas="c-libFLAC">libFLAC{,++}</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -209,7 +189,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libxmms-flac.{so,a}</filename></term>
         <listitem>
           <para>
-            is a plugin for <application>XMMS</application>.
+            is a plugin for XMMS.
           </para>
           <indexterm zone="flac libxmms-flac">
             <primary sortas="c-libxmms-flac">libxmms-flac.{so,a}</primary>

@@ -4,16 +4,12 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY libva-download-http "https://github.com/intel/libva/archive/&libva-version;/libva-&libva-version;.tar.gz">
-  <!ENTITY libva-download-ftp  " ">
+  <!ENTITY libva-root "https://github.com/intel/libva/archive">
+  <!ENTITY libva-download "&libva-root;/&libva-version;/libva-&libva-version;.tar.gz">
 ]>
 
   <sect1 id="libva" xreflabel="libva-&libva-version;">
   <?dbhtml filename="libva.html"?>
-
-    <sect1info>
-      <date>$Date$</date>
-    </sect1info>
 
     <title>libva-&libva-version;</title>
 
@@ -25,7 +21,7 @@
       <title>Introduction to libva</title>
 
       <para>
-        The <application>libva</application> package contains a library which
+        The libva package contains a library which
         provides access to hardware accelerated video processing, using hardware
         to accelerate video processing in order to offload the central
         processing unit (CPU) to decode and encode compressed digital video. The VA
@@ -40,12 +36,7 @@
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            Download (HTTP): <ulink url="&libva-download-http;"/>
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Download (FTP): <ulink url="&libva-download-ftp;"/>
+            Download: <ulink url="&libva-download;"/>
           </para>
         </listitem>
       </itemizedlist>
@@ -60,7 +51,7 @@
 
       <bridgehead renderas="sect4">Recommended</bridgehead>
       <para role="recommended">
-        <xref linkend="mesa"/>
+        &opengl;
       </para>
 
       <bridgehead renderas="sect4">Recommended (Runtime)</bridgehead>
@@ -70,7 +61,7 @@
         The VA API driver suitable for the hardware in your system:
         <ulink url="&blfs-svn;/multimedia/intel-vaapi-driver.html">intel-vaapi-driver</ulink>
         (for Intel GPUs provided with Haswell CPUs or earlier),
-        <ulink url="&blfs-svn;/multimedia/intel-media.html">intel-media</ulink>
+        <ulink url="&blfs-svn;/multimedia/intel-media-driver.html">intel-media-driver</ulink>
         (for Intel GPUs provided with Broadwell CPUs or later), and
         <xref linkend="mesa"/> (providing the <literal>r600</literal>,
         <literal>radeonsi</literal>, and <literal>nouveau</literal> VA API
@@ -91,18 +82,18 @@
 
     <sect2 role="installation">
       <title>Installation of libva</title>
-      <!-- libva*.so.2 have been around for a long time...
+      <!-- libva*.2 have been around for a long time...
       <caution>
         <para>
           If you are reinstalling this package, you will need
           to remove the older versions of the libraries.  These are in the
-          form of libva*.so.1 and any symbolic links pointing to them.  In
+          form of libva*.1 and any symbolic links pointing to them.  In
           addition, any packages that use these files need to be rebuilt.
         </para>
       </caution>
       -->
       <para>
-        Install <application>libva</application> by running the following
+        Install libva by running the following
         commands:
       </para>
 
@@ -111,10 +102,6 @@
 meson setup --prefix=/usr --buildtype=release &amp;&amp;
 
 ninja</userinput></screen>
-
-      <para>
-        This package does not come with a test suite.
-      </para>
 
       <para>
         Now, as the <systemitem class="username">root</systemitem> user:
@@ -128,17 +115,12 @@ ninja</userinput></screen>
       <title>lib32 Installation of libva</title>
       
       <para>
-        First clean the build directory:
-      </para>
-
-<screen><userinput>rm -rf *</userinput></screen>
-
-      <para>
-        Install lib32-<application>libva</application> by running the following
+        Install lib32-libva by running the following
         commands:
       </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 meson setup --prefix=/usr            \
             --libdir=/usr/lib32      \
@@ -177,11 +159,11 @@ ldconfig</userinput></screen>
             None
           </seg>
           <seg>
-            libva-drm.so,
-            libva-glx.so,
-            libva.so,
-            libva-wayland.so, and
-            libva-x11.so
+            libva-drm,
+            libva-glx,
+            libva,
+            libva-wayland, and
+            libva-x11
           </seg>
           <seg>
             /usr/include/va
@@ -195,14 +177,14 @@ ldconfig</userinput></screen>
         <?dbhtml list-presentation="table"?>
 
         <varlistentry id="libva-lib">
-          <term><filename class="libraryfile">libva.so</filename></term>
+          <term><filename class="libraryfile">libva</filename></term>
           <listitem>
             <para>
               contains API functions which provide access to hardware
               accelerated video processing
             </para>
             <indexterm zone="libva libva-lib">
-              <primary sortas="c-libva">libva.so</primary>
+              <primary sortas="c-libva">libva</primary>
             </indexterm>
           </listitem>
         </varlistentry>

@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY libepoxy-download-http "&gnome-download-http;/libepoxy/&libepoxy-minor;/libepoxy-&libepoxy-version;.tar.xz">
-  <!ENTITY libepoxy-download-ftp  " ">
+  <!ENTITY libepoxy-download "&gnome-download-http;/libepoxy/&libepoxy-minor;/libepoxy-&libepoxy-version;.tar.xz">
 ]>
 
 <sect1 id="libepoxy" xreflabel="libepoxy-&libepoxy-version;">
@@ -21,19 +20,14 @@
     <title>Introduction to libepoxy</title>
 
     <para>
-      <application>libepoxy</application> is a library for handling OpenGL
+      libepoxy is a library for handling OpenGL
       function pointer management.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&libepoxy-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&libepoxy-download-ftp;"/>
+          Download: <ulink url="&libepoxy-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -42,7 +36,7 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="mesa"/>
+      &opengl;
     </para>
 
   </sect2>
@@ -51,7 +45,7 @@
     <title>Installation of libepoxy</title>
 
     <para>
-      Install <application>libepoxy</application> by running the following
+      Install libepoxy by running the following
       commands:
     </para>
 
@@ -60,10 +54,6 @@ cd    build &amp;&amp;
 
 meson setup --prefix=/usr --buildtype=release .. &amp;&amp;
 ninja</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>ninja test</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -78,8 +68,7 @@ ninja</userinput></screen>
 
     &options-meson;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../xincludes/meson-buildtype-release.xml"/>
+    &meson-buildtype-release;
 
   </sect2>
 
@@ -96,7 +85,7 @@ ninja</userinput></screen>
           None
         </seg>
         <seg>
-          libepoxy.so
+          libepoxy
         </seg>
         <seg>
           /usr/include/epoxy
@@ -111,14 +100,14 @@ ninja</userinput></screen>
 
 
       <varlistentry id="libepoxy-lib">
-        <term><filename class="libraryfile">libepoxy.so</filename></term>
+        <term><filename class="libraryfile">libepoxy</filename></term>
         <listitem>
           <para>
             contains API functions for handling OpenGL function
             pointer management
           </para>
           <indexterm zone="libepoxy libepoxy-lib">
-            <primary sortas="c-libepoxy">libepoxy.so</primary>
+            <primary sortas="c-libepoxy">libepoxy</primary>
           </indexterm>
         </listitem>
       </varlistentry>

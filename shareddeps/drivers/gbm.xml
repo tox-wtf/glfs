@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY gbm-download "https://mesa.freedesktop.org/archive/mesa-&mesa-version;.tar.xz">
+]>
+
+<sect1 id="gbm" xreflabel="GBM from Mesa-&mesa-version;">
+  <?dbhtml filename="gbm.html"?>
+
+  <title>GBM from Mesa-&mesa-version;</title>
+
+  <indexterm zone="gbm">
+    <primary sortas="a-GBM">GBM</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to GBM</title>
+
+    <para>
+      The GBM
+        <footnote><para>
+          Graphics Buffer Manager.
+        </para></footnote>
+      library provides API functions for graphical rendering and is supplied by
+      Mesa. Most drivers on Linux distributions come
+      from Mesa, so GBM
+      will get installed along those drivers. On the other hand, <xref
+      linkend="nvidia"/> does not need the full Mesa
+      stack, but it still needs the GBM library. As
+      such, you can install just what you need. You will not need to install
+      the full <xref linkend="mesa"/> stack if you want to install <xref
+      linkend="nvidia"/>, but you can if you so choose. It can be a good idea
+      to do so as to have a fallback (Zink Gallium3D + Nouveau Vulkan). If you
+      are not installing NVIDIA, skip to <xref
+      linkend="llvm"/> and keep going till you reach <xref
+      linkend="mesa"/> to get a complete installation of drivers and other
+      libraries.
+    </para>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&gbm-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">GBM Dependencies</bridgehead>
+
+    <bridgehead renderas="sect4">Required</bridgehead>
+    <para role="required">
+      <xref linkend="libdrm"/>,
+      <xref linkend="libxcb"/>,
+      <xref linkend="mako"/>,
+      <xref linkend="pyyaml"/>, and
+      <xref linkend="xorg7-lib"/>
+    </para>
+
+    <bridgehead renderas="sect4">Optional</bridgehead>
+    <para role="optional">
+      <ulink url="&slfs-website;/general/mesa-demos.html">Mesa-Demos</ulink>
+      (provides more than 300 demos to test drivers)
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of GBM</title>
+    
+    <para>
+      Install the GBM by running the following
+      commands:
+    </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson setup --prefix=/usr            \
+            --buildtype=release      \
+            -D gallium-drivers=      \
+            -D vulkan-drivers=       \
+            -D video-codecs=         \
+            -D gbm=enabled           \
+            -D glx=disabled          \
+            -D llvm=disabled         \
+            -D valgrind=disabled     \
+            -D libunwind=disabled    \
+            .. &amp;&amp;
+
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>ninja install &amp;&amp;
+mkdir -pv /usr/include/GL/internal &amp;&amp;
+cp -v ../include/GL/internal/dri_interface.h /usr/include/GL/internal
+if test -d /usr/include/EGL; then
+  cp -v ../include/EGL/eglmesaext.h /usr/include/EGL
+fi</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>lib32 Installation of GBM</title>
+
+    <para>
+      Install lib32-GBM by running the following
+      commands:
+    </para>
+
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+meson setup --prefix=/usr            \
+            --libdir=/usr/lib32      \
+            --buildtype=release      \
+            -D gallium-drivers=      \
+            -D vulkan-drivers=       \
+            -D video-codecs=         \
+            -D gbm=enabled           \
+            -D glx=disabled          \
+            -D llvm=disabled         \
+            -D valgrind=disabled     \
+            -D libunwind=disabled    \
+            .. &amp;&amp;
+
+ninja</userinput></screen>
+
+    <para>
+      Now, as the <systemitem class="username">root</systemitem> user:
+    </para>
+
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-meson;
+
+    <para>
+      <parameter>--buildtype=release</parameter>: This switch ensures a
+      fully-optimized build, and disables debug assertions which will
+      severely slow down the libraries in certain use-cases. Without this
+      switch, build sizes can span into the 2GB range.
+    </para>
+
+    <para>
+      <parameter>-D gallium-drivers=</parameter>: This parameter forces
+      Gallium3D (OpenGL) drivers to not be built as drivers are provided by
+      <xref linkend="nvidia"/>.
+    </para>
+
+    <para>
+      <parameter>-D vulkan-drivers=</parameter>: This parameter forces
+      Vulkan drivers to not be built as drivers are provided by <xref
+      linkend="nvidia"/>.
+    </para>
+
+    <para>
+      <parameter>-D video-codecs=</parameter>: This parameter forces video
+      codecs to not be built.
+    </para>
+
+    <para>
+      <parameter>-D gbm=enabled</parameter>: This parameter forces <filename
+      class="libraryfile">libgbm</filename> to be built.
+    </para>
+
+    <para>
+      <parameter>-D glx=disabled</parameter>: This parameter disables building
+      any OpenGL libraries or drivers which are provided by <xref
+      linkend="nvidia"/>.
+    </para>
+
+    <para>
+      <parameter>-D llvm=disabled</parameter>: This parameter disables unneeded
+      <xref linkend="llvm"/> support.
+    </para>
+
+    <para>
+      <parameter>-D valgrind=disabled</parameter>: This parameter disables
+      the usage of Valgrind during the build process.
+    </para>
+
+    <para>
+      <parameter>-D libunwind=disabled</parameter>: This parameter disables
+      the usage of libunwind.
+    </para>
+
+    <para>
+      <command>cp -v ../include/GL/internal/dri_interface.h ...</command>: This
+      command copies over a header file that is needed by <xref
+      linkend="xorg-server"/> since it is not copied over automatically in this
+      build.
+    </para>
+
+    <para>
+      <command>cp -v ../include/EGL/eglmesaext.h ...</command>: This command
+      copies over a header file that is needed by <ulink
+      url="&blfs-svn;/gnome/mutter.html">Mutter</ulink> and possibly other
+      packages.
+    </para>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Libraries</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          None
+        </seg>
+        <seg>
+          libgbm
+        </seg>
+        <seg>
+          /usr/share/drirc.d (contains workarounds for various applications,
+          particularly browsers and games)
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libgbm-gbm">
+        <term><filename class="libraryfile">libgbm</filename></term>
+        <listitem>
+          <para>
+            is the Graphics Buffer Manager library
+          </para>
+          <indexterm zone="gbm libgbm-gbm">
+            <primary sortas="c-libgbm-gbm">libgbm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

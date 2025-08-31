@@ -21,10 +21,10 @@
     <title>Introduction to GNAT</title>
 
     <para>
-	<application>GNAT</application> is a part of
-	<application>GCC</application>. It is often called
+	GNAT is a part of
+	GCC. It is often called
 	GCC-Ada because of this. Not many packages depend
-	on <application>GNAT</application> besides
+	on GNAT besides
 	<xref linkend="wine"/>, although some packages
 	optionally depend on it.
     </para>
@@ -32,7 +32,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&gnat-download-http;"/>
+          Download: <ulink url="&gnat-download-http;"/>
         </para>
       </listitem>
       <listitem>
@@ -137,7 +137,7 @@ else
 fi</userinput></screen>
 
     <para>
-      Now install <application>GNAT</application> by running the following
+      Now install GNAT by running the following
       commands:
     </para>
 
@@ -166,8 +166,8 @@ sed -e 's/{ target nonpic } //' \
 
     <para>
 	If you have installed additional packages such as
-	<application>valgrind</application> and <application>gdb
-	</application>, the <application>gcc</application> part of the
+	valgrind and gdb
+	, the gcc part of the
 	test suite will run more tests than in LFS. Some of those will
 	report FAIL and others XPASS (pass when expected to FAIL).
 	As of gcc-&gcc-version;, about 74 FAIL occur in the “guality”
@@ -209,7 +209,7 @@ ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/&gcc-version;/liblto_plugin.so \
     <title>Cleaning Up and Testing</title>
 
     <para>
-      Now that <application>GNAT</application> has been installed,
+      Now that GNAT has been installed,
       it is time to clean up and test your installation to make sure
       everything is working as expected.
     </para>
@@ -289,7 +289,7 @@ rm -v testgnat*</userinput></screen>
 
     <para>
       <command>mkdir build; cd build</command>: The
-      <application>GCC</application> documentation recommends
+      GCC documentation recommends
       building the package in a dedicated build directory.
     </para>
 
@@ -307,9 +307,9 @@ rm -v testgnat*</userinput></screen>
 
     <para>
       <parameter>--with-system-zlib</parameter>: Uses the system
-      <application>zlib</application> instead of the bundled one.
-      <application>zlib</application> is used for compressing
-      and decompressing <application>GCC</application>'s intermediate
+      zlib instead of the bundled one.
+      zlib is used for compressing
+      and decompressing GCC's intermediate
       language in LTO (Link Time Optimization) object files.
     </para>
 
@@ -332,8 +332,8 @@ rm -v testgnat*</userinput></screen>
       This command builds support for ADA, C, and C++. Refer to <ulink
       url="https://www.linuxfromscratch.org/blfs/view/svn/general/gcc.html"/>
       to find what other languages are supported. Make sure to add
-      <parameter>ada</parameter> to the option if you recompile <application>
-      GCC</application>.
+      <parameter>ada</parameter> to the option if you recompile 
+      GCC.
     </para>
 
     <para>
@@ -356,7 +356,7 @@ rm -v testgnat*</userinput></screen>
 
     <para>
       <command>mv -v /usr/lib/*gdb.py ...</command>: The installation
-      stage puts some files used by <application>gdb</application> under the
+      stage puts some files used by gdb under the
       <filename class="directory">/usr/lib</filename> directory. This generates
       spurious error messages when performing <command>ldconfig</command>. This
       command moves the files to another location.
@@ -456,7 +456,7 @@ rm -v testgnat*</userinput></screen>
         <listitem>
           <para>
             is useful for renaming files to meet the standard
-            <application>Ada</application> default file naming conventions.
+            Ada default file naming conventions.
           </para>
           <indexterm zone="gnat gnatchop">
             <primary sortas="b-gnatchop">gnatchop</primary>
@@ -469,7 +469,7 @@ rm -v testgnat*</userinput></screen>
         <listitem>
           <para>
             is used to remove files associated with a
-            <application>GNAT</application> project.
+            GNAT project.
           </para>
           <indexterm zone="gnat gnatclean">
             <primary sortas="b-gnatclean">gnatclean</primary>
@@ -482,7 +482,7 @@ rm -v testgnat*</userinput></screen>
         <listitem>
           <para>
             is intended for locating definition and/or references to
-            specified entities in a <application>GNAT</application> project.
+            specified entities in a GNAT project.
           </para>
           <indexterm zone="gnat gnatfind">
             <primary sortas="b-gnatfind">gnatfind</primary>
@@ -531,7 +531,7 @@ rm -v testgnat*</userinput></screen>
         <term><command>gnatmake</command></term>
         <listitem>
           <para>
-            is the <application>Ada</application> compiler, which performs
+            is the Ada compiler, which performs
             compilation, binding and linking.
           </para>
           <indexterm zone="gnat gnatmake">
@@ -545,7 +545,7 @@ rm -v testgnat*</userinput></screen>
         <listitem>
           <para>
             will list the files associated with a
-            <application>GNAT</application> project.
+            GNAT project.
           </para>
           <indexterm zone="gnat gnatname">
             <primary sortas="b-gnatname">gnatname</primary>
@@ -557,7 +557,7 @@ rm -v testgnat*</userinput></screen>
         <term><command>gnatprep</command></term>
         <listitem>
           <para>
-            is the <application>GNAT</application> external preprocessor.
+            is the GNAT external preprocessor.
           </para>
           <indexterm zone="gnat gnatprep">
             <primary sortas="b-gnatprep">gnatprep</primary>

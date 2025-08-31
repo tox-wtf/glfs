@@ -3,9 +3,6 @@
    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
-
-  <!ENTITY dxvk-download-http "https://github.com/doitsujin/dxvk">
-  <!ENTITY dxvk-download-ftp  " ">
 ]>
 
 <sect1 id="dxvk" xreflabel="DXVK-&dxvk-version;">
@@ -21,44 +18,49 @@
     <title>Introduction to DXVK</title>
 
     <para>
-      The <application>DXVK</application> package contains DLL files which
+      The DXVK package contains DLL files which
       converts Direct3D 8-11 calls to Vulkan. By default in
-      <application>Wine</application>, Direct3D 8-11 calls are converted to
+      Wine, Direct3D 8-11 calls are converted to
       OpenGL calls in a poor manner, leading to bad performance. As such,
       many people install this package.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
-
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Download (HTTP): <ulink url="&dxvk-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&dxvk-download-ftp;"/>
-        </para>
-      </listitem>
-    </itemizedlist>
+    &long-build-time;
 
     <bridgehead renderas="sect3">DXVK Dependencies</bridgehead>
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="git"/> (with <xref linkend="curl"/>;
-      to clone the repository),
-      <xref linkend="glslang"/>,
-      <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support), and
+      <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support),
+      <xref linkend="vulkan-sdk"/>, and
       <xref linkend="wine"/>
     </para>
 
-    <bridgehead renderas="sect4">Required (Runtime)</bridgehead>
-    <para role="runtime">
-      <xref linkend="libvk"/>
+  </sect2>
+
+  <sect2>
+    <title>Downloading DXVK</title>
+
+    <para>
+      This package depends on submodules and multiple of them will need to be
+      downloaded. Create a list of the needed tarballs that will be downloaded:
     </para>
+
+<screen><userinput>cat &gt; dxvk-&dxvk-version;-list &lt;&lt; "EOF"
+<literal>doitsujin/dxvk/archive/v&dxvk-version;/dxvk-&dxvk-version;.tar.gz
+doitsujin/libdisplay-info/archive/&dxvk-libdisplay-info;.tar.gz
+KhronosGroup/SPIRV-Headers/archive/&dxvk-spirv;.tar.gz
+KhronosGroup/Vulkan-Headers/archive/&dxvk-vulkan;.tar.gz</literal>
+EOF</userinput></screen>
+
+    <para>
+      Download the tarballs using <xref linkend="wget"/>:
+    </para>
+
+<screen><userinput>mkdir dxvk &amp;&amp;
+cd    dxvk &amp;&amp;
+grep -v '^#' ../dxvk-&dxvk-version;-list | wget -i- -c \
+    -B https://github.com/</userinput></screen>
 
   </sect2>
 
@@ -66,17 +68,36 @@
     <title>Installation of DXVK</title>
 
     <para>
-      Clone the repository using <xref linkend="git"/> as this project
-      depends on submodules, even if they are installed on the system:
+      Extract all the tarballs:
     </para>
 
-<screen><userinput>git clone --recursive &dxvk-download-http; dxvk-&dxvk-version; &amp;&amp;
-cd dxvk-&dxvk-version; &amp;&amp;
-git checkout v&dxvk-version;</userinput></screen>
+<screen><userinput>for i in *.tar.?z*; do
+  echo "Extracting $i..."
+  tar -xf $i
+done</userinput></screen>
+
+    <para>
+      Now that the tarballs have been extracted, the submodules need to be
+      moved in place. Do so now:
+    </para>
+
+<screen><userinput>mv -T libdisplay-info-*                       \
+      dxvk-&dxvk-version;/subprojects/libdisplay-info &amp;&amp;
+mv -T SPIRV-Headers-*                         \
+      dxvk-&dxvk-version;/include/spirv               &amp;&amp;
+mv -T Vulkan-Headers-*                        \
+      dxvk-&dxvk-version;/include/vulkan</userinput></screen>
+
+    <para>
+      Go into the <filename class="directory">dxvk-&dxvk-version;</filename>
+      directory:
+    </para>
+
+<screen><userinput>cd dxvk-&dxvk-version;</userinput></screen>
 
     <note><para>
       If you are doing multilib, it is recommended to install 32-bit along with
-      64-bit <application>DXVK</application> as there are plenty of 32-bit
+      64-bit DXVK as there are plenty of 32-bit
       Direct3D applications.
     </para></note>
 
@@ -84,14 +105,14 @@ git checkout v&dxvk-version;</userinput></screen>
       <title>64-bit Installation</title>
 
       <para>
-        Install 64-bit <application>DXVK</application> by running
+        Install 64-bit DXVK by running
         the following commands:
       </para>
 
 <screen><userinput>mkdir build-win64 &amp;&amp;
 cd    build-win64 &amp;&amp;
 
-meson setup .. --cross-file ../build-win64.txt \
+meson setup .. --cross-file=../build-win64.txt \
                --buildtype=release             \
                --prefix=$PWD/DESTDIR &amp;&amp;
 
@@ -112,7 +133,7 @@ install -vDm644 build-win64/DESTDIR/bin/*.dll \
       <title>32-bit Installation</title>
 
       <para>
-        Install 32-bit <application>DXVK</application> by running
+        Install 32-bit DXVK by running
         the following commands:
       </para>
 
@@ -141,8 +162,14 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
   <sect2 role="configuration">
     <title>Setting Up DXVK</title>
 
+    <note><para>
+      This section requires a running graphical environment. If you are not
+      ready yet, you may skip this section and return back once you are in a
+      graphical environment.
+    </para></note>
+
     <para>
-      First, create the <application>Wine</application> prefix if it is not
+      First, create the Wine prefix if it is not
       already made:
     </para>
 
@@ -151,13 +178,13 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
     <note><para>
       <command>wineboot</command> may report an error in the output, but this
       is normal and frequent. Usually, these errors are non-fatal and you won't
-      need to typically worry about them. <application>Wine</application> is
+      need to typically worry about them. Wine is
       very verbose.
     </para></note>
 
     <para>While the DXVK DLL files have been installed, they are not yet in the
-    <application>Wine</application> prefix. Create symlinks so that they can be
-    found by <application>Wine</application>, whilst allowing updating of this
+    Wine prefix. Create symlinks so that they can be
+    found by Wine, whilst allowing updating of this
     package without having to copy everything over again. Along with this, the
     registry must be updated to use the new DLLs. Do this for each
     archetecture you have installed.</para>
@@ -213,18 +240,17 @@ done</userinput></screen>
       parameter changes what Win archetecture to build for.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/meson-buildtype-release.xml"/>
+    &meson-buildtype-release;
 
     <para>
       <command>WINEPREFIX=~/.wine wineboot -u</command>: This command creates a
-      <application>Wine</application> prefix and copies over any missing files
+      Wine prefix and copies over any missing files
       to it. It will not reset an existing prefix.
     </para>
 
     <para>
-      <command>wine{,64} reg add ...</command>: This command overrides the
-      registry so that <application>Wine</application> will use the new DLL
+      <command>wine reg add ...</command>: This command overrides the
+      registry so that Wine will use the new DLL
       files instead of the old ones.
     </para>
 
@@ -243,11 +269,11 @@ done</userinput></screen>
           None
         </seg>
         <seg>
-          d3d10core.dll,
-          d3d11.dll,
-          d3d8.dll,
-          d3d9.dll, and
-          dxgi.dll
+          d3d10core,
+          d3d11,
+          d3d8,
+          d3d9, and
+          dxgi (all DLLs)
         </seg>
         <seg>
           /usr/lib/dxvk/{win32,win64}
@@ -261,61 +287,61 @@ done</userinput></screen>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="d3d10core">
-        <term><filename class="libraryfile">d3d10core.dll</filename></term>
+        <term><filename class="libraryfile">d3d10core</filename></term>
         <listitem>
           <para>
             converts Direct3D 10 calls to Vulkan
           </para>
           <indexterm zone="dxvk d3d10core">
-            <primary sortas="c-d3d10core">d3d10core.dll</primary>
+            <primary sortas="c-d3d10core">d3d10core</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="d3d11">
-        <term><filename class="libraryfile">d3d11.dll</filename></term>
+        <term><filename class="libraryfile">d3d11</filename></term>
         <listitem>
           <para>
             converts Direct3D 11 calls to Vulkan
           </para>
           <indexterm zone="dxvk d3d11">
-            <primary sortas="c-d3d11">d3d11.dll</primary>
+            <primary sortas="c-d3d11">d3d11</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="d3d8">
-        <term><filename class="libraryfile">d3d8.dll</filename></term>
+        <term><filename class="libraryfile">d3d8</filename></term>
         <listitem>
           <para>
             converts Direct3D 8 calls to Vulkan
           </para>
           <indexterm zone="dxvk d3d8">
-            <primary sortas="c-d3d8">d3d8.dll</primary>
+            <primary sortas="c-d3d8">d3d8</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="d3d9">
-        <term><filename class="libraryfile">d3d9.dll</filename></term>
+        <term><filename class="libraryfile">d3d9</filename></term>
         <listitem>
           <para>
             converts Direct3D 9 calls to Vulkan
           </para>
           <indexterm zone="dxvk d3d9">
-            <primary sortas="c-d3d9">d3d9.dll</primary>
+            <primary sortas="c-d3d9">d3d9</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="dxgi">
-        <term><filename class="libraryfile">dxgi.dll</filename></term>
+        <term><filename class="libraryfile">dxgi</filename></term>
         <listitem>
           <para>
             handles the Direct3D Graphics Infrastructure
           </para>
           <indexterm zone="dxvk dxgi">
-            <primary sortas="c-dxgi">dxgi.dll</primary>
+            <primary sortas="c-dxgi">dxgi</primary>
           </indexterm>
         </listitem>
       </varlistentry>

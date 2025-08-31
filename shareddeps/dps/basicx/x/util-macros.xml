@@ -4,13 +4,11 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY util-macros-download-http "&xorg-download-http;/util/util-macros-&util-macros-version;.tar.xz">
-  <!ENTITY util-macros-download-ftp  " ">
+  <!ENTITY util-macros-download "&xorg-dl;/util/util-macros-&util-macros-version;.tar.xz">
 ]>
 
 <sect1 id="util-macros" xreflabel="util-macros-&util-macros-version;">
   <?dbhtml filename="util-macros.html"?>
-
 
   <title>util-macros-&util-macros-version;</title>
 
@@ -22,20 +20,15 @@
     <title>Introduction to util-macros</title>
 
     <para>
-      The <application>util-macros</application> package contains the
-      <application>m4</application> macros used by all of the
-      <application>Xorg</application> packages.
+      The util-macros package contains the
+      m4 macros used by all of the
+      Xorg packages.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&util-macros-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&util-macros-download-ftp;"/>
+          Download: <ulink url="&util-macros-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -48,22 +41,17 @@
       to work)
     </para>
 
-
   </sect2>
 
   <sect2 role="installation">
     <title>Installation of util-macros</title>
 
     <para>
-      Install <application>util-macros</application> by running the following
+      Install util-macros by running the following
       commands:
     </para>
 
 <screen><userinput>./configure $XORG_CONFIG</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

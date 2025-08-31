@@ -4,9 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY icu-download-http
-           "https://github.com/unicode-org/icu/releases/download/release-&icu-major;-&icu-minor;/icu4c-&icu-major;_&icu-minor;-src.tgz">
-  <!ENTITY icu-download-ftp  " ">
+  <!ENTITY icu-root "https://github.com/unicode-org/icu/releases/download">
+  <!ENTITY icu-download
+    "&icu-root;/release-&icu-major;-&icu-minor;/icu4c-&icu-major;_&icu-minor;-src.tgz">
 ]>
 
 <sect1 id="icu" xreflabel="ICU-&icu-version;">
@@ -23,10 +23,10 @@
     <title>Introduction to ICU</title>
 
     <para>
-      The <application>International Components for Unicode</application> (ICU)
+      The International Components for Unicode (ICU)
       package is a mature, widely used set of C/C++ libraries providing Unicode
       and Globalization support for software applications.
-      <application>ICU</application> is widely portable and gives applications
+      ICU is widely portable and gives applications
       the same results on all platforms.
     </para>
 
@@ -55,28 +55,22 @@
         by an application or a library, run:
       </para>
 
-<screen><userinput>ldd &lt;application or library&gt; </userinput></screen>
+<screen role='nodump'><userinput>ldd &lt;application or library&gt; </userinput></screen>
 
       <para>
         or to see only programs and libraries that directly use a library:
       </para>
 
-<screen><userinput>readelf -d  &lt;application or library&gt; | grep NEEDED</userinput></screen>
+<screen role='nodump'><userinput>readelf -d  &lt;application or library&gt; | grep NEEDED</userinput></screen>
 
     </warning>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&icu-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&icu-download-ftp;"/>
+          Download: <ulink url="&icu-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -112,7 +106,7 @@
 <screen><userinput>patch -p1 -i ../icu4c-&icu-version;-fix_enumeration-1.patch</userinput></screen>
 -->
     <para>
-      Install <application>ICU</application> by running the following commands:
+      Install ICU by running the following commands:
     </para>
 
 <!-- Review comments at:
@@ -126,10 +120,6 @@ sed '/fdef U_CHARSET_I/i#define U_CHARSET_IS_UTF8 1' -i common/unicode/platform.
 make</userinput></screen>
 
     <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
-
-    <para>
       Now, as the <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -141,23 +131,14 @@ make</userinput></screen>
     <title>lib32 Installation of ICU</title>
 
     <para>
-      First clean the directory:
+      Install lib32-ICU by running the following commands:
     </para>
 
-    <screen><userinput>make clean</userinput></screen>
-
-    <para>
-      Install lib32-<application>ICU</application> by running the following commands:
-    </para>
-
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>make clean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 ./configure --prefix=/usr --libdir=/usr/lib32 --host=i686-pc-linux-gnu &amp;&amp;
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -193,8 +174,8 @@ ldconfig</userinput></screen>
           makeconv, pkgdata, and uconv
         </seg>
         <seg>
-          libicudata.so, libicui18n.so, libicuio.so,
-          libicutest.so, libicutu.so, and libicuuc.so
+          libicudata, libicui18n, libicuio,
+          libicutest, libicutu, and libicuuc
         </seg>
         <seg>
           /usr/include/unicode,
@@ -418,97 +399,97 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libicudata">
-        <term><filename class="libraryfile">libicudata.so</filename></term>
+        <term><filename class="libraryfile">libicudata</filename></term>
         <listitem>
           <para>
             is the data library
           </para>
           <indexterm zone="icu libicudata">
-            <primary sortas="c-libicudata">libicudata.so</primary>
+            <primary sortas="c-libicudata">libicudata</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libicui18n">
-        <term><filename class="libraryfile">libicui18n.so</filename></term>
+        <term><filename class="libraryfile">libicui18n</filename></term>
         <listitem>
           <para>
             is the internationalization (i18n) library
           </para>
           <indexterm zone="icu libicui18n">
-            <primary sortas="c-libicui18n">libicui18n.so</primary>
+            <primary sortas="c-libicui18n">libicui18n</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libicuio">
-        <term><filename class="libraryfile">libicuio.so</filename></term>
+        <term><filename class="libraryfile">libicuio</filename></term>
         <listitem>
           <para>
             is the ICU I/O (unicode stdio) library
           </para>
           <indexterm zone="icu libicuio">
-            <primary sortas="c-libicuio">libicuio.so</primary>
+            <primary sortas="c-libicuio">libicuio</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
 <!--  <varlistentry id="libicule">
-        <term><filename class="libraryfile">libicule.so</filename></term>
+        <term><filename class="libraryfile">libicule</filename></term>
         <listitem>
           <para>
             is the layout engine.
           </para>
           <indexterm zone="icu libicule">
-            <primary sortas="c-libicule">libicule.so</primary>
+            <primary sortas="c-libicule">libicule</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libiculx">
-        <term><filename class="libraryfile">libiculx.so</filename></term>
+        <term><filename class="libraryfile">libiculx</filename></term>
         <listitem>
           <para>
             is the layout extensions engine.
           </para>
           <indexterm zone="icu libiculx">
-            <primary sortas="c-libiculx">libiculx.so</primary>
+            <primary sortas="c-libiculx">libiculx</primary>
           </indexterm>
         </listitem>
       </varlistentry>-->
 
       <varlistentry id="libicutest">
-        <term><filename class="libraryfile">libicutest.so</filename></term>
+        <term><filename class="libraryfile">libicutest</filename></term>
         <listitem>
           <para>
             is the test library
           </para>
           <indexterm zone="icu libicutest">
-            <primary sortas="c-libicutest">libicutest.so</primary>
+            <primary sortas="c-libicutest">libicutest</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libicutu">
-        <term><filename class="libraryfile">libicutu.so</filename></term>
+        <term><filename class="libraryfile">libicutu</filename></term>
         <listitem>
           <para>
             is the tool utility library
           </para>
           <indexterm zone="icu libicutu">
-            <primary sortas="c-libicutu">libicutu.so</primary>
+            <primary sortas="c-libicutu">libicutu</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libicuuc">
-        <term><filename class="libraryfile">libicuuc.so</filename></term>
+        <term><filename class="libraryfile">libicuuc</filename></term>
         <listitem>
           <para>
             is the common library
           </para>
           <indexterm zone="icu libicuuc">
-            <primary sortas="c-libicuuc">libicuuc.so</primary>
+            <primary sortas="c-libicuuc">libicuuc</primary>
           </indexterm>
         </listitem>
       </varlistentry>

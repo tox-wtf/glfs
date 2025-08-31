@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xorg-evdev-driver-download-http "&xorg-download-http;/driver/xf86-input-evdev-&xorg-evdev-driver-version;.tar.gz">
-  <!ENTITY xorg-evdev-driver-download-ftp  " ">
+  <!ENTITY xorg-evdev-driver-download
+    "&xorg-dl;/driver/xf86-input-evdev-&xorg-evdev-driver-version;.tar.gz">
 ]>
 
   <!-- Begin Xorg Evdev Driver -->
@@ -25,7 +25,7 @@
       <title>Introduction to Xorg Evdev Driver</title>
 
       <para>
-        The <application>Xorg Evdev Driver</application> package contains a Generic
+        The Xorg Evdev Driver package contains a Generic
         Linux input driver for the Xorg X server. It handles keyboard, mouse, touchpads
         and wacom devices, though for touchpad and wacom advanced handling,
         additional drivers are required.
@@ -34,12 +34,7 @@
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            Download (HTTP): <ulink url="&xorg-evdev-driver-download-http;"/>
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Download (FTP): <ulink url="&xorg-evdev-driver-download-ftp;"/>
+            Download: <ulink url="&xorg-evdev-driver-download;"/>
           </para>
         </listitem>
       </itemizedlist>
@@ -84,16 +79,12 @@
       <title>Installation of Xorg Evdev Driver</title>
 
       <para>
-        Install <application>Xorg Evdev Driver</application> by running the following
+        Install Xorg Evdev Driver by running the following
         commands:
       </para>
 
 <screen><userinput>./configure $XORG_CONFIG &amp;&amp;
 make</userinput></screen>
-
-      <para>
-        This package does not come with a test suite.
-      </para>
 
       <para>
         Now, as the <systemitem class="username">root</systemitem> user:
@@ -117,7 +108,7 @@ make</userinput></screen>
 
         <seglistitem>
           <seg>
-            evdev_drv.so
+            evdev_drv
           </seg>
         </seglistitem>
       </segmentedlist>
@@ -128,13 +119,13 @@ make</userinput></screen>
         <?dbhtml list-presentation="table"?>
 
         <varlistentry id="evdev_drv">
-          <term><filename class="libraryfile">evdev_drv.so</filename></term>
+          <term><filename class="libraryfile">evdev_drv</filename></term>
           <listitem>
             <para>
               is an Xorg input driver for Linux generic event devices
             </para>
             <indexterm zone="xorg-evdev-driver evdev_drv">
-              <primary sortas="c-evdev_drv">evdev_drv.so</primary>
+              <primary sortas="c-evdev_drv">evdev_drv</primary>
             </indexterm>
           </listitem>
         </varlistentry>

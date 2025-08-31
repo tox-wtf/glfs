@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../../../general.ent">
+  %general-entities;
+
+  <!ENTITY mtdev-download "https://bitmath.org/code/mtdev/mtdev-&mtdev-version;.tar.bz2">
+]>
+
+<sect1 id="mtdev" xreflabel="mtdev-&mtdev-version;">
+  <?dbhtml filename="mtdev.html"?>
+
+  <title>mtdev-&mtdev-version;</title>
+
+  <indexterm zone="mtdev">
+    <primary sortas="a-mtdev">mtdev</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to mtdev</title>
+
+    <para>
+      The mtdev package contains Multitouch Protocol Translation Library which
+      is used to transform all variants of kernel MT (Multitouch) events to the
+      slotted type B protocol. Packages like <xref linkend="libinput"/> make
+      use of it.
+    </para>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&mtdev-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of mtdev</title>
+
+    <para>
+      Install mtdev by running the following
+      commands:
+    </para>
+
+<screen><userinput>./configure --prefix=/usr --disable-static &amp;&amp;
+make</userinput></screen>
+
+    <para>
+      Now, as the <systemitem class="username">root</systemitem> user:
+    </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-configure;
+
+    &static-libraries;
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Program</segtitle>
+      <segtitle>Installed Library</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          mtdev-test
+        </seg>
+        <seg>
+          libmtdev
+        </seg>
+        <seg>
+          None
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="mtdev-test">
+        <term><command>mtdev-test</command></term>
+        <listitem>
+          <para>
+            is a tool to test <filename class="libraryfile">libmtdev</filename>
+          </para>
+          <indexterm zone="mtdev mtdev-test">
+            <primary sortas="b-mtdev-test">mtdev-test</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmtdev">
+        <term><filename class="libraryfile">libmtdev</filename></term>
+        <listitem>
+          <para>
+            contains Multitouch Protocol Translation API functions
+          </para>
+          <indexterm zone="mtdev libmtdev">
+            <primary sortas="c-libmtdev">libmtdev</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

@@ -12,7 +12,9 @@
 
 # Adjust these to suit your installation, or include the variables
 # you wish to change in local.mk, which must be created manually.
-GLFS_THEME  ?= dark
+AUTO_CLEAN  ?= 1
+THEME_PATH  ?= stylesheets/lfs-xsl
+THEME       ?= dark
 RENDERTMP   := $(shell mktemp -d)
 HTML_ROOT   ?= $(HOME)/public_html
 DUMP_ROOT   ?= $(HOME)
@@ -51,18 +53,19 @@ ifneq ($(STAB), development)
   endif
 endif
 
+CLEAN = rm -rf $(RENDERTMP)
+ifeq ($(AUTO_CLEAN), 0)
+  CLEAN =
+endif
+
 ifeq ($(REV), sysv)
   BASEDIR         ?= $(HTML_ROOT)/glfs
-  PDF_OUTPUT      ?= glfs.pdf
-  NOCHUNKS_OUTPUT ?= glfs.html
   DUMPDIR         ?= $(DUMP_ROOT)/glfs-commands
   GLFSHTML        ?= glfs-html.xml
   GLFSHTML2       ?= glfs-html2.xml
   GLFSFULL        ?= glfs-full.xml
 else
   BASEDIR         ?= $(HTML_ROOT)/glfs-systemd
-  PDF_OUTPUT      ?= glfs-sysd.pdf
-  NOCHUNKS_OUTPUT ?= glfs-sysd.html
   DUMPDIR         ?= $(DUMP_ROOT)/glfs-sysd-commands
   GLFSHTML        ?= glfs-systemd-html.xml
   GLFSHTML2       ?= glfs-systemd-html2.xml
@@ -93,8 +96,11 @@ help:
 	@echo "                       steps to produce the output is shown."
 	@echo "                       Default is unset."
 	@echo ""
-	@echo "  GLFS_THEME=<theme>   Sets the theme of the book, ie. light/dark."
-	@echo "                       The dark theme is the default."
+	@echo "  THEME_PATH=<PATH>    Sets the path of themes (CSS files)."
+	@echo "                       stylesheets/lfs-xsl' is the default."
+	@echo ""
+	@echo "  THEME=<theme>        Sets the theme of the book, ie. light/dark."
+	@echo "                       'dark' is the default."
 	@echo ""
 	@echo "Targets:"
 	@echo "  help                 Show this help text."
@@ -103,17 +109,8 @@ help:
 	@echo ""
 	@echo "  html                 Builds the HTML pages of the book."
 	@echo ""
-	@echo "  pdf                  Builds the book as a PDF file."
-	@echo ""
 	@echo "  wget-list            Produces a list of all packages to download."
 	@echo "                       Output is BASEDIR/wget-list"
-	@echo ""
-	@echo "  nochunks             Builds the book as a one-pager. The output"
-	@echo "                       is a large single HTML page containing the"
-	@echo "                       whole book."
-	@echo ""
-	@echo "                       Parameter NOCHUNKS_OUTPUT=<filename> controls"
-	@echo "                       the name of the HTML file."
 	@echo ""
 	@echo "  validate             Runs validation checks on the XML files."
 	@echo ""
@@ -123,8 +120,8 @@ help:
 	@echo "                       containing all valid URLs."
 	@echo ""
 
-all: glfs nochunks
-world: all glfs-patch-list dump-commands test-links
+all: glfs
+world: all dump-commands test-links
 
 html: $(BASEDIR)/index.html
 $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
@@ -136,12 +133,13 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
 					stylesheets/glfs-chunked.xsl               \
 					$(RENDERTMP)/$(GLFSHTML)
 
-	@echo "Copying CSS code, images, and patches..."
+	@echo "Copying CSS code, images, and file downloads..."
 	$(Q)if [ ! -e $(BASEDIR)/stylesheets ]; then \
       mkdir -p $(BASEDIR)/stylesheets;          \
    fi;
 
-	$(Q)cp stylesheets/lfs-xsl/$(GLFS_THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
+	$(Q)cp $(THEME_PATH)/$(THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
+	$(Q)cp stylesheets/lfs-xsl/lfs-print.css $(BASEDIR)/stylesheets
 	$(Q)sed -i 's|../stylesheet|stylesheet|' $(BASEDIR)/index.html
 
 	$(Q)if [ ! -e $(BASEDIR)/images ]; then \
@@ -152,10 +150,13 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
 	$(Q)cd $(BASEDIR)/; sed -e "s@../images@images@g"           \
                            -i *.html
 
-	$(Q)if [ ! -e $(BASEDIR)/patches ]; then \
-		mkdir -p $(BASEDIR)/patches;          \
+	$(Q)if [ ! -e $(BASEDIR)/download ]; then \
+		mkdir -p $(BASEDIR)/download;          \
    fi;
-	$(Q)cp -R patches/* $(BASEDIR)/patches
+	$(Q)rm -rf $(BASEDIR)/download/*
+	$(Q)cp -R download/* $(BASEDIR)/download
+	$(Q)rm -rf $(BASEDIR)/patches
+	$(Q)ln -sf download $(BASEDIR)/patches
 
 	@echo "Running Tidy and obfuscate.sh on chunked XHTML..."
 	$(Q)for filename in `find $(BASEDIR) -name "*.html"`; do       \
@@ -165,58 +166,18 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
       sed -i -e "1,20s@text/html@application/xhtml+xml@g" $$filename; \
    done;
 
-	$(Q)rm -rf $(RENDERTMP)
+	@echo "Copying over legacy HTML..."
+	$(Q)if [ ! -e $(BASEDIR)/archive ]; then \
+		mkdir -p $(BASEDIR)/archive;          \
+	fi;
+	$(Q)cp -R archive/*.html $(BASEDIR)/archive
 
-pdf: validate wget-list
-	@echo "Generating profiled XML for PDF..."
-	$(Q)xsltproc --nonet \
-						--stringparam profile.condition pdf \
-						--output $(RENDERTMP)/glfs-pdf.xml  \
-						stylesheets/lfs-xsl/profile.xsl     \
-						$(RENDERTMP)/$(GLFSFULL)
-
-	@echo "Generating FO file..."
-	$(Q)xsltproc --nonet										\
-					--stringparam rootid "$(ROOT_ID)"	\
-					--output $(RENDERTMP)/glfs-pdf.fo	\
-					stylesheets/glfs-pdf.xsl					\
-					$(RENDERTMP)/glfs-pdf.xml
-
-	$(Q)sed -i -e 's/span="inherit"/span="all"/' $(RENDERTMP)/glfs-pdf.fo
-	$(Q)bash pdf-fixups.sh $(RENDERTMP)/glfs-pdf.fo
-
-	@echo "Generating PDF file..."
-	$(Q)mkdir -p $(RENDERTMP)/images
-	$(Q)cp -R images/* $(RENDERTMP)/images
-
-	$(Q)mkdir -p $(BASEDIR)
-
-	$(Q)fop -q $(RENDERTMP)/glfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT) 2>fop.log
-	@echo "$(BASEDIR)/$(PDF_OUTPUT) created"
-	@echo "fop.log created"
-	$(Q)rm fop.log
-	@echo "fop.log destroyed"
-	$(Q)rm -rf $(RENDERTMP)
-
-nochunks: $(BASEDIR)/$(NOCHUNKS_OUTPUT)
-$(BASEDIR)/$(NOCHUNKS_OUTPUT): $(RENDERTMP)/$(GLFSHTML) version
-	@echo "Generating non-chunked XHTML file..."
-	$(Q)xsltproc --nonet                                \
-                --stringparam rootid "$(ROOT_ID)"      \
-                --output $(BASEDIR)/$(NOCHUNKS_OUTPUT) \
-                stylesheets/glfs-nochunks.xsl          \
-                $(RENDERTMP)/$(GLFSHTML)
-
-	@echo "Running Tidy and obfuscate.sh on non-chunked XHTML..."
-	$(Q)tidy -config tidy.conf $(BASEDIR)/$(NOCHUNKS_OUTPUT) || true
-	$(Q)bash obfuscate.sh $(BASEDIR)/$(NOCHUNKS_OUTPUT)
-	$(Q)sed -i -e "1,20s@text/html@application/xhtml+xml@g" $(BASEDIR)/$(NOCHUNKS_OUTPUT)
-	@echo "Removing $(RENDERTMP)..."
-	$(Q)rm -rf $(RENDERTMP)
+	$(Q)$(CLEAN)
 
 validate: $(RENDERTMP)/$(GLFSFULL)
 $(RENDERTMP)/$(GLFSFULL): general.ent packages.ent $(ALLXML) $(ALLXSL) version
 	$(Q)[ -d $(RENDERTMP) ] || mkdir -p $(RENDERTMP)
+	$(Q)trap '$(CLEAN)' EXIT
 
 	@echo "Rendering the book for $(REV)..."
 	$(Q)xsltproc --nonet                               \
@@ -282,29 +243,12 @@ $(BASEDIR)/test-links: $(RENDERTMP)/$(GLFSFULL) version
          fi; \
    done
 
-bootscripts:
-	@VERSION=`grep "bootscripts-version " general.ent | cut -d\" -f2`; \
-   BOOTSCRIPTS="glfs-bootscripts-$$VERSION";                          \
-   if [ ! -e $$BOOTSCRIPTS.tar.xz ]; then                             \
-     rm -rf $(RENDERTMP)/$$BOOTSCRIPTS;                               \
-     mkdir $(RENDERTMP)/$$BOOTSCRIPTS;                                \
-     cp -a ../bootscripts/* $(RENDERTMP)/$$BOOTSCRIPTS;               \
-     rm -rf ../bootscripts/archive;                                   \
-     tar  -cJhf $$BOOTSCRIPTS.tar.xz -C $(RENDERTMP) $$BOOTSCRIPTS;   \
-   fi
-
-systemd-units:
-		@VERSION=`grep "systemd-units-version " general.ent | cut -d\" -f2`; \
-	UNITS="glfs-systemd-units-$$VERSION";                                   \
-	if [ ! -e $$UNITS.tar.xz ]; then                                        \
-		rm -rf $(RENDERTMP)/$$UNITS;                                         \
-		mkdir $(RENDERTMP)/$$UNITS;                                          \
-		cp -a ../systemd-units/* $(RENDERTMP)/$$UNITS;                       \
-		tar -cJhf $$UNITS.tar.xz -C $(RENDERTMP) $$UNITS;                    \
-	fi
+	$(Q)$(CLEAN)
 
 test-options:
+	$(Q)trap '$(CLEAN)' EXIT
 	$(Q)xsltproc --xinclude --nonet stylesheets/test-options.xsl index.xml
+	$(Q)$(CLEAN)
 
 dump-commands: $(DUMPDIR)
 $(DUMPDIR): $(RENDERTMP)/$(GLFSFULL) version
@@ -313,11 +257,10 @@ $(DUMPDIR): $(RENDERTMP)/$(GLFSFULL) version
                 stylesheets/dump-commands.xsl \
                 $(RENDERTMP)/$(GLFSFULL)
 	$(Q)touch $(DUMPDIR)
-	$(Q)rm -rf $(RENDERTMP)
+	$(Q)$(CLEAN)
 
-.PHONY: glfs all world html nochunks pdf clean validate profile-html \
-   wget-list test-links dump-commands bootscripts systemd-units version \
-   test-options
+.PHONY: glfs all world html validate profile-html wget-list test-links \
+   dump-commands version test-options
 
 version:
 	$(Q)REV=$(REV) STAB=$(STAB) ./git-version.sh

@@ -33,12 +33,12 @@
 
     <para>
 	The compiler and associated tools on this page are known as the
-	<application>GNAT</application> technology, developed by the Adacore
-	company, using the <application>GCC</application> backend. Since
+	GNAT technology, developed by the Adacore
+	company, using the GCC backend. Since
 	parts of the Ada compiler are written in Ada, there is a circular
 	dependency on an Ada compiler. The instructions below install a
 	binary compiler. You do not need to do that if you already have built
-	<application>GNAT</application> tools. The next section covers how to
+	GNAT tools. The next section covers how to
 	build GNAT once the circular dependency is satisfied.
     </para>
 
@@ -68,7 +68,7 @@
 	<ulink url="https://www.linuxfromscratch.org/blfs/view/svn/basicnet/links.html">
 	links</ulink>. You can use
 	<xref linkend="wget"/> but not <xref linkend="curl"/>.
-	If you do end up using <application>wget</application>
+	If you do end up using wget
 	regardless of the recommendation against it, please run
 	the following the command before unpacking:
     </para>
@@ -81,9 +81,9 @@
     <important>
     <para>
 	If you are doing multilib, just download the x86_64
-	<application>GNAT</application> binary tarball.
+	GNAT binary tarball.
 	The instructions in the next section for multilib will
-	work as expected and <application>GCC</application>
+	work as expected and GCC
 	will continue to have multilib support.
     </para>
     </important>
@@ -94,7 +94,7 @@
     <title>Installation of GNAT Binaries</title>
 
     <para>
-	Install the x86_64 <application>GNAT</application>
+	Install the x86_64 GNAT
 	binaries by running the following commands as the
 	<systemitem class="username">root</systemitem> user
 	while still in the directory the tarball is in:
@@ -111,7 +111,7 @@ cd $GNATTBPATH                                                   &amp;&amp;
 unset GNATTBPATH</userinput></screen>
 
     <para>
-	Or install the x86 <application>GNAT</application>
+	Or install the x86 GNAT
 	binaries by running the following commands as the
 	<systemitem class="username">root</systemitem> user
 	while still in the directory the tarball is in:
@@ -129,7 +129,7 @@ unset GNATTBPATH</userinput></screen>
 
     <para>
 	Now adjust the <filename>PATH</filename> variable so
-	the <application>GNAT</application> software can be found
+	the GNAT software can be found
 	and used:
     </para>
 
@@ -138,7 +138,7 @@ export PATH=/opt/gnat/bin:$PATH_HOLD</userinput></screen>
 
     <para>
 	Ensure <command>ld</command> and <command>as</command>
-	from the <application>GNAT</application> package aren't
+	from the GNAT package aren't
 	used as to prevent issues with aging by issuing the
 	following as the <systemitem class="username">root
 	</systemitem> user:

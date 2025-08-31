@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xorg-server-download-http "&xorg-download-http;/xserver/xorg-server-&xorg-server-version;.tar.xz">
-  <!ENTITY xorg-server-download-ftp  " ">
+  <!ENTITY xorg-server-download "&xorg-dl;/xserver/xorg-server-&xorg-server-version;.tar.xz">
   <!ENTITY modesetting_drv
            "<filename class='libraryfile'>modesetting_drv</filename>">
   <!ENTITY BLFS113 "https://www.linuxfromscratch.org/blfs/view/11.3/x/x7driver.html">
@@ -25,19 +24,13 @@
     <title>Introduction to Xorg Server</title>
 
     <para>
-      The <application>Xorg</application> Server is the core
-      of the X Window system.
+      The Xorg Server is the core of the X Window system.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&xorg-server-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&xorg-server-download-ftp;"/>
+          Download: <ulink url="&xorg-server-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -46,16 +39,15 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          With the removal of the xf86-video-* drivers, the TearFree option
-          is no longer functional. To work around this, upstream has added the
-          TearFree option to the default modesetting driver. This patch
-          backports this feature. Apply this patch if you are going to use Xorg
-          in an environment without a compositor (such as TWM, IceWM, Openbox,
-          or Fluxbox).
+          Upstream has added the TearFree option to the default modesetting
+          driver (<xref linkend="nvidia"/> is not able to use it). This patch
+          adds this feature. Apply this patch if you are going to use Xorg in
+          an environment without a compositor (such as TWM, IceWM, Openbox, or
+          Fluxbox).
         </para>
         <para>
           Optional patch:
-          <ulink url="&patch-root;/xorg-server/xorg-server-tearfree_backport-3.patch"/>
+          <ulink url="&dl-root;/xorg-server/xorg-server-tearfree_backport-3.patch"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -64,6 +56,9 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
+      <!-- Not runtime as mesa/nvidia provide DRI needed at configuration. -->
+      A userland graphics driver (<xref linkend='mesa'/> and/or
+      <xref linkend='nvidia'/>),
       <xref linkend="libxcvt"/>,
       <xref linkend="pixman"/>,
       <xref linkend="xorg7-font"/> (only font-util), and at runtime:
@@ -86,10 +81,10 @@
     <para role="optional">
       <xref linkend="libunwind"/>,
       <xref linkend="nettle"/>,
-      <xref linkend="xcb-utils"/> (to build Xephyr),
-      <xref linkend="xkeyboard-config"/> (for tests),
-      <ulink url="https://gitlab.freedesktop.org/xorg/test/rendercheck">rendercheck</ulink> (for tests), and
-      <ulink url="https://www.x.org/archive/individual/doc/">xorg-sgml-doctools</ulink> (to build documentation)
+      <xref linkend="xcb-utils"/> (to build Xephyr), and
+      <ulink
+        url="https://www.x.org/archive/individual/doc/">xorg-sgml-doctools</ulink>
+      (to build documentation)
     </para>
   </sect2>
 
@@ -97,21 +92,11 @@
     <title>Kernel Configuration</title>
 
     <para>
-      The traditional Device Dependent X (DDX) drivers have been removed
-      from BLFS in favor of the &modesetting_drv; driver which will be
-      built as a part of this package.  To use the &modesetting_drv; driver,
-      the kernel must provide a Direct Rendering Manager (DRM) driver for
-      your GPU.
-    </para>
-
-    <para>
-      If your GPU supports 3D acceleration and <xref linkend='mesa'/>
-      provides a Gallium3D driver for utilizing its 3D capability, you
-      should have already enabled the necessary kernel configuration options
-      in <xref linkend='gpuconfig'/>.  Otherwise, you need to find the
-      kernel configuration option of the DRM driver for the GPU and enable
-      it.  Notably, the virtual GPUs provided by some virtual machine
-      managers:
+      If your GPU supports 3D acceleration and the userland graphics driver you
+      installed can utilize its 3D capability, you should have already enabled
+      the necessary kernel configuration options. Otherwise, you need to find
+      the kernel configuration option of the DRM driver for the GPU and enable
+      it. Notably, the virtual GPUs provided by some virtual machine managers:
     </para>
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -158,8 +143,8 @@
       <option>CONFIG_FB_*</option> in the kernel configuration, or existing
       as out-tree kernel modules), or you need an device specific
       functionality requiring a DDX driver, consult
-      <ulink url="&BLFS113;">a prior version of BLFS</ulink>, or
-      <ulink url="&BLFS76;">an even earlier prior version</ulink> for more DDX
+      <ulink url="&BLFS113;">an old version of BLFS</ulink>, or
+      <ulink url="&BLFS76;">an even older version</ulink> for more DDX
       drivers.
     </para>
 
@@ -173,7 +158,7 @@
 
     <para>
       First, if you need the TearFree option to work around screen tearing,
-      apply the backported patch:
+      apply the patch:
     </para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../xorg-server-tearfree_backport-3.patch</userinput></screen>
@@ -195,23 +180,22 @@ meson setup ..              \
 ninja</userinput></screen>
 
     <para>
-      To test the results, issue: <command>ninja test</command>. You
-      will need to run <command>ldconfig</command> as the <systemitem
-      class="username">root</systemitem> user first or some tests may fail.
-    </para>
-
-    <para>
-      Now as the <systemitem class="username">root</systemitem>
-      user:
+      Now as the &root; user:
     </para>
 
 <screen role="root"><userinput>ninja install &amp;&amp;
 mkdir -pv /etc/X11/xorg.conf.d</userinput><userinput revision="sysv"> &amp;&amp;
-install -v -d -m1777 /tmp/.{ICE,X11}-unix &amp;&amp;
+install -vdm1777 /tmp/.{ICE,X11}-unix &amp;&amp;
+if [ -z "$(grep .ICE-unix /etc/sysconfig/createfiles)" ]; then
 cat &gt;&gt; /etc/sysconfig/createfiles &lt;&lt; "EOF"
-<literal>/tmp/.ICE-unix dir 1777 root root
-/tmp/.X11-unix dir 1777 root root</literal>
-EOF</userinput></screen>
+<literal>/tmp/.ICE-unix dir 1777 root root</literal>
+EOF
+fi
+if [ -z "$(grep .X11-unix /etc/sysconfig/createfiles)" ]; then
+cat &gt;&gt; /etc/sysconfig/createfiles &lt;&lt; "EOF"
+<literal>/tmp/.X11-unix dir 1777 root root</literal>
+EOF
+fi</userinput></screen>
 
   </sect2>
 
@@ -273,7 +257,7 @@ EOF</userinput></screen>
       &root; user:  
     </para>
 
-<screen role="root"><userinput>usermod -a -G input,video <replaceable>&lt;username&gt;</replaceable></userinput></screen>
+<screen role="root"><literal>usermod -a -G input,video <replaceable>&lt;username&gt;</replaceable></literal></screen>
 
   </sect2>
 
@@ -381,7 +365,7 @@ EOF</userinput></screen>
       </varlistentry>
 
       <varlistentry id="modesetting_drv-x7">
-        <term><filename class="libraryfile">modesetting_drv.so</filename></term>
+        <term><filename class="libraryfile">modesetting_drv</filename></term>
         <listitem>
           <para>
             provides a video driver for machines using Kernel Mode Setting (KMS).
@@ -389,7 +373,7 @@ EOF</userinput></screen>
             acceleration
           </para>
           <indexterm zone="xorg-server modesetting_drv-x7">
-            <primary sortas="c-modesetting_drv">modesetting_drv.so</primary>
+            <primary sortas="c-modesetting_drv">modesetting_drv</primary>
           </indexterm>
         </listitem>
       </varlistentry>

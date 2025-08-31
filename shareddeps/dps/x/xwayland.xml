@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xwayland-download-http "&xorg-download-http;/xserver/xwayland-&xwayland-version;.tar.xz">
-  <!ENTITY xwayland-download-ftp  " ">
+  <!ENTITY xwayland-download "&xorg-dl;/xserver/xwayland-&xwayland-version;.tar.xz">
 ]>
 
 <sect1 id="xwayland" xreflabel="Xwayland-&xwayland-version;">
@@ -21,7 +20,7 @@
     <title>Introduction to Xwayland</title>
 
     <para>
-      The <application>Xwayland</application> package is an Xorg server
+      The Xwayland package is an Xorg server
       running on top of the wayland server. It has been separated from the
       main Xorg server package. It allows running X clients inside a
       wayland session.
@@ -30,12 +29,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&xwayland-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&xwayland-download-ftp;"/>
+          Download: <ulink url="&xwayland-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -44,6 +38,9 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
+      <!-- Not runtime as mesa/nvidia provide DRI needed at configuration. -->
+      A userland graphics driver (<xref linkend='mesa'/> and/or
+      <xref linkend='nvidia'/>),
       <xref linkend="libxcvt"/>,
       <xref linkend="pixman"/>,
       <xref linkend="wayland-protocols"/>,
@@ -54,7 +51,7 @@
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="libepoxy"/> and
-      <xref linkend="mesa"/>
+      &opengl;
     </para>
 
   </sect2>
@@ -63,7 +60,7 @@
     <title>Installation of Xwayland</title>
 
     <para>
-      Install <application>xwayland</application> by running the following
+      Install xwayland by running the following
       commands:
     </para>
 
@@ -85,9 +82,12 @@ ninja</userinput></screen>
     </para>
 
 <screen role="root"><userinput>ninja install</userinput><userinput revision="sysv"> &amp;&amp;
+install -vdm1777 /tmp/.X11-unix &amp;&amp;
+if [ -z "$(grep .X11-unix /etc/sysconfig/createfiles)" ]; then
 cat &gt;&gt; /etc/sysconfig/createfiles &lt;&lt; "EOF"
 <literal>/tmp/.X11-unix dir 1777 root root</literal>
-EOF</userinput></screen>
+EOF
+fi</userinput></screen>
 
     <para>
       If <xref linkend='xorg-server'/> is not installed and you do not plan
@@ -112,8 +112,7 @@ EOF</userinput></screen>
       don't plan to install it later.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../xincludes/meson-buildtype-release.xml"/>
+    &meson-buildtype-release;
 
     <para>
       <parameter>-D secure-rpc=false</parameter>: Disables RPC support
@@ -160,7 +159,8 @@ EOF</userinput></screen>
         <term><command>Xwayland</command></term>
         <listitem>
           <para>
-            Allows X clients to run under wayland
+            is a minimal X server that can run on top of Wayland to allow Xorg
+            clients to execute
           </para>
           <indexterm zone="xwayland Xwayland">
             <primary sortas="b-Xwayland">Xwayland</primary>

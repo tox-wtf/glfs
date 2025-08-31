@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY yaml-download-http "https://github.com/yaml/libyaml/releases/download/&yaml-version;/yaml-&yaml-version;.tar.gz">
-  <!ENTITY yaml-download-ftp  " ">
+  <!ENTITY yaml-root "https://github.com/yaml/libyaml/releases/download">
+  <!ENTITY yaml-download "&yaml-root;/&yaml-version;/yaml-&yaml-version;.tar.gz">
 ]>
 
 <sect1 id="libyaml" xreflabel="libyaml-&yaml-version;">
@@ -21,21 +21,15 @@
     <title>Introduction to libyaml</title>
 
     <para>
-      The <application>yaml</application> package contains a C
+      The yaml package contains a C
       library for parsing and emitting YAML (YAML Ain't Markup
       Language) code.
     </para>
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&yaml-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&yaml-download-ftp;"/>
+          Download: <ulink url="&yaml-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -53,7 +47,7 @@
     <title>Installation of libyaml</title>
 
     <para>
-      Install <application>libyaml</application> by running the following
+      Install libyaml by running the following
       commands:
     </para>
 
@@ -70,10 +64,6 @@ cmake -D CMAKE_INSTALL_PREFIX=/usr \
 make</userinput></screen> -->
 
     <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
-
-    <para>
       Now, as the <systemitem class="username">root</systemitem> user:
     </para>
 
@@ -86,8 +76,7 @@ make</userinput></screen> -->
 
     &options-configure;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/static-libraries.xml"/>
+    &static-libraries;
 
   </sect2>
 
@@ -104,7 +93,7 @@ make</userinput></screen> -->
           None
         </seg>
         <seg>
-          libyaml.so
+          libyaml
         </seg>
         <seg>
           None
@@ -118,13 +107,13 @@ make</userinput></screen> -->
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libyaml-lib">
-        <term><filename class="libraryfile">libyaml.so</filename></term>
+        <term><filename class="libraryfile">libyaml</filename></term>
         <listitem>
           <para>
             contains API functions for parsing and emitting YAML code
           </para>
           <indexterm zone="libyaml libyaml-lib">
-            <primary sortas="c-libyaml">libyaml.so</primary>
+            <primary sortas="c-libyaml">libyaml</primary>
           </indexterm>
         </listitem>
       </varlistentry>

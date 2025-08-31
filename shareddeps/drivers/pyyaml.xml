@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY pyyaml-download-http "https://files.pythonhosted.org/packages/source/P/PyYAML/pyyaml-&pyyaml-version;.tar.gz">
-  <!ENTITY pyyaml-download-ftp  " ">
+  <!ENTITY pyyaml-download "&pymodules-dl;/P/PyYAML/pyyaml-&pyyaml-version;.tar.gz">
 ]>
 
 <sect1 id="pyyaml" xreflabel="PyYAML-&pyyaml-version;">
@@ -21,19 +20,14 @@
     <title>Introduction to PyYAML</title>
 
     <para>
-      <application>PyYAML</application> is a Python module that implements the
+      PyYAML is a Python module that implements the
       next generation YAML parser and emitter.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&pyyaml-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&pyyaml-download-ftp;"/>
+          Download: <ulink url="&pyyaml-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -80,7 +74,7 @@
           None
         </seg>
         <seg>
-          /usr/lib/python&python3-majorver;/site-packages/PyYAML-&pyyaml-version;.dist-info
+          /usr/lib/python&python3-majorver;/site-packages/pyyaml-&pyyaml-version;.dist-info
         </seg>
       </seglistitem>
     </segmentedlist>

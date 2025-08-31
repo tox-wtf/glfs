@@ -4,9 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY linux-pam-download-http "https://github.com/linux-pam/linux-pam/releases/download/v&linux-pam-version;/Linux-PAM-&linux-pam-version;.tar.xz">
-  <!ENTITY linux-pam-download-ftp  " ">
-
+  <!ENTITY lp-root "https://github.com/linux-pam/linux-pam/releases/download">
+  <!ENTITY linux-pam-download "&lp-root;/v&linux-pam-version;/Linux-PAM-&linux-pam-version;.tar.xz">
   <!ENTITY linux-pam-docs-download "&sources-anduin-http;/Linux-PAM/Linux-PAM-&linux-pam-docs-version;-docs.tar.xz">
 ]>
 
@@ -23,22 +22,16 @@
     <title>Introduction to Linux PAM</title>
 
     <para>
-      The <application>Linux PAM</application> package contains
+      The Linux PAM package contains
       Pluggable Authentication Modules used by the local
       system administrator to control how application programs authenticate
       users.
     </para>
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&linux-pam-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&linux-pam-download-ftp;"/>
+          Download: <ulink url="&linux-pam-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -48,7 +41,7 @@
     <title>Optional Documentation</title>
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&linux-pam-docs-download;"/>
+          Download: <ulink url="&linux-pam-docs-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -82,7 +75,7 @@
     <title>Installation of Linux PAM</title>
 
     <para>
-      Compile and link <application>Linux PAM</application> by
+      Compile and link Linux PAM by
       running the following commands:
     </para>
 
@@ -96,20 +89,13 @@ meson setup ..        \
 
 ninja</userinput></screen>
 
-    <para>
-      To test the results, a suitable <filename>/etc/pam.d/other</filename>
-      configuration file must exist.
-    </para>
-
     <caution>
       <title>Reinstallation or Upgrade of Linux PAM</title>
       <para>
         If you have a system with Linux PAM installed and working, be careful
         when modifying the files in
         <filename class="directory">/etc/pam.d</filename>, since your system
-        may become totally unusable. If you want to run the tests, you do not
-        need to create another <filename>/etc/pam.d/other</filename> file. The
-        existing file can be used for the tests.
+        may become totally unusable.
       </para>
 
       <para>
@@ -120,35 +106,6 @@ ninja</userinput></screen>
          have modified those files, be sure to back them up.
       </para>
     </caution>
-
-    <para>
-      For a first-time installation, create a configuration file by issuing the
-      following commands as the <systemitem class="username">root</systemitem>
-      user:
-    </para>
-
-<screen role="root"><userinput>install -v -m755 -d /etc/pam.d &amp;&amp;
-
-cat &gt; /etc/pam.d/other &lt;&lt; "EOF"
-<literal>auth     required       pam_deny.so
-account  required       pam_deny.so
-password required       pam_deny.so
-session  required       pam_deny.so</literal>
-EOF</userinput></screen>
-
-    <para>
-      Now run the tests by issuing <command>ninja test</command>.
-      Be sure the tests produced no errors before continuing the
-      installation.
-    </para>
-
-    <para>
-      For a first-time installation, remove the configuration file
-      created earlier by issuing the following command as the
-      &root; user:
-    </para>
-
-<screen role="root"><userinput>rm -fv /etc/pam.d/other</userinput></screen>
 
     <para>
       Now, as the &root; user:
@@ -176,17 +133,12 @@ chmod -v 4755 /usr/sbin/unix_chkpwd</userinput></screen>
     <title>lib32 Installation of Linux PAM</title>
 
     <para>
-      First clean the build directory:
-    </para>
-
-    <screen><userinput>rm -rf *</userinput></screen>
-
-    <para>
-      Now install lib32-<application>Linux-PAM</application> by
+      Install lib32-Linux-PAM by
       running the following commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"           \
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"           \
 PKG_CONFIG_PATH="/usr/lib32/pkgconfig" \
 meson setup ..                         \
   --prefix=/usr                        \
@@ -324,7 +276,7 @@ session     required        pam_deny.so
 EOF</userinput></screen>
 
       <para>
-        The <application>PAM</application> man page (<command>man
+        The PAM man page (<command>man
         pam</command>) provides a good starting point to learn
         about the several fields, and allowable entries. The
         Linux-PAM System Administrators' Guide at
@@ -360,7 +312,7 @@ EOF</userinput></screen>
           unix_update
         </seg>
         <seg>
-          libpam.so, libpamc.so and libpam_misc.so
+          libpam, libpamc, and libpam_misc
         </seg>
         <seg>
           /etc/security,
@@ -490,14 +442,14 @@ EOF</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libpam">
-        <term><filename class="libraryfile">libpam.so</filename></term>
+        <term><filename class="libraryfile">libpam</filename></term>
         <listitem>
           <para>
             provides the interfaces between applications and the
             PAM modules
           </para>
           <indexterm zone="linux-pam libpam">
-            <primary sortas="c-libpam">libpam.so</primary>
+            <primary sortas="c-libpam">libpam</primary>
           </indexterm>
         </listitem>
       </varlistentry>

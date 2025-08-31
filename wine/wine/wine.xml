@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY wine-download-http "https://dl.winehq.org/wine/source/&wine-major-version;.x/wine-&wine-version;.tar.xz">
-  <!ENTITY wine-download-ftp  " ">
+  <!ENTITY wine-root "https://dl.winehq.org/wine/source">
+  <!ENTITY wine-download "&wine-root;/&wine-major-version;.x/wine-&wine-version;.tar.xz">
 ]>
 
 <sect1 id="wine" xreflabel="Wine-&wine-version;">
@@ -24,18 +24,12 @@
       Wine is a compatibility layer for running Windows programs on Unix.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&wine-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&wine-download-ftp;"/>
+          Download: <ulink url="&wine-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -46,7 +40,7 @@
       <listitem>
         <para>
           Required patch:
-          <ulink url="&patch-root;/wine/wine-&wine-version;-avoid_idata_section-1.patch"/>
+          <ulink url="&dl-root;/wine/wine-&wine-version;-avoid_idata_section-1.patch"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -66,8 +60,8 @@
 <!--
     <para>
       First apply an upstream patch so that delay-load import libraries are
-      unbroken with <xref linkend="mingw-w64-binutils"/> due to <application>
-      Binutils</application> merging .idata sections into read-only .rdata
+      unbroken with <xref linkend="mingw-w64-binutils"/> due to 
+      Binutils merging .idata sections into read-only .rdata
       sections for PE formatted software upstream:
     </para>
 
@@ -84,14 +78,16 @@
       <title>WoW64</title>
 
       <para>
-        Install WoW64 <application>Wine</application> by running
+        Install WoW64 Wine by running
         the following commands:
       </para>
 
 <screen><userinput>mkdir build-win64 &amp;&amp;
 cd    build-win64 &amp;&amp;
 
-../configure --prefix=/usr --enable-win64 &amp;&amp;
+../configure --prefix=/usr   \
+             --disable-tests \
+             --enable-win64 &amp;&amp;
 
 make              &amp;&amp;
 
@@ -99,8 +95,9 @@ cd ..             &amp;&amp;
 mkdir build-win32 &amp;&amp;
 cd    build-win32 &amp;&amp;
 
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig      \
-../configure --prefix=/usr                \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+../configure --prefix=/usr           \
+             --disable-tests         \
              --with-wine64=../build-win64 &amp;&amp;
 
 make</userinput></screen>
@@ -119,14 +116,16 @@ make install</userinput></screen>
       <title>64-bit Only</title>
 
       <para>
-        Install 64-bit only <application>Wine</application> by running
+        Install 64-bit only Wine by running
         the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-../configure --prefix=/usr --enable-win64 &amp;&amp;
+../configure --prefix=/usr   \
+             --disable-tests \
+             --enable-win64 &amp;&amp;
 
 make</userinput></screen>
 
@@ -141,22 +140,25 @@ make</userinput></screen>
     <sect3>
       <title>32-bit Only</title>
 
+<!--
       <note><para>
         If you're on 64-bit, invoke
         <userinput>PKG_CONFIG_PATH=/usr/lib32/pkgconfig</userinput> at the
         beginning of the <command>../configure</command> command to build for
         32-bit.
       </para></note>
+-->
 
       <para>
-        Install 32-bit only <application>Wine</application> by running
+        Install 32-bit only Wine by running
         the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-../configure --prefix=/usr &amp;&amp;
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+../configure --prefix=/usr --disable-tests &amp;&amp;
 
 make</userinput></screen>
 
@@ -174,6 +176,11 @@ make</userinput></screen>
     <title>Command Explanations</title>
 
     &options-subconfigure;
+
+    <para>
+      <parameter>--disable-tests</parameter>: This parameter disables building
+      tests.
+    </para>
 
     <para>
       <parameter>--with-wine64=../build-win64</parameter>: This option
@@ -200,16 +207,23 @@ make</userinput></screen>
     <para>
       As for Direct3D 12, you may also wish to install
       <xref linkend="vkd3d-proton"/> which replaces
-      <application>VKD3D</application> provided by
-      <application>Wine</application>. <application>VKD3D</application> is less
+      VKD3D provided by
+      Wine. VKD3D is less
       aggressive with optimizations and is geared for general use, whereas
-      <application>VKD3D-Proton</application> has aggressive optimizations and
+      VKD3D-Proton has aggressive optimizations and
       is geared towards gaming. Despite the name, it can be used with
-      <application>Wine</application> and works quite well.
+      Wine and works quite well.
     </para>
 
     <para>
       The choice of what to install is up to you.
+    </para>
+
+    <para>
+      In some cases, some Windows applications will expect files not provided
+      in this installation. In such cases, you can install <ulink
+      url="&slfs-website;/general/winetricks.html">Winetricks</ulink> from SLFS
+      to install those missing files.
     </para>
 
   </sect2>
@@ -224,15 +238,32 @@ make</userinput></screen>
 
       <seglistitem>
         <seg>
-          msidb, msiexec, notepad, regedit, regsvr32, widl, wine,
-          wine-preloader, wine64, wine64-preloader, wineboot, winebuild,
-          winecfg, wineconsole, winecpp, winedbg, winedump, winefile,
-          wineg++, winegcc, winemaker, winemine, winepath, wineserver,
-          wmc, and wrc
+          function_grep.pl,
+          msidb (link to wine),
+          msiexec (link to wine),
+          notepad (link to wine),
+          regedit (link to wine),
+          regsvr32 (link to wine),
+          widl,
+          wine,
+          wineboot (link to wine),
+          winebuild,
+          winecfg (link to wine),
+          wineconsole (link to wine),
+          winecpp (link to winegcc),
+          winedbg (link to wine),
+          winedump,
+          winefile (link to wine),
+          wineg++ (link to winegcc),
+          winegcc,
+          winemaker,
+          winemine (link to wine),
+          winepath (link to wine),
+          wineserver,
+          wmc, and
+          wrc
         </seg>
-
         <seg>Various dynamic and static libraries</seg>
-
         <seg>
           /usr/include/wine/windows, /usr/lib/wine/x86_64-windows,
           /usr/lib32/wine/i686-unix, and /usr/share/wine
@@ -245,11 +276,24 @@ make</userinput></screen>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
+      <varlistentry id="function_grep.pl">
+        <term><command>function_grep.pl</command></term>
+        <listitem>
+          <para>
+            is a Perl script that does the same job as <command>grep</command>
+          </para>
+          <indexterm zone="wine function_grep.pl">
+            <primary sortas="b-function_grep.pl">function_grep.pl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="msidb">
         <term><command>msidb</command></term>
         <listitem>
           <para>
-            handles MSI databases
+            handles MSI databases;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine msidb">
             <primary sortas="b-msidb">msidb</primary>
@@ -261,7 +305,8 @@ make</userinput></screen>
         <term><command>msiexec</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> MSI installer
+            is the Wine MSI installer;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine msiexec">
             <primary sortas="b-msiexec">msiexec</primary>
@@ -273,7 +318,8 @@ make</userinput></screen>
         <term><command>notepad</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> text editor
+            is the Wine text editor;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine notepad">
             <primary sortas="b-notepad">notepad</primary>
@@ -285,7 +331,8 @@ make</userinput></screen>
         <term><command>regedit</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> registry editor
+            is the Wine registry editor;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine regedit">
             <primary sortas="b-regedit">regedit</primary>
@@ -297,7 +344,8 @@ make</userinput></screen>
         <term><command>regsvr32</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> DLL Registration Server
+            is the Wine DLL Registration Server;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine regsvr32">
             <primary sortas="b-regsvr32">regsvr32</primary>
@@ -309,7 +357,7 @@ make</userinput></screen>
         <term><command>widl</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> Interface Definition
+            is the Wine Interface Definition
             Language (IDL) compiler
           </para>
           <indexterm zone="wine widl">
@@ -330,48 +378,13 @@ make</userinput></screen>
         </listitem>
       </varlistentry>
 
-      <varlistentry id="wine-preloader">
-        <term><command>wine-preloader</command></term>
-        <listitem>
-          <para>
-            preloads Win32 binaries
-          </para>
-          <indexterm zone="wine wine-preloader">
-            <primary sortas="b-wine-preloader">wine-preloader</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="wine64">
-        <term><command>wine64</command></term>
-        <listitem>
-          <para>
-            runs 64-bit Windows programs on Unix
-          </para>
-          <indexterm zone="wine wine64">
-            <primary sortas="b-wine64">wine64</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="wine64-preloader">
-        <term><command>wine64-preloader</command></term>
-        <listitem>
-          <para>
-            preloads 64-bit Windows binaries
-          </para>
-          <indexterm zone="wine wine64-preloader">
-            <primary sortas="b-wine64-preloader">wine64-preloader</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
       <varlistentry id="wineboot">
         <term><command>wineboot</command></term>
         <listitem>
           <para>
-            performs <application>Wine</application> initialization, startup,
-            and shutdown tasks
+            performs Wine initialization, startup,
+            and shutdown tasks;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine wineboot">
             <primary sortas="b-wineboot">wineboot</primary>
@@ -383,7 +396,7 @@ make</userinput></screen>
         <term><command>winebuild</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> dll builder
+            is the Wine DLL builder
           </para>
           <indexterm zone="wine winebuild">
             <primary sortas="b-winebuild">winebuild</primary>
@@ -395,7 +408,8 @@ make</userinput></screen>
         <term><command>winecfg</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> Configuration Editor
+            is the Wine Configuration Editor;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winecfg">
             <primary sortas="b-winecfg">winecfg</primary>
@@ -407,7 +421,8 @@ make</userinput></screen>
         <term><command>wineconsole</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> console
+            is the Wine console;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine wineconsole">
             <primary sortas="b-wineconsole">wineconsole</primary>
@@ -419,8 +434,8 @@ make</userinput></screen>
         <term><command>wine{cpp,g++,gcc}</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> C and C++
-            <application>MinGW-w64</application> Compatible Compiler
+            is the Wine C and C++
+            MinGW-w64 Compatible Compiler
           </para>
           <indexterm zone="wine winecompilers">
             <primary sortas="b-winecompilers">winecompilers</primary>
@@ -432,7 +447,8 @@ make</userinput></screen>
         <term><command>winedbg</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> debugger
+            is the Wine debugger;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winedbg">
             <primary sortas="b-winedbg">winedbg</primary>
@@ -444,7 +460,7 @@ make</userinput></screen>
         <term><command>winedump</command></term>
         <listitem>
           <para>
-            is a <application>Wine</application> DLL tool
+            is a Wine DLL tool
           </para>
           <indexterm zone="wine winedump">
             <primary sortas="b-winedump">winedump</primary>
@@ -456,7 +472,8 @@ make</userinput></screen>
         <term><command>winefile</command></term>
         <listitem>
           <para>
-            is a <application>Wine</application> File Manager
+            is a Wine File Manager;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winefile">
             <primary sortas="b-winefile">winefile</primary>
@@ -481,8 +498,11 @@ make</userinput></screen>
         <term><command>winemine</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> <application>Minesweeper
-            </application> game.
+            is the Wine Minesweeper
+             game; it is also just an example and not meant
+            to be an accurate implementation of Minesweeper;
+            
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winemine">
             <primary sortas="b-winemine">winemine</primary>
@@ -494,7 +514,8 @@ make</userinput></screen>
         <term><command>winepath</command></term>
         <listitem>
           <para>
-            is a tool to convert Unix paths to/from Win32 paths
+            is a tool to convert Unix paths to/from Win32 paths;
+            symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winepath">
             <primary sortas="b-winepath">winepath</primary>
@@ -506,7 +527,7 @@ make</userinput></screen>
         <term><command>wineserver</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> server
+            is the Wine server
           </para>
           <indexterm zone="wine wineserver">
             <primary sortas="b-wineserver">wineserver</primary>
@@ -518,7 +539,7 @@ make</userinput></screen>
         <term><command>wmc</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> Message Compiler
+            is the Wine Message Compiler
           </para>
           <indexterm zone="wine wmc">
             <primary sortas="b-wmc">wmc</primary>
@@ -530,7 +551,7 @@ make</userinput></screen>
         <term><command>wrc</command></term>
         <listitem>
           <para>
-            is the <application>Wine</application> Resource Compiler
+            is the Wine Resource Compiler
           </para>
           <indexterm zone="wine wrc">
             <primary sortas="b-wrc">wrc</primary>

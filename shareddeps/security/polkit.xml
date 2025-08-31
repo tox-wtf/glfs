@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY polkit-download-http "https://github.com/polkit-org/polkit/archive/&polkit-version;/polkit-&polkit-version;.tar.gz">
-  <!ENTITY polkit-download-ftp  " ">
+  <!ENTITY polkit-root "https://github.com/polkit-org/polkit/archive">
+  <!ENTITY polkit-download "&polkit-root;/&polkit-version;/polkit-&polkit-version;.tar.gz">
 ]>
 
 <sect1 id="polkit" xreflabel="Polkit-&polkit-version;">
@@ -22,21 +22,15 @@
     <title>Introduction to Polkit</title>
 
     <para>
-      <application>Polkit</application> is a toolkit for defining and handling
+      Polkit is a toolkit for defining and handling
       authorizations. It is used for allowing unprivileged processes to
       communicate with privileged processes.
     </para>
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&polkit-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&polkit-download-ftp;"/>
+          Download: <ulink url="&polkit-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -78,10 +72,10 @@
         Since <phrase revision="sysv"><command>elogind</command></phrase>
         <phrase revision="systemd"><command>systemd-logind</command></phrase>
         uses PAM to register user sessions, it is a good idea to build
-        <application>Polkit</application> with PAM support so
+        Polkit with PAM support so
         <phrase revision="sysv"><command>elogind</command></phrase>
         <phrase revision="systemd"><command>systemd-logind</command></phrase>
-        can track <application>Polkit</application> sessions.
+        can track Polkit sessions.
       </para>
     </note>
 
@@ -95,7 +89,7 @@
     </bridgehead>
     <para role="optional">
       One polkit authentication agent for using polkit in the graphical
-      environment; this will greatly depend on what desktop you are running...
+      environment; this will greatly depend on what desktop you are running.
     </para>
 
   </sect2>
@@ -117,7 +111,7 @@ useradd -c "PolicyKit Daemon Owner" -d /etc/polkit-1 -u 27 \
         -g polkitd -s /bin/false polkitd</userinput></screen>
 
     <para>
-      Install <application>Polkit</application> by running the following
+      Install Polkit by running the following
       commands:
     </para>
 
@@ -168,13 +162,12 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
 
     &options-meson;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/meson-buildtype-release.xml"/>
+    &meson-buildtype-release;
 
     <para>
       <parameter>-D os_type=lfs</parameter>: This switch ensures that
       even if distribution auto detection fails, the distribution/OS type
-      will be hardcoded in <application>Polkit</application>.
+      will be hardcoded in Polkit.
     </para>
 
     <para>
@@ -184,9 +177,9 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
 
     <para>
       <option>-D authfw=shadow</option>: This switch enables the
-      package to use the <application>Shadow</application> rather than the
-      <application>Linux PAM</application> Authentication framework. Use it
-      if you have not installed <application>Linux PAM</application>.
+      package to use the Shadow rather than the
+      Linux PAM Authentication framework. Use it
+      if you have not installed Linux PAM.
     </para>
 
     <para>
@@ -210,8 +203,8 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
           pkttyagent, and polkitd
         </seg>
         <seg>
-          libpolkit-agent-1.so and
-          libpolkit-gobject-1.so
+          libpolkit-agent-1 and
+          libpolkit-gobject-1
         </seg>
         <seg>
           /etc/polkit-1,
@@ -295,7 +288,7 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
         <term><command>polkitd</command></term>
         <listitem>
           <para>
-            provides the org.freedesktop.PolicyKit1 <application>D-Bus</application>
+            provides the org.freedesktop.PolicyKit1 D-Bus
             service on the system message bus
           </para>
           <indexterm zone="polkit polkitd">
@@ -305,26 +298,26 @@ rm -rf /usr/lib/{sysusers,tmpfiles}.d</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libpolkit-agent-1">
-        <term><filename class="libraryfile">libpolkit-agent-1.so</filename></term>
+        <term><filename class="libraryfile">libpolkit-agent-1</filename></term>
         <listitem>
           <para>
-            contains the <application>Polkit</application> authentication
+            contains the Polkit authentication
             agent API functions
           </para>
           <indexterm zone="polkit libpolkit-agent-1">
-            <primary sortas="c-libpolkit-agent-1">libpolkit-agent-1.so</primary>
+            <primary sortas="c-libpolkit-agent-1">libpolkit-agent-1</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libpolkit-gobject-1">
-        <term><filename class="libraryfile">libpolkit-gobject-1.so</filename></term>
+        <term><filename class="libraryfile">libpolkit-gobject-1</filename></term>
         <listitem>
           <para>
-            contains the <application>Polkit</application> authorization API functions
+            contains the Polkit authorization API functions
           </para>
           <indexterm zone="polkit libpolkit-gobject-1">
-            <primary sortas="c-libpolkit-gobject-1">libpolkit-gobject-1.so</primary>
+            <primary sortas="c-libpolkit-gobject-1">libpolkit-gobject-1</primary>
           </indexterm>
         </listitem>
       </varlistentry>

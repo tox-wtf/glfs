@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY pciutils-download-http "https://mj.ucw.cz/download/linux/pci/pciutils-&pciutils-version;.tar.gz">
-  <!ENTITY pciutils-download-ftp  " ">
+  <!ENTITY pciutils-download "https://mj.ucw.cz/download/linux/pci/pciutils-&pciutils-version;.tar.gz">
 ]>
 
 <sect1 id="pciutils" xreflabel="pciutils-&pciutils-version;">
@@ -21,7 +20,7 @@
     <title>Introduction to PCI Utils</title>
 
     <para>
-      The <application>PCI Utils</application> package contains
+      The PCI Utils package contains
       a set of programs for listing PCI devices, inspecting
       their status and setting their configuration registers.
     </para>
@@ -29,12 +28,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&pciutils-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&pciutils-download-ftp;"/>
+          Download: <ulink url="&pciutils-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -60,17 +54,13 @@
     -i Makefile</userinput></screen>
 
     <para>
-      Install <application>PCI Utils</application> by
+      Install PCI Utils by
       running the following commands:
     </para>
 
 <screen><userinput>make PREFIX=/usr                \
      SHAREDIR=/usr/share/hwdata \
      SHARED=yes</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -113,7 +103,7 @@ chmod -v 755 /usr/lib/libpci.so</userinput></screen>
           lspci, pcilmr, and setpci
         </seg>
         <seg>
-          libpci.so
+          libpci
         </seg>
         <seg>
           /usr/include/pci
@@ -164,14 +154,14 @@ chmod -v 755 /usr/lib/libpci.so</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libpci">
-      <term><filename class="libraryfile">libpci.so</filename></term>
+      <term><filename class="libraryfile">libpci</filename></term>
       <listitem>
         <para>
           is a library that allows applications to access the PCI
           subsystem
         </para>
         <indexterm zone="pciutils libpci">
-          <primary sortas="c-libpci">libpci.so</primary>
+          <primary sortas="c-libpci">libpci</primary>
         </indexterm>
       </listitem>
       </varlistentry>

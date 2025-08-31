@@ -4,12 +4,12 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY llvm-download-http "https://github.com/llvm/llvm-project/releases/download/llvmorg-&llvm-version;/">
+  <!ENTITY llvm-root "https://github.com/llvm/llvm-project/releases/download">
+  <!ENTITY llvm-download "&llvm-root;/llvmorg-&llvm-version;/">
 ]>
 
 <sect1 id="llvm" xreflabel="LLVM-&llvm-version;">
   <?dbhtml filename="llvm.html" ?>
-
 
   <title>LLVM-&llvm-version;</title>
 
@@ -21,7 +21,7 @@
     <title>Introduction to LLVM</title>
 
     <para>
-      The <application>LLVM</application> package contains a collection of
+      The LLVM package contains a collection of
       modular and reusable compiler and toolchain technologies. The Low Level
       Virtual Machine (LLVM) Core libraries provide a modern source and
       target-independent optimizer, along with code generation support for many
@@ -31,18 +31,18 @@
     </para>
 
     <para>
-      <application>Clang</application> provides new C, C++, Objective C
-      and Objective C++ front-ends for <application>LLVM</application> and is
+      Clang provides new C, C++, Objective C
+      and Objective C++ front-ends for LLVM and is
       required by some desktop packages such as
       <ulink url="&blfs-svn;/xsoft/firefox.html">Firefox</ulink>
       and for <xref linkend="rustc"/> if that is built using the system
-      <application>LLVM</application>.
+      LLVM.
     </para>
 
     <para>
-      The <application>Compiler RT</application> package provides
+      The Compiler RT package provides
       runtime sanitizer and profiling libraries for developers who use
-      <application>Clang</application> and <application>LLVM</application>.
+      Clang and LLVM.
     </para>
 
     <para>
@@ -50,13 +50,12 @@
       wish to skip installing some of the optional packages.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&llvm-download-http;"/>
+          Download: <ulink url="&llvm-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -105,7 +104,7 @@ EOF</userinput></screen>
 <screen><userinput>mkdir llvm &amp;&amp;
 cd llvm &amp;&amp;
 grep -v '^#' ../llvm-&llvm-version;-list | wget -i- -c \
-    -B &llvm-download-http;</userinput></screen>
+    -B &llvm-download;</userinput></screen>
 
   </sect2>
 
@@ -147,7 +146,7 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
     -i cmake/modules/HandleLLVMOptions.cmake</userinput></screen>
 
     <para>
-      Install <application>clang</application> into
+      Extract clang into
       the source tree by running the following commands:
     </para>
 
@@ -155,7 +154,7 @@ sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
 mv tools/clang-&llvm-version;.src tools/clang</userinput></screen>
 
     <para>
-      Install <application>compiler-rt</application> into
+      Extract compiler-rt into
       the source tree by running the following commands:
     </para>
 
@@ -165,41 +164,39 @@ mv projects/compiler-rt-&llvm-version;.src projects/compiler-rt</userinput></scr
     <para>
      There are many Python scripts in this package which use
      <command>/usr/bin/env python</command> to access the system Python
-     which on LFS is <application>Python3</application>. Use the following
+     which on LFS is Python3. Use the following
      command to fix these scripts:
     </para>
 
 <screen><userinput>grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'</userinput></screen>
 
     <para>
-      Ensure installing the <command>FileCheck</command> program which is
-      needed by the test suite of some packages (for example
-      <xref linkend="rustc"/>): 
+      Ensure installing the <command>FileCheck</command> program:
     </para>
 
     <screen><userinput>sed 's/utility/tool/' -i utils/FileCheck/CMakeLists.txt</userinput></screen>
 
     <para>
-      Install <application>LLVM</application> by running the following
+      Install LLVM by running the following
       commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-CC=gcc CXX=g++                                   \
-cmake -D CMAKE_INSTALL_PREFIX=/usr               \
-      -D CMAKE_SKIP_INSTALL_RPATH=ON             \
-      -D LLVM_ENABLE_FFI=ON                      \
-      -D CMAKE_BUILD_TYPE=Release                \
-      -D LLVM_BUILD_LLVM_DYLIB=ON                \
-      -D LLVM_LINK_LLVM_DYLIB=ON                 \
-      -D LLVM_ENABLE_RTTI=ON                     \
-      -D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU" \
-      -D LLVM_BINUTILS_INCDIR=/usr/include       \
-      -D LLVM_INCLUDE_BENCHMARKS=OFF             \
-      -D CLANG_DEFAULT_PIE_ON_LINUX=ON           \
-      -D CLANG_CONFIG_FILE_SYSTEM_DIR=/etc/clang \
+CC=gcc CXX=g++                                         \
+cmake -D CMAKE_INSTALL_PREFIX=/usr                     \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON                   \
+      -D LLVM_ENABLE_FFI=ON                            \
+      -D CMAKE_BUILD_TYPE=Release                      \
+      -D LLVM_BUILD_LLVM_DYLIB=ON                      \
+      -D LLVM_LINK_LLVM_DYLIB=ON                       \
+      -D LLVM_ENABLE_RTTI=ON                           \
+      -D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU;NVPTX" \
+      -D LLVM_BINUTILS_INCDIR=/usr/include             \
+      -D LLVM_INCLUDE_BENCHMARKS=OFF                   \
+      -D CLANG_DEFAULT_PIE_ON_LINUX=ON                 \
+      -D CLANG_CONFIG_FILE_SYSTEM_DIR=/etc/clang       \
       -W no-dev -G Ninja .. &amp;&amp;
 
 ninja</userinput></screen>
@@ -236,7 +233,7 @@ cmake -D CMAKE_INSTALL_PREFIX=/usr                      \
       -D LLVM_LINK_LLVM_DYLIB=ON                        \
       -D LLVM_ENABLE_RTTI=ON                            \
       -D LLVM_DEFAULT_TARGET_TRIPLE="i686-pc-linux-gnu" \
-      -D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU"        \
+      -D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU;NVPTX"  \
       -D LLVM_HOST_TRIPLE="x86_64-pc-linux-gnu"         \
       -D LLVM_BINUTILS_INCDIR=/usr/include              \
       -D LLVM_INCLUDE_BENCHMARKS=OFF                    \
@@ -265,8 +262,8 @@ ldconfig</userinput></screen>
 
     <para>
       <parameter>-D LLVM_ENABLE_FFI=ON</parameter>: This switch allows
-      <application>LLVM</application> to use
-      <application>libffi</application>.
+      LLVM to use
+      libffi.
     </para>
 
     <para>
@@ -274,7 +271,7 @@ ldconfig</userinput></screen>
       the libraries as static and links all of them into an unique shared one.
       This is the recommended way of building a shared library and is required
       by <xref linkend="rustc"/> in order to build against the system-installed
-      <application>LLVM</application>.
+      LLVM.
     </para>
 
     <para>
@@ -284,16 +281,16 @@ ldconfig</userinput></screen>
       production system.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/cmake-skip-install-rpath.xml"/>
+    &cmake-skip-install-rpath;
 
     <para>
-      <parameter>-D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU"</parameter>: This
-      switch enables building for x86, the same target as the host, and also for
+      <parameter>-D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU;NVPTX"</parameter>:
+      This switch enables building for x86, the same target as the host, for
       the r600 AMD GPU used by the <xref linkend="mesa"/> r600 and radeonsi
-      drivers. The default is all of the targets. You can use a semicolon
-      separated list. Valid targets are:
-      host, AArch64, AMDGPU, ARM, AVR, BPF, Hexagon, Lanai, LoongArch,
+      drivers, as well as NVIDIA GPUs used in tandem with <ulink
+      url="&slfs-website;/general/cuda.html">CUDA</ulink>. The default is
+      all of the targets. You can use a semicolon separated list. Valid targets
+      are: host, AArch64, AMDGPU, ARM, AVR, BPF, Hexagon, Lanai, LoongArch,
       Mips, MSP430, NVPTX, PowerPC, RISCV, Sparc, SystemZ, SystemZ, VE,
       WebAssembly, X86, XCore, or all.
     </para>
@@ -303,7 +300,7 @@ ldconfig</userinput></screen>
       <parameter>-D LLVM_BUILD_LLVM_DYLIB=ON</parameter>, this switch enables
       linking the tools against the shared library instead of the static ones.
       It slightly reduces their size and also ensures that llvm-config
-      will correctly use libLLVM-&llvm-maj-version;.so.
+      will correctly use libLLVM-&llvm-maj-version;.
     </para>
 
     <para>
@@ -316,7 +313,7 @@ ldconfig</userinput></screen>
       <parameter>-D LLVM_BINUTILS_INCDIR=/usr/include</parameter>: This switch
       is used to tell the build system the location of binutils headers,
       which were installed in LFS.  This allows the building of
-      <filename class="libraryfile">LLVMgold.so</filename>, which is needed
+      <filename class="libraryfile">LLVMgold</filename>, which is needed
       for building programs with <command>clang</command> and Link Time
       Optimization (LTO).
     </para>
@@ -346,7 +343,7 @@ ldconfig</userinput></screen>
       <option>-D BUILD_SHARED_LIBS=ON</option>: if used instead of
       <parameter>-D LLVM_BUILD_LLVM_DYLIB=ON</parameter> and
       <parameter>-D LLVM_LINK_LLVM_DYLIB=ON</parameter>, builds all the
-      <application>LLVM</application> libraries (about 60) as shared
+      LLVM libraries (about 60) as shared
       libraries instead of static.
     </para>
 
@@ -363,7 +360,7 @@ ldconfig</userinput></screen>
         files to make <xref linkend='gSSP'/> enabled by default for
         <command>clang</command> and <command>clang++</command>, so
         the default configuration of their SSP feature will be consistent
-        with <application>GCC</application>:
+        with GCC:
       </para>
 
 <screen role='root'><userinput>mkdir -pv /etc/clang &amp;&amp;
@@ -383,56 +380,51 @@ done</userinput></screen>
 
       <seglistitem>
         <seg>
-          amdgpu-arch,
-          analyze-build, bugpoint, c-index-test, clang, clang++ (symlinks to
-          clang-&llvm-maj-version;), clang-&llvm-maj-version;, clang-check, clang-cl,
-          clang-cpp (last two symlinks to clang), clang-extdef-mapping, clang-format,
-          clang-linker-wrapper,
-          clang-offload-bundler, clang-offload-packager,
-          clang-refactor, clang-rename, clang-repl, clang-scan-deps,
-          clang-tblgen,
-          diagtool, dsymutil, FileCheck, git-clang-format, hmaptool, intercept-build,
-          llc, lli,
-          llvm-addr2line (symlink to llvm-symbolizer),
-          llvm-ar, llvm-as, llvm-bcanalyzer,
+          amdgpu-arch, analyze-build, bugpoint, c-index-test, clang, clang++
+          (symlinks to clang-&llvm-maj-version;), clang-&llvm-maj-version;,
+          clang-check, clang-cl, clang-cpp (last two symlinks to clang),
+          clang-extdef-mapping, clang-format, clang-installapi,
+          clang-linker-wrapper, clang-nvlink-wrapper, clang-offload-bundler,
+          clang-offload-packager, clang-refactor, clang-repl, clang-scan-deps,
+          clang-sycl-linker, clang-tblgen, diagtool, dsymutil, FileCheck,
+          git-clang-format, hmaptool, intercept-build, llc, lli, llvm-addr2line
+          (symlink to llvm-symbolizer), llvm-ar, llvm-as, llvm-bcanalyzer,
           llvm-bitcode-strip (symlink to llvm-objcopy), llvm-cat,
-          llvm-cfi-verify, llvm-config, llvm-cov, llvm-c-test, llvm-cvtres,
-          llvm-cxxdump, llvm-cxxfilt, llvm-cxxmap, llvm-debuginfo-analyzer,
-          llvm-debuginfod, llvm-debuginfod-find,
-          llvm-diff, llvm-dis, llvm-dlltool (symlink to llvm-ar),
-          llvm-dwarfdump, llvm-dwarfutil,
+          llvm-cfi-verify, llvm-cgdata,  llvm-config, llvm-cov, llvm-c-test,
+          llvm-ctxprog-util, llvm-cvtres, llvm-cxxdump, llvm-cxxfilt,
+          llvm-cxxmap, llvm-debuginfo-analyzer, llvm-debuginfod,
+          llvm-debuginfod-find, llvm-diff, llvm-dis, llvm-dlltool
+          (symlink to llvm-ar), llvm-dwarfdump, llvm-dwarfutil,
           llvm-dwp, llvm-exegesis, llvm-extract, llvm-gsymutil, llvm-ifs,
           llvm-install-name-tool (symlink to llvm-objcopy), llvm-jitlink,
           llvm-lib (symlink to llvm-ar), llvm-libtool-darwin, llvm-link,
           llvm-lipo, llvm-lto, llvm-lto2, llvm-mc, llvm-mca, llvm-ml,
           llvm-modextract, llvm-mt, llvm-nm, llvm-objcopy, llvm-objdump,
-          llvm-opt-report, llvm-otool (symlink to llv-objdump),
-          llvm-pdbutil, llvm-profdata, llvm-profgen,
-          llvm-ranlib (symlink to llvm-ar), llvm-rc,
-          llvm-readelf (symlink to llvm-readobj), llvm-readobj,
-          llvm-readtapi, llvm-reduce,
-          llvm-remarkutil,
-          llvm-rtdyld, llvm-sim, llvm-size, llvm-split, llvm-stress,
-          llvm-strings, llvm-strip (symlink to llvm-objcopy), llvm-symbolizer,
-          llvm-tblgen, llvm-tli-checker, llvm-undname, llvm-windres (symlink to
-          llvm-rc), llvm-xray, nvptx-arch, opt, sancov, sanstats, scan-build,
+          llvm-opt-report, llvm-otool (symlink to llv-objdump), llvm-pdbutil,
+          llvm-profdata, llvm-profgen, llvm-ranlib (symlink to llvm-ar), llvm-rc,
+          llvm-readelf (symlink to llvm-readobj), llvm-readobj, llvm-readtapi,
+          llvm-reduce, llvm-remarkutil, llvm-rtdyld, llvm-sim, llvm-size,
+          llvm-split, llvm-stress, llvm-strings, llvm-strip
+          (symlink to llvm-objcopy), llvm-symbolizer, llvm-tblgen,
+          llvm-tli-checker, llvm-undname, llvm-windres (symlink to llvm-rc),
+          llvm-xray, nvptx-arch, opt, sancov, sanstats, scan-build,
           scan-build-py, scan-view, and verify-uselistorder
         </seg>
         <seg>
-          libLLVM.so,
-          libLLVM*.a (107 libraries),
-          libLTO.so,
-          libRemarks.so,
-          libclang.so,
-          libclang-cpp.so,
-          libclang*.a (43 libraries),
-          and LLVMgold.so
+          libLLVM,
+          libLLVM* (107 static libraries),
+          libLTO,
+          libRemarks,
+          libclang,
+          libclang-cpp,
+          libclang* (43 static libraries),
+          and LLVMgold
         </seg>
         <seg>
           /usr/include/{clang,clang-c,llvm,llvm-c},
           /usr/lib/{clang,cmake/{clang,llvm},libear,libscanbuild},
           /usr/share/{clang,opt-viewer,scan-build,scan-view},
-          /usr/share/doc/llvm-&llvm-version;, and
+          <!--/usr/share/doc/llvm-&llvm-version;, -->and
           /etc/clang
         </seg>
       </seglistitem>
@@ -448,8 +440,8 @@ done</userinput></screen>
         <listitem>
           <para>
             lists AMD GPUs installed; at runtime it needs
-            <filename class='libraryfile'>libhsa-runtime64.so</filename>
-            which is not a part of GLFS
+            <filename class='libraryfile'>libhsa-runtime64</filename>
+            which is not a part of BLFS
           </para>
           <indexterm zone="llvm amdgpu-arch">
             <primary sortas="b-amdgpu-arch">amdgpu-arch</primary>
@@ -497,7 +489,7 @@ done</userinput></screen>
         <term><command>clang</command></term>
         <listitem>
           <para>
-            is the <application>Clang</application> C, C++,
+            is the Clang C, C++,
             and Objective-C compiler
           </para>
           <indexterm zone="llvm clang">
@@ -596,6 +588,7 @@ done</userinput></screen>
         </listitem>
       </varlistentry>
 
+ <!-- Not present in 20.1.0
       <varlistentry id="clang-rename">
         <term><command>clang-rename</command></term>
         <listitem>
@@ -607,6 +600,7 @@ done</userinput></screen>
           </indexterm>
         </listitem>
       </varlistentry>
+ -->
 
       <varlistentry id="clang-scan-deps">
         <term><command>clang-scan-deps</command></term>
@@ -677,7 +671,7 @@ done</userinput></screen>
         <listitem>
           <para>
             runs clang-format on git generated patches (requires
-            <xref linkend="git"/>)
+            <ulink url='&blfs-svn;/general/git.html'>Git</ulink>)
           </para>
           <indexterm zone="llvm git-clang-format">
             <primary sortas="b-git-clang-format">git-clang-format</primary>
@@ -713,7 +707,7 @@ done</userinput></screen>
         <term><command>llc</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> static compiler
+            is the LLVM static compiler
           </para>
           <indexterm zone="llvm llc">
             <primary sortas="b-llc">llc</primary>
@@ -726,7 +720,7 @@ done</userinput></screen>
         <listitem>
           <para>
             is used to directly execute programs from
-            <application>LLVM</application> bitcode
+            LLVM bitcode
           </para>
           <indexterm zone="llvm lli">
             <primary sortas="b-lli">lli</primary>
@@ -751,7 +745,7 @@ done</userinput></screen>
         <term><command>llvm-ar</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> archiver
+            is the LLVM archiver
           </para>
           <indexterm zone="llvm llvm-ar">
             <primary sortas="b-llvm-ar">llvm-ar</primary>
@@ -763,7 +757,7 @@ done</userinput></screen>
         <term><command>llvm-as</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> assembler
+            is the LLVM assembler
           </para>
           <indexterm zone="llvm llvm-as">
             <primary sortas="b-llvm-as">llvm-as</primary>
@@ -775,7 +769,7 @@ done</userinput></screen>
         <term><command>llvm-bcanalyzer</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> bitcode analyzer
+            is the LLVM bitcode analyzer
           </para>
           <indexterm zone="llvm llvm-bcanalyzer">
             <primary sortas="b-llvm-bcanalyzer">llvm-bcanalyzer</primary>
@@ -825,7 +819,7 @@ done</userinput></screen>
         <term><command>llvm-config</command></term>
         <listitem>
           <para>
-            Prints <application>LLVM</application> compilation options
+            Prints LLVM compilation options
           </para>
           <indexterm zone="llvm llvm-config">
             <primary sortas="b-llvm-config">llvm-config</primary>
@@ -947,7 +941,7 @@ done</userinput></screen>
         <term><command>llvm-diff</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> structural
+            is the LLVM structural
             '<command>diff</command>'
           </para>
           <indexterm zone="llvm llvm-diff">
@@ -960,7 +954,7 @@ done</userinput></screen>
         <term><command>llvm-dis</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> disassembler
+            is the LLVM disassembler
           </para>
           <indexterm zone="llvm llvm-dis">
             <primary sortas="b-llvm-dis">llvm-dis</primary>
@@ -1035,7 +1029,7 @@ done</userinput></screen>
         <listitem>
           <para>
             is used to extract a function from an
-            <application>LLVM</application> module
+            LLVM module
           </para>
           <indexterm zone="llvm llvm-extract">
             <primary sortas="b-llvm-extract">llvm-extract</primary>
@@ -1112,7 +1106,7 @@ done</userinput></screen>
         <term><command>llvm-link</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> linker
+            is the LLVM linker
           </para>
           <indexterm zone="llvm llvm-link">
             <primary sortas="b-llvm-link">llvm-link</primary>
@@ -1136,7 +1130,7 @@ done</userinput></screen>
         <term><command>llvm-lto</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> LTO (link time optimization)
+            is the LLVM LTO (link time optimization)
             linker
           </para>
           <indexterm zone="llvm llvm-lto">
@@ -1182,18 +1176,6 @@ done</userinput></screen>
         </listitem>
       </varlistentry>
 
-<!--  <varlistentry id="llvm-mcmarkup">
-        <term><command>llvm-mcmarkup</command></term>
-        <listitem>
-          <para>
-            is a parser for machine code markup.
-          </para>
-          <indexterm zone="llvm llvm-mcmarkup">
-            <primary sortas="b-llvm-mcmarkup">llvm-mcmarkup</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>-->
-
       <varlistentry id="llvm-ml">
         <term><command>llvm-ml</command></term>
         <listitem>
@@ -1235,7 +1217,7 @@ done</userinput></screen>
         <term><command>llvm-nm</command></term>
         <listitem>
           <para>
-            is used to list <application>LLVM</application> bitcode
+            is used to list LLVM bitcode
             and object file's symbol table
           </para>
           <indexterm zone="llvm llvm-nm">
@@ -1260,7 +1242,7 @@ done</userinput></screen>
         <term><command>llvm-objdump</command></term>
         <listitem>
           <para>
-            is an <application>LLVM</application> object file dumper
+            is an LLVM object file dumper
           </para>
           <indexterm zone="llvm llvm-objdump">
             <primary sortas="b-llvm-objdump">llvm-objdump</primary>
@@ -1321,7 +1303,7 @@ done</userinput></screen>
         <term><command>llvm-ranlib</command></term>
         <listitem>
           <para>
-            is used to generate an index for a <application>LLVM</application>
+            is used to generate an index for a LLVM
             archive
           </para>
           <indexterm zone="llvm llvm-ranlib">
@@ -1397,7 +1379,7 @@ done</userinput></screen>
         <term><command>llvm-rtdyld</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> MC-JIT tool
+            is the LLVM MC-JIT tool
           </para>
           <indexterm zone="llvm llvm-rtdyld">
             <primary sortas="b-llvm-rtdyld">llvm-rtdyld</primary>
@@ -1409,7 +1391,7 @@ done</userinput></screen>
         <term><command>llvm-size</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> object size dumper
+            is the LLVM object size dumper
           </para>
           <indexterm zone="llvm llvm-size">
             <primary sortas="b-llvm-size">llvm-size</primary>
@@ -1421,7 +1403,7 @@ done</userinput></screen>
         <term><command>llvm-split</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> module splitter
+            is the LLVM module splitter
           </para>
           <indexterm zone="llvm llvm-split">
             <primary sortas="b-llvm-split">llvm-split</primary>
@@ -1471,7 +1453,7 @@ done</userinput></screen>
         <term><command>llvm-tblgen</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> Target Description
+            is the LLVM Target Description
             To C++ Code Generator
           </para>
           <indexterm zone="llvm llvm-tblgen">
@@ -1484,7 +1466,7 @@ done</userinput></screen>
         <term><command>llvm-tli-checker</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> TargetLibraryInfo
+            is the LLVM TargetLibraryInfo
             versus SDK checker
           </para>
           <indexterm zone="llvm llvm-tli-checker">
@@ -1522,8 +1504,8 @@ done</userinput></screen>
         <listitem>
           <para>
             lists NVIDIA GPUs installed; at runtime it needs
-            <filename>libcuda.so</filename> which is installed
-            by <application>NVIDIA</application> (not in this book)
+            <filename class='libraryfile'>libcuda</filename>
+            from <xref linkend="nvidia"/>
           </para>
           <indexterm zone="llvm nvptx-arch">
             <primary sortas="b-nvptx-arch">nvptx-arch</primary>
@@ -1535,7 +1517,7 @@ done</userinput></screen>
         <term><command>opt</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> optimizer
+            is the LLVM optimizer
           </para>
           <indexterm zone="llvm opt">
             <primary sortas="b-opt">opt</primary>
@@ -1571,8 +1553,8 @@ done</userinput></screen>
         <term><command>scan-build</command></term>
         <listitem>
           <para>
-            is a <application>Perl</application> script that invokes the
-            <application>Clang</application> static analyzer
+            is a Perl script that invokes the
+            Clang static analyzer
           </para>
           <indexterm zone="llvm scan-build">
             <primary sortas="b-scan-build">scan-build</primary>
@@ -1584,8 +1566,8 @@ done</userinput></screen>
         <term><command>scan-build-py</command></term>
         <listitem>
           <para>
-            is a <application>Python</application> script that invokes the
-            <application>Clang</application> static analyzer
+            is a Python script that invokes the
+            Clang static analyzer
           </para>
           <indexterm zone="llvm scan-build-py">
             <primary sortas="b-scan-build-py">scan-build-py</primary>
@@ -1597,7 +1579,7 @@ done</userinput></screen>
         <term><command>scan-view</command></term>
         <listitem>
           <para>
-            is a viewer for <application>Clang</application> static analyzer
+            is a viewer for Clang static analyzer
             results
           </para>
           <indexterm zone="llvm scan-view">
@@ -1610,7 +1592,7 @@ done</userinput></screen>
         <term><command>verify-uselistorder</command></term>
         <listitem>
           <para>
-            is the <application>LLVM</application> tool to verify use-list
+            is the LLVM tool to verify use-list
             order
           </para>
           <indexterm zone="llvm verify-uselistorder">
@@ -1618,46 +1600,6 @@ done</userinput></screen>
           </indexterm>
         </listitem>
       </varlistentry>
-
-<!-- Removed in 12.0.0
-      <varlistentry id="yaml2obj">
-        <term><command>yaml2obj</command></term>
-        <listitem>
-          <para>
-            takes a YAML representation of an object file and converts it
-            to a binary file
-          </para>
-          <indexterm zone="llvm yaml2obj">
-            <primary sortas="b-yaml2obj">yaml2obj</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
--->
-<!--
-      <varlistentry id="libllvm">
-        <term><filename class="libraryfile">libLLVM-&llvm-version;.so</filename></term>
-        <listitem>
-          <para>
-            contains the <application>LLVM</application> API functions.
-          </para>
-          <indexterm zone="llvm libllvm">
-            <primary sortas="c-libllvm">libLLVM-&llvm-version;.so</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libprofile_rt">
-        <term><filename class="libraryfile">libprofile_rt.so</filename></term>
-        <listitem>
-          <para>
-            is the C, C++ and Objective-C runtime library for
-            <application>Clang</application>.
-          </para>
-          <indexterm zone="llvm libprofile_rt">
-            <primary sortas="c-libprofile_rt">libprofile_rt.so</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>-->
 
     </variablelist>
 

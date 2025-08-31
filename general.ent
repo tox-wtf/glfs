@@ -2,7 +2,7 @@
 <!ENTITY % conditional-entities SYSTEM "conditional.ent">
 %conditional-entities;
 
-<!ENTITY xlfs-version "12.3">
+<!ENTITY xlfs-version "12.4">
 <!ENTITY % relnum     "&xlfs-version;">
 
 <![ %development; [
@@ -21,8 +21,8 @@
 ]]>
 ]]><!-- End %development -->
 
-<!ENTITY mlfs-stable        "24cf3b5be96b69ccbfd0fcfe536ad263fdb24502">
-<!ENTITY mlfs-extra-commits "b138633c16ebfb181e7621e276e8196c73c024a9">
+<!ENTITY mlfs-stable        "6fac5d60ac4da40e5d027ffcac5c0d0f32171f5f">
+<!ENTITY mlfs-extra-commits "99d3c4a4c703a522509e087fb7c9dd7893241978">
 <![ %release; [
 <!ENTITY version       "%relnum;">
 <![ %sysv; [
@@ -46,8 +46,9 @@
 <!ENTITY maintainer-firstname "GLFS">
 <!ENTITY maintainer-address   "zeckma.tech@gmail.com;">
 
-<!ENTITY lfs-website          "https://www.&lfs-domainname;">
-<!ENTITY glfs-website         "https://&glfs-domainname;/glfs">
+<!ENTITY lfs-website  "https://www.&lfs-domainname;">
+<!ENTITY glfs-website "https://&glfs-domainname;/glfs">
+<!ENTITY slfs-website "https://&glfs-domainname;/slfs">
 <!-- downloads_root must have an entity because it is needed for scripts
      Note:  s/_/-/ in comment to avoid grep error
      It is also needed for systemd units
@@ -61,7 +62,8 @@
 
 <!ENTITY hints-root           "https://www.&lfs-domainname;/hints">
 <!ENTITY patch-downloads      "https://www.linuxfromscratch.org/patches/downloads">
-<!ENTITY patch-root           "&glfs-website;/patches">
+<!ENTITY dl-root              "&glfs-website;/download">
+<!ENTITY misc-dl-root         "https://github.com/glfs-book/glfs-misc-downloads/releases/download">
 <!ENTITY errata               "https://www.&lfs-domainname;/blfs/errata/&blfs-version;/">
 <!ENTITY blfs-ticket-root     "https://wiki.&lfs-domainname;/blfs/ticket/">
 <!ENTITY lfs-root             "&lfs-website;/lfs/view/&lfs-version;">
@@ -96,8 +98,7 @@
 <!ENTITY jaist-ftp-repo       "ftp://ftp.jaist.ac.jp/pub//sourceforge">
 <!ENTITY lxqt-http-repo       "http://downloads.lxqt.org/lxqt">
 <!ENTITY publisher            "Unknown">
-<!ENTITY xorg-download-http   "https://www.x.org/pub/individual">
-<!ENTITY xorg-download-ftp    "ftp://ftp.x.org/pub/individual">
+<!ENTITY xorg-dl              "https://xorg.freedesktop.org/archive/individual">
 <!ENTITY pypi                 "https://pypi.python.org/pypi">
 <!ENTITY appstream-glib-url   "http://people.freedesktop.org/~hughsient/appstream-glib/releases">
 <!ENTITY elinks-url           "http://elinks.or.cz">
@@ -113,15 +114,8 @@
 <!ENTITY root                 "<systemitem class='username'>root</systemitem>">
 <!ENTITY gi-docgen-url        "https://gnome.pages.gitlab.gnome.org/gi-docgen/">
 
-<!-- These entities are used to identify versions of LFS
-     packages referenced throughout the BLFS book. -->
-
-<!ENTITY lfs-perl-version             "5.40"> <!-- used in git -->
-
-<!-- End LFS versions -->
-
-<!ENTITY blfs-bootscripts-version     "20240209">
-<!ENTITY systemd-units-version        "20240205">
+<!ENTITY blfs-bootscripts-version     "20250225">
+<!ENTITY systemd-units-version        "20241211">
 
 <!ENTITY blfs-wiki                    "https://wiki.&lfs-domainname;/blfs/wiki">
 <!ENTITY blfs-svn                     "&lfs-website;/blfs/view/&blfs-version;">
@@ -138,8 +132,8 @@
 <![ %release; [
   <!ENTITY important-stability "<para>
   This is the stable release of this book and is known to have working
-  instructions and matches up with LFS and BLFS &xlfs-version;. External links
-  will point to stable sources. However, links that point to MLFS is
+  instructions and matches up with LFS, BLFS, and SLFS &xlfs-version;. External
+  links will point to stable sources. However, links that point to MLFS are
   problematic as MLFS is rolling release, not stable, so information there may
   be ahead of the results that appear from this book, and instructions in the
   newer version of the book may lead to broken instructions in this one.
@@ -150,7 +144,8 @@
 <![ %development; [
   <!ENTITY multilib-rendering1 "<para>You can render MLFS if you wish.</para>">
 <![ %sysv; [
-  <!ENTITY multilib-rendering2 "<para>First, install <xref linkend='git'/>, then
+  <!ENTITY multilib-rendering2 "<para>First, install <ulink
+  url='&blfs-svn;/general/git.html'>Git</ulink>, then
   clone the LFS repo and switch to the
   <computeroutput>multilib</computeroutput> branch:
 </para>
@@ -172,11 +167,12 @@ git checkout multilib</userinput></screen>
   <!ENTITY multilib-rendering1 "<para>
   The links above, however, are rolling release and are rendered frequently.
   The known version of MLFS to work with this version of GLFS is
-  &mlfs-stable; with &mlfs-extra-commits; merged. You can render it by
+  &mlfs-stable;<!-- with &mlfs-extra-commits; merged-->. You can render it by
   following the instructions below.
 </para>">
 <![ %sysv; [
-  <!ENTITY multilib-rendering2 "<para>First, install <xref linkend='git'/>, then
+  <!ENTITY multilib-rendering2 "<para>First, install <ulink
+  url='&blfs-svn;/general/git.html'>Git</ulink>, then
   clone the LFS repo, switch to the
   <computeroutput>multilib</computeroutput> branch, then switch to the stable
   version:
@@ -270,35 +266,6 @@ export -f as_root</userinput></screen>
 <!ENTITY % package-entities SYSTEM      "packages.ent">
 %package-entities;
 
-<!ENTITY parallel_issues "<note><para>This package may occasionally fail when
-                          building with multiple processors.  See <xref
-                          linkend='parallel-builds'/> for more information.</para></note>">
-
-<!ENTITY shell-env "<note><para>If installing in the chroot environment, be
-                    sure to export the <envar>SHELL</envar> environment
-                    variable or configuration of the package will
-                    fail.</para></note>">
-
-<!ENTITY gi-doc-disable
-         "Allow building this package without <xref linkend='gi-docgen'/>
-          installed.  If you have <xref linkend='gi-docgen'/> installed and
-          you wish to rebuild and install the API documentation, a
-          <command>meson configure</command> command will reset this
-          option.">
-
-<!-- TODO change "nodep" to "required"/"optional" after 12.3 release. -->
-<!ENTITY build-use-internet
-         "<note><para>An Internet connection is needed for building this
-          package. The system certificate store may need to be set up with
-          <xref role='nodep' linkend='make-ca'/> before building this
-          package.</para></note>">
-
-<!ENTITY test-use-internet
-         "<note><para>An Internet connection is needed for some tests of
-          this package. The system certificate store may need to be set up
-          with <xref role='nodep' linkend='make-ca'/> before testing this
-          package.</para></note>">
-
 <!ENTITY logind
          "<phrase revision='sysv'><xref linkend='elogind'/></phrase>
           <phrase revision='systemd'><xref linkend='systemd'/></phrase>">
@@ -317,16 +284,11 @@ export -f as_root</userinput></screen>
 
 <!ENTITY gobject-introspection "<xref linkend='glib2'/> (with GObject Introspection)">
 
-<!ENTITY options-configure
-         "<note><para>Run <command>./configure --help</command> for a full list
-          of options.</para></note>">
-<!ENTITY options-subconfigure
-         "<note><para>Run <command>../configure --help</command> for a full
-          list of options.</para></note>">
-<!ENTITY options-meson
-         "<note><para>Inspect <filename>meson_options.txt</filename> for a full
-          list of options.</para></note>">
-<!ENTITY options-cmake
-         "<note><para>Inspect <filename>CMakeLists.txt</filename> and other
-          <application>CMake</application> related files for a full list of
-          options.</para></note>">
+<!ENTITY opengl "OpenGL (<xref linkend='libglvnd'/> or <xref linkend='mesa'/>)">
+<!ENTITY gbm    "GBM (<xref linkend='gbm'/> or <xref linkend='mesa'/>)">
+
+<!ENTITY sdl2 "SDL2 (<xref linkend='sdl2'/> or <ulink
+               url='&slfs-website;/graph/sdl2.html'>sdl2-compat</ulink>)">
+
+<!ENTITY % xinclude-entities SYSTEM "xent.ent">
+%xinclude-entities;

@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY duktape-download-http "https://duktape.org/duktape-&duktape-version;.tar.xz">
-  <!ENTITY duktape-download-ftp  " ">
+  <!ENTITY duktape-download "https://duktape.org/duktape-&duktape-version;.tar.xz">
 ]>
 
 <sect1 id="duktape" xreflabel="duktape-&duktape-version;">
@@ -22,23 +21,16 @@
     <title>Introduction to duktape</title>
 
     <para>
-      <application>duktape</application> is an embeddable Javascript
+      duktape is an embeddable Javascript
       engine, with a focus on portability and compact footprint.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&duktape-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&duktape-download-ftp;"/>
+          Download: <ulink url="&duktape-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -49,7 +41,7 @@
     <title>Installation of duktape</title>
 
     <para>
-      Install <application>duktape</application> by running the
+      Install duktape by running the
       following commands:
     </para>
 
@@ -77,7 +69,7 @@ make -f Makefile.sharedlibrary INSTALL_PREFIX=/usr</userinput></screen>
           None
         </seg>
         <seg>
-          libduktape.so and libduktaped.so
+          libduktape and libduktaped
         </seg>
         <seg>
           None
@@ -91,26 +83,26 @@ make -f Makefile.sharedlibrary INSTALL_PREFIX=/usr</userinput></screen>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libduktape">
-        <term><filename class="libraryfile">libduktape.so</filename></term>
+        <term><filename class="libraryfile">libduktape</filename></term>
         <listitem>
           <para>
             is an embeddable Javascript engine
           </para>
           <indexterm zone="duktape libduktape">
-            <primary sortas="c-libduktape">libduktape.so</primary>
+            <primary sortas="c-libduktape">libduktape</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libduktaped">
-        <term><filename class="libraryfile">libduktaped.so</filename></term>
+        <term><filename class="libraryfile">libduktaped</filename></term>
         <listitem>
           <para>
             is a debug version of <filename
-            class="libraryfile">libduktape.so</filename>
+            class="libraryfile">libduktape</filename>
           </para>
           <indexterm zone="duktape libduktaped">
-            <primary sortas="c-libduktaped">libduktaped.so</primary>
+            <primary sortas="c-libduktaped">libduktaped</primary>
           </indexterm>
         </listitem>
       </varlistentry>

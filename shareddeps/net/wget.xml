@@ -4,14 +4,11 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY wget-download-http
-           "&gnu-http;/wget/wget-&wget-version;.tar.gz">
-  <!ENTITY wget-download-ftp  " ">
+  <!ENTITY wget-download "&gnu-http;/wget/wget-&wget-version;.tar.gz">
 ]>
 
 <sect1 id="wget" xreflabel="Wget-&wget-version;">
   <?dbhtml filename="wget.html"?>
-
 
   <title>Wget-&wget-version;</title>
 
@@ -23,19 +20,16 @@
     <title>Introduction to Wget</title>
 
     <para>
-      The <application>Wget</application> package contains a utility useful for
-      non-interactive downloading of files from the Web.
+      The Wget package contains a utility useful for non-interactive
+      downloading of files from the Web. It is used in pages in this book,
+      BLFS, and SLFS that lump packages together, like downloading Xorg or KDE
+      packages, or when a package depends on a wealth of submodules.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&wget-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&wget-download-ftp;"/>
+          Download: <ulink url="&wget-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -55,13 +49,9 @@
     <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="gnutls"/>,
-      <ulink url="&blfs-svn;/general/perl-modules.html#perl-http-daemon">
-      HTTP-Daemon</ulink> (for the test suite),
-      <ulink url="&blfs-svn;/general/perl-modules.html#perl-io-socket-ssl">
-      IO-Socket-SSL</ulink> (for the test suite),
       <xref linkend="libidn2"/>,
-      <xref linkend="pcre2"/>, and
-      <ulink url="&blfs-svn;/general/valgrind.html">Valgrind</ulink> (for the test suite)
+      <xref linkend="libunistring"/>, and
+      <xref linkend="pcre2"/>
     </para>
 
   </sect2>
@@ -70,7 +60,7 @@
     <title>Installation of Wget</title>
 
     <para>
-      Install <application>Wget</application> by running the following commands:
+      Install Wget by running the following commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr      \
@@ -78,23 +68,6 @@
             --with-ssl=openssl &amp;&amp;
 
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
-
-    <!-- libwww-perl/HTTP-Daemon/#21
-         Removing, since IO::Socket//INET6 has been deprecated
-         and replaced with IO::Socket::IP, which fixes the
-         problem
-    <para>
-      HTTPS tests are known to fail if Perl module IO::Socket::INET6
-      is installed.
-    </para>
--->
-    <para>
-      Some tests may fail when Valgrind tests are enabled.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -117,11 +90,6 @@ make</userinput></screen>
     <para>
       <parameter>--with-ssl=openssl</parameter>: This allows the program to use
       openssl instead of GnuTLS.
-    </para>
-
-    <para>
-      <option>--enable-valgrind-tests</option>: This allows the tests to be
-      run under valgrind.
     </para>
 
   </sect2>
@@ -148,7 +116,7 @@ make</userinput></screen>
 <!--
       <para>
         If you have installed <xref linkend="make-ca"/> and you want
-        <application>Wget</application> to use them, as the
+        Wget to use them, as the
         <systemitem class="username">root</systemitem> user:
       </para>
 

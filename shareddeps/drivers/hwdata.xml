@@ -4,8 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY hwdata-download-http "https://github.com/vcrhonek/hwdata/archive/v&hwdata-version;/hwdata-&hwdata-version;.tar.gz">
-  <!ENTITY hwdata-download-ftp  " ">
+  <!ENTITY hwdata-root "https://github.com/vcrhonek/hwdata/archive">
+  <!ENTITY hwdata-download
+    "&hwdata-root;/v&hwdata-version;/hwdata-&hwdata-version;.tar.gz">
 ]>
 
 <sect1 id="hwdata" xreflabel="hwdata-&hwdata-version;">
@@ -21,19 +22,14 @@
     <title>Introduction to hwdata</title>
 
     <para>
-      The <application>hwdata</application> package contains
+      The hwdata package contains
       current PCI and vendor id data.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&hwdata-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&hwdata-download-ftp;"/>
+          Download: <ulink url="&hwdata-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -44,15 +40,11 @@
     <title>Installation of hwdata</title>
 
     <para>
-      Install <application>hwdata</application> by
+      Install hwdata by
       running the following commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr --disable-blacklist</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the &root; user:

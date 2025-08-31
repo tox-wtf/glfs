@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xorg-synaptics-driver-download-http "&xorg-download-http;/driver/xf86-input-synaptics-&xorg-synaptics-driver-version;.tar.xz">
-  <!ENTITY xorg-synaptics-driver-download-ftp  " ">
+  <!ENTITY xorg-synaptics-driver-download
+    "&xorg-dl;/driver/xf86-input-synaptics-&xorg-synaptics-driver-version;.tar.xz">
 ]>
 
 <!-- Begin Xorg Synaptics Driver -->
@@ -25,7 +25,7 @@
       <title>Introduction to Xorg Synaptics Driver</title>
 
       <para>
-        The <application>Xorg Synaptics Driver</application> package contains
+        The Xorg Synaptics Driver package contains
         the X.Org Input Driver, support programs and SDK for Synaptics
         touchpads. Even though the evdev driver can handle touchpads very well,
         this driver is required if you want to use advanced features like multi
@@ -36,12 +36,7 @@
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            Download (HTTP): <ulink url="&xorg-synaptics-driver-download-http;"/>
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Download (FTP): <ulink url="&xorg-synaptics-driver-download-ftp;"/>
+            Download: <ulink url="&xorg-synaptics-driver-download;"/>
           </para>
         </listitem>
       </itemizedlist>
@@ -60,16 +55,12 @@
       <title>Installation of Xorg Synaptics Driver</title>
 
       <para>
-        Install <application>Xorg Synaptics Driver</application> by running the following
+        Install Xorg Synaptics Driver by running the following
         commands:
       </para>
 
 <screen><userinput>./configure $XORG_CONFIG &amp;&amp;
 make</userinput></screen>
-
-      <para>
-        This package does not come with a test suite.
-      </para>
 
       <para>
         Now, as the <systemitem class="username">root</systemitem> user:
@@ -97,7 +88,7 @@ make</userinput></screen>
             synclient and syndaemon
           </seg>
           <seg>
-            synaptics_drv.so
+            synaptics_drv
           </seg>
         </seglistitem>
       </segmentedlist>
@@ -134,13 +125,13 @@ make</userinput></screen>
         </varlistentry>
 
         <varlistentry id="synaptics_drv">
-          <term><filename class="libraryfile">synaptics_drv.so</filename></term>
+          <term><filename class="libraryfile">synaptics_drv</filename></term>
           <listitem>
             <para>
               is an Xorg input driver for touchpads
             </para>
             <indexterm zone="xorg-synaptics-driver synaptics_drv">
-              <primary sortas="c-synaptics_drv">synaptics_drv.so</primary>
+              <primary sortas="c-synaptics_drv">synaptics_drv</primary>
             </indexterm>
           </listitem>
         </varlistentry>

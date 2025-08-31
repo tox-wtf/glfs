@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xcursor-themes-download-http "&xorg-download-http;/data/xcursor-themes-&xcursor-themes-version;.tar.xz">
-  <!ENTITY xcursor-themes-download-ftp  " ">
+  <!ENTITY xcursor-themes-download "&xorg-dl;/data/xcursor-themes-&xcursor-themes-version;.tar.xz">
 ]>
 
 <sect1 id="xcursor-themes" xreflabel="xcursor-themes-&xcursor-themes-version;">
@@ -21,19 +20,14 @@
     <title>Introduction to xcursor-themes</title>
 
     <para>
-      The <application>xcursor-themes</application> package contains the
+      The xcursor-themes package contains the
       redglass and whiteglass animated cursor themes.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&xcursor-themes-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&xcursor-themes-download-ftp;"/>
+          Download: <ulink url="&xcursor-themes-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -51,16 +45,12 @@
     <title>Installation of xcursor-themes</title>
 
     <para>
-      Install <application>xcursor-themes</application> by running the
+      Install xcursor-themes by running the
       following commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr &amp;&amp;
 make</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

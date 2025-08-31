@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY pcre2-download-http "https://github.com/PCRE2Project/pcre2/releases/download/pcre2-&pcre2-version;/pcre2-&pcre2-version;.tar.bz2">
-  <!ENTITY pcre2-download-ftp  " ">
+  <!ENTITY pcre2-root "https://github.com/PCRE2Project/pcre2/releases/download">
+  <!ENTITY pcre2-download "&pcre2-root;/pcre2-&pcre2-version;/pcre2-&pcre2-version;.tar.bz2">
 ]>
 
 <sect1 id="pcre2" xreflabel="pcre2-&pcre2-version;">
@@ -22,22 +22,16 @@
     <title>Introduction to PCRE2</title>
 
     <para>
-      The <application>PCRE2</application> package contains a new generation of
-      the <application>Perl Compatible Regular Expression</application>
+      The PCRE2 package contains a new generation of
+      the Perl Compatible Regular Expression
       libraries. These are useful for implementing regular expression pattern
-      matching using the same syntax and semantics as <application>Perl</application>.
+      matching using the same syntax and semantics as Perl.
     </para>
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&pcre2-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&pcre2-download-ftp;"/>
+          Download: <ulink url="&pcre2-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -48,7 +42,7 @@
     <title>Installation of PCRE2</title>
 
     <para>
-      Install <application>PCRE2</application> by running the following
+      Install PCRE2 by running the following
       commands:
     </para>
 
@@ -75,17 +69,12 @@ make</userinput></screen>
     <title>lib32 Installation of PCRE2</title>
 
     <para>
-      First clean the directory:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Now install lib32-<application>PCRE2</application> by running the
+      Install lib32-PCRE2 by running the
       following commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"                    \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"                    \
 PKG_CONFIG_PATH="/usr/lib32/pkgconfig"          \
 ./configure --prefix=/usr                       \
             --libdir=/usr/lib32                 \
@@ -133,23 +122,22 @@ ldconfig</userinput></screen>
 
     <para>
       <parameter>--enable-pcre2grep-libz</parameter>: This switch adds support
-      for reading .gz compressed files to <application>pcre2grep</application>.
+      for reading .gz compressed files to pcre2grep.
     </para>
 
     <para>
       <parameter>--enable-pcre2grep-libbz2</parameter>: This switch adds
       support for reading .bz2 compressed files to
-      <application>pcre2grep</application>.
+      pcre2grep.
     </para>
 
     <para>
       <parameter>--enable-pcre2test-libreadline</parameter>: This switch adds
       line editing and history features to the
-      <application>pcre2test</application> program.
+      pcre2test program.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/static-libraries.xml"/>
+    &static-libraries;
 
     <para>
       <parameter>--enable-jit</parameter>: this option enables Just-in-time
@@ -173,10 +161,10 @@ ldconfig</userinput></screen>
           and pcre2test.
         </seg>
         <seg>
-          libpcre2-8.so,
-          libpcre2-16.so,
-          libpcre2-32.so,
-          and libpcre2-posix.so
+          libpcre2-8,
+          libpcre2-16,
+          libpcre2-32,
+          and libpcre2-posix
         </seg>
         <seg>
           /usr/share/doc/pcre2-&pcre2-version;
@@ -193,9 +181,9 @@ ldconfig</userinput></screen>
         <term><command>pcre2grep</command></term>
         <listitem>
           <para>
-            is a version of <application>grep</application>
+            is a version of grep
             that understands
-            <application>Perl compatible regular expressions.</application>
+            Perl compatible regular expressions.
           </para>
           <indexterm zone="pcre2 pcre2grep">
             <primary sortas="b-pcre2grep">pcre2grep</primary>
@@ -208,7 +196,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             can test a
-            <application>Perl compatible regular expression.</application>
+            Perl compatible regular expression.
           </para>
           <indexterm zone="pcre2 pcre2test">
             <primary sortas="b-pcre2test">pcre2</primary>
@@ -221,7 +209,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             outputs compilation information to programs linking against the
-            <application>PCRE2</application> libraries
+            PCRE2 libraries
           </para>
           <indexterm zone="pcre2 pcre2-config">
             <primary sortas="b-pcre2-config">pcre2-config</primary>

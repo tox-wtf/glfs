@@ -4,16 +4,13 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY libvdpau-va-gl-download-http "https://github.com/i-rinat/libvdpau-va-gl/archive/v&libvdpau-va-gl-version;/libvdpau-va-gl-&libvdpau-va-gl-version;.tar.gz">
-  <!ENTITY libvdpau-va-gl-download-ftp  " ">
+  <!ENTITY vdpauvagl-root "https://github.com/i-rinat/libvdpau-va-gl/archive">
+  <!ENTITY libvdpau-va-gl-download
+    "&vdpauvagl-root;/v&libvdpau-va-gl-version;/libvdpau-va-gl-&libvdpau-va-gl-version;.tar.gz">
 ]>
 
   <sect1 id="libvdpau-va-gl" xreflabel="libvdpau-va-gl-&libvdpau-va-gl-version;">
   <?dbhtml filename="libvdpau-va-gl.html"?>
-
-    <sect1info>
-      <date>$Date$</date>
-    </sect1info>
 
     <title>libvdpau-va-gl-&libvdpau-va-gl-version;</title>
 
@@ -25,7 +22,7 @@
       <title>Introduction to libvdpau-va-gl</title>
 
       <para>
-        The <application>libvdpau-va-gl</application> package contains a library
+        The libvdpau-va-gl package contains a library
         which implements the VDPAU library.  Libvdpau_va_gl uses OpenGL under the
         hood to accelerate drawing and scaling and the VA-API (if available) to
         accelerate video decoding. For now VA-API is available on some Intel
@@ -36,12 +33,7 @@
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            Libvdpau-va-gl Driver Download (HTTP): <ulink url="&libvdpau-va-gl-download-http;"/>
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            Libvdpau-va-gl Driver Download (FTP): <ulink url="&libvdpau-va-gl-download-ftp;"/>
+            Download: <ulink url="&libvdpau-va-gl-download;"/>
           </para>
         </listitem>
       </itemizedlist>
@@ -53,7 +45,7 @@
         <xref linkend="cmake"/>,
         <xref linkend="libvdpau"/>,
         <xref linkend="libva"/>, and
-        <xref linkend="mesa"/>
+        &opengl;
       </para>
 
     </sect2>
@@ -62,23 +54,19 @@
       <title>Installation of libvdpau-va-gl</title>
 
       <para>
-        Install <application>libvdpau-va-gl</application> by running the following
+        Install libvdpau-va-gl by running the following
         commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-cmake -D CMAKE_BUILD_TYPE=Release  \
-      -D CMAKE_INSTALL_PREFIX=/usr \
-      .. &amp;&amp;
+cmake -D CMAKE_BUILD_TYPE=Release         \
+      -D CMAKE_INSTALL_PREFIX=/usr        \
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
+      -W no-dev .. &amp;&amp;
 
 make</userinput></screen>
-
-      <para>
-        To test the results, issue: <command>make check</command>.  The tests must
-        be run from an Xorg environment.
-      </para>
 
       <para>
         Now, as the <systemitem class="username">root</systemitem> user:
@@ -92,21 +80,17 @@ make</userinput></screen>
       <title>lib32 Installation of libvdpau-va-gl</title>
 
       <para>
-        First clean the build directory:
-      </para>
-
-      <screen><userinput>rm -rf *</userinput></screen>
-
-      <para>
-        Install lib32-<application>libvdpau-va-gl</application> by running the
+        Install lib32-libvdpau-va-gl by running the
         following commands:
       </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"                 \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig         \
-cmake -D CMAKE_BUILD_TYPE=Release            \
-      -D CMAKE_INSTALL_PREFIX=/usr           \
-      .. &amp;&amp;
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"              \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig      \
+cmake -D CMAKE_BUILD_TYPE=Release         \
+      -D CMAKE_INSTALL_PREFIX=/usr        \
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
+      -W no-dev .. &amp;&amp;
 
 make</userinput></screen>
 
@@ -154,7 +138,7 @@ echo "export VDPAU_DRIVER=va_gl" >> /etc/profile.d/xorg.sh</userinput></screen>
             None
           </seg>
           <seg>
-            libvdpau_va_gl.so
+            libvdpau_va_gl
           </seg>
           <seg>
             None
@@ -168,14 +152,14 @@ echo "export VDPAU_DRIVER=va_gl" >> /etc/profile.d/xorg.sh</userinput></screen>
         <?dbhtml list-presentation="table"?>
 
         <varlistentry id="libvdpau-va-gl-lib">
-          <term><filename class="libraryfile">libvdpau_va_gl.so</filename></term>
+          <term><filename class="libraryfile">libvdpau_va_gl</filename></term>
           <listitem>
             <para>
               contains functions to implement the OpenGL backend to
               the VDPAU (Video Decode and Presentation API for Unix) API
             </para>
             <indexterm zone="libvdpau-va-gl libvdpau-va-gl-lib">
-              <primary sortas="c-libvdpau-va-gl">libvdpau.so</primary>
+              <primary sortas="c-libvdpau-va-gl">libvdpau</primary>
             </indexterm>
           </listitem>
         </varlistentry>

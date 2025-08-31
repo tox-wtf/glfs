@@ -17,8 +17,8 @@
 
 
   <para>
-    <application>Xorg</application> is a freely redistributable,
-    open-source implementation of the <application>X</application> Window
+    Xorg is a freely redistributable,
+    open-source implementation of the X Window
     System. This system provides a client/server interface between display
     hardware (the mouse, keyboard, and video displays) and the desktop
     environment, while also providing both the windowing infrastructure and a
@@ -28,15 +28,18 @@
   <para>
     This section however doesn't install <xref linkend="xorg-server"/>, but
     instead installs basic software that a lot of other software depend on,
-    including the <application>Xorg</application> server, compositors, window
-    managers or desktop environments, and <xref linkend="xwayland"/> &mdash; a
-    necessary part of Wayland if you want to use
-    <application>Xorg</application>-only software like <xref linkend="steam"/>.
-    <xref linkend="wine"/> has an experimental
-    <application>Wayland</application> mode but it is still a good idea to
-    install <xref linkend="xwayland"/> for now.
+    including the Xorg server, compositors, window
+    managers or desktop environments, and <xref linkend="xwayland"/>.
   </para>
-
+  
+  <note><para>
+    Xwayland is a necessary part of Wayland if you
+    want to use Xorg-only software like <xref
+    linkend="steam"/>. <xref linkend="wine"/> has an experimental
+    Wayland mode but it is still a good idea to
+    install <xref linkend="xwayland"/> for now.
+  </para></note>
+    
   <bridgehead renderas="sect3">Xorg Download and Installation
   Instructions</bridgehead>
 
@@ -47,7 +50,7 @@
     packages that need to be fetched from the download location. To assist
     with such a large task, installing <xref linkend="wget"/> is strongly
     recommended for downloading the needed files.  A complete
-    <application>wget</application> file list is provided for each page
+    wget file list is provided for each page
     that includes multiple packages.
   </para>
 
@@ -71,12 +74,12 @@
       work well with each other. Further, the wget file lists contain comments
       for specific packages that are deprecated or are not recommended to
       install. Newer packages are likely intended for the
-      next release of <application>Xorg</application> and have already proved
+      next release of Xorg and have already proved
       to be incompatible with current versions of software installed in GLFS.
-      The installed size of <application>Xorg</application> can be reduced
+      The installed size of Xorg can be reduced
       considerably by installing only the packages that you will need and use,
       however, the GLFS book cannot account for all dependencies and build
-      options for the individual <application>Xorg</application> packages.
+      options for the individual Xorg packages.
       The instructions assume that all packages have been built.
     </para>
   </note>
@@ -84,7 +87,7 @@
   <para>
     Additionally, because of the large number of repetitive commands,
     you are encouraged to partially automate the build. Instructions have been
-    given that utilize the
+    given that utilize the BLFS
     <ulink url="&blfs-svn;/postlfs/sudo.html">sudo</ulink> package.
     It is recommended that you use the <parameter>:NOPASSWD</parameter>
     configuration option for the user that will be building the xorg packages.
@@ -92,17 +95,15 @@
     You can use the <command>su</command> utility, invoking <parameter>-c
     </parameter>. This requires that you enter your password each time a
     package needs to get installed. The last accommodation is allow you
-    to build and install each package as the <systemitem class="username">root
-    </systemitem> user. This is not recommended but is an option if you
-    don't want to install <application>sudo</application> and don't want
-    to type a password again and again.
+    to build and install each package as the &root; user.
   </para>
 
   <sect2 id="xorg-env" xreflabel="Xorg build environment">
     <title>Setting up the Xorg Build Environment</title>
 
     <para>
-      Set the <envar>XORG_PREFIX</envar> variable for compatibility with BLFS
+      Set the <envar>XORG_PREFIX</envar> variable for compatibility with
+      installation instructions outside this book (BLFS and SLFS)
       with the following command:
     </para>
 
@@ -111,7 +112,7 @@
     <note>
       <para>The <envar>XORG_PREFIX</envar> variable will not be used in this
       book, but it is a necessary variable to set if you intend to follow
-      certain BLFS instructions. If you aren't just copy and pasting BLFS
+      instructions from BLFS or SLFS. If you aren't just copy and pasting said
       instructions, you may do without the variable but be sure to replace
       the variable in the instructions with <filename>/usr</filename>.</para>
     </note>
@@ -145,11 +146,11 @@ export XORG_PREFIX XORG_CONFIG</literal>
 EOF
 chmod 644 /etc/profile.d/xorg.sh</userinput></screen>
 
+    &source-profile;
+
     <para>
-      If you've installed <application>sudo</application>, ensure that
-      <envar>XORG_CONFIG</envar> is available
-      in the <application>sudo</application> environment. As the
-      <systemitem class="username">root</systemitem> user, run the following
+      If you've installed sudo, ensure that <envar>XORG_CONFIG</envar> is
+      available in the sudo environment. As the &root; user, run the following
       command:
     </para>
 

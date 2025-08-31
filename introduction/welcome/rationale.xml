@@ -14,7 +14,7 @@
     Upon reading through some of the sections in this book, you may notice
     that a lot of the packages linked in some of the sections aren't in
     this book but rather in BLFS, some optional dependencies aren't
-    listed, some packages may be outdated, and some packages that have test
+    listed, some packages may be outdated, and packages that have test
     suites don't have test instructions. These choices are very much
     deliberate.
   </para>
@@ -27,8 +27,8 @@
       the book but rather in the BLFS book. There are multiple reasons
       for this, but the most notable one is the packages that aren't in
       the book aren't important for the main packages in the book, those
-      being <application>Steam</application> and
-      <application>Wine</application>. They are still listed anyway if users
+      being Steam and
+      Wine. They are still listed anyway if users
       want more support out of the specific packages not specific to the main
       packages, like media playback for example. Another reason for
       packages not being in the book is that the packages take a lot
@@ -64,10 +64,10 @@
 <!--
     <para>
       <xref linkend="mingw-w64-binutils"/>: While
-      <application>Binutils</application>-2.44 exists and can be installed
+      Binutils-2.44 exists and can be installed
       without issue, on the MinGW-w64 side of things, <xref linkend="wine"/>
-      is incompatible with <application>MinGW-w64-Binutils</application>-2.44.
-      Mismatched <application>Binutils</application> versions are fine granted
+      is incompatible with MinGW-w64-Binutils-2.44.
+      Mismatched Binutils versions are fine granted
       that one toolchain's version does not match with another but separate
       toolchain's.
     </para>
@@ -75,8 +75,8 @@
 
 <!--
     <para>
-      <xref linkend="nvidia"/>: Newer versions of <application>NVIDIA
-      </application> have many issues. For example, the newest version demands
+      <xref linkend="nvidia"/>: Newer versions of NVIDIA
+       have many issues. For example, the newest version demands
       that users disable framebuffer emulation support in the kernel in order
       to install and use the driver. The one before that requires a
       <command>sed</command> command after extraction of the runfile.
@@ -90,18 +90,20 @@
   </sect2>
 
   <sect2>
-    <title>Some Package Test Instructions Aren't Included</title>
+    <title>Package Test Instructions Aren't Included</title>
 
     <para>
       Many packages have test suites which can test a given build for
       any potential bugs and may tell you if something has gone wrong.
-      However, in GLFS, a lot of these packages have test suites that
+      However, in GLFS, many of these packages have test suites that
       depend on packages that aren't necessary in the book and would
       make this book larger than it needs to be. Furthermore, a lot of
       the packages that do have test suites aren't involved with critical
       components of the system and don't tend to have bugs that
       come up as a result of a build, but rather the released source
-      code itself. If you want to do test suites of a given package,
+      code itself. The final reason is the GLFS editors don't run the test
+      suites and instead see the results of a complete GLFS build.
+      If you want to do test suites of a given package,
       BLFS has good instructions for that on each package and covers
       all the required dependencies, as well as instructions on how to
       install those dependencies.

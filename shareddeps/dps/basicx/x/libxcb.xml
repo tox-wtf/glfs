@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY libxcb-download-http "https://xorg.freedesktop.org/archive/individual/lib/libxcb-&libxcb-version;.tar.xz">
-  <!ENTITY libxcb-download-ftp  " ">
+  <!ENTITY libxcb-download "&xorg-dl;/lib/libxcb-&libxcb-version;.tar.xz">
 ]>
 
 <sect1 id="libxcb" xreflabel="libxcb-&libxcb-version;">
@@ -22,7 +21,7 @@
     <title>Introduction to libxcb</title>
 
     <para>
-      The <application>libxcb</application> package provides an interface to
+      The libxcb package provides an interface to
       the X Window System protocol, which replaces the current Xlib interface.
       Xlib can also use XCB as a transport layer, allowing software to make
       requests and receive responses with both.
@@ -31,12 +30,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&libxcb-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&libxcb-download-ftp;"/>
+          Download: <ulink url="&libxcb-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -45,13 +39,9 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="libXau"/> and
+      <xref linkend="libXau"/>,
+      <xref linkend="libXdmcp"/>, and
       <xref linkend="xcb-proto"/>
-    </para>
-
-    <bridgehead renderas="sect4">Recommended</bridgehead>
-    <para role="recommended">
-      <xref linkend="libXdmcp"/>
     </para>
 
   </sect2>
@@ -60,7 +50,7 @@
     <title>Installation of libxcb</title>
 
     <para>
-      Install <application>libxcb</application> by running the following
+      Install libxcb by running the following
       commands:
     </para>
 
@@ -69,10 +59,6 @@
             --docdir='${datadir}'/doc/libxcb-&libxcb-version; &amp;&amp;
 
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -94,17 +80,12 @@ make</userinput></screen>
     <title>lib32 Installation of libxcb</title>
 
     <para>
-      First clean the directory:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Install lib32-<application>libxcb</application> by running the following
+      Install lib32-libxcb by running the following
       commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 ./configure $XORG_CONFIG --libdir=/usr/lib32 &amp;&amp;
 make</userinput></screen>
 
@@ -155,13 +136,13 @@ ldconfig</userinput></screen>
           None
         </seg>
         <seg>
-          libxcb.so, libxcb-composite.so, libxcb-damage.so, libxcb-dbe.so,
-          libxcb-dpms.so, libxcb-dri2.so, libxcb-dri3.so, libxcb-glx.so,
-          libxcb-present.so, libxcb-randr.so, libxcb-record.so,
-          libxcb-render.so, libxcb-res.so, libxcb-screensaver.so,
-          libxcb-shape.so, libxcb-shm.so, libxcb-sync.so, libxcb-xf86dri.so,
-          libxcb-xfixes.so, libxcb-xinerama.so, libxcb-xinput.so,
-          libxcb-xkb.so, libxcb-xtest.so, libxcb-xvmc.so, and libxcb-xv.so
+          libxcb, libxcb-composite, libxcb-damage, libxcb-dbe,
+          libxcb-dpms, libxcb-dri2, libxcb-dri3, libxcb-glx,
+          libxcb-present, libxcb-randr, libxcb-record,
+          libxcb-render, libxcb-res, libxcb-screensaver,
+          libxcb-shape, libxcb-shm, libxcb-sync, libxcb-xf86dri,
+          libxcb-xfixes, libxcb-xinerama, libxcb-xinput,
+          libxcb-xkb, libxcb-xtest, libxcb-xvmc, and libxcb-xv
         </seg>
         <seg>
           /usr/include/xcb and
@@ -176,13 +157,13 @@ ldconfig</userinput></screen>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libxcb-lib">
-        <term><filename class="libraryfile">libxcb.so</filename></term>
+        <term><filename class="libraryfile">libxcb</filename></term>
         <listitem>
           <para>
             is an interface to the X Window System protocol
           </para>
           <indexterm zone="libxcb libxcb-lib">
-            <primary sortas="c-libxcb">libxcb.so</primary>
+            <primary sortas="c-libxcb">libxcb</primary>
           </indexterm>
         </listitem>
       </varlistentry>

@@ -4,8 +4,8 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY libpsl-download-http "https://github.com/rockdaboot/libpsl/releases/download/&libpsl-version;/libpsl-&libpsl-version;.tar.gz">
-  <!ENTITY libpsl-download-ftp  " ">
+  <!ENTITY libpsl-root     "https://github.com/rockdaboot/libpsl/releases/download">
+  <!ENTITY libpsl-download "&libpsl-root;/&libpsl-version;/libpsl-&libpsl-version;.tar.gz">
 ]>
 
 <sect1 id="libpsl" xreflabel="libpsl-&libpsl-version;">
@@ -21,7 +21,7 @@
     <title>Introduction to libpsl</title>
 
     <para>
-      The <application>libpsl</application> package provides a library for
+      The libpsl package provides a library for
       accessing and resolving information from the Public Suffix List (PSL). The PSL
       is a set of domain names beyond the standard suffixes, such as .com.
     </para>
@@ -29,12 +29,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&libpsl-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&libpsl-download-ftp;"/>
+          Download: <ulink url="&libpsl-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -58,7 +53,7 @@
     <title>Installation of libpsl</title>
 
     <para>
-      Install <application>libpsl</application> by running the following
+      Install libpsl by running the following
       commands:
     </para>
 
@@ -68,10 +63,6 @@ cd    build &amp;&amp;
 meson setup --prefix=/usr --buildtype=release &amp;&amp;
 
 ninja</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>ninja test</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -84,17 +75,12 @@ ninja</userinput></screen>
     <title>lib32 Installation of libpsl</title>
 
     <para>
-      First clean the directory by running the following command:
-    </para>
-
-<screen><userinput>rm -rf *</userinput></screen>
-
-    <para>
-      Install <application>lib32-libpsl</application>
+      Install lib32-libpsl
       by running the following commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 meson setup ..                       \
       --prefix=/usr                  \
@@ -119,8 +105,7 @@ ldconfig</userinput></screen>
 
     &options-meson;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/meson-buildtype-release.xml"/>
+    &meson-buildtype-release;
 
   </sect2>
 
@@ -137,7 +122,7 @@ ldconfig</userinput></screen>
           psl
         </seg>
         <seg>
-          libpsl.so
+          libpsl
         </seg>
         <seg>
           None
@@ -163,13 +148,13 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libpsl-lib">
-        <term><filename class="libraryfile">libpsl.so</filename></term>
+        <term><filename class="libraryfile">libpsl</filename></term>
         <listitem>
           <para>
             contains a library used to access the Public Suffix List
           </para>
           <indexterm zone="libpsl libpsl-lib">
-            <primary sortas="c-libpsl">libpsl.so</primary>
+            <primary sortas="c-libpsl">libpsl</primary>
           </indexterm>
         </listitem>
       </varlistentry>

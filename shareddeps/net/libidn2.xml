@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY libidn2-download-http "&gnu-http;/libidn/libidn2-&libidn2-version;.tar.gz">
-  <!ENTITY libidn2-download-ftp  " ">
+  <!ENTITY libidn2-download "&gnu-http;/libidn/libidn2-&libidn2-version;.tar.gz">
 ]>
 
 <!-- Try to keep the indentation used in this file-->
@@ -23,7 +22,7 @@
     <title>Introduction to libidn2</title>
 
     <para>
-      <application>libidn2</application> is a package designed for
+      libidn2 is a package designed for
       internationalized string handling based on standards from the
       Internet Engineering Task Force (IETF)'s IDN working group, designed for
       internationalized domain names.
@@ -32,12 +31,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&libidn2-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&libidn2-download-ftp;"/>
+          Download: <ulink url="&libidn2-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -56,16 +50,12 @@
     <title>Installation of libidn2</title>
 
     <para>
-      Install <application>libidn2</application> by running the following
+      Install libidn2 by running the following
       commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr --disable-static &amp;&amp;
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -79,17 +69,12 @@ make</userinput></screen>
     <title>lib32 Installation of lib32-libidn2</title>
 
     <para>
-      First clean the directory by running the following command:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Install <application>lib32-libidn2</application>
+      Install lib32-libidn2
       by running the following commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 ./configure --prefix=/usr            \
             --libdir=/usr/lib32      \
@@ -114,8 +99,7 @@ ldconfig</userinput></screen>
 
     &options-configure;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/static-libraries.xml"/>
+    &static-libraries;
 
   </sect2>
 
@@ -132,7 +116,7 @@ ldconfig</userinput></screen>
           idn2
         </seg>
         <seg>
-          libidn2.so
+          libidn2
         </seg>
         <seg>
           None
@@ -159,14 +143,14 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libidn2-lib">
-        <term><filename class="libraryfile">libidn2.so</filename></term>
+        <term><filename class="libraryfile">libidn2</filename></term>
         <listitem>
           <para>
             contains a generic Stringprep implementation used for
             internationalized string handling
           </para>
           <indexterm zone="libidn2 libidn2-lib">
-            <primary sortas="c-libidn2">libidn2.so</primary>
+            <primary sortas="c-libidn2">libidn2</primary>
           </indexterm>
         </listitem>
       </varlistentry>

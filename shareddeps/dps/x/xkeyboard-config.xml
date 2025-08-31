@@ -4,9 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xkeyboard-config-download-http
-  "&xorg-download-http;/data/xkeyboard-config/xkeyboard-config-&xkeyboard-config-version;.tar.xz">
-  <!ENTITY xkeyboard-config-download-ftp  " ">
+  <!ENTITY xkbc-root "&xorg-dl;/data/xkeyboard-config">
+  <!ENTITY xkeyboard-config-download
+  "&xkbc-root;/xkeyboard-config-&xkeyboard-config-version;.tar.xz">
 ]>
 
 <sect1 id="xkeyboard-config" xreflabel="xkeyboard-config-&xkeyboard-config-version;">
@@ -22,19 +22,14 @@
     <title>Introduction to XKeyboard-Config</title>
 
     <para>
-      The <application>XKeyboard-Config</application> package contains
+      The XKeyboard-Config package contains
       the keyboard configuration database for the X Window System.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&xkeyboard-config-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&xkeyboard-config-download-ftp;"/>
+          Download: <ulink url="&xkeyboard-config-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -52,7 +47,7 @@
     <title>Installation of XKeyboard-Config</title>
 
     <para>
-      Install <application>XKeyboard-Config</application> by running the
+      Install XKeyboard-Config by running the
       following commands:
     </para>
 
@@ -63,8 +58,19 @@ meson setup --prefix=/usr --buildtype=release .. &amp;&amp;
 
 ninja</userinput></screen>
 
+    <important><para>
+      If upgrading from version 2.44 or earlier, the installation will
+      fail if some files are not symbolic links.  To fix this, run as
+      the &root; user:
+    </para>
+<screen role="root"><userinput>if [ -d /usr/share/X11/xkb ]; then
+  rm -rf /usr/share/X11/xkb
+  rm -f  /usr/share/man/man7/xkeyboard-config.7
+  rm -f  /usr/share/pkgconfig/xkeyboard-config.pc
+fi</userinput></screen></important>
+
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>ninja install</userinput></screen>
@@ -75,8 +81,8 @@ ninja</userinput></screen>
 
     &options-meson;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../xincludes/meson-buildtype-release.xml"/>
+    &meson-buildtype-release;
+
 <!-- the default for the xorg symlinks is false. So the change to
      the symlink command is not needed. Note that those symlinks have
      been deprecated since 2005...
@@ -92,6 +98,7 @@ ninja</userinput></screen>
 -->
 
   </sect2>
+
   <sect2 role="content">
     <title>Contents</title>
 

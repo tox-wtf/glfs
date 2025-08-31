@@ -4,9 +4,10 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY fontconfig-download-http
-           "https://www.freedesktop.org/software/fontconfig/release/fontconfig-&fontconfig-version;.tar.xz">
-  <!ENTITY fontconfig-download-ftp  " ">
+  <!ENTITY fontconfig-gl "https://gitlab.freedesktop.org/fontconfig/fontconfig">
+  <!ENTITY fontconfig-root "&fontconfig-gl;/-/archive">
+  <!ENTITY fontconfig-download
+    "&fontconfig-root;/&fontconfig-version;/fontconfig-&fontconfig-version;.tar.gz">
 ]>
 
 <sect1 id="fontconfig" xreflabel="Fontconfig-&fontconfig-version;">
@@ -22,22 +23,15 @@
     <title>Introduction to Fontconfig</title>
 
     <para>
-      The <application>Fontconfig</application> package contains
+      The Fontconfig package contains
       a library and support programs used for configuring and
       customizing font access.
     </para>
 
-    &test-use-internet;
-
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&fontconfig-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&fontconfig-download-ftp;"/>
+          Download: <ulink url="&fontconfig-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -56,16 +50,8 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="freetype2-pass2"/>
-    </para>
-
-    <bridgehead renderas="sect4">Optional</bridgehead>
-    <para role="optional">
-      <ulink url="&blfs-svn;/general/bubblewrap.html">bubblewrap</ulink>
-      (used by some tests),
-      <xref linkend="curl"/>, and
-      &unzip;
-      (both used by some tests for downloading and extracting test files)
+      <xref linkend="freetype2-pass2"/> and
+      <xref linkend="mesonfiles"/> (for lib32)
     </para>
 
   </sect2>
@@ -74,29 +60,21 @@
     <title>Installation of Fontconfig</title>
 
     <para>
-      Install <application>Fontconfig</application> by running the following
+      Install Fontconfig by running the following
       commands:
     </para>
 
-<screen><userinput>./configure --prefix=/usr        \
-            --sysconfdir=/etc    \
-            --localstatedir=/var \
-            --disable-docs       \
-            --docdir=/usr/share/doc/fontconfig-&fontconfig-version; &amp;&amp;
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
 
-make</userinput></screen>
+meson setup --prefix=/usr --buildtype=release .. &amp;&amp;
+ninja</userinput></screen>
 
     <para>
-      To test the results, issue: <command>make check</command>.  One test
-      is known to fail if the kernel does not support user namespaces.  Some
-      tests will download some font files via Internet.
+      Now, as the &root; user:
     </para>
 
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>make install</userinput></screen>
+<screen role="root"><userinput>ninja install</userinput></screen>
 
   </sect2>
 
@@ -104,34 +82,26 @@ make</userinput></screen>
     <title>lib32 Installation of Fontconfig</title>
 
     <para>
-      First clean the directory:
+      Install lib32-Fontconfig by running the
+      following commands:
     </para>
 
-    <screen><userinput>make distclean</userinput></screen>
+<screen><userinput>rm -rf * &amp;&amp;
+meson setup --prefix=/usr       \
+            --libdir=/usr/lib32 \
+            --cross-file=lib32  \
+            --buildtype=release \
+            .. &amp;&amp;
+
+ninja</userinput></screen>
 
     <para>
-      Install lib32-<application>Fontconfig</application> by running the following
-      commands:
+      Now, as the &root; user:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-./configure --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --sysconfdir=/etc        \
-            --localstatedir=/var     \
-            --host=i686-pc-linux-gnu \
-            --disable-docs &amp;&amp;
-
-make</userinput></screen>
-
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
-cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
-rm -rf DESTDIR                        &amp;&amp;
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install       &amp;&amp;
+cp -Rv DESTDIR/usr/lib32/* /usr/lib32    &amp;&amp;
+rm -rf DESTDIR                           &amp;&amp;
 ldconfig</userinput></screen>
 
   </sect2>
@@ -139,13 +109,7 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
-    &options-configure;
-
-    <para>
-      <parameter>--disable-docs</parameter>: This switch avoids building the
-      documentation (the release tarball includes pre-generated
-      documentation).
-    </para>
+    &options-meson;
 
   </sect2>
 
@@ -181,7 +145,7 @@ ldconfig</userinput></screen>
       <title>Configuration Information</title>
 
       <para>
-        The main configuration file for <application>Fontconfig</application> is
+        The main configuration file for Fontconfig is
         <filename>/etc/fonts/fonts.conf</filename>. Generally you do not want
         to edit this file. It will also read <filename>/etc/fonts/local.conf</filename>
         and any files in <filename class="directory">/etc/fonts/conf.d</filename>.
@@ -189,7 +153,7 @@ ldconfig</userinput></screen>
         (or update) the <filename>/etc/fonts/local.conf</filename> file with your
         local information or add a new file in
         <filename class="directory">/etc/fonts/conf.d</filename>. The default
-        location of fonts in <application>Fontconfig</application> is:
+        location of fonts in Fontconfig is:
       </para>
 
       <itemizedlist spacing="compact">
@@ -212,7 +176,7 @@ ldconfig</userinput></screen>
       </itemizedlist>
 
       <para>
-        <application>Fontconfig</application> also ships many example
+        Fontconfig also ships many example
         configuration files in the
         <filename class="directory">/usr/share/fontconfig/conf.avail</filename>
         directory. Symlinking specific files to
@@ -231,7 +195,7 @@ ldconfig</userinput></screen>
       </indexterm>
 
       <para>
-        More information about configuring <application>Fontconfig</application>
+        More information about configuring Fontconfig
         can be found in the user's manual in <ulink
         url="file:///usr/share/doc/fontconfig-&fontconfig-version;/fontconfig-user.html"/>.
       </para>
@@ -254,12 +218,11 @@ ldconfig</userinput></screen>
           fc-query, fc-scan, and fc-validate
         </seg>
         <seg>
-          libfontconfig.so
+          libfontconfig
         </seg>
         <seg>
           /etc/fonts,
           /usr/include/fontconfig,
-          /usr/share/doc/fontconfig-&fontconfig-version;,
           /usr/share/fontconfig,
           /usr/share/xml/fontconfig, and
           /var/cache/fontconfig
@@ -384,15 +347,15 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libfontconfig">
-        <term><filename class="libraryfile">libfontconfig.so</filename></term>
+        <term><filename class="libraryfile">libfontconfig</filename></term>
         <listitem>
           <para>
-            contains functions used by the <application>Fontconfig</application>
+            contains functions used by the Fontconfig
             programs and also by other programs to configure or customize font
             access
           </para>
           <indexterm zone="fontconfig libfontconfig">
-            <primary sortas="c-libfontconfig">libfontconfig.so</primary>
+            <primary sortas="c-libfontconfig">libfontconfig</primary>
           </indexterm>
         </listitem>
       </varlistentry>

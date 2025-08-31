@@ -8,13 +8,12 @@
   <!ENTITY TEMPLATE-version "">
   -->
 
-  <!ENTITY TEMPLATE-download-http "https://">
+  <!ENTITY TEMPLATE-download "https://">
 ]>
 
 <!-- Try to keep the indentation used in this file-->
 <sect1 id="TEMPLATE" xreflabel="TEMPLATE-&TEMPLATE-version;">
   <?dbhtml filename="TEMPLATE.html"?>
-
 
   <!-- No other tags inside any title.
        Use Title Case in All Titles
@@ -32,7 +31,7 @@
     <title>Introduction to TEMPLATE</title>
 
     <para>
-      The <application>TEMPLATE</application> package contains...
+      The TEMPLATE package contains...
       This is useful for...
     </para>
 
@@ -41,11 +40,10 @@
     <!-- if it works: -->
     &lfs1?_checked;
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&TEMPLATE-download-http;"/>
+          Download: <ulink url="&TEMPLATE-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -143,7 +141,7 @@
     <title>Installation of TEMPLATE</title>
 
     <para>
-      Install <application>TEMPLATE</application> by running the following
+      Install TEMPLATE by running the following
       commands:
     </para>
 

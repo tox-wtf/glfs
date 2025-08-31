@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY xinit-download-http "&xorg-download-http;/app/xinit-&xinit-version;.tar.xz">
-  <!ENTITY xinit-download-ftp  " ">
+  <!ENTITY xinit-download "&xorg-dl;/app/xinit-&xinit-version;.tar.xz">
 ]>
 
 <sect1 id="xinit" xreflabel="xinit-&xinit-version;">
@@ -21,19 +20,14 @@
     <title>Introduction to xinit</title>
 
     <para>
-      The <application>xinit</application> package contains a usable script
+      The xinit package contains a usable script
       to start the xserver.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&xinit-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&xinit-download-ftp;"/>
+          Download: <ulink url="&xinit-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -51,16 +45,12 @@
     <title>Installation of xinit</title>
 
     <para>
-      Install <application>xinit</application> by running the
+      Install xinit by running the
       following commands:
     </para>
 
 <screen><userinput>./configure $XORG_CONFIG --with-xinitdir=/etc/X11/app-defaults &amp;&amp;
 make</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

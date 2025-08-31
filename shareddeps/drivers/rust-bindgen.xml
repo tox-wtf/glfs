@@ -4,9 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY rust-bindgen-download-http
-    "https://github.com/rust-lang/rust-bindgen/archive/v&rust-bindgen-version;/rust-bindgen-&rust-bindgen-version;.tar.gz">
-  <!ENTITY rust-bindgen-download-ftp  " ">
+  <!ENTITY rb-root "https://github.com/rust-lang/rust-bindgen/archive">
+  <!ENTITY rust-bindgen-download
+    "&rb-root;/v&rust-bindgen-version;/rust-bindgen-&rust-bindgen-version;.tar.gz">
 ]>
 
 <sect1 id="rust-bindgen" xreflabel="rust-bindgen-&rust-bindgen-version;">
@@ -30,12 +30,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&rust-bindgen-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&rust-bindgen-download-ftp;"/>
+          Download: <ulink url="&rust-bindgen-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -44,7 +39,7 @@
 
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="llvm"/> with <application>Clang</application> and
+      <xref linkend="llvm"/> with Clang and
       <xref linkend="rustc"/>
     </para>
 
@@ -53,7 +48,7 @@
   <sect2 role="installation">
     <title>Installation of rust-bindgen</title>
     <para>
-      Install <application>rust-bindgen</application> by running the following
+      Install rust-bindgen by running the following
       commands:
     </para>
 
@@ -107,7 +102,7 @@ bindgen --generate-shell-completions zsh  \
         <term><command>bindgen</command></term>
         <listitem>
           <para>
-            generates <application>Rust</application> FFI bindings to
+            generates Rust FFI bindings to
             C (and some C++) libraries
           </para>
           <indexterm zone="rust-bindgen bindgen">

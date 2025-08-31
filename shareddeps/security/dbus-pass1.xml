@@ -4,26 +4,25 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY dbus-download-http "https://dbus.freedesktop.org/releases/dbus/dbus-&dbus-version;.tar.xz">
-  <!ENTITY dbus-download-ftp  " ">
+  <!ENTITY dbus-download "https://dbus.freedesktop.org/releases/dbus/dbus-&dbus-version;.tar.xz">
 ]>
 
-<sect1 id="dbus-pass1" xreflabel="dbus-&dbus-version; - Pass 1" revision="sysv">
+<sect1 id="dbus-pass1" xreflabel="D-Bus-&dbus-version; - Pass 1" revision="sysv">
   <?dbhtml filename="dbus-pass1.html"?>
 
-  <title>dbus-&dbus-version; - Pass 1</title>
+  <title>D-Bus-&dbus-version; - Pass 1</title>
   
   <indexterm zone="dbus-pass1">
-    <primary sortas="a-dbus-pass1">dbus-pass1</primary>
+    <primary sortas="a-dbus-pass1">D-Bus-Pass1</primary>
   </indexterm>
 
   <sect2 role="package">
     <title>Introduction to D-Bus - Pass 1</title>
 
     <para>
-      <application>D-Bus</application> is a message bus system, a simple way
+      D-Bus is a message bus system, a simple way
       for applications to talk to one another.
-      <application>D-Bus</application> supplies both a system daemon (for
+      D-Bus supplies both a system daemon (for
       events such as <quote>new hardware device added</quote> or <quote>printer
       queue changed</quote>) and a per-user-login-session daemon (for general
       IPC needs among user applications). Also, the message bus is built on top
@@ -41,12 +40,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&dbus-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&dbus-download-ftp;"/>
+          Download: <ulink url="&dbus-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -56,57 +50,10 @@
   <sect2 role="installation">
     <title>Installation of D-Bus - Pass 1</title>
 
-    <para>
-      Install <application>D-Bus</application> by running the following
-      commands (you may wish to review the
-      <filename>meson_options.txt</filename> file first and add any desired
-      parameters to the
-      <command>meson</command> command shown below):
-    </para>
-
-<screen><userinput>mkdir build &amp;&amp;
-cd    build &amp;&amp;
-
-meson setup --prefix=/usr          \
-            --buildtype=release    \
-            --wrap-mode=nofallback \
-            -D systemd=disabled    \
-            .. &amp;&amp;
-
-ninja</userinput></screen>
+    &dbus-m64;
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>ninja install</userinput></screen>
-
-<!-- FIXME: No longer needed with usr merge
-    <para>
-      The shared library needs to be moved to
-      <filename class="directory">/lib</filename>, and as a result the
-      <filename class="extension">.so</filename> file in
-      <filename class="directory">/usr/lib</filename> will need to be
-      recreated. Run the following command as the
-      <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>mv -v /usr/lib/libdbus-1.so.* /lib &amp;&amp;
-ln -sfv ../../lib/$(readlink /usr/lib/libdbus-1.so) /usr/lib/libdbus-1.so</userinput></screen>
--->
-
-    <para>
-      If you are using a DESTDIR install,
-      <command>dbus-daemon-launch-helper</command> needs to be fixed
-      afterwards. Issue, as <systemitem class="username">root</systemitem>
-      user:
-    </para>
-
-<screen role="root"><userinput>chown -v root:messagebus /usr/libexec/dbus-daemon-launch-helper &amp;&amp;
-chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper</userinput></screen>
-
-    <para>
-      Generate the <application>D-Bus</application> UUID to avoid
+      Generate the D-Bus UUID to avoid
       warnings when compiling some packages with the following command as the
       <systemitem class="username">root</systemitem> user:
     </para>
@@ -134,16 +81,11 @@ chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper</userinput></scr
     </note>
 
     <para>
-      First clean the build directory:
+      Install lib32-D-Bus by running the following commands:
     </para>
 
-<screen><userinput>rm -rf *</userinput></screen>
-
-    <para>
-      Now install lib32-D-Bus by running the following commands:
-    </para>
-
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"           \
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"           \
 PKG_CONFIG_PATH="/usr/lib32/pkgconfig" \
 meson setup --prefix=/usr              \
             --libdir=/usr/lib32        \
@@ -169,8 +111,7 @@ ldconfig</userinput></screen>
 
     &options-meson;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../xincludes/meson-wrap-nofallback.xml"/>
+    &meson-wrap-nofallback;
 
     <para>
       <parameter>-D systemd=disabled</parameter>: Don't install systemd support

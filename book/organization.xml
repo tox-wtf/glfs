@@ -12,7 +12,7 @@
   <title>Organization</title>
 
   <para>
-    This book is divided into the following 7 sections:
+    This book is divided into the following sections:
   </para>
 
   <bridgehead renderas="sect2">Part I - Introduction</bridgehead>
@@ -22,43 +22,33 @@
     understand the rest of the book.
   </para>
 
-  <bridgehead renderas="sect2">Part II - Multilib</bridgehead>
-
-  <para>
-    In this section we explain what multilib is, why you might
-    want or need it, and how to get multilib support. This should
-    be a precursor to the following sections.
-  </para>
-
-  <bridgehead renderas="sect2">Part III - Shared Dependencies</bridgehead>
+  <bridgehead renderas="sect2">Part II - Shared Dependencies</bridgehead>
 
   <para>
     This section is dedicated to covering dependencies that are shared
-    between <application>Steam</application> and <application>Wine
-    </application>. As it turns out, there are quite a lot of
-    dependencies they both depend on. Anything specific to <application>
-    Steam</application> and <application>Wine</application> are covered
-    in their respective chapters.
+    between Steam and Wine. As it turns out, there are quite a lot of
+    dependencies they both depend on. Anything specific to Steam and
+    Wine are covered in their respective chapters.
   </para>
 
-  <bridgehead renderas="sect2">Part IV - Steam</bridgehead>
+  <bridgehead renderas="sect2">Part III - Steam</bridgehead>
 
   <para>
-    This part details how to install <application>Steam</application>
-    and the linear line of dependencies required, as well as some
-    configuration for certain packages.
+    This part details how to install Steam and the linear line of
+    dependencies required, as well as some configuration for certain
+    packages.
   </para>
 
-  <bridgehead renderas="sect2">Part V - Wine</bridgehead>
+  <bridgehead renderas="sect2">Part IV - Wine</bridgehead>
 
   <para>
-    This section goes over installing a toolchain called <application>
-    MinGW-w64</application>, some of the packages necessary to both compile
-    <application>Wine</application> and use it, and lastly how to compile
-    <application>Wine</application> and configure it.
+    This section goes over installing a toolchain called
+    MinGW-w64, some of the packages necessary to both compile
+    Wine and use it, and lastly how to compile
+    Wine and configure it.
   </para>
 
-  <bridgehead renderas="sect2">Part VI - Quality of Life</bridgehead>
+  <bridgehead renderas="sect2">Part V - Quality of Life</bridgehead>
 
   <para>
     This section goes over quality of life improvements and packages

@@ -11,24 +11,25 @@
 
   <title>Getting the Source Packages</title>
 
-  <para>Within the GLFS instructions, each package has two references for
-  finding the source files for the package&mdash;an HTTP link and an FTP link
-  (some packages may only list one of these links). Every effort has been made
-  to ensure that these links are accurate. However, the World Wide Web is in
-  continuous flux. Packages are sometimes moved or updated and the exact URL
-  specified is not always available.</para>
+  <para>Within the GLFS instructions, each package has a reference for
+  finding the source files for the package&mdash;a link
+  (some packages may not list any, in which case it is a group of packages
+  meant to be installed in bulk and the book will instruct you on how to
+  install all the files necessary). Every effort has been made to ensure that
+  these links are accurate. However, the World Wide Web is in continuous flux.
+  Packages are sometimes moved or updated and the exact URL specified is not
+  always available.</para>
 
   <para>The BLFS Team noticed this problem with BLFS, so they, with the
-  assistance of Oregon State University Open Source Lab, have made an HTTP/FTP
+  assistance of Oregon State University Open Source Lab, have made a
   site available through world wide mirrors. See <ulink
-  url="https://www.linuxfromscratch.org/blfs/download.html#sources">
-  https://www.linuxfromscratch.org/blfs/download.html#sources</ulink> for a
-  list. These sites have all the sources of the exact versions of the packages
-  used in BLFS. If you can't find the BLFS or GLFS package you need at the
-  listed addresses, get it from these sites.</para>
+  url="https://www.linuxfromscratch.org/blfs/download.html#sources"/>
+  for a list. These sites have all the sources of the exact versions of the
+  packages used in BLFS. If you can't find the BLFS or GLFS package you need at
+  the listed addresses, get it from these sites.</para>
 
   <para>We would like to ask a favor, however.  Although this is a public
-  resource for you to use, please do not abuse it.  They have already had one
+  resource for you to use, please do not abuse it. They have already had one
   unthinking individual download over 3 GB of data, including multiple copies of
   the same files that are placed at different locations (via symlinks) to make
   finding the right package easier.  This person clearly did not know what files
@@ -52,12 +53,11 @@
     </para>
 
     <note><para>
-      This process depends on <xref linkend="git"/> and <xref linkend="wget"/>.
-      It also depends on a working internet connection. If you just got done
-      with LFS and are not yet booted into the new system yet, then it is
-      recommended to navigate to <filename
-      class="directory">$LFS/sources</filename> then follow the below
-      instructions on the host system.
+      This process depends on <xref linkend="wget"/>. It also depends on a
+      working internet connection. If you just got done with LFS and are not
+      yet booted into the new system yet, then it is recommended to navigate to
+      <filename class="directory">$LFS/sources</filename> then follow the below
+      instructions on the host system outside of a chroot.
     </para></note>
 
     <para>
@@ -66,16 +66,22 @@
       After that, download the packages and patches by doing the following:
     </para>
 
-<screen><userinput>wget -N --input-file=wget-list --continue &amp;&amp;
-ln -sv &seatd-version;.tar.gz seatd-&seatd-version;.tar.gz &amp;&amp;
-git clone --recursive https://github.com/doitsujin/dxvk dxvk-&dxvk-version; &amp;&amp;
-cd dxvk-&dxvk-version; &amp;&amp;
-git checkout v&dxvk-version; &amp;&amp;
-cd .. &amp;&amp;
-git clone --recursive https://github.com/HansKristian-Work/vkd3d-proton vkd3d-proton-&vkd3d-proton-version; &amp;&amp;
-cd vkd3d-proton-&vkd3d-proton-version; &amp;&amp;
-git checkout v&vkd3d-proton-version; &amp;&amp;
-cd ..</userinput></screen>
+<screen><userinput>wget -N --input-file=wget-list --continue</userinput></screen>
+
+    <para>
+      To verify every file has been downloaded, you can run the following:
+    </para>
+
+<screen><userinput>for file in $(grep -v '^#' wget-list); do
+  if [ ! -f $(basename $file) ]; then
+    echo "$(basename $file) NOT found"
+  fi
+done</userinput></screen>
+
+    <para>
+      If every file got downloaded, there should be no output from the above
+      commands.
+    </para>    
 
   </sect2>
 

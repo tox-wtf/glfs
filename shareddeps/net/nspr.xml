@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY nspr-download-http "&mozilla-http;/nspr/releases/v&nspr-version;/src/nspr-&nspr-version;.tar.gz">
-  <!ENTITY nspr-download-ftp  " ">
+  <!ENTITY nspr-download "&mozilla-http;/nspr/releases/v&nspr-version;/src/nspr-&nspr-version;.tar.gz">
 ]>
 
 <sect1 id="nspr" xreflabel="NSPR-&nspr-version;">
@@ -21,19 +20,14 @@
     <title>Introduction to NSPR</title>
 
     <para>
-      <application>Netscape Portable Runtime</application> (NSPR) provides a
+      Netscape Portable Runtime (NSPR) provides a
       platform-neutral API for system level and libc like functions.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&nspr-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&nspr-download-ftp;"/>
+          Download: <ulink url="&nspr-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -44,7 +38,7 @@
     <title>Installation of NSPR</title>
 
     <para>
-      Install <application>NSPR</application> by running the following commands:
+      Install NSPR by running the following commands:
     </para>
 
 <screen><userinput>cd nspr &amp;&amp;
@@ -55,18 +49,12 @@ sed -i 's|$(LIBRARY) ||'  config/rules.mk         &amp;&amp;
 ./configure --prefix=/usr   \
             --with-mozilla  \
             --with-pthreads \
-            $([ $(uname -m) = x86_64 ] &amp;&amp; echo --enable-64bit) &amp;&amp;
+            --enable-64bit &amp;&amp;
+
 make</userinput></screen>
 
     <para>
-      The test suite is designed for testing changes to nss or nspr and is
-      not particularly useful for checking a released version (e.g. it needs
-      to be run on a non-optimized build with both nss and nspr directories
-      existing alongside each other).
-    </para>
-
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make install</userinput></screen>
@@ -76,16 +64,11 @@ make</userinput></screen>
      <title>lib32 Installation of NSPR</title>
 
      <para>
-       First clean the directory by running the following command:
+       Install lib32-NSPR by running the following commands:
      </para>
 
-     <screen><userinput>make distclean</userinput></screen>
-
-     <para>
-       Install <application>lib32-NSPR</application> by running the following commands:
-     </para>
-
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"   \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"   \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 ./configure --prefix=/usr            \
             --libdir=/usr/lib32      \
@@ -97,7 +80,7 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 make</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
@@ -137,9 +120,12 @@ ldconfig</userinput></screen>
       <parameter>--enable-64bit</parameter>: The --enable-64bit parameter is
       <emphasis>required</emphasis> on an x86_64 system to prevent
       <command>configure</command> failing with a claim that this is a system
-      without pthread support. The [ $(uname -m) = x86_64 ] test ensures it has
-      no effect on a 32 bit system. Keep the line if intending to do multilib,
-      and the lib32 instructions will be down below.
+      without pthread support.
+    </para>
+
+    <para>
+      <parameter>--disable-64bit</parameter>: This parameter disables building
+      for 64-bit in the lib32 installation.
     </para>
 
   </sect2>
@@ -157,7 +143,7 @@ ldconfig</userinput></screen>
           nspr-config
         </seg>
         <seg>
-          libnspr4.so, libplc4.so, and libplds4.so
+          libnspr4, libplc4, and libplds4
         </seg>
         <seg>
           /usr/include/nspr
@@ -175,7 +161,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             provides compiler and linker options to other packages that use
-            <application>NSPR</application>
+            NSPR
           </para>
           <indexterm zone="nspr nspr-config">
             <primary sortas="b-nspr-config">nspr-config</primary>
@@ -184,7 +170,7 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libnspr4">
-        <term><filename class="libraryfile">libnspr4.so</filename></term>
+        <term><filename class="libraryfile">libnspr4</filename></term>
         <listitem>
           <para>
             contains functions that provide platform independence for non-GUI
@@ -193,32 +179,32 @@ ldconfig</userinput></screen>
             basic memory management and shared library linking
           </para>
           <indexterm zone="nspr libnspr4">
-            <primary sortas="c-libnspr4">libnspr4.so</primary>
+            <primary sortas="c-libnspr4">libnspr4</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libplc4">
-        <term><filename class="libraryfile">libplc4.so</filename></term>
+        <term><filename class="libraryfile">libplc4</filename></term>
         <listitem>
           <para>
             contains functions that implement many of the features offered by
             libnspr4
           </para>
           <indexterm zone="nspr libplc4">
-            <primary sortas="c-libplc4">libplc4.so</primary>
+            <primary sortas="c-libplc4">libplc4</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
       <varlistentry id="libplds4">
-        <term><filename class="libraryfile">libplds4.so</filename></term>
+        <term><filename class="libraryfile">libplds4</filename></term>
         <listitem>
           <para>
             contains functions that provide data structures
           </para>
           <indexterm zone="nspr libplds4">
-            <primary sortas="c-libplds4">libplds4.so</primary>
+            <primary sortas="c-libplds4">libplds4</primary>
           </indexterm>
         </listitem>
       </varlistentry>

@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../general.ent">
   %general-entities;
 
-  <!ENTITY x7apps-download-http "&xorg-download-http;/app/">
-  <!ENTITY x7apps-download-ftp  " ">
+  <!ENTITY x7apps-download "&xorg-dl;/app/">
 ]>
 
 <sect1 id="xorg7-app" xreflabel="Xorg Applications">
@@ -21,22 +20,16 @@
     <title>Introduction to Xorg Applications</title>
 
     <para>
-      The <application>Xorg</application> applications provide the
+      The Xorg applications provide the
       expected applications available in previous X Window implementations.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../xincludes/long-build-time.xml"/>
+    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&x7apps-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&x7apps-download-ftp;"/>
+          Download: <ulink url="&x7apps-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -46,7 +39,7 @@
     <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="libpng"/>,
-      <xref linkend="mesa"/>,
+      &opengl;,
       <xref linkend="xbitmaps"/>, and
       <xref linkend="xcb-utils"/>
     </para>
@@ -96,10 +89,6 @@ xwininfo-&xwininfo-version;.tar.xz
 xwud-&xwud-version;.tar.xz</literal>
 EOF</userinput></screen>
 
-   <!-- Removed because it is also installed with mkfontscale
-   &mkfontdir-md5sum;  mkfontdir-&mkfontdir-version;.tar.bz2
-   -->
-
     <para>
       To download the needed files using <xref linkend='wget'/>,
       use the following commands:
@@ -108,7 +97,7 @@ EOF</userinput></screen>
 <screen><userinput>mkdir app &amp;&amp;
 cd app &amp;&amp;
 grep -v '^#' ../app-&xorg-version;-list | wget -i- -c \
-    -B &xorg-download-http;/app/</userinput></screen>
+    -B &x7apps-download;</userinput></screen>
 
   </sect2>
 
@@ -146,9 +135,9 @@ done</userinput></screen>
 <screen><userinput>exit</userinput></screen>
 
     <para>
-      Unless you installed the optional dependencies, remove an undocumented
-      script which is reported to be broken (<command>xkeystone</command>
-      provided by the <application>xrandr</application> package).
+      Remove an undocumented script which is reported to be broken
+      (<command>xkeystone</command> provided by the
+      xrandr package):
     </para>
 
     <screen><userinput>as_root rm -f /usr/bin/xkeystone</userinput></screen>
@@ -160,9 +149,9 @@ done</userinput></screen>
 
     <para>
       <command>sed -e 's/\$(CPP) \$(DEFS)/$(CPP) -P $(DEFS)/' -i
-      man/Makefile.in</command>: with <application>gcc-5</application> the
+      man/Makefile.in</command>: with gcc-5 the
       behavior of <command>cpp</command> was changed to emit line numbers.
-      That results in unterminated <application>sed</application> commands in
+      That results in unterminated sed commands in
       <filename>filenames.sed</filename>. Adding <literal>-P</literal> restores
       the old behavior.
     </para>

@@ -4,15 +4,13 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!-- Also update the download, md5, size entities in libxml2py2.xml -->
-  <!ENTITY libxml2-download-http "https://download.gnome.org/sources/libxml2/2.13/libxml2-&libxml2-version;.tar.xz">
-<!--  <!ENTITY libxml2-download-http "http://xmlsoft.org/sources/libxml2-&libxml2-version;.tar.xz">-->
-  <!ENTITY libxml2-download-ftp  " ">
+  <!ENTITY libxml2-dl-root "https://download.gnome.org/sources/libxml2">
+  <!ENTITY libxml2-download
+    "&libxml2-dl-root;/&libxml2-minor;/libxml2-&libxml2-version;.tar.xz">
 ]>
 
 <sect1 id="libxml2" xreflabel="libxml2-&libxml2-version;">
   <?dbhtml filename="libxml2.html"?>
-
 
   <title>libxml2-&libxml2-version;</title>
 
@@ -24,22 +22,31 @@
     <title>Introduction to libxml2</title>
 
     <para>
-      The <application>libxml2</application> package contains libraries
+      The libxml2 package contains libraries
       and utilities used for parsing XML files.
-    </para>   
+    </para>
+
+    &abi-break;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&libxml2-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&libxml2-download-ftp;"/>
+          Download: <ulink url="&libxml2-download;"/>
         </para>
       </listitem>
     </itemizedlist>
+
+<!--
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/libxml2/libxml2-&libxml2-version;-fix_parse_blanks-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+-->
 
     <bridgehead renderas="sect3">libxml2 Dependencies</bridgehead>
 
@@ -53,8 +60,16 @@
   <sect2 role="installation">
     <title>Installation of libxml2</title>
 
+<!--
     <para>
-      Install <application>libxml2</application> by running the following
+      First, apply a patch from upstream:
+    </para>
+
+<screen><userinput>patch -Np1 -i ../libxml2-&libxml2-version;-fix_parse_blanks-1.patch</userinput></screen>
+-->
+
+    <para>
+      Install libxml2 by running the following
       commands:
     </para>
 
@@ -87,17 +102,12 @@ sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config</userinput></screen>
     <title>lib32 Installation of libxml2</title>
 
     <para>
-      First clean the directory:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Install lib32-<application>libxml2</application> by running the following
+      Install lib32-libxml2 by running the following
       commands:
     </para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 ./configure --prefix=/usr            \
             --libdir=/usr/lib32      \
@@ -126,18 +136,17 @@ ldconfig</userinput></screen>
 
     &options-configure;
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../../xincludes/static-libraries.xml"/>
+    &static-libraries;
 
     <para>
       <parameter>--with-history</parameter>: This switch enables
-      <application>Readline</application> support when running
+      Readline support when running
       <command>xmlcatalog</command> or <command>xmllint</command> in shell mode.
     </para>
 
     <para>
       <parameter>--with-icu</parameter>: This switch enables support for
-      <application>ICU</application>, which provides additional Unicode support.
+      ICU, which provides additional Unicode support.
       This is needed for some packages outside of GLFS, such as for QtWebEngine.
     </para>
 
@@ -190,7 +199,7 @@ sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config</userinput></screen>
           xmllint
         </seg>
         <seg>
-          libxml2.so
+          libxml2
         </seg>
         <seg>
           /usr/include/libxml2,
@@ -246,14 +255,14 @@ sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libxml2-lib">
-        <term><filename class="libraryfile">libxml2.so</filename></term>
+        <term><filename class="libraryfile">libxml2</filename></term>
         <listitem>
           <para>
             provides functions for programs to parse files that use the XML
             format
           </para>
           <indexterm zone="libxml2 libxml2-lib">
-            <primary sortas="c-libxml2">libxml2.so</primary>
+            <primary sortas="c-libxml2">libxml2</primary>
           </indexterm>
         </listitem>
       </varlistentry>

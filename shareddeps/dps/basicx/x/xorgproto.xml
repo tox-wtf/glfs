@@ -4,13 +4,11 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY xorgproto-download-http "https://xorg.freedesktop.org/archive/individual/proto/xorgproto-&xorgproto-version;.tar.xz">
-  <!ENTITY xorgproto-download-ftp  " ">
+  <!ENTITY xorgproto-download "&xorg-dl;/proto/xorgproto-&xorgproto-version;.tar.xz">
 ]>
 
 <sect1 id="xorgproto" xreflabel="xorgproto-&xorgproto-version;">
   <?dbhtml filename="xorgproto.html"?>
-
 
   <title>xorgproto-&xorgproto-version;</title>
 
@@ -22,7 +20,7 @@
     <title>Introduction to xorgproto</title>
 
     <para>
-      The <application>xorgproto</application> package provides the
+      The xorgproto package provides the
       header files required to build the X Window system, and to allow other
       applications to build against the installed X Window system.
     </para>
@@ -30,12 +28,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&xorgproto-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&xorgproto-download-ftp;"/>
+          Download: <ulink url="&xorgproto-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -53,7 +46,7 @@
     <title>Installation of xorgproto</title>
 
     <para>
-      Install <application>xorgproto</application> by running the
+      Install xorgproto by running the
       following commands:
     </para>
 
@@ -62,10 +55,6 @@ cd    build &amp;&amp;
 
 meson setup --prefix=/usr .. &amp;&amp;
 ninja</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:

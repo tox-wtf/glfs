@@ -274,7 +274,7 @@ EOF</userinput></screen>
         This script sets an environment variable necessary for
         native language support. A full discussion on determining this
         variable can be found on the <ulink
-        url="&lfs-website;/~thomas/multilib/chapter09/locale.html">
+        url="&mlfs-m32-root;/chapter09/locale.html">
         Configuring the System Locale</ulink> page.
       </para>
 
@@ -310,6 +310,23 @@ else
   done
 fi</literal>
 EOF</userinput></screen>
+
+    </sect3>
+
+    <sect3>
+      <title>Sourcing All the Profile Scripts</title>
+
+      <para>
+        Each login, the scripts above will be sourced and will establish
+        environment variables and functions. However, doing a continuous run
+        of this book, BLFS, and/or SLFS that started before creating the above
+        scripts will lead to the scripts not being sourced automatically. They
+        must be sourced manually first before the environment variables and
+        functions are available to the current login session. You should make
+        it a point to source the profile scripts after creating them.
+      </para>
+
+      &source-profile;
 
     </sect3>
 

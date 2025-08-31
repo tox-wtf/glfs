@@ -45,7 +45,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&glibc-download-http;"/>
+          Download: <ulink url="&glibc-download-http;"/>
         </para>
       </listitem>
       <listitem>
@@ -71,7 +71,7 @@
     <title>lib32 Installation of glibc</title>
 
     <para>
-      Install lib32-<application>glibc</application> by running the following commands:
+      Install lib32-glibc by running the following commands:
     </para>
 
 <screen><userinput>patch -Np1 -i ../glibc-&glibc-version;-fhs-1.patch &amp;&amp;

@@ -4,12 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY freetype2-download-http "&sourceforge-dl;/freetype/freetype-&freetype2-version;.tar.xz">
-  <!ENTITY freetype2-download-ftp  " ">
-
-  <!ENTITY freetype2-doc-version   "&freetype2-version;">
-  <!ENTITY freetype2-doc-download-http "&sourceforge-dl;/freetype/freetype-doc-&freetype2-doc-version;.tar.xz">
-  <!ENTITY freetype2-doc-download-ftp  " ">
+  <!ENTITY freetype2-download "&sourceforge-dl;/freetype/freetype-&freetype2-version;.tar.xz">
 ]>
 
 <sect1 id="freetype2-pass2" xreflabel="FreeType-&freetype2-version; - Pass 2">
@@ -32,12 +27,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&freetype2-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&freetype2-download-ftp;"/>
+          Download: <ulink url="&freetype2-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -63,59 +53,25 @@
     <title>Installation of FreeType2 - Pass 2</title>
 
     <para>
-      Reuse the directory you built the first pass from and follow
-      the instructions below:
-    </para>
-
-<screen><userinput>make distclean
-
-./configure --prefix=/usr --enable-freetype-config --disable-static &amp;&amp;
-make</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
+      Reuse the directory you built the first pass from, or else you will have
+      to prepare the source tree for compilation again as showed in <xref
+      linkend="freetype2-pass1"/>.
     </para>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Clean the directory:
     </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
+<screen><userinput>make distclean</userinput></screen>
+
+    &freetype-m64;
 
   </sect2>
 
   <sect2 role="installation">
     <title>lib32 Installation of FreeType2 - Pass 2</title>
 
-    <para>
-      First clean the directory:
-    </para>
-
-    <screen><userinput>make distclean</userinput></screen>
-
-    <para>
-      Install lib32-<application>FreeType2</application> by running the following
-      commands:
-    </para>
-
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-./configure --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --host=i686-pc-linux-gnu \
-            --enable-freetype-config \
-            --disable-static &amp;&amp;
-
-make</userinput></screen>
-
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
-cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
-rm -rf DESTDIR                        &amp;&amp;
-ldconfig</userinput></screen>
+    &freetype-m32;
 
   </sect2>
 
@@ -131,14 +87,14 @@ ldconfig</userinput></screen>
 
     <para>
       <option>--without-harfbuzz</option>: If
-      <application>harfbuzz</application> is installed prior to
-      <application>freetype</application> without
-      <application>freetype</application> support, use this switch to avoid a
+      harfbuzz is installed prior to
+      freetype without
+      freetype support, use this switch to avoid a
       build failure.
     </para>
 
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-      href="../../../../xincludes/static-libraries.xml"/>
+    &static-libraries;
+
     <!-- No longer valid with 2.10.1, /usr/bin/freetype-config is installed
          by the 'make install' command.
     <para>
@@ -163,7 +119,7 @@ ldconfig</userinput></screen>
           freetype-config
         </seg>
         <seg>
-          libfreetype.so
+          libfreetype
         </seg>
         <seg>
           /usr/include/freetype2 and
@@ -181,7 +137,7 @@ ldconfig</userinput></screen>
         <term><command>freetype-config</command></term>
         <listitem>
           <para>
-            is used to get <application>FreeType</application> compilation
+            is used to get FreeType compilation
             and linking information
           </para>
           <indexterm zone="freetype2-pass2 freetype-config-pass2">
@@ -191,14 +147,14 @@ ldconfig</userinput></screen>
       </varlistentry>
 
       <varlistentry id="libfreetype-pass2">
-        <term><filename class="libraryfile">libfreetype.so</filename></term>
+        <term><filename class="libraryfile">libfreetype</filename></term>
         <listitem>
           <para>
             contains functions for rendering various font types, such
             as TrueType and Type1
           </para>
           <indexterm zone="freetype2-pass2 libfreetype-pass2">
-            <primary sortas="c-libfreetype-pass2">libfreetype.so</primary>
+            <primary sortas="c-libfreetype-pass2">libfreetype</primary>
           </indexterm>
         </listitem>
       </varlistentry>

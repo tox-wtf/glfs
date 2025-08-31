@@ -4,8 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY mako-download-http "https://files.pythonhosted.org/packages/source/M/Mako/mako-&mako-version;.tar.gz">
-  <!ENTITY mako-download-ftp  " ">
+  <!ENTITY mako-download "&pymodules-dl;/M/Mako/mako-&mako-version;.tar.gz">
 ]>
 
 <sect1 id="mako" xreflabel="mako-&mako-version;">
@@ -21,19 +20,14 @@
     <title>Introduction to Mako</title>
 
     <para>
-      <application>Mako</application> is a Python module that implements hyperfast
+      Mako is a Python module that implements hyperfast
       and lightweight templating for the Python platform.
     </para>
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&mako-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&mako-download-ftp;"/>
+          Download: <ulink url="&mako-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -74,7 +68,7 @@
         </seg>
         <seg>
           /usr/lib/python&python3-majorver;/site-packages/mako and
-          /usr/lib/python&python3-majorver;/site-packages/Mako-&mako-version;.dist-info
+          /usr/lib/python&python3-majorver;/site-packages/mako-&mako-version;.dist-info
         </seg>
       </seglistitem>
     </segmentedlist>

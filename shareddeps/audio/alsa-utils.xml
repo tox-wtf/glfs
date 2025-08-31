@@ -4,13 +4,11 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY alsa-utils-download-http "&alsa-download-http;/utils/alsa-utils-&alsa-utils-version;.tar.bz2">
-  <!ENTITY alsa-utils-download-ftp  " ">
+  <!ENTITY alsa-utils-download "&alsa-download-http;/utils/alsa-utils-&alsa-utils-version;.tar.bz2">
 ]>
 
 <sect1 id="alsa-utils" xreflabel="alsa-utils-&alsa-utils-version;">
   <?dbhtml filename="alsa-utils.html"?>
-
 
   <title>alsa-utils-&alsa-utils-version;</title>
 
@@ -22,7 +20,7 @@
     <title>Introduction to ALSA Utilities</title>
 
     <para>
-      The <application>ALSA Utilities</application> package contains
+      The ALSA Utilities package contains
       various utilities which are useful for controlling your sound
       card.
     </para>
@@ -30,12 +28,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&alsa-utils-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&alsa-utils-download-ftp;"/>
+          Download: <ulink url="&alsa-utils-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -66,6 +59,7 @@
   <sect2 role="installation">
     <title>Installation of ALSA Utilities</title>
 
+<!--
     <para>
       First fix an issue with the distributed udev rules:
     </para>
@@ -74,9 +68,10 @@
     -e '/LABEL="alsa_restore_go"/s/go/std/'               \
     -e '/^ENV.ALSA_CARD_NUMBER/i LABEL="alsa_restore_go"' \
     -i alsactl/90-alsa-restore.rules.in</userinput></screen>
+-->
 
     <para>
-      Install <application>ALSA Utilities</application> by
+      Install ALSA Utilities by
       running the following commands:
     </para>
 
@@ -86,10 +81,6 @@
             --with-curses=ncursesw &amp;&amp;
 
 make</userinput></screen>
-
-    <para>
-      To test the results, issue: <command>make check</command>.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -107,7 +98,7 @@ make</userinput></screen>
     <para>
       <parameter>--disable-alsaconf</parameter>: This switch disables building
       the <command>alsaconf</command> configuration tool which is incompatible
-      with <application>Udev</application>.
+      with Udev.
     </para>
 
     <para>
@@ -164,7 +155,7 @@ make</userinput></screen>
 
       <para>
         The <filename>alsactl</filename> program is normally run from a
-        standard <application>udev</application> rule. The first time it
+        standard udev rule. The first time it
         is run, it will complain that there is no state in
         <filename>/var/lib/alsa/asound.state</filename>. You can prevent
         this by running the following command as the
@@ -175,7 +166,7 @@ make</userinput></screen>
 
       <para>
         The volume settings should be restored from the saved state by
-        <application>Udev</application> when the device is detected
+        Udev when the device is detected
         (during boot or when plugged in for USB devices).
       </para>
 <!-- not needed with elogind or systemd-logind

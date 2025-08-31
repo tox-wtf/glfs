@@ -65,19 +65,19 @@
     </warning>
 
     <para>
-      To test the <application>Xorg</application> installation, issue
+      To test the Xorg installation, issue
       <command>startx</command>. This command brings up a rudimentary window
       manager called <emphasis>twm</emphasis> with three xterm windows and one
       xclock window.  The xterm window in the upper left is a login terminal and
       running <emphasis>exit</emphasis> from this terminal will exit the
-      <application>X Window</application> session.  The third xterm window may
+      X Window session.  The third xterm window may
       be obscured on your system by the other two xterms.
     </para>
 
     <note>
       <para>
-        When testing <application>Xorg</application> with the
-        <application>twm</application> window manager, there will be several
+        When testing Xorg with the
+        twm window manager, there will be several
         warnings in the Xorg log file, <!--<filename revision="sysv">
         /var/log/Xorg.0.log</filename><filename revision="systemd">-->
         $HOME/.local/share/xorg/Xorg.0.log<!--</filename>-->, about missing font
@@ -99,7 +99,7 @@
 
     <para>
       Generally, there is no specific configuration required for
-      <application>Xorg</application>, but customization is possible. For
+      Xorg, but customization is possible. For
       details, see <xref linkend='xconfig'/> below.
     </para>
 
@@ -113,8 +113,8 @@
     <para>
       DRI is a framework for allowing software to access graphics hardware in
       a safe and efficient manner. It is installed in
-      <application>X</application> by default (using
-      <application>Mesa</application>) if you have a supported video card.
+      X by default (using
+      Mesa) if you have a supported video card.
     </para>
 
     <para>
@@ -294,12 +294,12 @@ usermod -a -G video &lt;user running xorg&gt;</userinput></screen>
     <para>
       In order to use PRIME for GPU switching, make sure that you are using
       Linux Kernel 3.4 or later (recommended). You will need latest DRI and
-      DDX drivers for your hardware and <application>Xorg Server</application>
+      DDX drivers for your hardware and Xorg Server
       1.13 or later.
     </para>
 
     <para>
-      <application>Xorg Server</application> should load both GPU drivers
+      Xorg Server should load both GPU drivers
       automatically. You can check that by running:
     </para>
 
@@ -327,7 +327,7 @@ Provider 1: id: 0x56 cap: 0xf, Source Output, Sink Output, Source Offload, Sink 
 
     <note>
       <para>
-        With the <application>Xorg</application> modesetting driver,
+        With the Xorg modesetting driver,
         which is DRI3 capable, the above command is no longer
         necessary. It does no harm however.
       </para>

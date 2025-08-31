@@ -4,15 +4,13 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-<!--  <!ENTITY which-download-http "http://www.xs4all.nl/~carlo17/which/which-&which-version;.tar.gz">-->
+<!--  <!ENTITY which-download "http://www.xs4all.nl/~carlo17/which/which-&which-version;.tar.gz">-->
 
-  <!ENTITY which-download-http "&gnu-http;/which/which-&which-version;.tar.gz">
-  <!ENTITY which-download-ftp  " ">
+  <!ENTITY which-download "&gnu-http;/which/which-&which-version;.tar.gz">
 ]>
 
 <sect1 id="which" xreflabel="Which-&which-version;">
   <?dbhtml filename="which.html"?>
-
 
   <title>Which-&which-version; and Alternatives</title>
 
@@ -35,19 +33,13 @@
 
     <para>
       The first option is to install the actual GNU
-      <application>which</application> package.
+      which package.
     </para>
 
-    <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download (HTTP): <ulink url="&which-download-http;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Download (FTP): <ulink url="&which-download-ftp;"/>
+          Download: <ulink url="&which-download;"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -58,16 +50,12 @@
     <title>Installation of Which</title>
 
     <para>
-      Install <application>which</application> by running the following
+      Install which by running the following
       commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr &amp;&amp;
 make</userinput></screen>
-
-    <para>
-      This package does not come with a test suite.
-    </para>
 
     <para>
       Now, as the <systemitem class="username">root</systemitem> user:
@@ -142,6 +130,17 @@ chown -v root:root /usr/bin/which</userinput></screen>
       This should work OK and is probably the easiest solution
       for most cases, but is not the most comprehensive implementation.
     </para>
+
+    <note><para>
+      Some build systems
+      <footnote><para>
+        A notable example is <ulink
+        url="&slfs-website;/svr4/pkgsuite.html">pkgsuite</ulink>.
+      </para></footnote> expect <command>which</command> to support options
+      which can alter the string of the file path of a given program. This
+      installation can therefore trip up those build systems. If in doubt,
+      install the GNU version instead of the script.
+    </para></note>
 
   </sect2>
 
