@@ -46,7 +46,7 @@
       Language). It is one of the compilers that can convert SPIR-V, such as
       GLSL to SPIR-V. In some cases, packages can compile shaders and turn
       them into header files which get included by a C/C++ file(s). In OpenGL,
-      this process doesn't need glslang at all as OpenGL functions directory
+      this process doesn't need glslang at all as OpenGL functions directly
       can compile shaders from a string and be bounded for execution on every
       frame. With Vulkan, a separate shader compiler is needed to facilitate
       shader compilation.
