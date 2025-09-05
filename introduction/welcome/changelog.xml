@@ -44,6 +44,9 @@
       <para>September 4th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - PCRE2: Archived.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - NVIDIA: 580.76.05 -&gt; 580.82.07. Fixes
           <ulink url="&glfs-issues;/304">#304</ulink>.</para>
         </listitem>
