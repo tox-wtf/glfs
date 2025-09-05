@@ -41,6 +41,15 @@
     -->
 
     <listitem>
+      <para>September 5th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - NVIDIA: Create device nodes at boot time.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>September 4th, 2025</para>
       <itemizedlist>
         <listitem>

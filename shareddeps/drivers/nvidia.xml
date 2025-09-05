@@ -511,17 +511,32 @@ done</userinput></screen>
     <sect3><title>Configuration Information</title>
 
       <para>
+        In order for the drivers to work properly, device nodes must be created
+        beforehand. Under certain conditions or configurations, these aren't
+        created automatically when starting a display server. As the &root;
+        user, create a udev rule to always create these nodes at boot time:
+      </para>
+
+<screen role="root"><userinput>mkdir -pv /usr/lib/udev/rules.d &amp;&amp;
+cat &gt; /usr/lib/udev/rules.d/60-nvidia.rules &lt;&lt; "EOF"
+<literal># Always create NVIDIA device nodes at boot time.
+ACTION=="add|bind",                \
+  ATTR{vendor}=="0x10de",          \
+  ATTR{class}=="0x03[0-9]*",       \
+  DRIVER=="nvidia",                \
+  TEST!="/dev/nvidiactl",          \
+  RUN+="/usr/bin/nvidia-modprobe", \
+  RUN+="/usr/bin/nvidia-modprobe -c0 -u"</literal>
+EOF</userinput></screen>
+
+      <para>
         Nouveau and NVIDIAFB support was compiled into the kernel to make the
         NVIDIA kernel modules build successfully. However, Nouveau and NVIDIAFB
         conflict with the NVIDIA kernel modules, so they should be blacklisted.
         Furthermore, other modules may have been built that can conflict, and
-        should likewise be disabled.
-      </para>
-
-      <para>
-        As the &root; user, create the file
-        <filename>/usr/lib/modprobe.d/nouveau.conf</filename> to blacklist Nouveau
-        and NVIDIAFB, as well as other conflicting modules:
+        should likewise be disabled. As the &root; user, create the file
+        <filename>/usr/lib/modprobe.d/nouveau.conf</filename> to blacklist
+        Nouveau and NVIDIAFB, as well as other conflicting modules:
       </para>
       
 <screen role="root"><userinput>mkdir -pv /usr/lib/modprobe.d &amp;&amp;
