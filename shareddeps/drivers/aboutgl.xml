@@ -24,53 +24,65 @@
     </para>
 
     <para>
-      So, Mesa came in and implemented drivers and
-      functions for OpenGL. They also implement GLX and EGL which provide
-      interfaces to window systems like Xorg.
-      However, their method doesn't dispatch the calls in a vendor-neutral way.
-      For the most part, this approach is fine and doesn't lead to any issues.
-      NVIDIA has decided that this was a bad enough
-      approach to warrant making another implementation of OpenGL called
-      libglvnd. It only provides the implementations
-      for OpenGL, OpenGL ES, GLX, and EGL. This had led to legacy OpenGL vs new
-      OpenGL on Linux.
+      So, Mesa implemented libraries and drivers and functions for OpenGL. They
+      also implement GLX and EGL which provide interfaces to window systems
+      like Xorg. However, their method doesn't dispatch the calls in a
+      vendor-neutral way. This approach is generally fine until you need to
+      install a driver outside of Mesa's ecosystem. Either such driver won't
+      work and/or the driver will require <xref linkend="libglvnd"/> to be
+      installed. libglvnd only provides the implementations for OpenGL, OpenGL
+      ES, GLX, and EGL. This had led to legacy OpenGL vs new OpenGL on Linux.
     </para>
 
     <para>
       There is <filename class="libraryfile">libGL</filename> which is now
       considered legacy OpenGL and is provided by both <xref linkend="mesa"/>
-      and <xref linkend="libglvnd"/>. Meanwhile, there is <filename
-      class="libraryfile">libOpenGL</filename> which is considered the new
-      OpenGL and is only provided by <xref linkend="libglvnd"/>. Apps and
-      libraries that link against the legacy OpenGL will work with both
-      providers, but linking against the new OpenGL, which only has dispatching
-      functions, will result in those binaries being broken on systems with
-      only <xref linkend="mesa"/> installed.
+      and <xref linkend="libglvnd"/>. It is hardcoded to deal with <filename
+      class="libraryfile">libGLX</filename>, meant for Xorg libraries and apps.
+      Meanwhile, there is <filename class="libraryfile">libOpenGL</filename>
+      which is considered the new OpenGL. It is only provided by <xref
+      linkend="libglvnd"/>. Apps and libraries that link against the legacy
+      OpenGL will work with both providers, but linking against the new OpenGL,
+      which only has dispatching functions, will result in those binaries being
+      broken on systems with only <xref linkend="mesa"/> installed.
     </para>
 
     <para>
-      This is only a problem for binary only packages and some
-      CMake build systems. For this book and in
-      BLFS, you shouldn't run into any of those issues unless you wish to use
-      <xref linkend="nvidia"/>, which specifically requires <xref
-      linkend="libglvnd"/>. SLFS aims to work around issues that arise from
-      packages having stubborn build systems, like in the case of <ulink
-      url="&slfs-website;/general/obs-studio.html">OBS-Studio</ulink>.
-      For binary-only packages, it is generally hit or miss whether the
-      developers link against new or legacy OpenGL. A gaming example is with
-      ports and recompilations: the binary for <ulink
+      Binary-only software is a prime candidate for these issues propping up,
+      which usually stems from build systems preferring <filename
+      class="libraryfile">libOpenGL</filename> over <filename
+      class="libraryfile">libGL</filename>. Build systems may also complain
+      that libglvnd's libraries can't be found. Sometimes it's intentional,
+      other times unintentional. In both cases, upstreams are unlikely to fix
+      those issues. A project requiring libglvnd specifically may have its
+      reasons, such as it depending on the dispatching feature because it's a
+      driver, or most Linux distributions ship libglvnd, providing no reason to
+      support Mesa's OpenGL drivers. These issues can combine in a single case.
+      A gaming example is with ports and recompilations: the binary for <ulink
       url="https://www.shipofharkinian.com/">Ship of Harkinian</ulink>, a PC
       port of the Nintendo 64 game, Legend of Zelda: Ocarina of Time, links
-      against new OpenGL and will be broken with only
-      Mesa installed; furthermore, trying to get
-      around the issue by building from source also leads to many issues.
-      However, the binary of the PC port made from statically recompiling the
-      Nintendo 64 game, Legend of Zelda: Majora's Mask, called <ulink
+      against new OpenGL and will be broken with only Mesa installed;
+      furthermore, trying to get around the issue by building from source also
+      leads to many issues. However, the binary of the PC port made from
+      statically recompiling the Nintendo 64 game, Legend of Zelda: Majora's
+      Mask, called <ulink
       url="https://github.com/Zelda64Recomp/Zelda64Recomp">Zelda 64:
       Recompiled</ulink>, links against legacy OpenGL and works with both
       OpenGL providers.
     </para>
 
+    <para>
+      All these issues led to the decision to cut out support for Mesa's OpenGL
+      implementations and use libglvnd instead. This also now affects
+      Supplemental LFS<footnote><para>
+        <ulink url="&slfs-website;"/>
+      </para></footnote> as well. Beyond LFS will not have any issues with
+      Mesa's OpenGL libraries being installed. Regardless, you can still
+      install Mesa's OpenGL if you wish, but will run into issues outside of
+      BLFS. The choice is up to you.
+    </para>
+
+<!--
     <para>
       If you only want legacy OpenGL, you can just install <xref
       linkend="mesa"/>. If you want new OpenGL, support for some binary-only
@@ -87,6 +99,7 @@
       When in doubt, install <xref linkend="libglvnd"/>. First time builders
       are highly encouraged to install it.
     </para></note>
+-->
 
     <important><para>
       Switching between vendors is not recommended. You should choose very
@@ -113,11 +126,8 @@
 
       <para>
         GLES, specifically v2 and v3, are used sometimes, but mostly in one
-        area. Such an area is in Wayland
-        compositors and compositor libraries, such as
-        Hyprland, Mutter,
-        Wayfire, and
-        Wlroots. While compositors can utilize
+        area: in Wayland compositors and compositor libraries. These include
+        Hyprland, Mutter, Wayfire, and Wlroots. While compositors can utilize
         Vulkan, most compositors require GLES rendering and don't offer a Vulkan
         solution, or any other rendering API solution. GLESv1 on the otherhand
         is an outdated specification of the GLES API that has been phased out

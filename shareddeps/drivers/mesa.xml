@@ -25,20 +25,13 @@
       and other drivers.
     </para>
 
-    <para>
-      Every driver from this package works with <xref linkend="libglvnd"/>. The
-      package will auto-detect a libglvnd
-      installation if present and will link against the libraries provided by
-      that package. Thus, the OpenGL libraries provided by this package will
-      not be built, only the drivers for OpenGL.
-    </para>
-
     <important><para>
-      Read <xref linkend="aboutgl"/> to decide if you want to install OpenGL
-      implementations from this provider.
-      If you want to install <xref linkend="libglvnd"/>, install that
-      <emphasis>FIRST</emphasis> before installing this package so that this
-      package's OpenGL implementations do not get built.
+      This package can install its own OpenGL libraries, but is not supported
+      by this book's editors due to their various issues. Read <xref
+      linkend="aboutgl"/> for more information. If you do not want to install
+      <xref linkend="libglvnd"/> and want to install this package's OpenGL
+      implementations, the Command Explanations will instruct you to remove a
+      given parameter in order to do so.
     </para></important>
 
 <!--
@@ -112,6 +105,12 @@
         </listitem>
         <listitem>
           <para>
+            <xref linkend="libglvnd"/> (to allow OpenGL drivers outside of Mesa
+            to be installed and dispatched accordingly; heavily recommended)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
             <xref role="first" linkend="libva"/> (to provide VA-API support for some
             Gallium3D drivers, note that there is a circular dependency. You must
             build libva first without EGL and GLX support,
@@ -154,7 +153,6 @@
     <para role="optional">
       &gbm;,
       <ulink url="&blfs-svn;/general/libgcrypt.html">libgcrypt</ulink>,
-      <xref linkend="libglvnd"/>,
       <xref linkend="libunwind"/>,
       <ulink url="&blfs-svn;/general/lm-sensors.html">lm-sensors</ulink>,
       <!-- for libsensors according to Meson -->
@@ -174,24 +172,23 @@
     <title>Installation of Mesa</title>
     
     <para>
-      Install Mesa by running the following
-      commands:
+      Install Mesa by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup                    \
-      --prefix=/usr            \
-      --buildtype=release      \
-      -D platforms=x11,wayland \
-      -D gallium-drivers=auto  \
-      -D vulkan-drivers=auto   \
-      -D gles1=disabled        \
-      -D video-codecs=all      \
-      -D valgrind=disabled     \
-      -D libunwind=disabled    \
-      .. &amp;&amp;
+meson setup --prefix=/usr            \
+            --buildtype=release      \
+            -D glvnd=enabled         \
+            -D platforms=x11,wayland \
+            -D gallium-drivers=auto  \
+            -D vulkan-drivers=auto   \
+            -D gles1=disabled        \
+            -D video-codecs=all      \
+            -D valgrind=disabled     \
+            -D libunwind=disabled    \
+            .. &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -221,20 +218,20 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-meson setup                    \
-      --cross-file=lib32       \
-      --prefix=/usr            \
-      --libdir=/usr/lib32      \
-      --buildtype=release      \
-      -D platforms=x11,wayland \
-      -D gallium-drivers=auto  \
-      -D vulkan-drivers=auto   \
-      -D gles1=disabled        \
-      -D video-codecs=all      \
-      -D valgrind=disabled     \
-      -D libunwind=disabled    \
-      .. &amp;&amp;
-      sed -i 's/\/usr\/lib\//\/usr\/lib32\//g' ./build.ninja &amp;&amp;
+meson setup --cross-file=lib32       \
+            --prefix=/usr            \
+            --libdir=/usr/lib32      \
+            --buildtype=release      \
+            -D glvnd=enabled         \
+            -D platforms=x11,wayland \
+            -D gallium-drivers=auto  \
+            -D vulkan-drivers=auto   \
+            -D gles1=disabled        \
+            -D video-codecs=all      \
+            -D valgrind=disabled     \
+            -D libunwind=disabled    \
+            .. &amp;&amp;
+sed -i 's/\/usr\/lib\//\/usr\/lib32\//g' ./build.ninja &amp;&amp;
 
 BINDGEN_EXTRA_CLANG_ARGS="-m32" ninja</userinput></screen>
 
@@ -262,6 +259,14 @@ ldconfig</userinput></screen>
       fully-optimized build, and disables debug assertions which will
       severely slow down the libraries in certain use-cases. Without this
       switch, build sizes can span into the 2GB range.
+    </para>
+
+    <para>
+      <parameter>-D glvnd=enabled</parameter>: This forces the build system to
+      fail the configuration step if <xref linkend="libglvnd"/> was not found.
+      If you want to accept the risks of using this packages OpenGL libraries
+      and have not installed libglvnd, remove this parameter. Read <xref
+      linkend="aboutgl"/> for more information.
     </para>
 
     <para>
@@ -414,11 +419,6 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <parameter>-D gles1=disabled</parameter>: This flag disables building a
-      deprecated spec of OpenGL ES.
-    </para>
-
-    <para>
       <parameter>-D video-codecs=all</parameter>: This parameter enables
       building all the video codecs as they are disabled by default to avoid
       legal issues. It would be prudent to not distribute your build if you
@@ -445,7 +445,14 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <option>-D gles2=disabled</option>: If you don't need OpenGL ES, use
+      <option>-D gles1=disabled</option>: This flag disables building a
+      deprecated spec of OpenGL ES if <parameter>-D glvnd=enabled</parameter>
+      was not passed.
+    </para>
+
+    <para>
+      <option>-D gles2=disabled</option>: If you didn't pass
+      <parameter>-D glvnd=enabled</parameter> and don't need OpenGL ES, use
       this option. Be sure to read <xref linkend="aboutgles"/>.
     </para>
 
@@ -496,13 +503,10 @@ ldconfig</userinput></screen>
           None
         </seg>
         <seg>
-          libEGL (or libEGL_mesa if <xref linkend="libglvnd"/> is installed),
-          libGL (if <xref linkend="libglvnd"/> is not installed),
-          libGLESv2 (if <xref linkend="libglvnd"/> is not installed),
+          libEGL_mesa,
+          libGLX_mesa,
           libgallium-&mesa-version;,
-          libgbm,
-          libglapi (if <xref linkend="libglvnd"/> is not installed),
-          libGLX_mesa (if <xref linkend="libglvnd"/> is installed), and
+          libgbm, and
           libxatracker
         </seg>
         <seg>
@@ -569,13 +573,35 @@ ldconfig</userinput></screen>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
+      <varlistentry id="libEGL_mesa">
+        <term><filename class="libraryfile">libEGL_mesa</filename></term>
+        <listitem>
+          <para>
+            provides all the EGL functionality for Mesa's EGL drivers to work
+          </para>
+          <indexterm zone="mesa libEGL_mesa">
+            <primary sortas="c-libEGL_mesa">libEGL_mesa</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+ 
+      <varlistentry id="libGLX_mesa">
+        <term><filename class="libraryfile">libGLX_mesa</filename></term>
+        <listitem>
+          <para>
+            provides all the GLX functionality for Mesa's GLX drivers to work
+          </para>
+          <indexterm zone="mesa libGLX_mesa">
+            <primary sortas="c-libGLX_mesa">libGLX_mesa</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="dri_gbm">
         <term><filename class='libraryfile'>dri_gbm</filename></term>
         <listitem>
           <para>
-            implements Graphics Buffer Management functions needed by
-            <systemitem class='library'>libgbm</systemitem> on top of
-            <systemitem class='library'>libdrm</systemitem>
+            is Mesa's GBM driver
           </para>
         </listitem>
       </varlistentry>
@@ -587,19 +613,6 @@ ldconfig</userinput></screen>
             is a stub allowing Xorg server to co-operate with the Gallium3D
             drivers
           </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libEGL">
-        <term><filename class="libraryfile">libEGL</filename></term>
-        <listitem>
-          <para>
-            provides an interface between graphics APIs and the window system;
-            provided if <xref linkend="libglvnd"/> is not installed
-          </para>
-          <indexterm zone="mesa libEGL">
-            <primary sortas="c-libGL">libEGL</primary>
-          </indexterm>
         </listitem>
       </varlistentry>
 
@@ -621,47 +634,6 @@ ldconfig</userinput></screen>
           </para>
           <indexterm zone="mesa libgbm">
             <primary sortas="c-libgbm">libgbm</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libglapi">
-        <term><filename class="libraryfile">libglapi</filename></term>
-        <listitem>
-          <para>
-            is Mesa's implementation of the OpenGL
-            API; provided if <xref linkend="libglvnd"/> is not installed
-          </para>
-          <indexterm zone="mesa libglapi">
-            <primary sortas="c-libglapi">libglapi</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libGLES2">
-        <term><filename class="libraryfile">libGLES2</filename></term>
-        <listitem>
-          <para>
-            contains OpenGL ES 2.x and 3.x calls; provided if <xref
-            linkend="libglvnd"/> is not installed
-          </para>
-          <indexterm zone="mesa libGLES2">
-            <primary sortas="c-libGLES2">libGLES2</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libGL">
-        <term><filename class="libraryfile">libGL</filename></term>
-        <listitem>
-          <para>
-            is the main OpenGL library; provided if <xref linkend="libglvnd"/>
-            is not installed; <filename
-            class="libraryfile">libOpenGL</filename> is not provided by this
-            package
-          </para>
-          <indexterm zone="mesa libGL">
-            <primary sortas="c-libGL">libGL</primary>
           </indexterm>
         </listitem>
       </varlistentry>

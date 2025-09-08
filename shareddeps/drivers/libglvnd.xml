@@ -31,18 +31,15 @@
       it will provide <filename class="libraryfile">libEGL_nvidia</filename>,
       <filename class="libraryfile">libGLESv2_nvidia</filename>, and
       <filename class="libraryfile">libGLX_nvidia</filename>. Each
-      implementation is specific to the driver it comes from.
-    </para>
-
-    <para>
-      The benefit of doing it that way is that a driver doesn't have to obey to
-      the architecture an OpenGL vendor applies nor being absorbed by the
-      vendor.
+      implementation is specific to the driver it comes from. The benefit of
+      doing it this way is that a driver doesn't have to obey to the
+      architecture an OpenGL vendor applies nor being absorbed by the vendor.
     </para>
 
     <important><para>
-      Read <xref linkend="aboutgl"/> to decide if you want to install OpenGL
-      implementations from this provider.
+      Read <xref linkend="aboutgl"/> for some important information regarding
+      libglvnd vs Mesa's OpenGL implementations. In short, this package is
+      heavily recommended.
     </para></important>
 
     <itemizedlist spacing="compact">
@@ -91,7 +88,7 @@ meson setup --prefix=/usr       \
 ninja</userinput></screen>
 
     <para>
-      Now as the <systemitem class="username">root</systemitem> user:
+      Now as the &root; user:
     </para>
 
 <screen role="root"><userinput>ninja install</userinput></screen>
@@ -118,7 +115,7 @@ meson setup --prefix=/usr            \
 ninja</userinput></screen>
 
     <para>
-      Now as the <systemitem class="username">root</systemitem> user:
+      Now as the &root; user:
     </para>
 
 <screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
@@ -149,53 +146,6 @@ ldconfig</userinput></screen>
       <option>-D gles2=false</option>: If you don't need OpenGL ES, use
       this option. Be sure to read <xref linkend="aboutgles"/>.
     </para>
-
-  </sect2>
-
-  <sect2>
-    <title>List of packages With Issues</title>
-
-    <para>
-      While installing this package can help prevent a lot of issues down the
-      road, this package can come with some caveats and all of them are in
-      relation to BLFS. BLFS naturally expects that the only OpenGL vendor is
-      Mesa, so the instructions will thus assume
-      that this package has not been installed. The following have known
-      issues, and solutions:
-    </para>
-
-    <itemizedlist>
-      <listitem>
-        <para>Mesa: In BLFS, a patch is listed in
-        the <ulink url="&blfs-svn;/x/mesa.html">Mesa</ulink> page and will
-        instruct you to apply it. This will cause an issue unless you
-        explicitly tell the build system not to link against this package's
-        libraries, which means having it build its own OpenGL implementations,
-        which will cause issues of its own. The exact error the patch causes is
-        a linking error in the final set of steps when building the demos as it
-        expects functions that are not found in the specific libraries from
-        this package it tries to link against.</para>
-        <para>Either don't apply that patch or follow this book's <xref
-        linkend="mesa"/> page instead. Thanks to
-        Mesa's build system auto-detecting if
-        libglvnd is installed, the installation
-        instructions don't change that much between this book and BLFS. The
-        main differences are lib32 support and not listing the demos
-        patch.</para>
-      </listitem>
-      <listitem>
-        <para>GLU: In BLFS, the <ulink
-        url="&blfs-svn;/x/glu.html">GLU</ulink> page explicitly sets the GL
-        vendor to be Mesa as the build system will
-        otherwise expect libglvnd and
-        <filename class="libraryfile">libOpenGL</filename> to be installed.
-        While the BLFS page instructions lead to a successful compilation, the
-        resulting library does not function properly. You should follow the
-        <ulink url="&slfs-website;/general/glu.html">SLFS GLU</ulink> page
-        instead. It also does check if the vendor is
-        Mesa.</para>
-      </listitem>
-    </itemizedlist>
 
   </sect2>
 
