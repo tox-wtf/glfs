@@ -44,6 +44,9 @@
       <para>September 8th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - NVIDIA: Add uninstall option.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - Unsupport Mesa's OpenGL; GLU: Moved from
           SLFS.</para>
         </listitem>
