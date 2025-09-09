@@ -41,6 +41,36 @@
     -->
 
     <listitem>
+      <para>September 9th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libxml2: 2.14.5 -&gt; 2.14.6.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FreeType2: 2.13.3 -&gt; 2.14.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libXScrnSaver (Xorg library): 1.2.4 -&gt;
+          1.2.5.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libXres (Xorg library): 1.2.2 -&gt;
+          1.2.3.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libXpresent (Xorg library): 1.0.1 -&gt;
+          1.0.2.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Mesa: 25.1.8 -&gt; 25.2.2.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - NVIDIA: Only support powerd on Systemd.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>September 8th, 2025</para>
       <itemizedlist>
         <listitem>

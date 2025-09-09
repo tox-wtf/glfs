@@ -20,9 +20,8 @@
     <title>Introduction to Mesa</title>
 
     <para>
-      Mesa offers a wide variety of graphic
-      software, like the OpenGL libraries and drivers, Vulkan drivers,
-      and other drivers.
+      Mesa contains several libraries and drivers for multiple APIs like OpenGL
+      and Vulkan.
     </para>
 
     <important><para>
@@ -193,15 +192,14 @@ meson setup --prefix=/usr            \
 ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>ninja install</userinput></screen>
 
     <para>
       If desired, install the optional documentation by running
-      the following commands as the
-      <systemitem class="username">root</systemitem> user:
+      the following commands as the &root; user:
     </para>
 
 <screen role="root"
@@ -236,7 +234,7 @@ sed -i 's/\/usr\/lib\//\/usr\/lib32\//g' ./build.ninja &amp;&amp;
 BINDGEN_EXTRA_CLANG_ARGS="-m32" ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install                     &amp;&amp;
@@ -456,11 +454,15 @@ ldconfig</userinput></screen>
       this option. Be sure to read <xref linkend="aboutgles"/>.
     </para>
 
+<!-- No available values for this option anymore, dri2 has been completely
+     removed. Hide this now. -->
+<!--
     <para>
       <option>-D legacy-x11="..."</option> This parameter controls which legacy
       X11 features get built-in support. Available linux options are none
       (default) and dri2. These features are rarely needed anymore.
     </para>
+-->
 
     <para>
       <option>-D libgbm-external=true</option>: This links against the
@@ -505,9 +507,8 @@ ldconfig</userinput></screen>
         <seg>
           libEGL_mesa,
           libGLX_mesa,
-          libgallium-&mesa-version;,
-          libgbm, and
-          libxatracker
+          libgallium-&mesa-version;, and
+          libgbm
         </seg>
         <seg>
           <!-- Begin DRI Driver Stubs -->
@@ -519,7 +520,6 @@ ldconfig</userinput></screen>
           nouveau_dri,
           r300_dri,
           r600_dri,
-          r600_drv_video,
           radeonsi_dri,
           swrast_dri,
           virtio_gpu_dri,
@@ -530,6 +530,7 @@ ldconfig</userinput></screen>
         <seg>
           <!-- Begin VA-API Drivers -->
           nouveau_drv_video,
+          r600_drv_video,
           radeonsi_drv_video, and
           virtio_gpu_drv_video
           <!-- End VA-API Drivers -->
@@ -550,20 +551,24 @@ ldconfig</userinput></screen>
           <!-- End VDPAU Drivers -->
         </seg>
         <seg>
+          <!-- Begin Vulkan drivers -->
           libvulkan_intel_hasvk,
           libvulkan_intel,
           libvulkan_lvp,
           libvulkan_nouveau, and
           libvulkan_radeon
+          <!-- End Vulkan drivers -->
         </seg>
         <seg>
+          <!-- Begin directories -->
           <!-- /usr/include/GL is installed by xorg-protos -->
-          /usr/{include/{EGL,GLES2,GLES3,KHR},
-          /usr/lib/{dri,gbm,vdpau}},
+          /usr/include/{EGL,GLES2,GLES3,KHR},
+          /usr/lib/{dri,gbm,vdpau},
           /usr/share/drirc.d (contains workarounds for various applications,
           particularly browsers and games),
           /usr/share/vulkan,
           and /usr/share/doc/mesa-&mesa-version;
+          <!-- End directories -->
         </seg>
       </seglistitem>
     </segmentedlist>
@@ -634,18 +639,6 @@ ldconfig</userinput></screen>
           </para>
           <indexterm zone="mesa libgbm">
             <primary sortas="c-libgbm">libgbm</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libxatracker">
-        <term><filename class="libraryfile">libxatracker</filename></term>
-        <listitem>
-          <para>
-            is the XA state tracker for the VMWare vmwgfx driver
-          </para>
-          <indexterm zone="mesa libxatracker">
-            <primary sortas="c-libxatracker">libxatracker</primary>
           </indexterm>
         </listitem>
       </varlistentry>
