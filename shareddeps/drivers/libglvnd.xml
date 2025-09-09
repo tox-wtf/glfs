@@ -25,13 +25,13 @@
       The libglvnd package dispatches OpenGL API calls to a given driver vendor
       at runtime. Some of the libraries are simply wrappers to the main
       dispatcher. Drivers that are built with libglvnd in mind provide their
-      own OpenGL implementations. For <xref linkend="mesa"/>, it will install
+      own OpenGL functionality. For <xref linkend="mesa"/>, it will install
       <filename class="libraryfile">libEGL_mesa</filename> and <filename
       class="libraryfile">libGLX_mesa</filename>. For <xref linkend="nvidia"/>,
       it will provide <filename class="libraryfile">libEGL_nvidia</filename>,
       <filename class="libraryfile">libGLESv2_nvidia</filename>, and
       <filename class="libraryfile">libGLX_nvidia</filename>. Each
-      implementation is specific to the driver it comes from. The benefit of
+      rendition is specific to the driver it comes from. The benefit of
       doing it this way is that a driver doesn't have to obey to the
       architecture an OpenGL vendor applies nor being absorbed by the vendor.
     </para>
