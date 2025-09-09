@@ -22,8 +22,8 @@
     <title>Introduction to libglvnd</title>
 
     <para>
-      The libglvnd package dispatches API calls to a given driver vendor at
-      runtime. Some of the libraries are simply wrappers to the main
+      The libglvnd package dispatches OpenGL API calls to a given driver vendor
+      at runtime. Some of the libraries are simply wrappers to the main
       dispatcher. Drivers that are built with libglvnd in mind provide their
       own OpenGL implementations. For <xref linkend="mesa"/>, it will install
       <filename class="libraryfile">libEGL_mesa</filename> and <filename
