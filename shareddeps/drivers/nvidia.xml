@@ -7,6 +7,8 @@
   <!ENTITY nv-root "https://us.download.nvidia.com/XFree86/Linux-x86_64">
   <!ENTITY nvidia-download
     "&nv-root;/&nvidia-version;/NVIDIA-Linux-x86_64-&nvidia-version;.run">
+  <!ENTITY mesa-raw-repo
+    "https://gitlab.freedesktop.org/mesa/mesa/-/raw/&mesa-major-minor;">
 ]>
 
 <sect1 id="nvidia" xreflabel="NVIDIA-&nvidia-version;">
@@ -630,6 +632,21 @@ EOF</userinput></screen>
         these libraries and a real pkg-config file.
         Note that those libraries will not be used when this driver is in use.
       </para>
+
+      <para>
+        Like with the situation regarding DRI, there are a couple header files
+        only installed by <xref linkend="mesa"/> but can be dropped in without
+        an issue. One is for declaring the DRI interface and one for declaring
+        Mesa's EGL EXT system that is used by some software like GNOME's
+        mutter. Using <xref linkend="wget"/>, download and install them as the
+        &root; user:
+      </para>
+
+<screen role="root"><userinput>&install-dir; /usr/include/GL/internal /usr/include/EGL &amp;&amp;
+wget &mesa-raw-repo;/include/GL/internal/dri_interface.h \
+  -O /usr/include/GL/internal/dri_interface.h &amp;&amp;
+wget &mesa-raw-repo;/include/EGL/eglmesaext.h \
+  -O /usr/include/EGL/eglmesaext.h</userinput></screen>
 
       <note><para>
         You should skip to <xref linkend="xcb-utils"/> after you are done with
