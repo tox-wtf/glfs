@@ -44,6 +44,9 @@
       <para>September 13th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - NVIDIA: 580.82.07 -&gt; 580.82.09.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - p11-kit: 0.25.5 -&gt; 0.25.7. Fixes
           <ulink url="&glfs-issues;/311">#311</ulink>.</para>
         </listitem>
