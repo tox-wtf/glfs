@@ -41,6 +41,15 @@
     -->
 
     <listitem>
+      <para>September 14th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libaom: Replaced with SVT-AV1 and dav1d.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>September 13th, 2025</para>
       <itemizedlist>
         <listitem>

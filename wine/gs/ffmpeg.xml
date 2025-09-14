@@ -10,7 +10,6 @@
 <sect1 id="ffmpeg" xreflabel="FFmpeg-&ffmpeg-version;">
   <?dbhtml filename="ffmpeg.html"?>
 
-
   <title>FFmpeg-&ffmpeg-version;</title>
 
   <indexterm zone="ffmpeg">
@@ -59,14 +58,14 @@
 
     <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="libaom"/>,
-      <ulink url="&blfs-svn;/multimedia/libass.html">libass</ulink>,
+      <xref linkend="dav1d"/>,
       <xref linkend="fdk-aac"/>,
       <xref linkend="freetype2-pass2"/>,
       <xref linkend="lame"/>,
       <xref linkend="libvorbis"/>,
       <xref linkend="libvpx"/>,
       <xref linkend="opus"/>,
+      <xref linkend="svt-av1"/>,
       <xref linkend="x264"/>,
       <xref linkend="x265"/>, and
       <xref linkend="nasm"/>
@@ -118,13 +117,6 @@
 <screen><userinput remap="pre">patch -Np1 -i ../ffmpeg-&ffmpeg-version;-chromium_method-1.patch</userinput></screen>
 
     <para>
-      Now fix an issue caused by the latest version of <xref linkend="x265"/>:
-    </para>
-
-<screen><userinput remap="pre">sed -e 's/X265_BUILD >= 210/(&amp;) \&amp;\&amp; (X265_BUILD &lt; 213)/' \
-    -i libavcodec/libx265.c</userinput></screen>
-
-    <para>
       Install FFmpeg by running the following
       commands:
     </para>
@@ -136,17 +128,17 @@
             --disable-static     \
             --enable-shared      \
             --disable-debug      \
-            --enable-libaom      \
+            --enable-libdav1d    \
             --enable-libfdk-aac  \
             --enable-libfreetype \
             --enable-libmp3lame  \
             --enable-libopus     \
+            --enable-libsvtav1   \
             --enable-libvorbis   \
             --enable-libvpx      \
             --enable-libx264     \
             --enable-libx265     \
-            --enable-openssl<!--     \
-            - -ignore-tests=enhanced-flv-av1-->     \
+            --enable-openssl     \
             --docdir=/usr/share/doc/ffmpeg-&ffmpeg-version; &amp;&amp;
 
 make &amp;&amp;
@@ -154,7 +146,7 @@ make &amp;&amp;
 gcc tools/qt-faststart.c -o tools/qt-faststart</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make install &amp;&amp;
@@ -185,22 +177,22 @@ gcc tools/qt-faststart.c -o tools/qt-faststart</userinput></screen>
             --disable-static                          \
             --enable-shared                           \
             --disable-debug                           \
-            --enable-libaom                           \
+            --enable-libdav1d                         \
             --enable-libfdk-aac                       \
             --enable-libfreetype                      \
             --enable-libmp3lame                       \
             --enable-libopus                          \
+            --enable-libsvtav1                        \
             --enable-libvorbis                        \
             --enable-libvpx                           \
             --enable-libx264                          \
             --enable-libx265                          \
-            --enable-openssl<!--                          \
-            - -ignore-tests=enhanced-flv-av1--> &amp;&amp;
+            --enable-openssl &amp;&amp;
 
 make</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
@@ -248,59 +240,6 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <parameter>--enable-libaom</parameter>: Enables AV1 audio and video
-      decoding via <filename class="libraryfile">libaom</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libfdk-aac</parameter>: Enables AAC audio encoding via
-      <filename class="libraryfile">libfdk-aac</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libmp3lame</parameter>: Enables MP3 audio encoding
-      via <filename class="libraryfile">libmp3lame</filename>.
-    </para>
-<!--
-    <para>
-      <parameter>- -enable-libvorbis</parameter>
-      <parameter>- -enable-libtheora</parameter>: Enables
-      Theora video encoding via <filename
-      class="libraryfile">libvorbis</filename> and <filename
-      class="libraryfile">libtheora</filename>.
-    </para>
--->
-    <para>
-      <parameter>--enable-libvorbis</parameter>
-      <parameter>--enable-libvpx</parameter>: Enables WebM
-      encoding via <filename class="libraryfile">libvorbis</filename> and
-      <filename class="libraryfile">libvpx</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libx264</parameter>: Enables high-quality
-      H.264/MPEG-4 AVC encoding via <filename
-      class="libraryfile">libx264</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libx265</parameter>: Enables high-quality
-      H.265/HEVC encoding via <filename
-      class="libraryfile">libx265</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-openssl</parameter>:
-      Enables HTTPS protocol for network streams.
-    </para>
-
-    <para>
-      <option>--enable-libdrm</option>: Use this switch if
-      <xref linkend="libdrm"/> is installed to build the <quote>kmsgrab</quote>
-      input module which is useful for screen capturing or streaming.
-    </para>
-
-    <para>
       <option>--enable-nvenc --enable-nvdec</option>: These options enable
       hardware acceleration for NVIDIA GPUs, and depend on the optional
       dependencies for systems with NVIDIA graphics cards.
@@ -319,24 +258,6 @@ ldconfig</userinput></screen>
       Intel graphics cards.
     </para>
 
-    <!--
-    <para>
-      <parameter>- -disable-vulkan</parameter>: Disables Vulkan for the
-      current version of <xref linkend="vulkan-loader"/> due to
-      an API conflict.
-    </para>
-    -->
-
-    <!--
-    <para>
-      <parameter>- -ignore-tests=...</parameter>: Disables tests that fail to
-      run on
-      BLFS without the optional packages. Currently the AV1 test is disabled 
-      as it needs dav1d to do AV1 decoding on the CPU. The test might work if 
-      you have a GPU that can decode AV1, but this was not tested.
-    </para>
-    -->
-
     <para>
       <option>--enable-gnutls</option>: Use this option instead of
       <parameter>--enable-openssl</parameter>, if you want to use
@@ -348,11 +269,6 @@ ldconfig</userinput></screen>
       <option>--disable-doc</option>: Disables building html documentation.
       This is only needed if doxygen is installed and you
       do not want to build the html documentation.
-    </para>
-
-    <para>
-      <option>--enable-libpulse</option>: Enables support for
-      Pulseaudio for audio output.
     </para>
 
     <para>
