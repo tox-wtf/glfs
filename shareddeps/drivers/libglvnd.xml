@@ -194,7 +194,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libGL</filename></term>
         <listitem>
           <para>
-            is the <quote>legacy</quote> OpenGL library; wrapper library
+            is the OpenGL library tied to GLX; wrapper library
             calling <filename class="libraryfile">libGLdispatch
             </filename> and <filename class="libraryfile">libGLX</filename>
           </para>
@@ -245,8 +245,8 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libOpenGL</filename></term>
         <listitem>
           <para>
-            is the <quote>new</quote> OpenGL library and exposes OpenGL
-            entrypoints; wrapper library calling <filename
+            is the OpenGL library untied to any window system and exposes
+            OpenGL entrypoints; wrapper library calling <filename
             class="libraryfile"> libGLdispatch</filename>
           </para>
           <indexterm zone="libglvnd glvnd-libOpenGL">
