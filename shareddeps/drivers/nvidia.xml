@@ -37,7 +37,7 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Recommended kernel version to use: linux &nvidia-linux-version;
+          Recommended kernel version(s) to use: linux &nvidia-linux-version;
         </para>
       </listitem>
       <listitem>
@@ -275,7 +275,7 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
     <note><para>
       The source code you built the kernel from must be in the same location
       you built the kernel. For example, if you built the kernel in <filename
-      class="directory">/sources/linux-&linux-version;</filename>, the source
+      class="directory">/sources/linux-6.16.1</filename>, the source
       code should stay there and must not be deleted until the 3rd party
       modules have been built. Some Linux distributions get around this by
       installing development files in <filename
@@ -291,8 +291,6 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
         support the kernel version at the time. At the top of this section, the
         recommended kernel series to use with this driver is mentioned to
         give an idea of what is the idea kernel version to build against.
-        The kernel version used for kernel parameters and such in this book is
-        linux-&linux-version;. As of now, there are no option mismatches.
     </para></note>
 
     <important>
