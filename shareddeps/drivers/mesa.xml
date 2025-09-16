@@ -25,11 +25,11 @@
     </para>
 
     <important><para>
-      This package can install its own OpenGL libraries, but is not supported
-      by this book's editors due to their various issues. Read <xref
+      This package can install its own core OpenGL libraries, but is not
+      supported by this book's editors due to their various issues. Read <xref
       linkend="aboutgl"/> for more information. If you do not want to install
-      <xref linkend="libglvnd"/> and want to install this package's OpenGL
-      implementations, the Command Explanations will instruct you to remove a
+      <xref linkend="libglvnd"/> and want to install this package's core OpenGL
+      libraries, the Command Explanations will instruct you to remove a
       given parameter in order to do so.
     </para></important>
 
@@ -262,9 +262,10 @@ ldconfig</userinput></screen>
     <para>
       <parameter>-D glvnd=enabled</parameter>: This forces the build system to
       fail the configuration step if <xref linkend="libglvnd"/> was not found.
-      If you want to accept the risks of using this packages OpenGL libraries
-      and have not installed libglvnd, remove this parameter. Read <xref
-      linkend="aboutgl"/> for more information.
+      If you want to accept the risks of using this package's core OpenGL
+      libraries and have not installed libglvnd, remove this parameter. Read
+      <xref linkend="aboutgl"/> for more information. Switching is not
+      recommended.
     </para>
 
     <para>

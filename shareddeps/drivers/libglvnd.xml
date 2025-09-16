@@ -31,14 +31,14 @@
       it will provide <filename class="libraryfile">libEGL_nvidia</filename>,
       <filename class="libraryfile">libGLESv2_nvidia</filename>, and
       <filename class="libraryfile">libGLX_nvidia</filename>. Each
-      rendition is specific to the driver it comes from. The benefit of
+      implementation is specific to the driver it comes from. The benefit of
       doing it this way is that a driver doesn't have to obey to the
       architecture an OpenGL vendor applies nor being absorbed by the vendor.
     </para>
 
     <important><para>
       Read <xref linkend="aboutgl"/> for some important information regarding
-      libglvnd vs Mesa's OpenGL implementations. In short, this package is
+      libglvnd vs Mesa's OpenGL core libraries. In short, this package is
       heavily recommended.
     </para></important>
 
