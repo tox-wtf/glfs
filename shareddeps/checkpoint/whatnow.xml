@@ -55,7 +55,7 @@
 <screen role="root"><literal>useradd -mG audio,input,video <replaceable>&lt;username&gt;</replaceable></literal></screen>
 
   <para>
-    A lot of software will need the user to be apart of those groups to access
+    A lot of software will need the user to be a part of those groups to access
     the proper APIs and devices.
   </para>
 
