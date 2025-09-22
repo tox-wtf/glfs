@@ -20,10 +20,12 @@
     <title>Introduction to libaom</title>
 
     <para>
-      The libaom package contains a reference
-      version of the Alliance for Open Media video codec. This codec is a
-      patent free alternative to H.265, and is starting to be used throughout
-      the internet.
+      The libaom package contains a reference version of the Alliance for Open
+      Media video codec. This codec is a patent free alternative to H.265.
+      While being slower than dav1d and SVT-AV1, this package provides both an
+      encoder and decoder with support for chroma subsampling outside of just
+      YUV420. SVT-AV1 only supports YUV420, so if you need to go outside it,
+      install this package.
     </para>
 
     &long-build-time;
