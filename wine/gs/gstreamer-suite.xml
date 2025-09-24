@@ -149,6 +149,10 @@
         <ulink url="&blfs-svn;/multimedia/gst10-libav.html">gst-libav</ulink>
       </para></listitem>
     </itemizedlist>
+    <para>This page does not include <ulink
+    url="&blfs-svn;/multimedia/gst10-plugins-rs.html">gst-plugins-rs</ulink>.
+    It provides a GTK-4 binding and a dav1d plugin. If you need them, see the
+    linked page in BLFS.</para>
 
   </sect2>
 
