@@ -43,22 +43,14 @@
 
       <bridgehead renderas="sect3">libva Dependencies</bridgehead>
 
-      <bridgehead renderas="sect4">Required</bridgehead>
       <para role="required">
         <xref linkend="xorg-env"/> and
         <xref linkend="libdrm"/>
       </para>
 
-      <bridgehead renderas="sect4">Recommended</bridgehead>
       <para role="recommended">
-        &opengl;
-      </para>
-
-      <bridgehead renderas="sect4">Recommended (Runtime)</bridgehead>
-      <!-- "nodep" to prevent BLFS tool from blindly installing all the
-           drivers -->
-      <para role='nodep'>
-        The VA API driver suitable for the hardware in your system:
+        &opengl; and
+        the VA API driver suitable for the hardware in your system at runtime:
         <ulink url="&blfs-svn;/multimedia/intel-vaapi-driver.html">intel-vaapi-driver</ulink>
         (for Intel GPUs provided with Haswell CPUs or earlier),
         <ulink url="&blfs-svn;/multimedia/intel-media-driver.html">intel-media-driver</ulink>
@@ -72,7 +64,6 @@
         <xref linkend="mesa"/> page for information on how to break it)
       </para>
 
-      <bridgehead renderas="sect4">Optional</bridgehead>
       <para role="optional">
         <xref linkend="wayland"/>, and
         <ulink url="https://gitlab.freedesktop.org/drm/igt-gpu-tools">intel-gpu-tools</ulink>

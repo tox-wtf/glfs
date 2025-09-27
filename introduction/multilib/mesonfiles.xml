@@ -38,7 +38,6 @@
     </para>
 
     <bridgehead renderas="sect3">Meson Toolchain File Dependencies</bridgehead>
-    <bridgehead renderas="sect4">Required</bridgehead>
       <para role="required">
         <xref linkend="pkgconf"/> (runtime)
       </para>

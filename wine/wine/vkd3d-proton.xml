@@ -28,7 +28,6 @@
 
     <bridgehead renderas="sect3">VKD3D-Proton Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="dxvk"/>
       (for <filename class="libraryfile">dxgi</filename> and

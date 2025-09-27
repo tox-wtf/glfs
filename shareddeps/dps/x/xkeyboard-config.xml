@@ -36,7 +36,6 @@
 
     <bridgehead renderas="sect3">XKeyboard-Config Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="xorg7-lib"/>
     </para>

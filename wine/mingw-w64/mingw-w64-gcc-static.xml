@@ -42,7 +42,6 @@
 
     <bridgehead renderas="sect3">Static MinGW-w64-GCC Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="mingw-w64-binutils"/> and
       <xref linkend="mingw-w64-headers"/>

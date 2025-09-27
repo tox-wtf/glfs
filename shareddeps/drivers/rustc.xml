@@ -121,7 +121,6 @@
 
     <bridgehead renderas="sect3">Rustc Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="cmake"/> and
       <!-- Required for downloading stage 0 binaries.
@@ -130,7 +129,6 @@
       <xref linkend="curl"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="llvm"/>
       (built with <parameter>-D LLVM_LINK_LLVM_DYLIB=ON</parameter> so that

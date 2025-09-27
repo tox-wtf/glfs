@@ -54,13 +54,11 @@
 
     <bridgehead renderas="sect3">ALSA Library Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended (Runtime)</bridgehead>
-    <para role="runtime">
+    <para role="recommended">
       <phrase revision="sysv"><xref linkend="elogind"/></phrase>
-      <phrase revision="systemd"><xref linkend="systemd"/></phrase>
+      <phrase revision="systemd"><xref linkend="systemd"/></phrase> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="&blfs-svn;/general/doxygen.html">
       Doxygen</ulink> and

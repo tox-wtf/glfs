@@ -54,7 +54,6 @@
 
     <bridgehead renderas="sect3">Xorg Server Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <!-- Not runtime as mesa/nvidia provide DRI needed at configuration. -->
       A userland graphics driver (<xref linkend='mesa'/> and/or
@@ -65,7 +64,6 @@
       <xref role="runtime" linkend="xkeyboard-config"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend='dbus'/>,
       <phrase revision="sysv">
@@ -77,7 +75,6 @@
       and <xref role='runtime' linkend='xorg-libinput-driver'/> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="libunwind"/>,
       <xref linkend="nettle"/>,

@@ -57,16 +57,12 @@
 
       <bridgehead renderas="sect3">libvdpau Dependencies</bridgehead>
 
-      <bridgehead renderas="sect4">Required</bridgehead>
       <para role="required">
         <xref linkend="xorg7-lib"/>
       </para>
 
-      <bridgehead renderas="sect4">Recommended (Runtime)</bridgehead>
-      <!-- "nodep" to prevent BLFS tool from blindly installing all the
-           drivers -->
-      <para role='nodep'>
-        The VDPAU driver suitable for the hardware in your system:
+      <para role="recommended">
+        The VDPAU driver suitable for the hardware in your system at runtime:
         <xref linkend='libvdpau-va-gl'/>
         <footnote><para>
           For Intel GPUs.

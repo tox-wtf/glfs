@@ -25,7 +25,6 @@
 
     <bridgehead renderas="sect3">NVIDIA EGL Libraries Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       &gbm;,
       <xref linkend="libdrm"/>,

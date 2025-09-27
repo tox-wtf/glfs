@@ -56,7 +56,6 @@
 
     <bridgehead renderas="sect3">Speex Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="libogg"/> and
       <xref linkend="pkgconf"/> (for lib32)

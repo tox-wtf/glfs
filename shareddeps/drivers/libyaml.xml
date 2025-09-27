@@ -36,7 +36,6 @@
 
     <bridgehead renderas="sect3">libyaml Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="&blfs-svn;/general/doxygen.html">Doxygen</ulink>
     </para>

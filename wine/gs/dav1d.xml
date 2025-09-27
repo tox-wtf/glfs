@@ -37,8 +37,7 @@
 
     <bridgehead renderas="sect3">dav1d Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
-    <para role="Recommended">
+    <para role="recommended">
       <xref linkend="nasm"/>
     </para>
 

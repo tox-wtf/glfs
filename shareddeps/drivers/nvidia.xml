@@ -81,14 +81,12 @@
 
     <bridgehead renderas="sect3">NVIDIA Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       &gbm;,
       <xref linkend="libglvnd"/>, and
       <xref linkend="xorg7-lib"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <itemizedlist spacing="compact">
         <listitem>

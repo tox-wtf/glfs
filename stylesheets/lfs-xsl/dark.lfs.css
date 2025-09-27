@@ -162,6 +162,10 @@ summary {
   font-weight: bold;
 }
 
+summary:hover {
+  cursor: pointer;
+}
+
 /* Navigation */
 div.navheader, div.navfooter {
   background: #332a37;

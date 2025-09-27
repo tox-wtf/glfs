@@ -44,12 +44,10 @@
 
     <bridgehead renderas="sect3">GNAT Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
 	<xref linkend="gnat-binary"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/gdb.html">
       GDB</ulink>,

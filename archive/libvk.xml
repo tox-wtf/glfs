@@ -41,14 +41,12 @@
 
     <bridgehead renderas="sect3">Vulkan-loader Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="cmake"/>,
       <xref linkend="vkheaders"/>, and
       <xref linkend="xorg7-lib"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="runtime">
       <xref linkend="mesa"/> (runtime: for Vulkan drivers) and
       <xref linkend="wayland"/>

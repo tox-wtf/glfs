@@ -77,12 +77,10 @@
 
     <bridgehead renderas="sect3">NVIDIA Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
         <xref linkend="xorg7-lib"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
         <xref linkend="libglvnd"/>,
         <xref linkend="libvk"/>,

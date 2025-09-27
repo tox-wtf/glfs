@@ -54,13 +54,11 @@
 
     <bridgehead renderas="sect3">FreeType2 Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="libpng"/> and
       <xref linkend="which"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional (for documentation)</bridgehead>
     <para role="optional">
       <ulink url="https://pypi.org/project/docwriter/">docwriter</ulink>
     </para>

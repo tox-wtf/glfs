@@ -60,6 +60,7 @@
       <br/>
       <xsl:apply-templates/>
     </details>
+    <br/>
   </xsl:template>
 
     <!-- footnote/para[1]: this template is in {docbook-xsl}/xhtml/footnote.xsl

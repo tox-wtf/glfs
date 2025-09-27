@@ -45,71 +45,56 @@
     presented with options.
   </para>
 
-  <sect2>
-    <title>Required</title>
+  <para role="required">
+    Audio (<xref linkend="alsa-plugins"/> and/or
+    <xref linkend="pulseaudio"/>), <xref linkend="dbus"/>,
+    Display server (<xref linkend="xorg-server"/> or
+    <xref linkend="wayland"/> w/ <xref linkend="xwayland"/>),
+    <xref linkend="fontconfig"/>,
+    <xref linkend="freetype2-pass2"/>,
+    <xref linkend="gnutls"/>,
+    <xref linkend="libunwind"/> (if 64-bit/WoW64; not used by Wine 32-bit),
+    &opengl;, and
+    <xref linkend="mingw-w64-gcc"/>
+  </para>
 
-    <para>
-      Audio (<xref linkend="alsa-plugins"/> and/or
-      <xref linkend="pulseaudio"/>), <xref linkend="dbus"/>,
-      Display server (<xref linkend="xorg-server"/> or
-      <xref linkend="wayland"/> w/ <xref linkend="xwayland"/>),
-      <xref linkend="fontconfig"/>,
-      <xref linkend="freetype2-pass2"/>,
-      <xref linkend="gnutls"/>,
-      <xref linkend="libunwind"/> (if 64-bit/WoW64; not used by Wine 32-bit),
-      &opengl;, and
-      <xref linkend="mingw-w64-gcc"/>
-    </para>
+  <para role="recommended"><itemizedlist spacing="compact">
+    <listitem>
+      <para>
+        <xref linkend="gstreamer-suite"/>: Allows consuming and working with
+        multimedia such as music and videos. Most games and some software
+        work without it, although some will need it for WMA decoding.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        &sdl2;: For input handling and other features.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend="vulkan-sdk"/>: For Vulkan support.
+      </para>
+    </listitem>
+  </itemizedlist></para>
 
-  </sect2>
-
-  <sect2>
-    <title>Recommended</title>
-
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          <xref linkend="gstreamer-suite"/>: Allows consuming and working with
-          multimedia such as music and videos. Most games and some software
-          work without it, although some will need it for WMA decoding.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          &sdl2;: For input handling and other features.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <xref linkend="vulkan-sdk"/>: For Vulkan support.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-  </sect2>
-
-  <sect2>
-    <title>Optional</title>
-
-    <para>
-      <ulink url="https://aur.archlinux.org/packages/libcapi/">
-      libcapi</ulink>,
-      <ulink url="&blfs-svn;/pst/cups.html">Cups</ulink>,
-      <ulink url="https://archlinux.org/packages/extra/x86_64/gphoto2/">
-      gphoto2</ulink>,
-      <ulink url="&blfs-svn;/basicnet/samba.html">Samba</ulink>,
-      <ulink url="&blfs-svn;/pst/sane.html">SANE</ulink>,
-      <ulink url="&blfs-svn;/postlfs/mitkrb.html">Kerberos</ulink>,
-      <ulink url="https://archlinux.org/packages/extra/x86_64/smbclient/">
-      smbclient</ulink>,
-      <ulink
-      url="https://archlinux.org/packages/?sort=&amp;q=opencl&amp;maintainer=&amp;flagged=">
-      OpenCL</ulink>,
-      <ulink url="&blfs-svn;/basicnet/libpcap.html">libpcap</ulink>,
-      <ulink url="&blfs-svn;/general/libusb.html">libusb</ulink>, and
-      <ulink url="&blfs-svn;/multimedia/v4l-utils.html">v4l-utils</ulink>
-    </para>
-
-  </sect2>
+  <para role="optional">
+    <ulink url="https://aur.archlinux.org/packages/libcapi/">
+    libcapi</ulink>,
+    <ulink url="&blfs-svn;/pst/cups.html">Cups</ulink>,
+    <ulink url="https://archlinux.org/packages/extra/x86_64/gphoto2/">
+    gphoto2</ulink>,
+    <ulink url="&blfs-svn;/basicnet/samba.html">Samba</ulink>,
+    <ulink url="&blfs-svn;/pst/sane.html">SANE</ulink>,
+    <ulink url="&blfs-svn;/postlfs/mitkrb.html">Kerberos</ulink>,
+    <ulink url="https://archlinux.org/packages/extra/x86_64/smbclient/">
+    smbclient</ulink>,
+    <ulink
+    url="https://archlinux.org/packages/?sort=&amp;q=opencl&amp;maintainer=&amp;flagged=">
+    OpenCL</ulink>,
+    <ulink url="&blfs-svn;/basicnet/libpcap.html">libpcap</ulink>,
+    <ulink url="&blfs-svn;/general/libusb.html">libusb</ulink>, and
+    <ulink url="&blfs-svn;/multimedia/v4l-utils.html">v4l-utils</ulink>
+  </para>
 
 </sect1>

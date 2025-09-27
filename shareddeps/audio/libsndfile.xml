@@ -36,14 +36,12 @@
 
     <bridgehead renderas="sect3">libsndfile Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="flac"/>,
       <xref linkend="opus"/>, and
       <xref linkend="libvorbis"/><!-- brings in libogg -->
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="alsa-lib"/>,
       <xref linkend="lame"/>,

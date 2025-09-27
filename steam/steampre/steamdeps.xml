@@ -25,45 +25,30 @@
     the initial installation were built in LFS.
   </para>
 
-  <sect2>
-    <title>Required</title>
+  <para role="required">
+    <xref linkend="alsa-plugins"/>,
+    <xref linkend="curl"/>,
+    <xref linkend="dbus"/>,
+    Display server (<xref linkend="xorg-server"/> or
+    <xref linkend="wayland"/> w/ <xref linkend="xwayland"/>),
+    <xref linkend="make-ca"/> (with the symlink added), and
+    &opengl;
+  </para>
 
-    <para>
-      <xref linkend="alsa-plugins"/>,
-      <xref linkend="curl"/>,
-      <xref linkend="dbus"/>,
-      Display server (<xref linkend="xorg-server"/> or
-      <xref linkend="wayland"/> w/ <xref linkend="xwayland"/>),
-      <xref linkend="make-ca"/> (with the symlink added), and
-      &opengl;
-    </para>
+  <para role="recommended">
+    <xref linkend="vulkan-sdk"/> (required for most games),
+    <xref linkend="pulseaudio"/>,
+    <ulink url="&blfs-svn;/x/xdg-desktop-portal.html">xdg-desktop-portal</ulink>
+    (and a backend service for your graphical environment),
+    <xref linkend="xdg-user-dirs"/>,
+    <ulink url="https://archlinux.org/packages/extra/x86_64/zenity/">
+    Zenity</ulink>, <ulink url="&blfs-svn;/general/lsof.html">lsof</ulink>,
+    and <xref linkend="libgpg-error"/>
+  </para>
 
-  </sect2>
-
-  <sect2>
-    <title>Recommended (Ordered By Importantance)</title>
-
-    <para>
-      <xref linkend="vulkan-sdk"/> (required for most games),
-      <xref linkend="pulseaudio"/>,
-      <ulink url="&blfs-svn;/x/xdg-desktop-portal.html">xdg-desktop-portal</ulink>
-      (and a backend service for your graphical environment),
-      <xref linkend="xdg-user-dirs"/>,
-      <ulink url="https://archlinux.org/packages/extra/x86_64/zenity/">
-      Zenity</ulink>, <ulink url="&blfs-svn;/general/lsof.html">lsof</ulink>,
-      and <xref linkend="libgpg-error"/>
-    </para>
-
-  </sect2>
-
-  <sect2>
-    <title>Optional</title>
-
-    <para>
-      <ulink url="&blfs-svn;/general/lsb-tools.html">LSB-Tools</ulink>
-      (for Steam surveys)
-    </para>
-
-  </sect2>
+  <para role="optional">
+    <ulink url="&blfs-svn;/general/lsb-tools.html">LSB-Tools</ulink>
+    (for Steam surveys)
+  </para>
 
 </sect1>

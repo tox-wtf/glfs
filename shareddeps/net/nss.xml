@@ -67,13 +67,11 @@
 
     <bridgehead renderas="sect3">NSS Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="nspr"/>
     </para>
 
 <!--
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="sqlite"/> (required for <ulink
       url="&blfs-svn;/xsoft/firefox.html">Firefox</ulink>; make sure to

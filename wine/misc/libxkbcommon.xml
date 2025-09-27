@@ -37,19 +37,16 @@
 
     <bridgehead renderas="sect3">libxkbcommon Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref role="runtime" linkend="xkeyboard-config"/> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
        <xref linkend="libxcb"/>,
        <xref linkend="wayland"/>, and
        <xref linkend="wayland-protocols"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <command>Xvfb</command> from
       <xref linkend='xorg-server'/> or

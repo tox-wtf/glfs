@@ -29,7 +29,6 @@
 
     <bridgehead renderas="sect3">DXVK Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support),
       <xref linkend="vulkan-sdk"/>, and

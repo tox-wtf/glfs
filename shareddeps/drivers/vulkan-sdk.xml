@@ -56,12 +56,10 @@
 
     <bridgehead renderas="sect3">Vulkan-SDK Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="cmake"/> and <xref linkend="xorg7-lib"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="wayland"/>
     </para>

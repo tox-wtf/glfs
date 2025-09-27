@@ -40,7 +40,6 @@
 
     <bridgehead renderas="sect3">libaom Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="nasm"/>
     </para>

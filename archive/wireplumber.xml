@@ -40,14 +40,12 @@
 
     <bridgehead renderas="sect3">Wireplumber Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="elogind"/>,
       <xref linkend="glib2"/>, and
       <xref linkend="pipewire"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <ulink url="&blfs-svn;/general/lua.html">Lua</ulink>
     </para>

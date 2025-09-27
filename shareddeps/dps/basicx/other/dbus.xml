@@ -46,7 +46,6 @@
 
     <bridgehead renderas="sect3">D-Bus Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="xorg7-lib"/> (for <command>dbus-launch</command> program)
       <!-- elogind cannot be used by dbus: dbus only uses the systemd service,
