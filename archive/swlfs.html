@@ -46,7 +46,7 @@
 		<code>
 		</code>
 		<br>
-		Well... nothing! If there is no error, then you can both compile 32-bit binaries like executables and libraries, and also execute them. If so, you can skip this section and go to the sections you need. For most people, I would hazard a guess that the first error started when <code>gcc -m32</code> was ran, which means GCC doesn't have 32-bit compilation support. Follow the proceding instructions to get multilib support.
+		Well... nothing! If there is no error, then you can both compile 32-bit binaries like executables and libraries, and also execute them. If so, you can skip this section and go to the sections you need. For most people, I would hazard a guess that the first error started when <code>gcc -m32</code> was ran, which means GCC doesn't have 32-bit compilation support. Follow the proceeding instructions to get multilib support.
 		</p>
 		<p>
 		The best resource to get general multilib support is <a href="https://linuxfromscratch.org/~thomas/multilib" target="_blank">https://linuxfromscratch.org/~thomas/multilib</a>. This is essentially the LFS guide but with multilib. Personally, what I do is I build LFS with multilib support in mind. There probably is a way to get that support without rebuilding but I don't do this. If you want to try, be my guest. As for the guide, it has a couple issues I have found. I will rattle them off along as I go.
@@ -181,7 +181,7 @@
 		It does not compile lib32-GDBM
 		</h3>
 		<p>
-		lib32-GDBM is needed by some desktop packgages that you are trying to compile lib32 for, so it's a good idea to compile it so you don't need to go back later:
+		lib32-GDBM is needed by some desktop packages that you are trying to compile lib32 for, so it's a good idea to compile it so you don't need to go back later:
 		<code>
 		<br><br>
 		CC="gcc -m32" CXX="g++ -m32" \ <br>

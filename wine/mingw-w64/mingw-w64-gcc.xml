@@ -48,7 +48,7 @@
     <title>Installation of MinGW-w64-GCC</title>
 
     <note><para>
-      Since you are targetting a triplet different from the host, running
+      Since you are targeting a triplet different from the host, running
       <command>make install</command> is generally safe, unlike a standard
       installation of a compiler which if it has been built wrong can brick
       the toolchain entirely.
@@ -264,7 +264,7 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
     <title>Contents</title>
     <para>
       There are no binaries specific to this package besides the format
-      the compilers are targetting, and thus are prefixed with the architecture
+      the compilers are targeting, and thus are prefixed with the architecture
       triplet, such as <command>x86_64-w64-mingw32-gcc</command>. For in-depth
       descriptions, read <ulink
       url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>.

@@ -77,7 +77,7 @@
     <para role="optional">
       <ulink url="&blfs-svn;/general/aalib.html">AAlib</ulink>,
       <ulink url="&slfs-website;/general/cuda.html">CUDA</ulink> (for GPU
-      accleration with NVIDIA GPUs),
+      acceleration with NVIDIA GPUs),
       <ulink url="&blfs-svn;/x/graphene.html">graphene</ulink>,
       <ulink url="&blfs-svn;/x/gtk3.html">GTK-3</ulink> (for examples),
       <ulink url="&blfs-svn;/multimedia/libcdio.html">libcdio</ulink> (for

@@ -123,7 +123,7 @@
     <para>Then proceed with the lib32 compilation instructions.</para>
 
     <para>
-      Generally, the format of targetting lib32 goes like this:
+      Generally, the format of targeting lib32 goes like this:
     </para>
 
     <para>For <command>./configure</command>:</para>

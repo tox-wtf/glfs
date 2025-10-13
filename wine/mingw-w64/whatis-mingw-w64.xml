@@ -14,7 +14,7 @@
     MinGW-w64 itself is a package providing headers,
     C runtime libraries, and much more. When support for it is built into
     compilers such as GCC, it enables the building
-    of software targetting Windows, such as programs and libraries. This
+    of software targeting Windows, such as programs and libraries. This
     software is aimed to be used on Windows, but can also be used on Linux.
   </para>
 
@@ -73,7 +73,7 @@
   <para>
     However, this barebones basic toolchain is enough to build up the remaining
     pieces of the toolchain. After doing so, you can rebuild GCC and have a
-    complete toolchain ready for targetting Windows. Realistically, you could
+    complete toolchain ready for targeting Windows. Realistically, you could
     grab a binary distribution of the toolchain and compile everything with
     less steps. In the past, that is exactly what this book has done. GLFS
     editors/contributors since then have decided to scrap that idea

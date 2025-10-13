@@ -177,7 +177,7 @@
           <para>[zeckma] - HarfBuzz: 11.5.0 -&gt; 11.5.1.</para>
         </listitem>
         <listitem>
-          <para>[zeckma] - *: Make dependency lists collapsable.</para>
+          <para>[zeckma] - *: Make dependency lists collapsible.</para>
         </listitem>
       </itemizedlist>
     </listitem>

@@ -130,7 +130,7 @@ rm -rf DESTDIR</userinput></screen>
 
     <para>
       <command>rm -v DESTDIR/usr/lib/bfd-plugins/libdep.so</command>:
-      This command removes an libary that conflicts with the original library
+      This command removes an library that conflicts with the original library
       provided by the original compilation of
       <ulink url="&mlfs-m32-root;/chapter08/binutils.html">Binutils</ulink>.
     </para>

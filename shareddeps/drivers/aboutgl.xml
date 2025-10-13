@@ -128,7 +128,7 @@
 
       <para>
         This has been the case for multiple years. BLFS has been an outlier in
-        that it does not have libglvnd, does not incorperate instructions to
+        that it does not have libglvnd, does not incorporate instructions to
         allow libglvnd, and only supports Mesa. Attempts to get this changed
         have been turned down. The stance that will stand for at least a couple
         years into the future will be that BLFS will not support libglvnd.
