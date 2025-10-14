@@ -481,7 +481,7 @@
         <term><command>nvidia-smi</command></term>
         <listitem>
           <para>
-            provides montioring information for Tesla and select Quadro devices
+            provides monitoring information for Tesla and select Quadro devices
           </para>
           <indexterm zone="nvidia nvidia-smi">
             <primary sortas="b-nvidia-smi">nvidia-smi</primary>

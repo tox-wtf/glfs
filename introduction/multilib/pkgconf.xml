@@ -24,7 +24,7 @@
   </para>
 
   <sect2>
-    <title>Creating the personalites</title>
+    <title>Creating the personalities</title>
 
     <para>
       Create the following personalities as the
@@ -52,7 +52,7 @@ EOF</userinput></screen>
 
     <para>
       Again as the <systemitem class="username">root</systemitem> user,
-      create the symlinks that enable pkgconf to find the personalites:
+      create the symlinks that enable pkgconf to find the personalities:
     </para>
 
 <screen role="root"><userinput>ln -sv pkgconf /usr/bin/x86_64-pc-linux-gnu-pkg-config &amp;&amp;

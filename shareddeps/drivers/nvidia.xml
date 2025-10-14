@@ -26,7 +26,7 @@
     <para>
       The NVIDIA proprietary driver contains
       firmware, kernel drivers, userland drivers pertaining to OpenGL,
-      Vulkan, and hardware acceleration, and provides useful utilites for
+      Vulkan, and hardware acceleration, and provides useful utilities for
       NVIDIA cards. If you don't have a NVIDIA GPU, skip to the next package.
     </para>
 
@@ -101,7 +101,7 @@
         <listitem revision="sysv">
           <para>
             <xref linkend="dbus"/> and <xref linkend="elogind"/> (for
-            NVIDIA-Powerd suppport)
+            NVIDIA-Powerd support)
           </para>
         </listitem>
 -->
@@ -233,7 +233,7 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
       For PeerMem, it will be named
       <computeroutput>nvidia-peermem</computeroutput>. To skip these, add the
       module names to the <envar>NV_EXCLUDE_KERNEL_MODULES</envar> for the
-      <command>make</command> command. The variable should be seperated, as
+      <command>make</command> command. The variable should be separated, as
       such:
       <computeroutput>NV_EXCLUDE_KERNEL_MODULES="nvidia-uvm nvidia-peermem"</computeroutput>.
       The <command>make</command> command will have the variable set to

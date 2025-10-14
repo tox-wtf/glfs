@@ -23,7 +23,7 @@
     <para>
       MinGW-w64-GCC provides
       GCC compilers for MinGW-w64,
-      allowing users and applications to compile code targetting
+      allowing users and applications to compile code targeting
       Windows. This will be done in steps to avoid the need for
       already present binaries. This is the static build, which
       will have limited support but will be able to compile software
@@ -159,7 +159,7 @@ make all-gcc</userinput></screen>
     <title>Contents</title>
     <para>
       There are no binaries specific to this package besides the format
-      the compilers are targetting, and thus are prefixed with the architecture
+      the compilers are targeting, and thus are prefixed with the architecture
       triplet, such as <command>x86_64-w64-mingw32-gcc</command>. For in-depth
       descriptions, read <ulink
       url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>.

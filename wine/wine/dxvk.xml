@@ -186,7 +186,7 @@ mkdir   -pv     /usr/lib/dxvk/win32 &amp;&amp;
     found by Wine, whilst allowing updating of this
     package without having to copy everything over again. Along with this, the
     registry must be updated to use the new DLLs. Do this for each
-    archetecture you have installed.</para>
+    architecture you have installed.</para>
 
     <sect3>
       <title>64-bit Setup</title>
@@ -236,7 +236,7 @@ done</userinput></screen>
 
     <para>
       <parameter>--cross-file=../build-win{32,64}.txt</parameter>: This
-      parameter changes what Win archetecture to build for.
+      parameter changes what Win architecture to build for.
     </para>
 
     &meson-buildtype-release;
