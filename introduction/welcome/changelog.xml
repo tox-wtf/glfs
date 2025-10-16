@@ -44,6 +44,9 @@
       <para>October 15th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - Systemd: 258 -&gt; 258.1.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - GStreamer-Suite: 1.26.6 -&gt; 1.26.7.</para>
         </listitem>
         <listitem>
