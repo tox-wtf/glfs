@@ -58,12 +58,14 @@
   <sect2 role="installation">
     <title>Installation of dav1d</title>
 
+<!--
     <para>
       The operand order in a couple of assembly files are wrong. Apply a
       patch to put them in the right order to prevent a build failure:
     </para>
 
 <screen remap="pre"><userinput>patch -Np1 -i ../dav1d-&dav1d-version;-nasm-1.patch</userinput></screen>
+-->
 
     <para>
       Install dav1d by running the following commands:
