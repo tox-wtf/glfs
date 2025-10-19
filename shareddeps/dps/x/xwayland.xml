@@ -48,7 +48,8 @@
     </para>
 
     <para role="recommended">
-      <xref linkend="libepoxy"/> and
+      &gbm;,
+      <xref linkend="libepoxy"/>, and
       &opengl;
     </para>
 
