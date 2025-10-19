@@ -69,6 +69,14 @@
 -->
 
     <para>
+      First, remove an unnecessary call to <command>git</command> in
+      <filename>meson.build</filename>:
+    </para>
+
+<screen
+  remap="pre"><userinput>sed -i "/'git'/,+3d" meson.build</userinput></screen>
+
+    <para>
       Install libxml2 by running the following
       commands:
     </para>
