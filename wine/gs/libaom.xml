@@ -38,6 +38,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/libaom/libaom-&libaom-version;-nasm3-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">libaom Dependencies</bridgehead>
 
     <para role="recommended">
@@ -48,6 +58,15 @@
 
   <sect2 role="installation">
     <title>Installation of libaom</title>
+
+    <para>
+      First, ensure libaom gets every bit of info it needs from NASM to
+      prevent a configuration issue as a result of NASM updating how the help
+      screens work with NASM3:
+    </para>
+
+<screen
+  remap="pre"><userinput>patch -Np1 -i ../libaom-&libaom-version;-nasm3-1.patch</userinput></screen>
 
     <para>
       Install libaom by running the following
