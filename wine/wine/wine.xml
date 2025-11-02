@@ -24,6 +24,16 @@
       Wine is a compatibility layer for running Windows programs on Unix.
     </para>
 
+    <note><para>
+      You do not have to rebuild <xref linkend="dxvk"/> or <xref
+      linkend="vkd3d-proton"/> after updating Wine. This is because those
+      packages build against the MinGW-w64 static libraries built in that
+      package, and not against the DLLs provided in this package. When you
+      update this package, you don't have to worry about much else beyond maybe
+      having to download mono again, which is handled automatically whenever
+      you execute Wine after updating.
+    </para></note>
+
     &long-build-time;
 
     <itemizedlist spacing="compact">
