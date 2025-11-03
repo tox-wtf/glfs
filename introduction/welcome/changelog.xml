@@ -41,6 +41,21 @@
     -->
 
     <listitem>
+      <para>November 3rd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Rustc: 1.90.0 -&gt; 1.91.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libdrm: 2.4.127 -&gt; 2.4.128.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - ICU: 77.1 -&gt; 78.1.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 2nd, 2025</para>
       <itemizedlist>
         <listitem>
