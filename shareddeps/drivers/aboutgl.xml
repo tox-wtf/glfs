@@ -33,9 +33,10 @@
     </para>
 
     <para>
-      NVIDIA, after trying to fit into their architecture, decided to create
-      new core OpenGL libraries based on aritger's <ulink
-      url="https://github.com/aritger/linux-opengl-abi-proposal/blob/master/linux-opengl-abi-proposal.txt">
+      NVIDIA, after supplying their own OpenGL core libraries that conflicted
+      with Mesa's which forced distros to reconcile through different methods,
+      decided to create new core OpenGL libraries based on aritger's <ulink
+      url="https://github.com/aritger/linux-opengl-abi-proposal/blob/mastedser/linux-opengl-abi-proposal.txt">
       new OpenGL ABI proposal</ulink>. The libglvnd project was the result,
       which contains core OpenGL libraries that properly dispatch each API call
       to an OpenGL driver's implementation of it. No driver had to fit into an
