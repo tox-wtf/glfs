@@ -234,11 +234,6 @@ done</userinput></screen>
     &options-meson;
 
     <para>
-      <command>git checkout v&vkd3d-proton-version;</command>: This command switches to
-      a stable release in the commit history.
-    </para>
-
-    <para>
       <parameter>--cross-file=../build-win{32,64}.txt</parameter>: This
       parameter changes what Win architecture to build for.
     </para>

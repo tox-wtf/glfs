@@ -41,6 +41,20 @@
     -->
 
     <listitem>
+      <para>November 8th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libxkbcommon: f4f732 (1.12.3) -&gt; 3049d3 (1.13.0).</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - cURL: 8.16.0 -&gt; 8.17.0 (security). See
+          <ulink url="https://wiki.linuxfromscratch.org/blfs/ticket/22348">BLFS
+          ticket #22348</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 4th, 2025</para>
       <itemizedlist>
         <listitem>
