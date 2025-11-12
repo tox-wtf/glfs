@@ -73,13 +73,13 @@
   <sect2 role="installation">
     <title>Installation of cURL</title>
 
-<!--
+
     <para>
-      First fix a regression that was fixed upstream:
+      First, fix a problem with a security fix:
     </para>
 
-<screen><userinput>patch -Np1 -i ../curl-&curl-version;-upstream_fix-1.patch</userinput></screen>
--->
+<screen><userinput>sed -i 's/2F 5C/%2F %5C/' scripts/wcurl</userinput></screen>
+
 
     <para>
       Install cURL by running the following

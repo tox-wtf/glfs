@@ -41,6 +41,17 @@
     -->
 
     <listitem>
+      <para>November 12th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - cURL: Fix the patch for CVE-2025-11563. See
+          <ulink url="https://www.linuxfromscratch.org/blfs/ticket/22348">BLFS
+          ticket #22348</ulink> for more information.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 8th, 2025</para>
       <itemizedlist>
         <listitem>
