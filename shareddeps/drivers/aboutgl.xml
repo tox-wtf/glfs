@@ -250,10 +250,9 @@
         If you decided to disable GLES support, it is pretty easy to not build
         in support for the API. In <quote>Command Explanations</quote>, for
         both <xref linkend="libglvnd"/> and <xref linkend="mesa"/>, they will
-        explain the options required to disable the support. Furthermore,
-        <xref linkend="nvidia"/> installs drivers for GLES. The installation
-        instructions for that driver will cover how to delete them if you do
-        not need GLES.
+        explain the options required to disable the support. The install script
+        for <xref linkend="nvidia"/> will install a driver for GLES by default
+        but can be disabled.
       </para>
 
       <para>
