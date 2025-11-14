@@ -49,7 +49,7 @@
     <bridgehead renderas="sect3">Fontconfig Dependencies</bridgehead>
 
     <para role="required">
-      <xref linkend="freetype2-pass2"/> and
+      <xref linkend="freetype2"/> and
       <xref linkend="mesonfiles"/> (for lib32)
     </para>
 

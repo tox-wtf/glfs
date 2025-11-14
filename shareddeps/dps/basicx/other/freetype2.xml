@@ -9,29 +9,26 @@
   <!ENTITY freetype2-doc-download "&sourceforge-dl;/freetype/freetype-doc-&freetype2-doc-version;.tar.xz">
 ]>
 
-<sect1 id="freetype2-pass1" xreflabel="FreeType-&freetype2-version; - Pass 1">
-  <?dbhtml filename="freetype2-pass1.html"?>
+<sect1 id="freetype2" xreflabel="FreeType-&freetype2-version;">
+  <?dbhtml filename="freetype2.html"?>
 
-  <title>FreeType-&freetype2-version; - Pass 1</title>
+  <title>FreeType-&freetype2-version;</title>
 
-  <indexterm zone="freetype2-pass1">
-    <primary sortas="a-FreeType-pass1">FreeType-Pass-1</primary>
+  <indexterm zone="freetype2">
+    <primary sortas="a-FreeType">FreeType</primary>
   </indexterm>
 
   <sect2 role="package">
-    <title>Introduction to FreeType2 - Pass 1</title>
+    <title>Introduction to FreeType2</title>
 
     <para>
-      The FreeType2 package contains
-      a library which allows applications to properly render
-      TrueType fonts.
+      The FreeType2 package contains a library which allows applications to
+      properly render TrueType fonts.
     </para>
 
     <para>
-      This package has a circular dependency on <xref
-      linkend="harfbuzz"/>, so this package must be installed first,
-      harfBuzz second, then lastly this
-      package again. This is the first pass.
+      Ensure to install <xref linkend="harfbuzz"/> after this installation, as
+      many packages expect this package to have HarfBuzz support.
     </para>
 
     <itemizedlist spacing="compact">
@@ -55,7 +52,8 @@
     <bridgehead renderas="sect3">FreeType2 Dependencies</bridgehead>
 
     <para role="recommended">
-      <xref linkend="libpng"/> and
+      <xref linkend="harfbuzz"/> (runtime),
+      <xref linkend="libpng"/>, and
       <xref linkend="which"/>
     </para>
 
@@ -66,7 +64,7 @@
   </sect2>
  
   <sect2 role="installation">
-    <title>Installation of FreeType2 - Pass 1</title>
+    <title>Installation of FreeType2</title>
 
     <para>
       If you downloaded the additional documentation, unpack it into the
@@ -91,7 +89,21 @@ sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
       <command>sed -r</command> command is the one that enables SR.
     </para></note>
 
-    &freetype-m64;
+    <para>
+      Install <application>FreeType2</application> by running the following
+      commands:
+    </para>
+<screen><userinput>./configure --prefix=/usr            \
+            --disable-static         \
+            --enable-freetype-config \
+            --with-harfbuzz=dynamic &amp;&amp;
+make</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+    <screen role='root'><userinput>make install</userinput></screen>
 
     <para>
       If you downloaded the optional documentation, install it as the
@@ -104,9 +116,30 @@ rm -v /usr/share/doc/freetype-&freetype2-version;/freetype-config.1</userinput><
   </sect2>
 
   <sect2 role="installation">
-    <title>lib32 Installation of FreeType2 - Pass 1</title>
+    <title>lib32 Installation of FreeType2</title>
 
-    &freetype-m32;
+    <para>
+      Install lib32-<application>FreeType2</application> by running the
+      following commands:
+    </para>
+
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+./configure --prefix=/usr            \
+            --libdir=/usr/lib32      \
+            --host=i686-pc-linux-gnu \
+            --disable-static         \
+            --with-harfbuzz=dynamic &amp;&amp;
+
+make</userinput></screen>
+<para>
+  Now, as the &root; user:
+</para>
+<screen role='root'><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
 
   </sect2>
 
@@ -115,20 +148,18 @@ rm -v /usr/share/doc/freetype-&freetype2-version;/freetype-config.1</userinput><
 
     &options-configure;
 
+    &static-libraries;
+
     <para>
       <parameter>--enable-freetype-config</parameter>: This switch
       ensure that the man page for freetype-config is installed.
     </para>
 
     <para>
-      <option>--without-harfbuzz</option>: If
-      harfbuzz is installed prior to
-      freetype without
-      freetype support, use this switch to avoid a
-      build failure.
+      <parameter>--with-harfbuzz=dynamic</parameter>: This switch ensures this
+      package doesn't need to get rebuilt after HarfBuzz is instead, instead is
+      loaded dynamically if present.
     </para>
-
-    &static-libraries;
 
     <!-- No longer valid with 2.10.1, /usr/bin/freetype-config is installed
          by the 'make install' command.
@@ -168,28 +199,28 @@ rm -v /usr/share/doc/freetype-&freetype2-version;/freetype-config.1</userinput><
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
-      <varlistentry id="freetype-config-pass1">
+      <varlistentry id="freetype-config">
         <term><command>freetype-config</command></term>
         <listitem>
           <para>
             is used to get FreeType compilation
             and linking information
           </para>
-          <indexterm zone="freetype2-pass1 freetype-config-pass1">
-            <primary sortas="b-freetype-config-pass1">freetype2-config</primary>
+          <indexterm zone="freetype2 freetype-config">
+            <primary sortas="b-freetype-config">freetype2-config</primary>
           </indexterm>
         </listitem>
       </varlistentry>
 
-      <varlistentry id="libfreetype-pass1">
+      <varlistentry id="libfreetype">
         <term><filename class="libraryfile">libfreetype</filename></term>
         <listitem>
           <para>
             contains functions for rendering various font types, such
             as TrueType and Type1
           </para>
-          <indexterm zone="freetype2-pass1 libfreetype-pass1">
-            <primary sortas="c-libfreetype-pass1">libfreetype</primary>
+          <indexterm zone="freetype2 libfreetype">
+            <primary sortas="c-libfreetype">libfreetype</primary>
           </indexterm>
         </listitem>
       </varlistentry>
