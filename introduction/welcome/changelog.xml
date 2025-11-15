@@ -44,6 +44,9 @@
       <para>November 14th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - Wine: 10.18 -&gt; 10.19.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - FreeType2: Remove passes, load HarfBuzz
           dynamically.</para>
         </listitem>
