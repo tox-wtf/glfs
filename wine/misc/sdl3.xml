@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY sdl3-download "https://www.libsdl.org/release/SDL3-&sdl3-version;.tar.gz">
+]>
+
+<sect1 id="sdl3" xreflabel="SDL3-&sdl3-version;">
+  <?dbhtml filename="sdl3.html"?>
+
+  <title>SDL3-&sdl3-version;</title>
+
+  <indexterm zone="sdl3">
+    <primary sortas="a-SDL3">SDL3</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to SDL3</title>
+
+    <para>
+      The Simple DirectMedia Layer Version 3 (SDL3 for short) is a
+      cross-platform library designed to make it easy to write multimedia
+      software, such as games and emulators. It is the new version of SDL and
+      provides more features than SDL2.
+    </para>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download (HTTP): <ulink url="&sdl3-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">SDL3 Dependencies</bridgehead>
+
+    <para role="required">
+      <xref linkend="cmake"/>
+    </para>
+
+    <para role="recommended">
+      <xref linkend="alsa-lib"/>,
+      &gbm;,
+      <xref linkend="libxkbcommon"/>,
+      &opengl;,
+      <xref linkend="pulseaudio"/>,
+      <xref linkend="vulkan-sdk"/>,
+      <xref linkend="wayland-protocols"/>, and
+      <xref linkend="xorg7-lib"/> (if those are not present,
+      the corresponding modules are not built)
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of SDL3</title>
+
+    <para>
+      Install SDL3 by running the following commands:
+    </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr \
+      -D CMAKE_BUILD_TYPE=Release  \
+      -D SDL_TEST_LIBRARY=OFF      \
+      -D SDL_STATIC=OFF            \
+      -D SDL_RPATH=OFF             \
+      -W no-dev -G Ninja ..       &amp;&amp;
+
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>ninja install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>lib32 Installation of SDL3</title>
+
+    <para>
+      Install lib32-SDL3 by running the following commands:
+    </para>
+
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+cmake -D CMAKE_INSTALL_PREFIX=/usr   \
+      -D CMAKE_INSTALL_LIBDIR=lib32  \
+      -D CMAKE_BUILD_TYPE=Release    \
+      -D SDL_TEST_LIBRARY=OFF        \
+      -D SDL_STATIC=OFF              \
+      -D SDL_RPATH=OFF               \
+      -W no-dev -G Ninja ..         &amp;&amp;
+
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install      &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32   &amp;&amp;
+rm -rf DESTDIR                          &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    <para>
+      <parameter>-D SDL_TEST_LIBRARY=OFF</parameter>: This parameter disables
+      building an unnecessary static library meant for the tests. It gets built
+      in the tests compilation.
+    </para>
+
+    <para>
+      <parameter>-D SDL_STATIC=OFF</parameter>: This parameter disables
+      building static libraries.
+    </para>
+
+    <para>
+      <parameter>-D SDL_RPATH=OFF</parameter>: This parameter disables
+      installing with rpath. It can cause security issues otherwise.
+    </para>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Libraries</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>None</seg>
+        <seg>libSDL3</seg>
+        <seg>/usr/include/SDL3 and
+             /usr/lib/cmake/SDL3</seg>
+        <!-- We technically have /usr/share/licenses/sdl3, but I don't think
+             we really need to document its presence. -->
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libsdl3">
+        <term><filename class="libraryfile">libSDL3</filename></term>
+        <listitem>
+          <para>
+            contains functions that provide low level access to audio,
+            keyboard, mouse, joystick, 3D hardware via OpenGL, and
+            2D frame buffer across multiple platforms
+          </para>
+          <indexterm zone="sdl3 libsdl3">
+            <primary sortas="c-libsdl3">libSDL3</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
