@@ -639,19 +639,22 @@ EOF</userinput></screen>
       </para>
 
       <para>
-        Like with the situation regarding DRI, there are a couple header files
+        Like with the situation regarding DRI, there are a few header files
         only installed by <xref linkend="mesa"/> but can be dropped in without
-        an issue. One is for declaring the DRI interface and one for declaring
+        an issue. One is for declaring the DRI interface, one for declaring
         Mesa's EGL EXT system that is used by some software like GNOME's
-        mutter. Using <xref linkend="wget"/>, download and install them as the
-        &root; user:
+        mutter, and another for declaring the EGL EXT system for ANGLE, with
+        modifications geared for it. Using <xref linkend="wget"/>, download
+        and install them as the &root; user:
       </para>
 
 <screen role="root"><userinput>&install-dir; /usr/include/GL/internal /usr/include/EGL &amp;&amp;
 wget &mesa-raw-repo;/include/GL/internal/dri_interface.h \
   -O /usr/include/GL/internal/dri_interface.h &amp;&amp;
 wget &mesa-raw-repo;/include/EGL/eglmesaext.h \
-  -O /usr/include/EGL/eglmesaext.h</userinput></screen>
+  -O /usr/include/EGL/eglmesaext.h &amp;&amp;
+wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
+  -O /usr/include/EGL/eglext_angle.h</userinput></screen>
 
       <note><para>
         You should skip to <xref linkend="xcb-utils"/> after you are done with

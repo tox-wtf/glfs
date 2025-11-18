@@ -97,7 +97,8 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="libclc"/> (required for the Intel Iris Gallium3D)
+            <xref linkend="libclc"/> (required for the Intel Iris Gallium3D and
+            Nouveau Vulkan)
           </para>
         </listitem>
         <listitem>
