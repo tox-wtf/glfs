@@ -466,9 +466,7 @@ ldconfig</userinput></screen>
     <para>
       <option>-D libgbm-external=true</option>: This links against the
       system-installed <filename class="libraryfile">libgbm</filename> and
-      disables building the GBM if it's installed. Whenever updating this
-      package, it is recommended to also update the GBM so this option is not
-      used.
+      disables building the GBM if it's installed.
     </para>
 
     <para>
@@ -511,19 +509,7 @@ ldconfig</userinput></screen>
         </seg>
         <seg>
           <!-- Begin DRI Driver Stubs -->
-          libdril_dri and symlinks to it:
-          crocus_dri,
-          i915_dri,
-          iris_dri,
-          kms_swrast_dri,
-          nouveau_dri,
-          r300_dri,
-          r600_dri,
-          radeonsi_dri,
-          swrast_dri,
-          virtio_gpu_dri,
-          vmwgfx_dri, and
-          zink_dri
+          libdril_dri and multiple symlinks to it
           <!-- End DRI Driver Stubs -->
         </seg>
         <seg>
@@ -561,7 +547,6 @@ ldconfig</userinput></screen>
         <seg>
           <!-- Begin directories -->
           <!-- /usr/include/GL is installed by xorg-protos -->
-          /usr/include/{EGL,GLES2,GLES3,KHR},
           /usr/lib/{dri,gbm,vdpau},
           /usr/share/drirc.d (contains workarounds for various applications,
           particularly browsers and games),
@@ -633,8 +618,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libgbm</filename></term>
         <listitem>
           <para>
-            is the Mesa Graphics Buffer
-            Manager library
+            is the Mesa version of the Generic Buffer Management library
           </para>
           <indexterm zone="mesa mesa-libgbm">
             <primary sortas="c-mesa-libgbm">libgbm</primary>

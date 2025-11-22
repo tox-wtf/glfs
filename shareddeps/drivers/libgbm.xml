@@ -23,8 +23,8 @@
     <title>Introduction to libgbm</title>
 
     <para>
-      The libgbm library provides API functions for managing the graphical
-      buffer. It is utilized by various libraries and applications like Wayland
+      The libgbm library provides API functions for managing memory buffers
+      It is utilized by various libraries and applications like Wayland
       compositors. Mesa supplies libgbm, but requires dependencies that aren't
       needed in order to install just libgbm. This package allows you to
       install just the library. If you intend to install <xref
@@ -135,7 +135,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libgbm</filename></term>
         <listitem>
           <para>
-            is the Graphics Buffer Manager library
+            is the Generic Buffer Management library
           </para>
           <indexterm zone="libgbm lib-libgbm">
             <primary sortas="c-lib-libgbm">libgbm</primary>
