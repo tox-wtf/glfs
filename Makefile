@@ -130,25 +130,19 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
 					$(RENDERTMP)/$(GLFSHTML)
 
 	@echo "Copying CSS code, images, and file downloads..."
-	$(Q)if [ ! -e $(BASEDIR)/stylesheets ]; then \
-      mkdir -p $(BASEDIR)/stylesheets;          \
-   fi;
+   mkdir -p $(BASEDIR)/stylesheets
 
 	$(Q)cp $(THEME_PATH)/$(THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
 	$(Q)cp stylesheets/lfs-xsl/lfs-print.css $(BASEDIR)/stylesheets
 	$(Q)sed -i 's|../stylesheet|stylesheet|' $(BASEDIR)/index.html
 
-	$(Q)if [ ! -e $(BASEDIR)/images ]; then \
-      mkdir -p $(BASEDIR)/images;          \
-   fi;
+	$(Q)mkdir -p $(BASEDIR)/images
 	$(Q)cp -R images/* $(BASEDIR)/images
 
 	$(Q)cd $(BASEDIR)/; sed -e "s@../images@images@g"           \
                            -i *.html
 
-	$(Q)if [ ! -e $(BASEDIR)/download ]; then \
-		mkdir -p $(BASEDIR)/download;          \
-   fi;
+	$(Q)mkdir -p $(BASEDIR)/download
 	$(Q)rm -rf $(BASEDIR)/download/*
 	$(Q)cp -R download/* $(BASEDIR)/download
 	$(Q)rm -rf $(BASEDIR)/patches
@@ -163,16 +157,14 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
    done;
 
 	@echo "Copying over legacy HTML..."
-	$(Q)if [ ! -e $(BASEDIR)/archive ]; then \
-		mkdir -p $(BASEDIR)/archive;          \
-	fi;
+	$(Q)mkdir -p $(BASEDIR)/archive
 	$(Q)cp -R archive/*.html $(BASEDIR)/archive
 
 	$(Q)$(CLEAN)
 
 validate: $(RENDERTMP)/$(GLFSFULL)
 $(RENDERTMP)/$(GLFSFULL): general.ent packages.ent $(ALLXML) $(ALLXSL) version
-	$(Q)[ -d $(RENDERTMP) ] || mkdir -p $(RENDERTMP)
+	$(Q)mkdir -p $(RENDERTMP)
 	$(Q)trap '$(CLEAN)' EXIT
 
 	@echo "Rendering the book for $(REV)..."
