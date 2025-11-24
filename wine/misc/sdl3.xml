@@ -115,6 +115,8 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
+    &options-cmake;
+
     <para>
       <parameter>-D SDL_TEST_LIBRARY=OFF</parameter>: This parameter disables
       building an unnecessary static library meant for the tests. It gets built
