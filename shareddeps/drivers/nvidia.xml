@@ -714,7 +714,6 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
           libnvidia-tls,
           libnvidia-wayland-client,
           libOpenCL,
-          libvdpau_nvidia,
           nvidia-drm_gbm,
           nvidia_drv, and
           for <xref linkend="wine"/> (_nvngx,
@@ -1188,19 +1187,6 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
           </para>
           <indexterm zone="nvidia libOpenCL">
             <primary sortas="c-libOpenCL">libOpenCL</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="libvdpau_nvidia">
-        <term><filename class="libraryfile">libvdpau_nvidia</filename></term>
-        <listitem>
-          <para>
-            provides the NVIDIA implementation for
-            the VDPAU API
-          </para>
-          <indexterm zone="nvidia libvdpau_nvidia">
-            <primary sortas="c-libvdpau_nvidia">libvdpau_nvidia</primary>
           </indexterm>
         </listitem>
       </varlistentry>
