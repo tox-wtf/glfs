@@ -41,6 +41,15 @@
     -->
 
     <listitem>
+      <para>November 23rd, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - nv-codec-headers (ffnvcodec): Moved from SLFS.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>November 21st, 2025</para>
       <itemizedlist>
         <listitem>
