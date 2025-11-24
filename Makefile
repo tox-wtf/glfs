@@ -128,26 +128,26 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
 					--stringparam base.dir $(BASEDIR)/         \
 					stylesheets/glfs-chunked.xsl               \
 					$(RENDERTMP)/$(GLFSHTML)
-
+	
 	@echo "Copying CSS code, images, and file downloads..."
-   mkdir -p $(BASEDIR)/stylesheets
-
+	mkdir -p $(BASEDIR)/stylesheets
+	
 	$(Q)cp $(THEME_PATH)/$(THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
 	$(Q)cp stylesheets/lfs-xsl/lfs-print.css $(BASEDIR)/stylesheets
 	$(Q)sed -i 's|../stylesheet|stylesheet|' $(BASEDIR)/index.html
-
+	
 	$(Q)mkdir -p $(BASEDIR)/images
 	$(Q)cp -R images/* $(BASEDIR)/images
-
+	
 	$(Q)cd $(BASEDIR)/; sed -e "s@../images@images@g"           \
                            -i *.html
-
+	
 	$(Q)mkdir -p $(BASEDIR)/download
 	$(Q)rm -rf $(BASEDIR)/download/*
 	$(Q)cp -R download/* $(BASEDIR)/download
 	$(Q)rm -rf $(BASEDIR)/patches
 	$(Q)ln -sf download $(BASEDIR)/patches
-
+	
 	@echo "Running Tidy and obfuscate.sh on chunked XHTML..."
 	$(Q)for filename in `find $(BASEDIR) -name "*.html"`; do       \
       tidy -config tidy.conf $$filename;                          \
@@ -155,18 +155,18 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
       bash obfuscate.sh $$filename;                               \
       sed -i -e "1,20s@text/html@application/xhtml+xml@g" $$filename; \
    done;
-
+	
 	@echo "Copying over legacy HTML..."
 	$(Q)mkdir -p $(BASEDIR)/archive
 	$(Q)cp -R archive/*.html $(BASEDIR)/archive
-
+	
 	$(Q)$(CLEAN)
 
 validate: $(RENDERTMP)/$(GLFSFULL)
 $(RENDERTMP)/$(GLFSFULL): general.ent packages.ent $(ALLXML) $(ALLXSL) version
 	$(Q)mkdir -p $(RENDERTMP)
 	$(Q)trap '$(CLEAN)' EXIT
-
+	
 	@echo "Rendering the book for $(REV)..."
 	$(Q)xsltproc --nonet                               \
                 --xinclude                            \
@@ -174,7 +174,7 @@ $(RENDERTMP)/$(GLFSFULL): general.ent packages.ent $(ALLXML) $(ALLXSL) version
                 --stringparam profile.revision $(REV) \
                 stylesheets/lfs-xsl/profile.xsl       \
                 index.xml
-
+	
 	@echo "Validating the book..."
 	$(Q)xmllint --nonet                             \
                --noent                             \
@@ -209,7 +209,7 @@ $(BASEDIR)/test-links: $(RENDERTMP)/$(GLFSFULL) version
                 --output $(BASEDIR)/test-links \
                 stylesheets/wget-list.xsl      \
                 $(RENDERTMP)/$(GLFSFULL)
-
+	
 	@echo "Checking URLs, first pass..."
 	$(Q)rm -f $(BASEDIR)/{good,bad,true_bad}_urls
 	$(Q)for URL in `cat $(BASEDIR)/test-links`; do                     \
@@ -220,7 +220,7 @@ $(BASEDIR)/test-links: $(RENDERTMP)/$(GLFSFULL) version
             echo $$URL >> $(BASEDIR)/good_urls 2>&1;                  \
          fi;                                                          \
    done
-
+	
 	@echo "Checking URLs, second pass..."
 	$(Q)for URL2 in `cat $(BASEDIR)/bad_urls`; do                       \
          wget --spider --tries=2 --timeout=60 $$URL2 >>/dev/null 2>&1; \
@@ -230,7 +230,7 @@ $(BASEDIR)/test-links: $(RENDERTMP)/$(GLFSFULL) version
            echo $$URL2 >> $(BASEDIR)/good_urls 2>&1;                   \
          fi; \
    done
-
+	
 	$(Q)$(CLEAN)
 
 test-options:
