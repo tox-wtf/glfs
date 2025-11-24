@@ -87,15 +87,6 @@
           </para>
         </listitem>
       </itemizedlist>
-      <itemizedlist>
-        <para>For systems with Intel graphics cards</para>
-        <listitem>
-          <para>
-            <xref linkend="libvdpau"/> and
-            <xref linkend="libvdpau-va-gl"/>
-          </para>
-        </listitem>
-      </itemizedlist>
     </para>
 
     <para role="optional">

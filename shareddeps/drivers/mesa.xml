@@ -117,11 +117,6 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="libvdpau"/> (to build VDPAU drivers)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
             <xref linkend="llvm"/> (required for the r300, r600, and radeonsi
             drivers, and the LLVMpipe software rasterizer; Clang in LLVM is
             required for Swrast Vulkan)
@@ -493,7 +488,6 @@ ldconfig</userinput></screen>
       <segtitle>Installed DRI Driver Stubs</segtitle><!-- in /usr/lib/dri -->
       <segtitle>Installed VA-API Drivers</segtitle><!-- in /usr/lib/dri -->
       <segtitle>Installed GBM Drivers</segtitle><!-- in /usr/lib/gbm -->
-      <segtitle>Installed VDPAU Drivers</segtitle><!-- in /usr/lib/vdpau -->
       <segtitle>Installed Vulkan Drivers</segtitle><!-- in /usr/lib -->
       <segtitle>Installed Directories</segtitle>
 
@@ -526,16 +520,6 @@ ldconfig</userinput></screen>
           <!-- End GBM drivers -->
         </seg>
         <seg>
-          <!-- Begin VDPAU Drivers -->
-          libvdpau_nouveau,
-          libvdpau_r300,
-          libvdpau_r600,
-          libvdpau_radeonsi, and
-          libvdpau_virtio_gpu
-          (many of these drivers are hard-linked)
-          <!-- End VDPAU Drivers -->
-        </seg>
-        <seg>
           <!-- Begin Vulkan drivers -->
           libvulkan_intel_hasvk,
           libvulkan_intel,
@@ -547,7 +531,7 @@ ldconfig</userinput></screen>
         <seg>
           <!-- Begin directories -->
           <!-- /usr/include/GL is installed by xorg-protos -->
-          /usr/lib/{dri,gbm,vdpau},
+          /usr/lib/{dri,gbm},
           /usr/share/drirc.d (contains workarounds for various applications,
           particularly browsers and games),
           /usr/share/vulkan,

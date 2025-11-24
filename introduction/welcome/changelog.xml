@@ -44,6 +44,10 @@
       <para>November 23rd, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - VDPAU (libvdpau, libvdpau-va-gl): Removed. Fixes
+          <ulink url="&glfs-issues;/318">#318</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - NVIDIA-VA-API-Driver: Added. Fixes
           <ulink url="&glfs-issues;/321">#321</ulink>.</para>
         </listitem>
