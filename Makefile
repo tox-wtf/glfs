@@ -130,7 +130,7 @@ $(BASEDIR)/index.html: $(RENDERTMP)/$(GLFSHTML) version wget-list
 					$(RENDERTMP)/$(GLFSHTML)
 	
 	@echo "Copying CSS code, images, and file downloads..."
-	mkdir -p $(BASEDIR)/stylesheets
+	$(Q)mkdir -p $(BASEDIR)/stylesheets
 	
 	$(Q)cp $(THEME_PATH)/$(THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
 	$(Q)cp stylesheets/lfs-xsl/lfs-print.css $(BASEDIR)/stylesheets
