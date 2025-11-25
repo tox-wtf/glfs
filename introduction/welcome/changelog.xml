@@ -44,6 +44,9 @@
       <para>November 24th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[renodr] - Bump the Python version to 3.14.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - Wayland-Protocols: 1.45 -&gt; 1.46.</para>
         </listitem>
       </itemizedlist>
