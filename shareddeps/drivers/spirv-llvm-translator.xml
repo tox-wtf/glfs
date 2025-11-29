@@ -116,7 +116,7 @@ ldconfig</userinput></screen>
       <parameter>-D BUILD_SHARED_LIBS=ON</parameter>: This switch forces the
       build system to install shared libraries instead of static libraries.
     </para>
-    
+
     <para>
       <parameter>-D LLVM_EXTERNAL_SPIRV_HEADERS_*</parameter>: These switches tells the
       build system that <xref linkend="vulkan-sdk" role="nodep"/> is

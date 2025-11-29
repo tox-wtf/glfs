@@ -13,7 +13,7 @@
 
   <sect2>
     <title>Introduction to Meson Toolchain Files</title>
-    
+
     <para>
       Most applications that rely on the Meson
       build system have decent support for cross compilation, ie. compiling

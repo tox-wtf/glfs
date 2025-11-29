@@ -50,7 +50,7 @@
 
   <sect2 role="installation">
     <title>Installation of libgbm</title>
-    
+
     <para>
       Install libgbm by running the following commands:
     </para>

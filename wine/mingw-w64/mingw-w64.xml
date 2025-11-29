@@ -53,7 +53,7 @@
 
   <sect3>
     <title>x86_64 MinGW-w64</title>
-    
+
     <para>
       Install x86_64 MinGW-w64
       by running the following commands:

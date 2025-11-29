@@ -70,7 +70,7 @@
 <!--
     <para>
       First apply an upstream patch so that delay-load import libraries are
-      unbroken with <xref linkend="mingw-w64-binutils"/> due to 
+      unbroken with <xref linkend="mingw-w64-binutils"/> due to
       Binutils merging .idata sections into read-only .rdata
       sections for PE formatted software upstream:
     </para>
@@ -179,7 +179,7 @@ make</userinput></screen>
 <screen role="root"><userinput>make install</userinput></screen>
 
     </sect3>
-  
+
   </sect2>
 
   <sect2 role="commands">
@@ -202,7 +202,7 @@ make</userinput></screen>
 
   <sect2 role="configuration">
     <title>Configuring Wine</title>
-    
+
     <para>
       This installation should be good enough for most people but there may be
       a few things that you wish to change or do in relation to this package.
@@ -511,7 +511,7 @@ make</userinput></screen>
             is the Wine Minesweeper
              game; it is also just an example and not meant
             to be an accurate implementation of Minesweeper;
-            
+
             symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winemine">

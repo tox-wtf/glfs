@@ -19,7 +19,7 @@
 
   <sect2>
     <title>Steam</title>
-    
+
     <para>
       Most gamers would not know this unless they push the
       limits of the games they play, but many games on Steam
@@ -43,7 +43,7 @@
 
   <sect2>
     <title>Wine</title>
-      
+
     <para>
       Unlike Steam, Wine does not require that you have 32-bit libraries
       or the i686-w64-mingw32 toolchain. Moreover, to get multilib

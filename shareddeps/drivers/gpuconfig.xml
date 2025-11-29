@@ -106,7 +106,7 @@
         <xref linkend="pciutils"/> and it's packaged binary <command>
         lspci</command> to identify what the VGA controller is. After
         you find out that, check the RadeonFeature page of the Xorg
-        wiki for 
+        wiki for
         <ulink url="https://wiki.x.org/wiki/RadeonFeature/#index5h2">
         Decoder ring for engineering vs marketing names</ulink> to
         identify the family (you may need to know this for the Xorg

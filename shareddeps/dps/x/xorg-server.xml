@@ -251,7 +251,7 @@ fi</userinput></screen>
       <xref linkend="systemd"/>,</phrase> add any non-root users to the
       <systemitem class="groupname">input</systemitem> and
       <systemitem class="groupname">video</systemitem> groups as the
-      &root; user:  
+      &root; user:
     </para>
 
 <screen role="root"><literal>usermod -a -G input,video <replaceable>&lt;username&gt;</replaceable></literal></screen>

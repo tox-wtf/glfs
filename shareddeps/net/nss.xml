@@ -103,7 +103,7 @@ patch -Np1 -i ../nss-&nss-version;-illegal_instruction-1.patch</userinput></scre
         library as the &root; user:
       </para>
 
-<screen role="root"><userinput remap="pre">sqlite3 - -version > /dev/null 2>&amp;1 || 
+<screen role="root"><userinput remap="pre">sqlite3 - -version > /dev/null 2>&amp;1 ||
 if [ -f /usr/lib/libsqlite3.so ]; then
   rm -vf /usr/lib/libsqlite3.*
 fi</userinput></screen>
@@ -166,7 +166,7 @@ cp -v -RL {public,private}/nss/*                /usr/include/nss       &amp;&amp
         problematic library as the &root; user:
       </para>
 
-<screen role="root"><userinput remap="pre">sqlite3 - -version > /dev/null 2>&amp;1 || 
+<screen role="root"><userinput remap="pre">sqlite3 - -version > /dev/null 2>&amp;1 ||
 if [ -f /usr/lib32/libsqlite3.so ]; then
   rm -vf /usr/lib32/libsqlite3.*
 fi</userinput></screen>
