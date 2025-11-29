@@ -57,14 +57,14 @@ EOF</userinput></screen>
 
 <screen role="root"><userinput>ln -sv pkgconf /usr/bin/x86_64-pc-linux-gnu-pkg-config &amp;&amp;
 ln -sv pkgconf /usr/bin/i686-pc-linux-gnu-pkg-config</userinput></screen>
-    
+
     <para>
       Now verify that the x86_64 pkg-config is using the right
       personality:
     </para>
 
 <screen><userinput>x86_64-pc-linux-gnu-pkg-config --dump-personality</userinput></screen>
-    
+
     <para>
       The result should be:
     </para>
@@ -80,7 +80,7 @@ SystemLibraryPaths: /usr/lib</computeroutput></screen>
     </para>
 
     <screen><userinput>i686-pc-linux-gnu-pkg-config --dump-personality</userinput></screen>
-    
+
     <para>
       The result should be:
     </para>

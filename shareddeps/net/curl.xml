@@ -126,7 +126,7 @@ cp -v -R docs -T /usr/share/doc/curl-&curl-version;</userinput></screen>
 
   <sect2>
     <title>lib32 Installation of cURL</title>
-    
+
     <para>
       Install lib32-cURL
       by running the following commands:

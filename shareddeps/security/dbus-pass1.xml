@@ -11,7 +11,7 @@
   <?dbhtml filename="dbus-pass1.html"?>
 
   <title>D-Bus-&dbus-version; - Pass 1</title>
-  
+
   <indexterm zone="dbus-pass1">
     <primary sortas="a-dbus-pass1">D-Bus-Pass1</primary>
   </indexterm>
@@ -116,7 +116,7 @@ ldconfig</userinput></screen>
     <para>
       <parameter>-D systemd=disabled</parameter>: Don't install systemd support
       files even if <filename class="libraryfile">libsystemd</filename> exists
-      (i.e. the <xref linkend="elogind"/> package is installed). 
+      (i.e. the <xref linkend="elogind"/> package is installed).
     </para>
 
   </sect2>

@@ -162,7 +162,7 @@
 
   <sect2 role="installation">
     <title>Installation of Mesa</title>
-    
+
     <para>
       Install Mesa by running the following commands:
     </para>
@@ -288,7 +288,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             <literal>r600</literal> (for AMD/ATI Radeon HD 2000-6000
-            series) 
+            series)
           </para>
         </listitem>
         <listitem>
@@ -358,7 +358,7 @@ ldconfig</userinput></screen>
           </para>
         </listitem>
       </itemizedlist>
-      
+
       You may replace <literal>auto</literal> with a comma-separated list to
       build only a subset of these drivers if you precisely know which drivers
       you need, for example:
@@ -557,7 +557,7 @@ ldconfig</userinput></screen>
           </indexterm>
         </listitem>
       </varlistentry>
- 
+
       <varlistentry id="libGLX_mesa">
         <term><filename class="libraryfile">libGLX_mesa</filename></term>
         <listitem>

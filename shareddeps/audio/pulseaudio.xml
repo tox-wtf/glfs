@@ -159,7 +159,7 @@ ninja</userinput></screen>
 cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
 rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
-  
+
   </sect2>
 
   <sect2 role="commands">

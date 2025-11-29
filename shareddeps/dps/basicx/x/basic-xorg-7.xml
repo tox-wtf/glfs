@@ -31,7 +31,7 @@
     including the Xorg server, compositors, window
     managers or desktop environments, and <xref linkend="xwayland"/>.
   </para>
-  
+
   <note><para>
     Xwayland is a necessary part of Wayland if you
     want to use Xorg-only software like <xref
@@ -39,7 +39,7 @@
     Wayland mode but it is still a good idea to
     install <xref linkend="xwayland"/> for now.
   </para></note>
-    
+
   <bridgehead renderas="sect3">Xorg Download and Installation
   Instructions</bridgehead>
 

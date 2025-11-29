@@ -28,7 +28,7 @@
 
     <sect3>
       <title>Legacy - tip.png</title>
-      
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/tip.png" format="PNG"/>
@@ -58,7 +58,7 @@
 
     <sect3>
       <title>Legacy - note.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/note.png" format="PNG"/>
@@ -80,7 +80,7 @@
 
     <sect3>
       <title>Legacy - important.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/important.png" format="PNG"/>
@@ -102,7 +102,7 @@
 
     <sect3>
       <title>Legacy - caution.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/caution.png" format="PNG"/>
@@ -124,7 +124,7 @@
 
     <sect3>
       <title>Legacy - warning.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/warning.png" format="PNG"/>
@@ -146,7 +146,7 @@
 
     <sect3>
       <title>Current - tip.png</title>
-      
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/tip.png" format="PNG"/>
@@ -169,7 +169,7 @@
 
     <sect3>
       <title>Current - note.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/note.png" format="PNG"/>
@@ -193,7 +193,7 @@
 
     <sect3>
       <title>Current - important.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/important.png" format="PNG"/>
@@ -216,7 +216,7 @@
 
     <sect3>
       <title>Current - caution.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/caution.png" format="PNG"/>
@@ -239,7 +239,7 @@
 
     <sect3>
       <title>Current - warning.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/warning.png" format="PNG"/>
@@ -262,7 +262,7 @@
 
     <sect3>
       <title>Legacy - glfs-logo.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/glfs-logo.png" format="PNG"/>
@@ -304,7 +304,7 @@
 
     <sect3>
       <title>Current - glfs-logo.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/glfs-logo.png"

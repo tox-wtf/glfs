@@ -349,7 +349,7 @@ cp -v firmware/*.bin /usr/lib/firmware/nvidia/&nvidia-version;</userinput></scre
 <!--
     <note><para>
       If you have an existing installation, it may be a good idea to follow
-      <xref linkend="nvidia-uninstalling"/> first before going through this 
+      <xref linkend="nvidia-uninstalling"/> first before going through this
       section to remove some cruft and leftover libraries. This is not strictly
       necessary, though.
     </para></note>
@@ -557,7 +557,7 @@ EOF</userinput></screen>
         <filename>/usr/lib/modprobe.d/nouveau.conf</filename> to blacklist
         Nouveau and NVIDIAFB, as well as other conflicting modules:
       </para>
-      
+
 <screen role="root"><userinput>mkdir -pv /usr/lib/modprobe.d &amp;&amp;
 cat &gt; /usr/lib/modprobe.d/nouveau.conf &lt;&lt; "EOF"
 <literal># Begin /usr/lib/modprobe.d/nouveau.conf

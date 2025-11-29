@@ -82,7 +82,7 @@ make</userinput></screen>
          bug.  This <important> block should be removed when we update x265
          to 3.7 (or 4.0 or whatever new version).  The problem only happens
          when we downgrade libx265, upgrading is OK (as long as following
-         the LFS package management page). 
+         the LFS package management page).
     <important>
       <para>
         If downgrading from the bleeding-edge x265-20240812 (it had been
