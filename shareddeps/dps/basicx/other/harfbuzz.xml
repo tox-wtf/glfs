@@ -35,7 +35,7 @@
         </para>
       </listitem>
     </itemizedlist>
-    
+
     <bridgehead renderas="sect3">HarfBuzz Dependencies</bridgehead>
 
     <para role="recommended">
@@ -68,7 +68,7 @@ meson setup ..              \
 ninja</userinput></screen>
 
     <para>
-      
+
     </para>
 
     <para>
@@ -76,7 +76,7 @@ ninja</userinput></screen>
     </para>
 
 <screen role="root"><userinput>ninja install</userinput></screen>
-  
+
   </sect2>
 
   <sect2 role="installation">
@@ -149,7 +149,7 @@ ldconfig</userinput></screen>
       prevents that.
     </para>
 -->
-    
+
   </sect2>
 
   <sect2 role="content">

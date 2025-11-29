@@ -40,7 +40,7 @@
     </para>
 
     <para role="optional">
-      
+
       <ulink url="&blfs-svn;/general/python-modules.html#docutils">
       docutils</ulink>,
       <ulink url="&blfs-svn;/general/fftw.html">

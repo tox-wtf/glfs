@@ -59,7 +59,7 @@
 
   <sect3>
     <title>x86_64 MinGW-w64-headers</title>
-    
+
     <para>
       Install x86_64 MinGW-w64-headers
       by running the following commands:

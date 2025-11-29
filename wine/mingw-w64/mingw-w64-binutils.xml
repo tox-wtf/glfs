@@ -52,7 +52,7 @@
 
   <sect3>
     <title>x86_64 MinGW-w64-Binutils</title>
-    
+
     <para>
       Install x86_64 MinGW-w64-Binutils
       by running the following commands:

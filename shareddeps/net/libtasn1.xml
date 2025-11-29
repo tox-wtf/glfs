@@ -63,7 +63,7 @@ make</userinput></screen>
 
   <sect2 role="installation">
     <title>lib32 Installation of libtasn1</title>
-    
+
     <para>
       Install lib32-libtasn1
       by running the following commands:
@@ -89,7 +89,7 @@ rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
 
   </sect2>
-  
+
   <sect2 role="commands">
     <title>Command Explanations</title>
 

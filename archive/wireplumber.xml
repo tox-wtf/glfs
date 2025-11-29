@@ -135,7 +135,7 @@ EOF</userinput></screen>
       <command>/usr/bin/pipewire-launcher.sh</command> when a desktop
       environment is started, as the &root; user:
     </para>
-    
+
 <screen role="root"><userinput>mkdir -pv /etc/xdg/autostart/                 &amp;&amp;
 cat &gt;  /etc/xdg/autostart/pipewire.desktop &lt;&lt; "EOF"
 <literal>[Desktop Entry]
@@ -152,7 +152,7 @@ EOF</userinput></screen>
       started, it is recommended that you log out of your session and log back
       in again.
     </para>
-    
+
     </sect3>
 
   </sect2>
@@ -223,7 +223,7 @@ EOF</userinput></screen>
           </indexterm>
         </listitem>
       </varlistentry>
-      
+
       <varlistentry id="libwireplumber">
         <term><filename class="libraryfile">libwireplumber-0.5.so</filename></term>
         <listitem>

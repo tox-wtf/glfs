@@ -45,7 +45,7 @@
 
   <sect2 role="installation">
     <title>lib32 Installation of Check</title>
-    
+
     <para>
       Install lib32-Check by running the following
       commands:
@@ -58,7 +58,7 @@
             --disable-static &amp;&amp;
 
 make</userinput></screen>
-    
+
     <para>
       Now as the <systemitem class="username">root</systemitem> user:
     </para>
@@ -108,7 +108,7 @@ ldconfig</userinput></screen>
         <listitem>
           <para>
             contains functions that allow Check to
-            be called from a test program 
+            be called from a test program
           </para>
           <indexterm zone="lib32-check libcheck">
             <primary sortas="c-libcheck">libcheck.so</primary>

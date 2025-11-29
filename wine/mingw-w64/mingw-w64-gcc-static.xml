@@ -145,7 +145,7 @@ make all-gcc</userinput></screen>
       thread support due to building errors in GCC. This support will be
       built in later.
     </para>
-    
+
     <para>
       <parameter>--enable-languages=c,c++</parameter>:
       This command builds support for C and C++. Refer to <ulink

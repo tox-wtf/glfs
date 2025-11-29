@@ -115,7 +115,7 @@ done</userinput></screen>
 <screen><userinput>exit</userinput></screen>
 
   </sect2>
-  
+
   <sect2 role="content">
     <title>Contents</title>
 
@@ -199,7 +199,7 @@ done</userinput></screen>
           <indexterm zone="xcb-utils libxcb-ewmh">
             <primary sortas="c-libxcb-ewmh">libxcb-ewmh</primary>
           </indexterm>
-        </listitem> 
+        </listitem>
       </varlistentry>
 
       <varlistentry id="libxcb-icccm">

@@ -27,7 +27,7 @@
 
   <para>
     If you don't want a WoW64 build, follow the instructions
-    normally and skip the lib32 instructions. When you reach the 
+    normally and skip the lib32 instructions. When you reach the
     MinGW-w64 section, follow only the x86_64 instructions.
   </para>
 
