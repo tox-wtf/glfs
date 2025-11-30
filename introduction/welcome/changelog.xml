@@ -44,6 +44,10 @@
       <para>November 29th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - libatomic_ops: Added. Fixes
+          <ulink url="&glfs-issues;/326">#326</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[tox] - *: Purge trailing whitespace.</para>
         </listitem>
       </itemizedlist>
