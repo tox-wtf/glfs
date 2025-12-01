@@ -44,6 +44,9 @@
       <para>November 30th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - aboutgl: Another rewrite, made briefer.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - Wine: 10.19 -&gt; 10.20. Fixes
           <ulink url="&glfs-issues;/323">#323</ulink>.</para>
         </listitem>

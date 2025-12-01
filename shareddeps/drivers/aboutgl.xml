@@ -10,277 +10,100 @@
 
   <title>About OpenGL</title>
 
+  <para>
+    OpenGL is an older high-level graphics API which most graphical packages on
+    Linux use today.
+  </para>
+
+  <para>
+    In BLFS, OpenGL libraries (<filename class="libraryfile">libGL</filename>
+    and others) are installed from Mesa. This is contrasted with multiple
+    Linux distributions installing those libraries from <xref
+    linkend="libglvnd"/>. GLFS, unlike BLFS, has made the same decision as
+    those distributions and expects you to install <xref
+    linkend="libglvnd"/>. Despite this, <xref linkend="mesa"/> is required for
+    a lot of systems because it provides necessary drivers, not just OpenGL
+    libraries. GLFS makes the instructions in that package request libglvnd
+    support so that Mesa does not build its own OpenGL libraries.
+  </para>
+
+  <note><para>
+    In BLFS, the packages do support libglvnd, but BLFS makes no mention of it.
+    Whenever BLFS says a package depends on Mesa, it means that package will
+    need OpenGL libraries (<xref linkend="libglvnd"/>) and/or libgbm (<xref
+    linkend="libgbm"/> or libgbm from <xref linkend="mesa"/>). Certain pages
+    will also link to GLU. However, you must install this book's version of
+    <xref linkend="glu"/> to ensure compatibility with libglvnd.
+  </para></note>
+
+  <para>
+    If you haven't installed any packages relying on OpenGL yet, go ahead and
+    install <xref linkend="libglvnd"/> and the driver for your GPU. If you
+    have installed Mesa from BLFS, you probably have the OpenGL libraries
+    provided by Mesa. The main issues you will come across by transtioning are
+    soname differences in <filename class="libraryfile">libGL</filename> as
+    well as potential ABI issues. As a result, many packages will require
+    reinstallation in order to use the right libraries. For that reason,
+    transitioning isn't recommended and it might be better to reinstall LFS
+    and its subprojects with libglvnd in mind.
+  </para>
+
+  <para>
+    While you can install most of the packages in GLFS with Mesa's OpenGL
+    libraries, and even enable the installation of those libraries from Mesa in
+    this book by removing a documented option, it is strongly recommended that
+    you don't. GLFS nor SLFS support that configuration.
+  </para>
+
+  <para>
+    There is more information regarding OpenGL and libglvnd. If you just want
+    to go through the book as intended, feel free to skip to installing
+    libglvnd.
+  </para>
+
   <sect2>
-    <title>What is OpenGL?</title>
+    <title>Why Does GLFS Install libglvnd</title>
 
     <para>
-      OpenGL is a fairly high-level 3D graphics API. Its specification is
-      defined by Khronos Group, and implemented by different vendors. Mesa was
-      the first big one that implemented the specification.
+      The primary reason GLFS expects users to install libglvnd is that <xref
+      linkend="nvidia"/> and several packages and AppImages require libglvnd
+      either directly or indirectly. For NVIDIA, it requires libglvnd outright,
+      while AppImages suffer from the problem mentioned earlier in this
+      section: differences in sonames, as well as a missing library. <filename
+      class="libraryfile">libGL</filename> has a soname that's different from
+      Mesa's and <filename class="libraryfile">libGLX</filename> is not
+      included from Mesa. This breaks most AppImages. As for other packages,
+      their build systems can cause configuration to fail without libglvnd as
+      <filename class="libraryfile">libOpenGL</filename> doesn't exist, and the
+      build systems don't want to combine <filename
+      class="libraryfile">libGL</filename> with <filename
+      class="libraryfile">libEGL</filename>.
     </para>
 
     <para>
-      The implementation got tied to window systems (and thus led to several
-      implementations) and drivers limited to those inside Mesa's architecture.
-      The main issue with this is that the core OpenGL libraries
-      <footnote><para>
-        <filename class="libraryfile">libGL</filename>,
-        <filename class="libraryfile">libGLX</filename>, etc.
-      </para></footnote>
-      contained the implementations of OpenGL. Drivers outside of Mesa who
-      weren't in the project for any given reason had to fit into their
-      architecture or replace the core libraries with their own.
+      These issues leak into Supplemental LFS, like with Hyprland and
+      OBS-Studio. Flatpak may suffer from the same issue. BLFS may suffer from
+      them at some point, depending on when projects make changes that require
+      libglvnd in some form.
     </para>
-
-    <para>
-      NVIDIA, after supplying their own OpenGL core libraries that conflicted
-      with Mesa's which forced distros to reconcile through different methods,
-      decided to create new core OpenGL libraries based on aritger's <ulink
-      url="https://github.com/aritger/linux-opengl-abi-proposal/blob/mastedser/linux-opengl-abi-proposal.txt">
-      new OpenGL ABI proposal</ulink>. The libglvnd project was the result,
-      which contains core OpenGL libraries that properly dispatch each API call
-      to an OpenGL driver's implementation of it. No driver had to fit into an
-      a specific architecture dictated by the core OpenGL libraries anymore.
-      This led to multiple issues once the mass transition was done.
-    </para>
-
-    <sect3>
-      <title>libOpenGL</title>
-
-      <para>
-        Mesa is able to provide:
-        <itemizedlist>
-          <listitem>
-            <para><filename class="libraryfile">libGL</filename></para>
-          </listitem>
-          <listitem>
-            <para><filename class="libraryfile">libGLX</filename></para>
-          </listitem>
-          <listitem>
-            <para><filename class="libraryfile">libEGL</filename></para>
-          </listitem>
-          <listitem>
-            <para><filename class="libraryfile">libGLESv1_CM</filename></para>
-          </listitem>
-          <listitem>
-            <para><filename class="libraryfile">libGLESv2</filename></para>
-          </listitem>
-        </itemizedlist>
-        <filename class="libraryfile">libGL</filename> is tied to <filename
-        class="libraryfile">libGLX</filename>. This is a minor problem with
-        windowing systems that aren't Xorg and the general goal to have a
-        system without Xorg/GLX. libglvnd thus provides <filename
-        class="libraryfile">libOpenGL</filename> which isn't tied to any window
-        system. Build systems checking for OpenGL tend to choose <filename
-        class="libraryfile">libOpenGL</filename> over <filename
-        class="libraryfile">libGL</filename>. The built result in that case
-        will be linked against <filename
-        class="libraryfile">libOpenGL</filename>. Trying to run it on a system
-        with Mesa's core OpenGL libraries installed will lead to failure.
-      </para>
-
-      <para>
-        In most cases, if <filename class="libraryfile">libOpenGL</filename> is
-        not found while building a project, <filename
-        class="libraryfile">libGL</filename> is chosen instead. However, in
-        some projects supporting Wayland, the build system will refuse to
-        configure. This is because some build systems don't like combining
-        <filename class="libraryfile">libGL</filename> with <filename
-        class="libraryfile">libEGL</filename>.
-      </para>
-
-    </sect3>
-
-    <sect3>
-      <title>Different Sonames</title>
-
-      <para>
-        A soname is the field after a library (shared object)'s file extension.
-        An example is <filename class="libraryfile">libGL.so.1</filename>.
-        After <literal>libGL.so</literal> is <literal>.1</literal>.
-        <literal>1</literal> would be the soname. When an application or
-        library is linked against a library, it links against the name of the
-        library with the soname. When the only existing library on the system
-        has a different soname, the software will fail to work as the library
-        cannot be found.
-      </para>
-
-      <para>
-        The sonames of Mesa and libglvnd's core OpenGL libraries differ,
-        especially in the case of <filename
-        class="libraryfile">libGLX</filename>. Most binaries are linked against
-        libglvnd's core OpenGL libraries, so the sonames they expect will often
-        differ from Mesa's core OpenGL libraries. AppImages tend to fall into
-        this.
-      </para>
-
-    </sect3>
-
-    <sect3>
-      <title>The Stance of Most Linux Distributions, BLFS, GLFS, and SLFS</title>
-
-      <para>
-        Most Linux distributions have already switched to libglvnd. Some
-        distributions, like in the case of Debian, also provide Mesa's core
-        OpenGL libraries. Thus, the user has an option in those cases. Most
-        cases won't be like that. The general stance based on majority is that
-        libglvnd is now the standard OpenGL vendor for Linux.
-      </para>
-
-      <para>
-        This has been the case for multiple years. BLFS has been an outlier in
-        that it does not have libglvnd, does not incorporate instructions to
-        allow libglvnd, and only supports Mesa. Attempts to get this changed
-        have been turned down. The stance that will stand for at least a couple
-        years into the future will be that BLFS will not support libglvnd.
-        As a result, this causes issues for libglvnd users.
-      </para>
-
-      <para>
-        Despite how BLFS does not support libglvnd, this book and
-        Supplemental LFS
-        <footnote><para>
-          <ulink url="&slfs-website;"/>
-        </para></footnote>
-        support and prefer libglvnd over Mesa's core OpenGL libraries. The
-        issues laid out in the previous section pose issues that occur in this
-        book and in SLFS, and for users of this book. Mesa's core OpenGL
-        libraries severely limit the amount of software a user can run.
-      </para>
-
-      <para>
-        You can still install Mesa's core OpenGL libraries if you wish, but
-        will run into issues outside of BLFS. The choice is up to you.
-        Instructions are provided for each route, but the default instructions
-        set up for libglvnd.
-      </para>
-
-      <important><para>
-        Switching between vendors is not recommended. You should choose very
-        carefully on which vendor to install from. If you want to switch, it
-        might be best to rebuild the system due to linking and runtime issues.
-      </para></important>
-
-    </sect3>
 
   </sect2>
 
-  <sect2 id="aboutgles">
-    <title>About GLES (OpenGL ES)</title>
+  <sect2>
+    <title>Will BLFS Provide libglvnd</title>
 
-    <sect3>
-      <title>What is GLES?</title>
-
-      <para>
-        GLES, or OpenGL ES, or OpenGL for Embedded Systems, is what the full
-        name suggests: it is a stripped down version of OpenGL, a subset, with
-        a slightly different API here and there. It is used mostly for devices
-        with ARM chips such as smart phones and tablets, but is also used in
-        gaming consoles. On the Linux desktop, you typically have desktop, or
-        full, OpenGL, EGL, GLX, and GLESv{1,2,3}.
-      </para>
-
-      <para>
-        GLES, specifically v2 and v3, are used sometimes, but mostly in one
-        area: in Wayland compositors and compositor libraries. These include
-        Hyprland, Mutter, Wayfire, and Wlroots. While compositors can utilize
-        Vulkan, most compositors require GLES rendering and don't offer a Vulkan
-        solution, or any other rendering API solution. GLESv1 on the otherhand
-        is an outdated specification of the GLES API that has been phased out
-        for many years. This book disables building for GLESv1 as it is
-        deprecated. You may build the API spec if you wish.
-      </para>
-
-    </sect3>
-
-    <sect3>
-      <title>History of Wayland and GLES</title>
-
-      <para>
-        When the Wayland set of protocols were made, a
-        reference implementation had to be made for it to show what was possible,
-        and how to create a compositor for the new protocol. The result was
-        Weston. For its rendering API, it used, and
-        uses, GLES and EGL. This was done so that the dependency on the
-        libraries from the X Window System wasn't
-        needed, that a Wayland-only setup was possible. A small benefit of using
-        GLES was that it could run on embedded systems like Raspberry Pis.
-      </para>
-
-      <para>
-        Thus, compositors and compositor libraries followed suite and did the
-        same thing. However, any rendering API can be used as long as it can be
-        put through EGL. Desktop OpenGL and Vulkan can be used with no issues.
-        Today, the situation is the same and most compositors don't accept any
-        other rendering API besides GLES.
-      </para>
-
-    </sect3>
-
-    <sect3>
-      <title>Do I need GLES?</title>
-
-      <para>
-        If you are wanting to use Wayland compositors, and are going to use one
-        that does not support Vulkan rendering, you are very likely going to
-        have to build GLES v2 and v3, or else OpenGL and EGL rendering will not
-        be an option. There are very few Wayland compositors that support
-        Vulkan and do not require GLES. If you do find one, like <ulink
-        url="https://codeberg.org/dwl/dwl">dwl</ulink>, you won't really need
-        GLES beyond compositing. Wayland clients, which are applications, will
-        typically just use OpenGL and/or Vulkan with EGL. This means that you
-        would be able to skip GLES support but would kill off the ability to
-        use other Wayland compositors that require GLES rendering.
-      </para>
-
-      <para>
-        On the otherhand, if you are using the X
-        Window System, GLES will almost never be used and that support for the
-        API can be disabled without much worry. However, you kill off the
-        ability to use Wayland compositors that require GLES rendering if you
-        want to switch over to Wayland in the future.
-      </para>
-
-    </sect3>
-
-    <sect3>
-      <title>Disabling GLES</title>
-
-      <para>
-        If you decided to disable GLES support, it is pretty easy to not build
-        in support for the API. In <quote>Command Explanations</quote>, for
-        both <xref linkend="libglvnd"/> and <xref linkend="mesa"/>, they will
-        explain the options required to disable the support. The install script
-        for <xref linkend="nvidia"/> will install a driver for GLES by default
-        but can be disabled.
-      </para>
-
-      <para>
-        If you already have installed GLES from any of the OpenGL providers,
-        removing all the related files is pretty easy. You can follow the
-        instructions below as the &root; user to remove the API:
-      </para>
-
-<screen role="root"><userinput>for libdir in /usr/lib*; do
-  rm -vf  $libdir/pkgconfig/gles*
-  rm -vrf /usr/include/GLES*
-  rm -vf  $libdir/libGLES*
-done
-ldconfig</userinput></screen>
-
-      <para>
-        Recompile any packages as necessary to remove the dependency on GLES.
-      </para>
-
-      <para>
-        If you have decided to revert your decision and wish to build support
-        for GLES, just recompile OpenGL from the original OpenGL provider you
-        went with without the option needed to disable GLESv2. You can however
-        keep the option to disable GLESv1 as v1 is an outdated spec and not
-        needed today.
-      </para>
-
-    </sect3>
+    <para>
+      With the amount of packages beginning to require libglvnd growing in
+      number, it's a matter of time before BLFS will have to adopt libglvnd.
+      There have been efforts to get libglvnd into BLFS sooner rather than
+      later to avoid future headaches. The most significant push can be found
+      in this <ulink
+      url="https://lists.linuxfromscratch.org/sympa/arc/blfs-dev/2025-09/msg00002.html">thread</ulink>.
+      The thread mentions that Mesa supplies <filename
+      class="libraryfile">libGLX</filename>, this is wrong. Either way, the
+      request was shot down. Until BLFS has a package that requires libglvnd,
+      it probably won't move away from Mesa's OpenGL libraries.
+    </para>
 
   </sect2>
 

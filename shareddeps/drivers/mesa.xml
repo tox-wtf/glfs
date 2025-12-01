@@ -25,10 +25,10 @@
     </para>
 
     <important><para>
-      This package can install its own core OpenGL libraries, but is not
+      This package can install its own  OpenGL libraries, but is not
       supported by this book's editors due to their various issues. Read <xref
       linkend="aboutgl"/> for more information. If you do not want to install
-      <xref linkend="libglvnd"/> and want to install this package's core OpenGL
+      <xref linkend="libglvnd"/> and want to install this package's OpenGL
       libraries, the Command Explanations will instruct you to remove a
       given parameter in order to do so.
     </para></important>
@@ -445,7 +445,7 @@ ldconfig</userinput></screen>
     <para>
       <option>-D gles2=disabled</option>: If you didn't pass
       <parameter>-D glvnd=enabled</parameter> and don't need OpenGL ES, use
-      this option. Be sure to read <xref linkend="aboutgles"/>.
+      this option.
     </para>
 
 <!-- No available values for this option anymore, dri2 has been completely
