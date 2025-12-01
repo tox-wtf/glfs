@@ -23,7 +23,7 @@
     <title>Introduction to libgbm</title>
 
     <para>
-      The libgbm library provides API functions for managing memory buffers
+      The libgbm library provides API functions for managing memory buffers.
       It is utilized by various libraries and applications like Wayland
       compositors. Mesa supplies libgbm, but requires dependencies that aren't
       needed in order to install just libgbm. This package allows you to
