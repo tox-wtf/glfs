@@ -37,9 +37,9 @@
     </para>
 
     <important><para>
-      Read <xref linkend="aboutgl"/> for some important information regarding
-      libglvnd vs Mesa's OpenGL libraries. In short, this package is
-      heavily recommended.
+      If you've come here from the BLFS Mesa page, please read <xref
+      linkend="aboutgl"/> for information regarding how to navigate BLFS,
+      compatibility, and transitioning.
     </para></important>
 
     <itemizedlist spacing="compact">
