@@ -135,8 +135,9 @@ ldconfig</userinput></screen>
           <ulink url="&blfs-svn;/multimedia/intel-vaapi-driver.html">intel-vaapi-driver</ulink>.</para>
         </listitem>
         <listitem>
-          <para>For Intel iGPUs, Broadwell CPUs or later, install
-          <ulink url="&blfs-svn;/multimedia/intel-media-driver.html">intel-media-driver</ulink>.</para>
+          <para>For Intel iGPUs, Broadwell CPUs or later, and Intel Arc GPUs,
+          install <ulink
+          url="&blfs-svn;/multimedia/intel-media-driver.html">intel-media-driver</ulink>.</para>
         </listitem>
         <listitem>
           <para>For ATI/AMD Radeon HD 2xxx GPUs and later, install
