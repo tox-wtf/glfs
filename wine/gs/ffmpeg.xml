@@ -31,6 +31,16 @@
       source and any Open Sound System audio source.
     </para>
 
+    <important><para>
+      There is a known security vulnerability in FFmpeg-&ffmpeg-version;, a
+      use-after-free while using Subversion-1.x, which is in BLFS. As
+      FFmpeg-8.x has not been tested with every package in BLFS, yet, GLFS will
+      remain on FFmpeg-7.1 for now. If you understand that using FFmpeg-8.x can
+      cause issues in BLFS and outside of it, you may switch out the version
+      from &ffmpeg-version; to 8.0.1 in the instructions and download links,
+      including the patch. GLFS does indeed carry a patch for 8.0.1.
+    </para></important>
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
