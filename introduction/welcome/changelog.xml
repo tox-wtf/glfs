@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>December 4th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libpng: 1.6.51 -&gt; 1.6.52 (security). Fixes
+          <ulink url="&glfs-issues;/332">#332</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 2nd, 2025</para>
       <itemizedlist>
         <listitem>
