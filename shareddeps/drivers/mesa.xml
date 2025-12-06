@@ -33,14 +33,12 @@
       given parameter in order to do so.
     </para></important>
 
-<!--
     <note>
       <para>
-        Mesa is updated relatively often. You may
-        want to use the latest available &mesa-major-minor;.x mesa version.
+        Mesa is updated relatively often. You may want to use the latest
+        available version.
       </para>
     </note>
--->
 
     <note>
       <para>
@@ -143,6 +141,7 @@
 
     <para role="optional">
       &gbm;,
+      <ulink url="&blfs-svn;/general/libdisplay-info.html">libdisplay-info</ulink>,
       <ulink url="&blfs-svn;/general/libgcrypt.html">libgcrypt</ulink>,
       <xref linkend="libunwind"/>,
       <ulink url="&blfs-svn;/general/lm-sensors.html">lm-sensors</ulink>,
@@ -502,7 +501,7 @@ ldconfig</userinput></screen>
         </seg>
         <seg>
           <!-- Begin DRI Driver Stubs -->
-          libdril_dri and multiple symlinks to it
+          libdril_dri and several symlinks to it
           <!-- End DRI Driver Stubs -->
         </seg>
         <seg>
@@ -510,7 +509,7 @@ ldconfig</userinput></screen>
           nouveau_drv_video,
           r600_drv_video,
           radeonsi_drv_video, and
-          virtio_gpu_drv_video
+          virtio_gpu_drv_video (symlinks to libgallium-&mesa-version;)
           <!-- End VA-API Drivers -->
         </seg>
         <seg>
