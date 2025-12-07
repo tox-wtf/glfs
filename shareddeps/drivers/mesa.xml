@@ -485,7 +485,7 @@ ldconfig</userinput></screen>
       <segtitle>Installed Libraries</segtitle><!-- in /usr/lib -->
       <segtitle>Installed DRI Driver Stubs</segtitle><!-- in /usr/lib/dri -->
       <segtitle>Installed VA-API Drivers</segtitle><!-- in /usr/lib/dri -->
-      <segtitle>Installed GBM Drivers</segtitle><!-- in /usr/lib/gbm -->
+      <segtitle>Installed GBM Backends</segtitle><!-- in /usr/lib/gbm -->
       <segtitle>Installed Vulkan Drivers</segtitle><!-- in /usr/lib -->
       <segtitle>Installed Directories</segtitle>
 
@@ -513,18 +513,18 @@ ldconfig</userinput></screen>
           <!-- End VA-API Drivers -->
         </seg>
         <seg>
-          <!-- Begin GBM drivers -->
+          <!-- Begin GBM Backends -->
           dri_gbm
-          <!-- End GBM drivers -->
+          <!-- End GBM Backends -->
         </seg>
         <seg>
-          <!-- Begin Vulkan drivers -->
+          <!-- Begin Vulkan Drivers -->
           libvulkan_intel_hasvk,
           libvulkan_intel,
           libvulkan_lvp,
           libvulkan_nouveau, and
           libvulkan_radeon
-          <!-- End Vulkan drivers -->
+          <!-- End Vulkan Drivers -->
         </seg>
         <seg>
           <!-- Begin directories -->
@@ -572,7 +572,7 @@ ldconfig</userinput></screen>
         <term><filename class='libraryfile'>dri_gbm</filename></term>
         <listitem>
           <para>
-            is Mesa's GBM driver
+            is the GBM backend for Mesa drivers
           </para>
         </listitem>
       </varlistentry>

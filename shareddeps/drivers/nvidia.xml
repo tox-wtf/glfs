@@ -1252,7 +1252,7 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
         <term><filename class="libraryfile">nvidia-drm_gbm</filename></term>
         <listitem>
           <para>
-            is the NVIDIA GBM driver
+            is the GBM backend for NVIDIA drivers
           </para>
           <indexterm zone="nvidia nvidia-drm_gbm">
             <primary sortas="c-nvidia-drm_gbm">nvidia-drm_gbm</primary>
@@ -1264,8 +1264,7 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
         <term><filename class="libraryfile">nvidia_drv</filename></term>
         <listitem>
           <para>
-            is the NVIDIA X11
-             driver
+            is the NVIDIA X11 driver
           </para>
           <indexterm zone="nvidia nvidia_drv">
             <primary sortas="c-nvidia_drv">nvidia_drv</primary>
