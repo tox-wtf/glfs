@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>December 8th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - libdrm: 2.4.129 -&gt; 2.4.130. Fixes
+          <ulink url="&glfs-issues;/337">#337</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 6th, 2025</para>
       <itemizedlist>
         <listitem>
