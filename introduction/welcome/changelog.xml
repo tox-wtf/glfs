@@ -41,6 +41,17 @@
     -->
 
     <listitem>
+      <para>December 10th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - gnome.ent: sync with BLFS after GNOME 49 was
+          recently put in. I don't think anything in GLFS uses it, but because
+          it is in this tree, let's update it anyway.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 8th, 2025</para>
       <itemizedlist>
         <listitem>
