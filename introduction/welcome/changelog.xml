@@ -44,6 +44,10 @@
       <para>December 10th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[renodr] - CMake: 4.2.0 -&gt; 4.2.1. Fixes
+          <ulink url="&glfs-issues;/341">#341</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[renodr] - libgpg-error: 1.55 -&gt; 1.57. Fixes
           <ulink url="&glfs-issues;/342">#342</ulink>.</para>
         </listitem>
