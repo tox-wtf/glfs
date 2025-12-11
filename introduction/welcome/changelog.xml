@@ -44,6 +44,10 @@
       <para>December 10th, 2025</para>
       <itemizedlist>
         <listitem>
+          <para>[renodr] - libgpg-error: 1.55 -&gt; 1.57. Fixes
+          <ulink url="&glfs-issues;/342">#342</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[renodr] - gnome.ent: sync with BLFS after GNOME 49 was
           recently put in. I don't think anything in GLFS uses it, but because
           it is in this tree, let's update it anyway.</para>
