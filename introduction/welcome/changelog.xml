@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>December 21st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - VKD3D-Proton: 3.0 -&gt; 3.0b. Fixes
+          <ulink url="&glfs-issues;/348">#348</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 17th, 2025</para>
       <itemizedlist>
         <listitem>
