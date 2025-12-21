@@ -33,7 +33,8 @@
       <filename class="libraryfile">libGLX_nvidia</filename>. Each
       implementation is specific to the driver it comes from. The benefit of
       doing it this way is that a driver doesn't have to obey to the
-      architecture an OpenGL vendor applies nor being absorbed by the vendor.
+      architecture an OpenGL vendor uses, nor does it have to be absorbed by
+      the vendor.
     </para>
 
     <important><para>
