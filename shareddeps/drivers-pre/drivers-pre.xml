@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+ <!ENTITY % general-entities SYSTEM "../../general.ent">
+ %general-entities;
+]>
+
+<chapter id="drivers-pre">
+  <?dbhtml filename="drivers-pre.html"?>
+
+  <title>Graphics Drivers, Preliminaries</title>
+
+  <para>
+    This chapter covers important material regarding graphics drivers and will
+    guide you on what drivers to use.
+  </para>
+
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="whatdriver.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gpuconfig.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pciutils.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="hwdata.xml"/>
+
+</chapter>
