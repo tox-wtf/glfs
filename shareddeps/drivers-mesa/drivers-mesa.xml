@@ -8,7 +8,7 @@
 <chapter id="drivers-mesa">
   <?dbhtml filename="drivers-mesa.html"?>
 
-  <title>Graphics Drivers, Mesa</title>
+  <title>Graphics Drivers - Mesa</title>
 
   <para>
     This chapter covers installing Mesa and its dependencies. If you are using

@@ -8,7 +8,7 @@
 <chapter id="drivers-nvidia">
   <?dbhtml filename="drivers-nvidia.html"?>
 
-  <title>Graphics Drivers, NVIDIA</title>
+  <title>Graphics Drivers - NVIDIA</title>
 
   <para>
     This chapter covers installing the NVIDIA driver and its
