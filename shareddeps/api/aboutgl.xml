@@ -64,8 +64,8 @@
     <title>Why Does GLFS Install libglvnd</title>
 
     <para>
-      The primary reason GLFS expects users to install libglvnd is that <xref
-      linkend="nvidia"/> and several packages and AppImages require libglvnd
+      The primary reason GLFS expects users to install libglvnd is that
+      NVIDIA and several packages and AppImages require libglvnd
       either directly or indirectly. For NVIDIA, it requires libglvnd outright,
       while AppImages suffer from the problem mentioned earlier in this
       section: differences in sonames, as well as a missing library. <filename

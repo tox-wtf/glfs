@@ -96,8 +96,7 @@
         <para>For systems with NVIDIA graphics cards</para>
         <listitem>
           <para>
-            <ulink
-              url="&slfs-website;/general/cuda.html">CUDA</ulink> and
+            &cuda; and
             <xref linkend="nv-codec-headers"/>
           </para>
         </listitem>

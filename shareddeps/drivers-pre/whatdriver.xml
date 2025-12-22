@@ -151,7 +151,7 @@
 -->
 
     <para>
-      <emphasis>NVIDIA</emphasis> (<xref linkend="nvidia"/>):
+      &nvidia-emph;:
       This is the proprietary driver and the performance of this driver is
       better than the open source alternative. It allows the use of NVIDIA's
       CUDA project which is useful for hardware acceleration, improving

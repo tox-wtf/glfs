@@ -149,7 +149,7 @@ ldconfig</userinput></screen>
           install <xref linkend="mesa"/>.</para>
         </listitem>
         <listitem>
-          <para>For NVIDIA GPUs, using <xref linkend="nvidia"/>, install
+          <para>For NVIDIA GPUs, using NVIDIA, install
           <xref linkend="nvidia-vaapi-driver"/>.</para>
         </listitem>
       </itemizedlist>

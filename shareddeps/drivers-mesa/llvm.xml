@@ -284,8 +284,7 @@ ldconfig</userinput></screen>
       <parameter>-D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU;NVPTX"</parameter>:
       This switch enables building for x86, the same target as the host, for
       the r600 AMD GPU used by the <xref linkend="mesa"/> r600 and radeonsi
-      drivers, as well as NVIDIA GPUs used in tandem with <ulink
-      url="&slfs-website;/general/cuda.html">CUDA</ulink>. The default is
+      drivers, as well as NVIDIA GPUs used in tandem with CUDA. The default is
       all of the targets. You can use a semicolon separated list. Valid targets
       are: host, AArch64, AMDGPU, ARM, AVR, BPF, Hexagon, Lanai, LoongArch,
       Mips, MSP430, NVPTX, PowerPC, RISCV, Sparc, SystemZ, SystemZ, VE,
@@ -1502,7 +1501,7 @@ done</userinput></screen>
           <para>
             lists NVIDIA GPUs installed; at runtime it needs
             <filename class='libraryfile'>libcuda</filename>
-            from <xref linkend="nvidia"/>
+            from NVIDIA
           </para>
           <indexterm zone="llvm nvptx-arch">
             <primary sortas="b-nvptx-arch">nvptx-arch</primary>

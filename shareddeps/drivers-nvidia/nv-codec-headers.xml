@@ -23,8 +23,6 @@
     <para>
       The nv-codec-headers package provides headers for interacting
       with NVIDIA codec APIs. This package also goes by the name of ffnvcodec.
-      If you're not wanting to use or target <xref linkend="nvidia"/>, skip
-      this package.
     </para>
 
     <itemizedlist spacing="compact">

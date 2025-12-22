@@ -25,11 +25,10 @@
     <title>Introduction to NVIDIA-VA-API-Driver</title>
 
     <para>
-      The NVIDIA-VA-API-Driver package provides a VA-API driver for <xref
-      linkend="nvidia"/>, using NVDEC under the hood without requiring the
+      The NVIDIA-VA-API-Driver package provides a VA-API driver for NVIDIA,
+      using NVDEC under the hood without requiring the
       CUDA <command>nvcc</command> compiler. It doesn't provide encoding
       support, but provides decoding support for various codecs.
-      If you are not using <xref linkend="nvidia"/>, skip this package.
     </para>
 
     <itemizedlist spacing="compact">
@@ -55,7 +54,7 @@
     </para>
 
     <para role="optional">
-      <xref linkend="nvidia"/> (the runfile's open kernel module files for
+      &nvidia; (the runfile's open kernel module files for
       header regeneration)
     </para>
 

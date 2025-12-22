@@ -40,7 +40,7 @@
       <listitem>
         <para>
           Upstream has added the TearFree option to the default modesetting
-          driver (<xref linkend="nvidia"/> is not able to use it). This patch
+          driver (NVIDIA is not able to use it). This patch
           adds this feature. Apply this patch if you are going to use Xorg in
           an environment without a compositor (such as TWM, IceWM, Openbox, or
           Fluxbox).
@@ -57,7 +57,7 @@
     <para role="required">
       <!-- Not runtime as mesa/nvidia provide DRI needed at configuration. -->
       A userland graphics driver (<xref linkend='mesa'/> and/or
-      <xref linkend='nvidia'/>),
+      &nvidia;),
       <xref linkend="libxcvt"/>,
       <xref linkend="pixman"/>,
       <xref linkend="xorg7-font"/> (only font-util), and at runtime:

@@ -119,6 +119,8 @@
 <!ENTITY blfs-wiki                    "https://wiki.&lfs-domainname;/blfs/wiki">
 <!ENTITY blfs-svn                     "&lfs-website;/blfs/view/&blfs-version;">
 
+<!ENTITY arch-pkgs                    "https://archlinux.org/packages">
+
 <![ %development; [
   <!ENTITY important-stability "<para>
   This book viewable online is in a constant flux of updates, and updates about
@@ -291,6 +293,14 @@ export -f as_root</userinput></screen>
 
 <!ENTITY opengl "<xref linkend='libglvnd'/>">
 <!ENTITY gbm    "GBM (<xref linkend='libgbm'/> or <xref linkend='mesa'/>)">
+<!ENTITY nvidia-all "(<xref linkend='nvidia'/> or
+                      <xref linkend='nvidia-r580'/>)">
+<!ENTITY cuda-all   "(<xref linkend='cuda'/> or
+                      <xref linkend='cuda-r580'/>)">
+<!ENTITY nvidia "NVIDIA &nvidia-all;">
+<!ENTITY nvidia-emph "<emphasis>NVIDIA</emphasis> &nvidia-all;">
+<!ENTITY cuda "CUDA &cuda-all;">
+<!ENTITY cuda-emph "<emphasis>CUDA</emphasis> &cuda-all;">
 
 <!ENTITY sdl2 "<xref linkend='sdl2'/>">
 

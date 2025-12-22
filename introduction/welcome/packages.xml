@@ -83,6 +83,20 @@ done</userinput></screen>
       commands.
     </para>
 
+    <important><para>
+      The files for &nvidia; and &cuda; are not downloaded from the above
+      process as they are big files and would total to about 9G on their own.
+      However, files for packages like <xref
+      linkend="nvidia-vaapi-driver"/> are downloaded. You may wish to download
+      the files now ahead of time. To do so, first read <xref
+      linkend="nvidia-rev"/>, decide on a major NVIDIA revision, then download
+      the files in each page within that revision section.
+    </para><para>
+      Files for a package bundle like <xref linkend="vulkan-sdk"/> or <xref
+      linkend="llvm"/> will also not be downloaded by the above instructions.
+      They instead get downloaded when you reach those package bundles.
+    </para></important>
+
   </sect2>
 
 </sect1>

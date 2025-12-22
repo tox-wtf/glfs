@@ -38,7 +38,7 @@
     will be installed on a given Windows machine already, such as libraries for
     DirectX/Direct3D or OpenGL support. Since we are on a Unix-like operating
     system, we do not have such DLLs installed on the system, and they were
-    never compiled in LFS or earlier in this book. <xref linkend="nvidia"/>
+    never compiled in LFS or earlier in this book. NVIDIA
     does install DLL files but are strictly meant for
     Wine and Proton as a way of exposing DLSS.
     MinGW-w64 only installs static libraries, which

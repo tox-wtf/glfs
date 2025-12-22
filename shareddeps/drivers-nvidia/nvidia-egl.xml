@@ -19,8 +19,7 @@
 
     <para>
       The NVIDIA EGL Libraries allow the EGL drivers
-      for the NVIDIA driver to function properly. If
-      you are not installing <xref linkend="nvidia"/>, skip this package.
+      for the NVIDIA driver to function properly.
     </para>
 
     <bridgehead renderas="sect3">NVIDIA EGL Libraries Dependencies</bridgehead>

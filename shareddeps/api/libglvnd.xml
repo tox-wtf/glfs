@@ -27,7 +27,7 @@
       dispatcher. Drivers that are built with libglvnd in mind provide their
       own OpenGL functionality. For <xref linkend="mesa"/>, it will install
       <filename class="libraryfile">libEGL_mesa</filename> and <filename
-      class="libraryfile">libGLX_mesa</filename>. For <xref linkend="nvidia"/>,
+      class="libraryfile">libGLX_mesa</filename>. For NVIDIA,
       it will provide <filename class="libraryfile">libEGL_nvidia</filename>,
       <filename class="libraryfile">libGLESv2_nvidia</filename>, and
       <filename class="libraryfile">libGLX_nvidia</filename>. Each

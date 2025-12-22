@@ -27,7 +27,7 @@
       The NVIDIA proprietary driver contains
       firmware, kernel drivers, userland drivers pertaining to OpenGL,
       Vulkan, and hardware acceleration, and provides useful utilities for
-      NVIDIA cards. If you don't have a NVIDIA GPU, skip to the next package.
+      Turing and later NVIDIA cards.
     </para>
 
     <note revision="sysv"><para>
@@ -81,89 +81,14 @@
 
     <bridgehead renderas="sect3">NVIDIA Dependencies</bridgehead>
 
-    <para role="required">
-      &gbm;,
-      <xref linkend="libglvnd"/>, and
-      <xref linkend="xorg7-lib"/>
-    </para>
-
-    <para role="recommended">
-      <itemizedlist spacing="compact">
-        <listitem>
-          <para>
-            <ulink url="&slfs-website;/general/cuda.html">CUDA</ulink>
-            (for building in direct CUDA support into various packages like
-            FFmpeg or OBS-Studio; install after following this page)
-          </para>
-        </listitem>
-<!-- NOT READY
-        <listitem revision="sysv">
-          <para>
-            <xref linkend="dbus"/> and <xref linkend="elogind"/> (for
-            NVIDIA-Powerd support)
-          </para>
-        </listitem>
--->
-        <listitem>
-          <para>
-            <ulink url="&blfs-svn;/x/gtk3.html">GTK-3</ulink> (for
-            <command>nvidia-settings</command>; install after following this
-            page)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <xref linkend="nvidia-vaapi-driver"/> (for VA-API support; install
-            after following this page)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <xref linkend="nvidia-egl"/> (for EGL driver support)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <xref linkend="vulkan-sdk"/> (for using the Vulkan drivers)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <xref linkend="wayland"/> (needed for Wayland support)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <xref linkend="xorg-server"/> (required for running
-            <command>nvidia-xconfig</command>, like in <xref
-            linkend="whatnow"/>; install after following this page)
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
+    &nvidia-common-deps;
 
   </sect2>
 
   <sect2>
     <title>Preparing for the NVIDIA Installation</title>
 
-    <para>
-      First enable XFree86 DRI and Nouveau
-      <footnote><para>
-        Newer versions of
-        the NVIDIA drivers will fail to compile with TTY support unless a
-        graphics driver is included in the kernel. Nouveau is used here, though
-        alternate graphics drivers may also work.
-      </para></footnote>
-      support in the kernel and recompile if necessary.
-    </para>
-
-    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="nvidia-kernel.xml"/>
-
-    <important><para>
-      Build these drivers as kernel modules so that they can properly be
-      blacklisted.
-    </para></important>
+    &nvidia-common-kernel;
 
     <para>
       Extract the NVIDIA driver runfile and
@@ -188,150 +113,16 @@ cd NVIDIA-Linux-x86_64-&nvidia-version;</userinput></screen>
     <title>Installation of the NVIDIA Kernel Modules</title>
 
     <para>
-      Now you will need to build the kernel modules for the driver. There are
-      two types: <emphasis role="bold">open</emphasis> and
-      <emphasis role="bold">proprietary</emphasis>. If you have the
-      NVIDIA Grace Hopper or NVIDIA Blackwell cards, you must
-      compile the <emphasis role="bold">open</emphasis> kernel modules.
-      If you have a Turing, Ampere, Ada Lovelace,
-      or Hopper card, it is recommended to now build the
-      <emphasis role="bold">open</emphasis> kernel modules.
-      If you have a Maxwell, Pascal, or Volta card, build the
-      <emphasis role="bold">proprietary</emphasis> kernel modules.
-      If you are using both an older and newer card, but not the newest cards,
-      build the <emphasis role="bold">proprietary</emphasis> kernel modules.
-    </para>
-
-    <para>
-      If you are going to build the <emphasis role="bold">open</emphasis>
-      kernel modules, navigate to the <filename
+      Change into the <filename
       class="directory">kernel-open</filename> directory:
     </para>
 
 <screen><userinput>cd kernel-open</userinput></screen>
 
-    <para>
-      If you are going to instead build the <emphasis
-      role="bold">proprietary</emphasis> kernel modules, navigate to the
-      <filename class="directory">kernel</filename> directory:
-    </para>
+<!-- With pre-turing axed, there is no longer any reason to build proprietary
+     kernel modules. -->
 
-<!-- proprietary is the exception, not the rule -->
-<screen><computeroutput>cd kernel</computeroutput></screen>
-
-    <note><para>
-      If the currently running kernel is a different version than you are
-      targeting, likely as a result of being in a chroot or haven't rebooted
-      after a kernel upgrade yet, building the kernel modules will cause a
-      build failure or will install modules for a kernel that is not the
-      target. The default variable that the kernel build system uses to check
-      for the kernel version will use <command>uname -r</command>, in turn
-      reporting the kernel version of the currently running host kernel and
-      not the target. This can be worked around by specifying
-      <envar>KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></envar>
-      which will override the kernel version to build against and install to.
-      The target kernel version must have already been built for this to work.
-      If the kernel version doesn't have a third digit, like 6.16 instead of
-      6.16.1, append a <envar>.0</envar> at the end, like
-      <envar>6.16.0</envar>. It should match the version found in <filename
-      class="directory">/usr/lib/modules</filename>.
-    </para>
-    <para>
-      If the above case apply to you, whether you're in a chroot or haven't
-      yet rebooted after a kernel upgrade, specify the kernel target by
-      exporting the variable now ahead of time to prevent needing to specify it
-      for every command:
-    </para>
-<screen><userinput>export KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></userinput></screen>
-    </note>
-
-    <para>
-      There will be 5 or 6 kernel modules that will be built. Depending on your
-      use case, you can skip building a module or two. The UVM (Unified Virtual
-      Memory) module is for use with <ulink
-      url="&slfs-website;/general/cuda.html">CUDA</ulink>. If you won't use
-      it, nor wish to use its capabilities, you can skip building the UVM
-      kernel module. There is also the PeerMem module which is for datacenters.
-      For gaming, it can safely be disabled.
-    </para>
-
-    <para>
-      For UVM, the module is named <computeroutput>nvidia-uvm</computeroutput>.
-      For PeerMem, it will be named
-      <computeroutput>nvidia-peermem</computeroutput>. To skip these, add the
-      module names to the <envar>NV_EXCLUDE_KERNEL_MODULES</envar> for the
-      <command>make</command> command. The variable should be separated, as
-      such:
-      <computeroutput>NV_EXCLUDE_KERNEL_MODULES="nvidia-uvm nvidia-peermem"</computeroutput>.
-      The <command>make</command> command will have the variable set to
-      nothing. Add to it as you see fit.
-    </para>
-
-    <para>
-      Now build the kernel modules by running the following command:
-    </para>
-
-<screen><userinput>make NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
-
-    <note><para>
-      The source code you built the kernel from must be in the same location
-      you built the kernel. For example, if you built the kernel in <filename
-      class="directory">/sources/linux-6.16.1</filename>, the source
-      code should stay there and must not be deleted until the 3rd party
-      modules have been built. Some Linux distributions get around this by
-      installing development files in <filename
-      class="directory">/usr/src</filename>, but that is out of the scope of
-      this book.
-    </para></note>
-
-    <note><para>
-      You may encounter various build failures. This usually happens because
-      the module code is incompatible with the current kernel version.
-      If this happens, in most cases it can be fixed by downgrading the
-      kernel. When a new driver release happens, the driver will then most
-      likely support the kernel version at the time. At the top of this
-      section, the recommended kernel series to use with this driver is
-      mentioned to give an idea of what is the idea kernel version to build
-      against.
-    </para></note>
-
-    <important>
-      <para>
-        When you rebuild/upgrade the kernel, you will also need to reinstall
-        the NVIDIA kernel modules.
-      </para>
-
-      <para>
-        Kernel modules are installed in a versioned directory that, when they
-        are built against a different kernel version, will no longer match the
-        booted kernel version and cannot be used. Furthermore, there is glue
-        built, so any changes to the kernel can break that glue. For kernel
-        modules in the Linux source tree, known as first-party modules, they
-        get updated and rebuilt alongside the kernel, so issues aren't ran
-        into for first-party modules. Third-party modules aren't, however,
-        and need to be updated/rebuilt.
-      </para>
-
-      <para>
-        When you rebuild/upgrade the kernel against the same NVIDIA driver
-        version, you will only need to reinstall the kernel modules. You will
-        have to reinstall the driver software as well if you are upgrading from
-        a previous driver version.
-      </para>
-    </important>
-
-    <para>
-      Now as the &root; user:
-    </para>
-
-<screen role="root"><userinput>make modules_install &amp;&amp;
-cd ..</userinput></screen>
-
-    <para>
-      If you set the <envar>KERNEL_UNAME</envar> variable, unset it now:
-    </para>
-
-    <screen><userinput>unset KERNEL_UNAME</userinput></screen>
+    &nvidia-common-build-modules;
 
     <para>
       Install the firmware as the &root; user:
@@ -672,12 +463,9 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
     </para>
 
     <para>
-      Thus, the rest of this chapter may end up having packages you don't want
-      to pick up unless you need them down the road, like in the case of LLVM
-      and Rustc being needed for GTK and Firefox. Either way, you have
-      everything you need for the proceeding chapters. You can install <xref
-      linkend="nvidia-vaapi-driver"/> if you wish, then skip to <xref
-      linkend="x"/>, or you can skip to <xref linkend="x"/> right now.
+      With this pure NVIDIA-only setup, you can skip to <xref linkend="x"/> and
+      expect smooth sailing. If you want to however, you can also install CUDA
+      in this subsection, which up to you.
     </para>
 
   </sect2>
@@ -732,6 +520,7 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
           libnvidia-pkcs11,
           libnvidia-ptxjitcompiler,
           libnvidia-rtcore,
+          libnvidia-tileiras,
           libnvidia-tls,
           libnvidia-wayland-client,
           libOpenCL,
@@ -1174,12 +963,25 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
         </listitem>
       </varlistentry>
 
+      <varlistentry id="libnvidia-tileiras">
+        <term><filename class="libraryfile">libnvidia-tileiras</filename></term>
+        <listitem>
+          <para>
+            provides the TileIR interface, representing CUDA kernels to various
+            programming languages
+          </para>
+          <indexterm zone="nvidia libnvidia-tileiras">
+            <primary sortas="c-libnvidia-tileiras">libnvidia-tileiras</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="libnvidia-tls">
         <term><filename class="libraryfile">libnvidia-tls</filename></term>
         <listitem>
           <para>
             provides TLS support for the NVIDIA
-             OpenGL implementations
+            OpenGL implementations
           </para>
           <indexterm zone="nvidia libnvidia-tls">
             <primary sortas="c-libnvidia-tls">libnvidia-tls</primary>
