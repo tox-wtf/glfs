@@ -55,6 +55,16 @@ Note that if you set `THEME_PATH`, you can set `THEME` to more than
 just what the available options are shown above, but only the available themes
 that are in that path.
 
+There are also more variables that can be set which can be used to specify
+where the rendered output goes, where temporary files are located, the
+stability type of the render, and more.
+
+An important thing to be aware of is by default, what is set as RENDERTMP
+(`mktemp -d` by default) will be removed after every file has been
+converted to a new format (HTML, wget-list, command scripts, etc.) by default.
+If you need to keep the directory for whatever reason, pass `AUTO_CLEAN=0` when
+running `make` (`make RENDERTMP=~/tmp AUTO_CLEAN=0`).
+
 Defaults can be changed in a file that isn't tracked (`local.mk`) by declaring
 variables found in `Makefile` in `local.mk`, such as `REV` and `THEME`.
 This file must be created manually.
