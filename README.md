@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/glfs-book/glfs/blob/trunk/images/glfs-logo.svg?raw=true" width="25%">
+  <img src="https://github.com/glfs-book/glfs/blob/trunk/images/glfs-logo.png?raw=true" width="25%">
   <h1>GLFS</h1>
 </div>
 
