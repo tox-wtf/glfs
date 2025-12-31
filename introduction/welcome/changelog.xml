@@ -41,6 +41,17 @@
     -->
 
     <listitem>
+      <para>December 31st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - libaom: use an alternative method to prevent the
+          static libraries from being installed. This follows the new method
+          from BLFS. Fixes <ulink url="&glfs-issues;/354">#354</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 28th, 2025</para>
       <itemizedlist>
         <listitem>
