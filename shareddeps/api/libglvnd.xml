@@ -29,8 +29,7 @@
       <filename class="libraryfile">libEGL_mesa</filename> and <filename
       class="libraryfile">libGLX_mesa</filename>. For NVIDIA,
       it will provide <filename class="libraryfile">libEGL_nvidia</filename>,
-      <filename class="libraryfile">libGLESv2_nvidia</filename>, and
-      <filename class="libraryfile">libGLX_nvidia</filename>. Each
+      <filename class="libraryfile">libGLX_nvidia</filename>, and others. Each
       implementation is specific to the driver it comes from. The benefit of
       doing it this way is that a driver doesn't have to obey to the
       architecture an OpenGL vendor uses, nor does it have to be absorbed by
@@ -81,7 +80,6 @@ cd    build &amp;&amp;
 
 meson setup --prefix=/usr       \
             --buildtype=release \
-            -D gles1=false      \
             -D hgl=false        \
             .. &amp;&amp;
 
@@ -108,7 +106,6 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 meson setup --prefix=/usr            \
             --libdir=/usr/lib32      \
             --buildtype=release      \
-            -D gles1=false           \
             -D hgl=false             \
             .. &amp;&amp;
 
@@ -133,13 +130,13 @@ ldconfig</userinput></screen>
     &meson-buildtype-release;
 
     <para>
-      <parameter>-D gles1=false</parameter>: This disables an obsolete version
-      of OpenGL ES.
+      <parameter>-D hgl=false</parameter>: This disables targeting Haiku by
+      default as this guide is for Linux, not Haiku.
     </para>
 
     <para>
-      <parameter>-D hgl=false</parameter>: This disables targeting Haiku by
-      default as this guide is for Linux, not Haiku.
+      <option>-D gles1=false</option>: If you don't need the older version of
+      OpenGL ES, use this option. Some games use GLESv1 still.
     </para>
 
     <para>
@@ -162,13 +159,14 @@ ldconfig</userinput></screen>
         <seg>
           libEGL,
           libGL,
+          libGLESv1_CM,
           libGLESv2,
           libGLX,
           libGLdispatch, and
           libOpenGL
         </seg>
         <seg>
-          /usr/include/{EGL,GL,GLES{2,3},glvnd,KHR}
+          /usr/include/{EGL,GL,GLES{,2,3},glvnd,KHR}
         </seg>
       </seglistitem>
     </segmentedlist>
@@ -204,12 +202,30 @@ ldconfig</userinput></screen>
         </listitem>
       </varlistentry>
 
+      <varlistentry id="glvnd-libGLESv1_CM">
+        <term><filename class="libraryfile">libGLESv1_CM</filename></term>
+        <listitem>
+          <para>
+            exposes the OpenGL ES 1.x common profile entrypoints;
+            wrapper library calling <filename
+            class="libraryfile">libGLdispatch</filename>
+          </para>
+          <indexterm zone="libglvnd glvnd-libGLESv1_CM">
+            <primary sortas="b-glvnd-libGLESv1_CM">libGLESv1_CM</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="glvnd-libGLESv2">
         <term><filename class="libraryfile">libGLESv2</filename></term>
         <listitem>
           <para>
-            exposes OpenGL ES 2.x and 3.x entrypoints; wrapper library calling
-            <filename class="libraryfile">libGLdispatch</filename>
+            exposes OpenGL ES 2.x and 3.x entrypoints; v2 and up removed
+            profiles, which is why <filename
+            class="libraryfile">libGLESv1_CM</filename> contains
+            <literal>_CM</literal> but this library doesn't; wrapper library
+            calling <filename
+            class="libraryfile">libGLdispatch</filename>
           </para>
           <indexterm zone="libglvnd glvnd-libGLESv2">
             <primary sortas="b-glvnd-libGLESv2">libGLESv2</primary>

@@ -41,6 +41,15 @@
     -->
 
     <listitem>
+      <para>January 1st, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libglvnd: Install libGLESv1_CM.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>December 31st, 2025</para>
       <itemizedlist>
         <listitem>
