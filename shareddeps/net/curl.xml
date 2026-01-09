@@ -73,13 +73,13 @@
   <sect2 role="installation">
     <title>Installation of cURL</title>
 
-
+<!--
     <para>
       First, fix a problem with a security fix:
     </para>
 
 <screen><userinput>sed -i 's/2F 5C/%2F %5C/' scripts/wcurl</userinput></screen>
-
+-->
 
     <para>
       Install cURL by running the following

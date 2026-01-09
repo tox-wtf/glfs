@@ -39,6 +39,21 @@
       </itemizedlist>
     </listitem>
     -->
+
+    <listitem>
+      <para>January 9th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - cURL: 8.17.0 -&gt; 8.18.0 (security). See <ulink
+          url="https://wiki.linuxfromscratch.org/blfs/ticket/22618">#22618</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libtasn1: 4.20.0 -&gt; 4.21.0 (security). See <ulink
+          url="https://wiki.linuxfromscratch.org/blfs/ticket/22620">#22620</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
     <listitem>
       <para>January 6th, 2025</para>
       <itemizedlist>
