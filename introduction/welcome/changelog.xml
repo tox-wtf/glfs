@@ -41,7 +41,7 @@
     -->
 
     <listitem>
-      <para>January 9th, 2025</para>
+      <para>January 9th, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[zeckma] - cURL: 8.17.0 -&gt; 8.18.0 (security). See <ulink
@@ -55,7 +55,7 @@
     </listitem>
 
     <listitem>
-      <para>January 6th, 2025</para>
+      <para>January 6th, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[renodr] - hwdata: 0.402 -&gt; 0.403.</para>
@@ -64,7 +64,7 @@
     </listitem>
 
     <listitem>
-      <para>January 5th, 2025</para>
+      <para>January 5th, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[renodr] - Cython: 3.2.3 -&gt; 3.2.4.</para>
@@ -73,7 +73,7 @@
     </listitem>
 
     <listitem>
-      <para>January 3rd, 2025</para>
+      <para>January 3rd, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[zeckma] - SDL3: 3.2.30 -&gt; 3.4.0.</para>
@@ -82,7 +82,7 @@
     </listitem>
 
     <listitem>
-      <para>January 3rd, 2025</para>
+      <para>January 3rd, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[zeckma] - Shadow: 4.18.0 -&gt; 4.19.0.</para>
@@ -102,7 +102,7 @@
     </listitem>
 
     <listitem>
-      <para>January 1st, 2025</para>
+      <para>January 1st, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[zeckma] - libglvnd: Install libGLESv1_CM.</para>
