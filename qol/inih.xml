@@ -56,6 +56,33 @@ ninja</userinput></screen>
 
   </sect2>
 
+  <sect2 role="installation">
+    <title>lib32 Installation of inih</title>
+
+    <para>
+      Install lib32-inih by running the following commands:
+    </para>
+
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+meson setup --prefix=/usr            \
+            --libdir=/usr/lib32      \
+            --buildtype=release      \
+            .. &amp;&amp;
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
+cp -vR DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
   <sect2 role="commands">
     <title>Command Explanations</title>
 
