@@ -12,37 +12,56 @@
   <title>Wine Dependencies</title>
 
   <para>
-    Wine has three build formats and depending on what build you want,
+    Wine has four build formats and depending on what build you want,
     you will have to pay attention to what you install and its format.
   </para>
 
   <para>
-    The three build types are: 32-bit, 64-bit, and WoW64. 32-bit and 64-bit
-    are self-explanatory, but WoW64 needs explanation. WoW64 is a compatibility
-    layer created by Microsoft when applications and computers were becoming 64-bit.
-    This layer allows users to emulate 32-bit Windows applications on a 64-bit
-    CPU. Knowing this, a Wine WoW64 build can be explained as a build type that
-    allows the user to execute Windows 32-bit and 64-bit applications.
+    The four build types are: WoW64, old WoW64, 64-bit, and 32-bit. 32-bit and
+    64-bit are self-explanatory, but both WoW64 types need explanation. WoW64
+    is a compatibility layer created by Microsoft when applications and
+    computers were becoming 64-bit. This layer allows users to emulate 32-bit
+    Windows applications on a 64-bit CPU. For Wine, this has the same premise;
+    it allows you to run both 32-bit and 64-bit Windows apps and games on
+    x86_64. However, there are two WoW64 types.
   </para>
 
   <para>
-    If you don't want a WoW64 build, follow the instructions
-    normally and skip the lib32 instructions. When you reach the
-    MinGW-w64 section, follow only the x86_64 instructions.
+    The first one is the newer and default WoW64 architecture. All you need are
+    64-bit libraries and both the x86_64 and i686 MinGW-w64 toolchains. The
+    older architecture uses 32-bit libraries to bring the 32-bit support. It is
+    in opposition to a goal the desktop has been moving towards: full 64-bit,
+    leaving 32-bit libraries behind. So the new architecture was developed to
+    satisfy it.
   </para>
 
   <para>
-    If you want a 32-bit only build, follow only the lib32
-    instructions. When you reach MinGW-w64, follow
-    the i686 instructions. However, for the sake of continuing onto BLFS, it is
-    recommended to do the normal installations as well, save for
-    MinGW-w64.
+    The WoW64 option can be a good choice, and if you go with that route, you
+    won't need MLFS at all, or any 32-bit libraries from this book, unless you
+    want or already have installed Steam. With that, you only need to do the
+    normal installations of each package, and for the MinGW-w64 toolchain, you
+    still have to install both the x86_64 and i686 toolchains.
   </para>
 
   <para>
-    And finally, if you want a WoW64 build, follow all the
-    instructions on the dependency pages unless instructed otherwise or are
-    presented with options.
+    If you have an issue with the newer WoW64 architecture or trust the older
+    system more, you will then need both the 64-bit and lib32 variants of each
+    package, along with the x86_64 and i686 MinGW-w64 toolchains.
+  </para>
+
+  <para>
+    For pure 64-bit, follow the instructions normally and skip the lib32
+    instructions. When you install the MinGW-w64 toolchain, you can just follow
+    the x86_64 instructions.
+  </para>
+
+  <para>
+    For pure 32-bit, follow only the lib32 instructions. When you reach
+    MinGW-w64, follow the i686 instructions. However, for the sake of
+    continuing onto BLFS, it is recommended to do the normal installations as
+    well, save for MinGW-w64. Along with that, Wine may need programs from the
+    given set of packages and this installation method is not tested without
+    the normal 64-bit installations.
   </para>
 
   <para role="required">

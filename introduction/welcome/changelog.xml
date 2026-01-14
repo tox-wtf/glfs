@@ -41,6 +41,19 @@
     -->
 
     <listitem>
+      <para>January 13th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Wine: 10.20 -&gt; 11.0. Fixes
+          <ulink url="&glfs-issues;/344">#344</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wine: Introduce new WoW64 architecture.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>January 11th, 2026</para>
       <itemizedlist>
         <listitem>

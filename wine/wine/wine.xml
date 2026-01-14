@@ -5,7 +5,7 @@
   %general-entities;
 
   <!ENTITY wine-root "https://dl.winehq.org/wine/source">
-  <!ENTITY wine-download "&wine-root;/&wine-major-version;.x/wine-&wine-version;.tar.xz">
+  <!ENTITY wine-download "&wine-root;/&wine-major-version;.0/wine-&wine-version;.tar.xz">
 ]>
 
 <sect1 id="wine" xreflabel="Wine-&wine-version;">
@@ -79,7 +79,7 @@
 -->
 
     <para>
-      Wine has three build types. Scroll down to the build type you want.
+      Wine has four build types. Scroll down to the build type you want.
       Visit <xref linkend="winedeps"/> for more information about each
       build type.
     </para>
@@ -88,8 +88,31 @@
       <title>WoW64</title>
 
       <para>
-        Install WoW64 Wine by running
-        the following commands:
+        Install WoW64 Wine by running the following commands:
+      </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+../configure --prefix=/usr   \
+             --disable-tests \
+             --enable-archs=x86_64,i386 &amp;&amp;
+make</userinput></screen>
+
+      <para>
+        Now, as the &root; user:
+      </para>
+
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install</userinput></screen>
+
+    </sect3>
+
+    <sect3>
+      <title>Old WoW64</title>
+
+      <para>
+        Install the old WoW64 Wine by running the following commands:
       </para>
 
 <screen><userinput>mkdir build-win64 &amp;&amp;
@@ -127,8 +150,7 @@ make install</userinput></screen>
       <title>64-bit Only</title>
 
       <para>
-        Install 64-bit only Wine by running
-        the following commands:
+        Install 64-bit only Wine by running the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -162,8 +184,7 @@ make install</userinput></screen>
 -->
 
       <para>
-        Install 32-bit only Wine by running
-        the following commands:
+        Install 32-bit only Wine by running the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -228,13 +249,17 @@ make install</userinput></screen>
     <para>
       As for Direct3D 12, you may also wish to install
       <xref linkend="vkd3d-proton"/> which replaces
-      VKD3D provided by
-      Wine. VKD3D is less
+      VKD3D provided by Wine. VKD3D is less
       aggressive with optimizations and is geared for general use, whereas
       VKD3D-Proton has aggressive optimizations and
       is geared towards gaming. Despite the name, it can be used with
       Wine and works quite well.
     </para>
+
+    <note><para>
+      If you installed the newer WoW64 architecture, you will still need
+      32-bit/i686 DLLs for anything extra you wish to install, like DXVK.
+    </para></note>
 
     <para>
       The choice of what to install is up to you.
