@@ -275,8 +275,8 @@ make</userinput></screen>
         </seg>
         <seg>Various dynamic and static libraries</seg>
         <seg>
-          /usr/include/wine/windows, /usr/lib/wine/x86_64-windows,
-          /usr/lib32/wine/i686-unix, and /usr/share/wine
+          /usr/include/wine, /usr/lib/wine, and
+          /usr/share/wine
         </seg>
       </seglistitem>
     </segmentedlist>
