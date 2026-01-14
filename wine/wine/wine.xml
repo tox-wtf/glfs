@@ -113,11 +113,12 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 make</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
-<screen role="root"><userinput>make install      &amp;&amp;
-cd ../build-win64 &amp;&amp;
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install         &amp;&amp;
+cd ../build-win64    &amp;&amp;
 make install</userinput></screen>
 
     </sect3>
@@ -140,10 +141,11 @@ cd    build &amp;&amp;
 make</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install</userinput></screen>
 
     </sect3>
 
@@ -173,10 +175,11 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 make</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install</userinput></screen>
 
     </sect3>
 
@@ -196,6 +199,14 @@ make</userinput></screen>
       <parameter>--with-wine64=../build-win64</parameter>: This option
       allows Wine during the compilation stage to use files built in
       the wine64 stage to enable support for both 32-bit and 64-bit.
+    </para>
+
+    <para>
+      <command>rm -rf /usr/lib/wine</command>: This command removes potentially
+      conflicting Wine libraries before installation if Wine has been installed
+      previously. Issues normally arise when switching from one build type to
+      another. When this is done, Wine will say there's a version mismatch,
+      which comes from libraries that shouldn't exist anymore.
     </para>
 
   </sect2>
