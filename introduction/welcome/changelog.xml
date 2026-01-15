@@ -44,6 +44,11 @@
       <para>January 14th, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - libpng-1.6.52 -&gt; libpng-1.6.54 (security). See
+          BLFS <ulink
+          url="https://linuxfromscratch.org/blfs/advisories/consolidated.html#sa-12.4-076">SA-12.4-076</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - ALSA: 1.2.15.2 -&gt; 1.2.15.3.</para>
         </listitem>
       </itemizedlist>
