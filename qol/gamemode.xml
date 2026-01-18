@@ -66,7 +66,8 @@ cd    build &amp;&amp;
 
 meson setup --prefix=/usr                      \
             --libexecdir=/usr/libexec/gamemode \
-            --buildtype=release                \
+            --buildtype=release                \</userinput><userinput revision="sysv">
+            -D with-sd-bus-provider=elogind    \</userinput><userinput>
             .. &amp;&amp;
 ninja</userinput></screen>
 
@@ -94,11 +95,12 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-meson setup --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --buildtype=release      \
+CC="gcc -m32" CXX="g++ -m32"                  \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig          \
+meson setup --prefix=/usr                     \
+            --libdir=/usr/lib32               \
+            --buildtype=release               \
+            -D with-sd-bus-provider=no-daemon \
             .. &amp;&amp;
 ninja</userinput></screen>
 
@@ -123,6 +125,16 @@ ldconfig</userinput></screen>
     class="directory">/usr/libexec</filename>.</para>
 
     &meson-buildtype-release;
+
+    <para revision="sysv"><parameter>-D with-sd-bus-provider=elogind</parameter>:
+    This parameter ensures that elogind gets used instead of systemd-logind,
+    as Systemd is the default in this package. You can override the requirement
+    for logind altogether via the next parameter.</para>
+
+    <para><parameter>-D with-sd-bus-provider=no-daemon</parameter>: This
+    parameter disables building the daemon which requires &logind; and
+    inih. This is used in the lib32 build since the daemon doesn't provide any
+    libraries.</para>
 
   </sect2>
 
