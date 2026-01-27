@@ -41,6 +41,25 @@
     -->
 
     <listitem>
+      <para>January 27th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Added Tooling Chapter and moved several packages
+          like CMake and LLVM to it.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - OCL-ICD: Added.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - OpenCL-Headers: Added.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Ruby: Added.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>January 26th, 2026</para>
       <itemizedlist>
         <listitem>

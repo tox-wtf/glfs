@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY ocl-icd-root
+    "https://github.com/OCL-dev/ocl-icd/archive/v&ocl-icd-version;">
+  <!ENTITY ocl-icd-download
+    "&ocl-icd-root;/ocl-icd-&ocl-icd-version;.tar.gz">
+]>
+
+<sect1 id="ocl-icd" xreflabel="OCL-ICD-&ocl-icd-version;">
+  <?dbhtml filename="ocl-icd.html"?>
+
+  <title>OCL-ICD-&ocl-icd-version;</title>
+
+  <indexterm zone="ocl-icd">
+    <primary sortas="a-ocl-icd">OCL-ICD</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to OCL-ICD</title>
+
+    <para>
+      The OCL-ICD package provides an OpenCL ICD loader.
+    </para>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&ocl-icd-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">OCL-ICD Dependencies</bridgehead>
+
+    <para role="required">
+      <xref linkend="ruby"/>
+    </para>
+
+    <para role="recommended">
+      <xref linkend="opencl-headers"/>
+    </para>
+
+    <para role="optional">
+      <ulink url="&blfs-svn;/general/asciidoctor.html">Asciidoctor</ulink> and
+      <ulink url="&blfs-svn;/pst/xmlto.html">xmlto</ulink>
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of OCL-ICD</title>
+
+    <para>
+      Install OCL-ICD by running the following commands:
+    </para>
+
+<screen><userinput>autoreconf -fi &amp;&amp;
+./configure --prefix=/usr &amp;&amp;
+make</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>lib32 Installation of OCL-ICD</title>
+
+    <para>
+      Install lib32-OCL-ICD by running the following
+      commands:
+    </para>
+
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"          \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig  \
+./configure --prefix=/usr             \
+            --libdir=/usr/lib32       \
+            --host=i686-pc-linux-gnu &amp;&amp;
+
+make</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>make   DESTDIR=$PWD/DESTDIR install   &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-configure;
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Libraries</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          cllayerinfo
+        </seg>
+        <seg>
+          libOpenCL
+        </seg>
+        <seg>
+          /usr/share/doc/ocl-icd
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="cllayerinfo">
+        <term><command>cllayerinfo</command></term>
+        <listitem>
+          <para>
+            displays information about an OpenCL layer
+          </para>
+          <indexterm zone="ocl-icd cllayerinfo">
+            <primary sortas="b-cllayerinfo">cllayerinfo</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libOpenCL">
+        <term><filename class="libraryfile">libOpenCL</filename></term>
+        <listitem>
+          <para>
+            is the OpenCL ICD loader
+          </para>
+          <indexterm zone="ocl-icd libOpenCL">
+            <primary sortas="c-libOpenCL">libOpenCL</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
