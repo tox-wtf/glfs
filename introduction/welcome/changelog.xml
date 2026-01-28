@@ -147,8 +147,8 @@
       <para>January 17th, 2026</para>
       <itemizedlist>
         <listitem>
-          <para>[zeckma] - NVIDIA-r580: 580.119.02 -&gt; 580.126.09. Fixes
-          <ulink url="&glfs-issues;/359">#359</ulink>.</para>
+          <para>[zeckma] - NVIDIA-r580: 580.119.02 -&gt; 580.126.09 (security).
+          Fixes <ulink url="&glfs-issues;/359">#359</ulink>.</para>
         </listitem>
         <listitem>
           <para>[zeckma] - CUDA: 13.1.0 -&gt; 13.1.1. Fixes
@@ -335,8 +335,9 @@
       <para>December 22nd, 2025</para>
       <itemizedlist>
         <listitem>
-          <para>[zeckma] - NVIDIA-590.48.01; CUDA-13.1.0; CUDA-13.0.2: Added.
-          Fixes <ulink url="&glfs-issues;/327">#327</ulink>.</para>
+          <para>[zeckma] - NVIDIA-590.48.01 (security); CUDA-13.1.0;
+          CUDA-13.0.2: Added. Fixes <ulink
+          url="&glfs-issues;/327">#327</ulink>.</para>
         </listitem>
       </itemizedlist>
     </listitem>
