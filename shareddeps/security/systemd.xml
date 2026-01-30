@@ -29,13 +29,12 @@
     <title>Introduction to Systemd</title>
 
     <para>
-      While Systemd was installed when
-      building LFS, there are many features provided by the package that
-      were not included in the initial installation because
-      Linux-PAM was not yet installed.
-      The Systemd package needs to be
-      rebuilt to provide a working <command>systemd-logind</command> service,
-      which provides many additional features for dependent packages.
+      While Systemd was installed when building LFS, there are many features
+      provided by the package that were not included in the initial
+      installation because Linux-PAM was not yet installed. The Systemd package
+      needs to be rebuilt to provide a working
+      <command>systemd-logind</command> service, which provides many additional
+      features for dependent packages.
     </para>
 
     <itemizedlist spacing="compact">
@@ -273,6 +272,56 @@ EOF</userinput></screen>
       but it will not return an error. If running in a Bash session that exits
       on error, the above command won't halt it. Running it is safe.
     </para></note>
+
+    <para>
+      A desktop environment often runs as a group of user services.
+      These services are spawned by the per-user instance, instead
+      of the login shell. To ensure those services get the environment
+      variables set from <filename
+      class='directory'>/etc/profile.d</filename>, as the &root; user, install
+      an environment generator to dump all the relevant exported
+      environment variables into the per-user instance when the
+      instance starts to run:
+    </para>
+
+<screen role='root'><userinput>install -vdm755 /etc/systemd/user-environment-generators &amp;&amp;
+cat &gt; /etc/systemd/user-environment-generators/50-profile.sh &lt;&lt; "EOF"
+<literal>#!/usr/bin/env -S -i /usr/bin/bash
+# SPDX-License-Identifier: MIT
+
+. /etc/profile
+
+# Systemd should have already set a better value for them.
+unset XDG_RUNTIME_DIR
+for i in $(locale); do
+  unset ${i%=*}
+done
+
+# Some shell magic that we don't want to expose.
+unset SHLVL
+
+python3 &lt;&lt; _EOF
+import os
+for var in os.environ:
+  # Simply unsetting them in shell does not work.
+  if var in ['LC_CTYPE', '_']:
+    continue
+
+  print(var + '=' + os.environ[var])
+_EOF</literal>
+EOF</userinput></screen>
+
+    <para>
+      Read <ulink role='man'
+      url='&man;systemd.environment-generator.7'>systemd.environment-generator(7)</ulink>
+      for details about the environment generators. Note that if
+      you've edited the content of
+      <filename class='directory'>/etc/profile.d</filename> when a desktop
+      environment is running, you need to run the <command>systemctl
+      --user --daemon-reload</command> command to sync the change into the
+      systemd per-user instance, and then log out and log in again to sync
+      the change into the desktop environment.
+    </para>
 
     <important>
       <para>
