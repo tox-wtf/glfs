@@ -81,6 +81,10 @@
 <!ENTITY static-libraries
   "<para><parameter>--disable-static</parameter>: This switch prevents
   installation of static versions of the libraries.</para>">
+<!ENTITY gnulib
+  "<para>First, make a fix required by glibc-2.43 or later:</para>
+<screen><userinput remap='pre'>sed -r '/_GL_EXTERN_C/s/w?memchr|bsearch/(&amp;)/' \
+    -i $(find -name \*.in.h)</userinput></screen>">
 
 <!-- Save repetition for multiple passes of a package. -->
 <!ENTITY dbus-m64 "
