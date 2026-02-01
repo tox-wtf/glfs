@@ -284,8 +284,7 @@ EOF</userinput></screen>
       instance starts to run:
     </para>
 
-<screen role='root'><userinput>install -vdm755 /etc/systemd/user-environment-generators &amp;&amp;
-cat &gt; /etc/systemd/user-environment-generators/50-profile.sh &lt;&lt; "EOF"
+<screen role='root'><userinput>install -vDm755 /dev/stdin /etc/systemd/user-environment-generators/50-profile.sh &lt;&lt; "EOF"
 <literal>#!/usr/bin/env -S -i /usr/bin/bash
 # SPDX-License-Identifier: MIT
 
@@ -318,7 +317,7 @@ EOF</userinput></screen>
       you've edited the content of
       <filename class='directory'>/etc/profile.d</filename> when a desktop
       environment is running, you need to run the <command>systemctl
-      --user --daemon-reload</command> command to sync the change into the
+      --user daemon-reload</command> command to sync the change into the
       systemd per-user instance, and then log out and log in again to sync
       the change into the desktop environment.
     </para>

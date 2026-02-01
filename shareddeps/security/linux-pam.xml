@@ -98,6 +98,7 @@ ninja</userinput></screen>
         may become totally unusable.
       </para>
 
+<!--
       <para>
          You should also be aware that <command>ninja install</command>
          overwrites the configuration files in
@@ -105,6 +106,7 @@ ninja</userinput></screen>
          <filename>/etc/environment</filename>. If you
          have modified those files, be sure to back them up.
       </para>
+-->
     </caution>
 
     <para>
