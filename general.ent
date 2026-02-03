@@ -71,11 +71,11 @@
 <!ENTITY mlfs-base            "&lfs-website;/~thomas/multilib">
 <![ %sysv; [
 <!ENTITY mlfs-root            "&mlfs-base;">
-<!ENTITY lfs-filename         "lfs-book">
+<!ENTITY lfs-filename         "mlfs-book">
 ]]>
 <![ %systemd; [
 <!ENTITY mlfs-root            "&mlfs-base;-systemd">
-<!ENTITY lfs-filename         "lfs-systemd">
+<!ENTITY lfs-filename         "mlfs-systemd">
 ]]>
 <!ENTITY mlfs-m32-root        "&mlfs-root;-m32">
 
@@ -205,8 +205,7 @@ git merge --no-commit &mlfs-extra-commits;</userinput></screen>">
  with by changing the <envar>ARCH</envar> variable's value.
  The above command will render 64-bit and 32-bit support but leaves out
  x32-bit support, which is not needed for this book. If you want to get
- that support too, change <computeroutput>ARCH=ml_32</computeroutput> to
- <computeroutput>ARCH=ml_all</computeroutput>.
+ that support too, remove <computeroutput>ARCH=ml_32</computeroutput>.
  You can then point to the HTML using a browser like
  <ulink url='&blfs-svn;/xsoft/firefox.html'>Firefox</ulink> or
  <ulink url='&blfs-svn;/basicnet/lynx.html'>Lynx</ulink>.

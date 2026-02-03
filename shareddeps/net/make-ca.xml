@@ -105,6 +105,14 @@
 </literal>EOF</userinput></screen>
 
     <para>
+      The make-ca script uses a deprecated option for a command which can
+      produce unwanted behavior under certain conditions. Fix it by running the
+      following command:
+    </para>
+
+    <screen><userinput>sed '/mktemp/s/-t //' -i make-ca</userinput></screen>
+
+    <para>
       Now to install the make-ca script, it must be
       installed into the correct location as the &root; user:
     </para>
