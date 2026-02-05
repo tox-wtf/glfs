@@ -48,9 +48,8 @@
   <abstract>
     <para>
       This book introduces and guides the reader through additions to the
-      system like Steam,
-      Wine, and their dependencies after the
-      LFS or Multilib-LFS book on x86_64 systems.
+      system like Steam, Wine, and their dependencies after the LFS or
+      Multilib LFS book on x86_64 systems.
     </para>
   </abstract>
 
