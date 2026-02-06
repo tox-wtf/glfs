@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>February 6th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - sdl2-compat: 2.32.62 -&gt; 2.32.64.
+          Fixes <ulink url="&glfs-issues;/363">#363</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 4th, 2026</para>
       <itemizedlist>
         <listitem>
