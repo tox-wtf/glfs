@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>February 8th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - systemd: 259 -&gt; 259.1. Fixes
+          <ulink url="&glfs-issues;/369">#369</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 7th, 2026</para>
       <itemizedlist>
         <listitem>
