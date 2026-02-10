@@ -121,11 +121,6 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="ply"/> (required for Intel Vulkan)
-          </para>
-        </listitem>
-        <listitem>
-          <para>
             <xref linkend="vulkan-sdk"/> (required for Vulkan and Zink
             Gallium3D support)
           </para>
