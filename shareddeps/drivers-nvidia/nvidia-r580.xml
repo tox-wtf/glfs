@@ -417,59 +417,6 @@ options nvidia NVreg_TemporaryFilePath=/var/tmp
 # End /usr/lib/modprobe.d/nvidia.conf</literal>
 EOF</userinput></screen>
 
-      <para>
-        This driver does not install DRI
-        <footnote><para>
-          Direct Rendering Infrastructure.
-        </para></footnote>
-        drivers or driver stubs. Likewise, it does not install a
-        pkgconf file saying where to find the
-        associated files. The files aren't needed with this driver. However,
-        some applications expect the pkg-config file
-        to exist, namely <xref linkend="xorg-server"/>. Create one now as the
-        &root; user:
-      </para>
-
-<screen role="root"><userinput>cat &gt; /usr/lib/pkgconfig/dri.pc &lt;&lt; "EOF"
-<literal>prefix=/usr
-includedir=${prefix}/include
-
-dridriverdir=/usr/lib/dri
-
-Name: dri
-Description: Direct Rendering Infrastructure
-Version: &nvidia-r580-version;
-Requires.private: libdrm >=  2.4.109
-Cflags: -I${includedir}</literal>
-EOF</userinput></screen>
-
-      <para>
-        Applications that do require this file typically will not link against
-        any library in <filename class="libraryfile">/usr/lib/dri</filename>.
-        If you are worried that an application will try to link against
-        non-existent libraries, you can compile <xref linkend="mesa"/> to get
-        these libraries and a real pkg-config file.
-        Note that those libraries will not be used when this driver is in use.
-      </para>
-
-      <para>
-        Like with the situation regarding DRI, there are a few header files
-        only installed by <xref linkend="mesa"/> but can be dropped in without
-        an issue. One is for declaring the DRI interface, one for declaring
-        Mesa's EGL EXT system that is used by some software like GNOME's
-        mutter, and another for declaring the EGL EXT system for ANGLE, with
-        modifications geared for it. Using <xref linkend="wget"/>, download
-        and install them as the &root; user:
-      </para>
-
-<screen role="root"><userinput>&install-dir; /usr/include/GL/internal /usr/include/EGL &amp;&amp;
-wget &mesa-raw-repo;/include/GL/internal/dri_interface.h \
-  -O /usr/include/GL/internal/dri_interface.h &amp;&amp;
-wget &mesa-raw-repo;/include/EGL/eglmesaext.h \
-  -O /usr/include/EGL/eglmesaext.h &amp;&amp;
-wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
-  -O /usr/include/EGL/eglext_angle.h</userinput></screen>
-
     </sect3>
 
   </sect2>
@@ -478,16 +425,15 @@ wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
     <title>Proceeding</title>
 
     <para>
-      If you put all the files in place in the configuration section, you
-      should not need Mesa for any packages in the book or in BLFS. The OpenGL,
-      DRI, and EGL files provided here should be suitable enough. GNOME and KDE
-      are known to work with this configuration.
+      If you installed <xref linkend="libglvnd"/>, <xref linkend="libgbm"/>,
+      and <xref linkend="dri"/>, you should not need Mesa as a dependency for
+      any package in any of the LFS books.
     </para>
 
     <para>
-      With this pure NVIDIA-only setup, you can skip to <xref linkend="x"/> and
+      With this Mesa-less setup, you can skip to <xref linkend="x"/> and
       expect smooth sailing. If you want to however, you can also install CUDA
-      in this subsection, which up to you.
+      in this subsection to help performance, which up to you.
     </para>
 
   </sect2>

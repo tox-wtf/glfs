@@ -101,6 +101,17 @@
         </listitem>
         <listitem>
           <para>
+            <xref linkend="libgbm"/> (to replace Mesa's <filename
+            class="libraryfile">libgbm</filename><footnote><para>
+              By default, <xref linkend="libgbm"/> gets installed as it has a
+              faster installation and requires less dependencies. If you want
+              Mesa's solution, read <quote>Command Explanations</quote> to find
+              out which option to remove.
+            </para></footnote>)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
             <xref linkend="libglvnd"/> (for the main OpenGL libraries)
           </para>
         </listitem>
@@ -135,7 +146,6 @@
     </para>
 
     <para role="optional">
-      &gbm;,
       <ulink url="&blfs-svn;/general/libdisplay-info.html">libdisplay-info</ulink>,
       <xref linkend="libunwind"/>,
       <ulink url="&blfs-svn;/general/lm-sensors.html">lm-sensors</ulink>,
@@ -165,6 +175,7 @@ cd    build &amp;&amp;
 meson setup --prefix=/usr            \
             --buildtype=release      \
             -D glvnd=enabled         \
+            -D libgbm-external=true  \
             -D platforms=x11,wayland \
             -D gallium-drivers=auto  \
             -D vulkan-drivers=auto   \
@@ -205,6 +216,7 @@ meson setup --cross-file=lib32       \
             --libdir=/usr/lib32      \
             --buildtype=release      \
             -D glvnd=enabled         \
+            -D libgbm-external=true  \
             -D platforms=x11,wayland \
             -D gallium-drivers=auto  \
             -D vulkan-drivers=auto   \
@@ -249,6 +261,13 @@ ldconfig</userinput></screen>
       libraries and have not installed libglvnd, remove this parameter. Read
       <xref linkend="aboutgl"/> for more information. Switching is not
       recommended.
+    </para>
+
+    <para>
+      <parameter>-D libgbm-external=true</parameter>: This links against the
+      system-installed <filename class="libraryfile">libgbm</filename> and
+      disables building the GBM. If you want to install Mesa's <filename
+      class="libraryfile">libgbm</filename>, remove this option.
     </para>
 
     <para>
@@ -458,12 +477,6 @@ ldconfig</userinput></screen>
 -->
 
     <para>
-      <option>-D libgbm-external=true</option>: This links against the
-      system-installed <filename class="libraryfile">libgbm</filename> and
-      disables building the GBM if it's installed.
-    </para>
-
-    <para>
       <computeroutput>BINDGEN_EXTRA_CLANG_ARGS="-m32"</computeroutput>: This
       variable ensures that <xref linkend="rust-bindgen"/> generates bindings
       that don't go out of bounds when compiling lib32 Nouveau Vulkan.
@@ -496,9 +509,9 @@ ldconfig</userinput></screen>
         </seg>
         <seg>
           libEGL_mesa,
-          libGLX_mesa,
-          libgallium-&mesa-version;, and
-          libgbm
+          libGLX_mesa, and
+          libgallium-&mesa-version;<!--, and
+          libgbm-->
         </seg>
         <seg>
           <!-- Begin DRI Driver Stubs -->
@@ -597,6 +610,7 @@ ldconfig</userinput></screen>
         </listitem>
       </varlistentry>
 
+<!--
       <varlistentry id="mesa-libgbm">
         <term><filename class="libraryfile">libgbm</filename></term>
         <listitem>
@@ -608,6 +622,7 @@ ldconfig</userinput></screen>
           </indexterm>
         </listitem>
       </varlistentry>
+-->
 
     </variablelist>
 

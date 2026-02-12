@@ -27,9 +27,7 @@
       It is utilized by various libraries and applications like Wayland
       compositors. Mesa supplies libgbm, but requires dependencies that aren't
       needed in order to install just libgbm. This package allows you to
-      install just the library. If you intend to install <xref
-      linkend="mesa"/>, you can install libgbm from that package if you wish.
-      There is no major difference.
+      install just the library.
     </para>
 
     <itemizedlist spacing="compact">

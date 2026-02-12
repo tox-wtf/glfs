@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>February 12th, 2025</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Added DRI from Mesa, and made it and libgbm the
+          default.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>February 10th, 2026</para>
       <itemizedlist>
         <listitem>
