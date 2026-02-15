@@ -44,7 +44,7 @@
       <para>February 14th, 2025</para>
       <itemizedlist>
         <listitem>
-          <para>[zeckma] - Drop Systemd and link to new MLFS location.</para>
+          <para>[zeckma] - Drop SysVinit and link to new MLFS location.</para>
         </listitem>
         <listitem>
           <para>[zeckma] - PyYAML: 6.0.2 -&gt; 6.0.3. Fixes
