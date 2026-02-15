@@ -12,20 +12,10 @@ following a Linux From Scratch install.
 
 ## Where to Read
 
-Go to https://glfs-book.github.io/glfs/ and start going through the book!
+Go to https://linuxfromscratch.org/glfs/view/dev/ or
+https://glfs-book.github.io/glfs/ and start going through the book!
 
-The online book is rolling release but there is a stable version in the GLFS
-source via the `stable` branch.
-
-You can switch to it by running the following command:
-```Bash
-git checkout stable
-```
-
-Then render the book by running the following command:
-```Bash
-make STAB=release
-```
+You can find more online copies at https://linuxfromscratch.org/glfs/view/.
 
 There are also [releases](https://github.com/glfs-book/glfs/releases) available
 for download.
