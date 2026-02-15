@@ -2,7 +2,7 @@
 <!ENTITY % conditional-entities SYSTEM "conditional.ent">
 %conditional-entities;
 
-<!ENTITY xlfs-version "12.4">
+<!ENTITY xlfs-version "13.0">
 <!ENTITY % relnum     "&xlfs-version;">
 
 <![ %development; [
@@ -11,27 +11,29 @@
 %version-entities;
 <![ %sysv; [
 <!ENTITY lfs-version   "development">
+<!ENTITY mlfs-version  "dev-sysv">
 <!ENTITY blfs-version  "svn">
 <!ENTITY patch-version "svn">
 ]]>
 <![ %systemd; [
 <!ENTITY lfs-version   "systemd">
+<!ENTITY mlfs-version  "dev">
 <!ENTITY blfs-version  "systemd">
 <!ENTITY patch-version "svn">
 ]]>
 ]]><!-- End %development -->
 
-<!ENTITY mlfs-stable        "6fac5d60ac4da40e5d027ffcac5c0d0f32171f5f">
-<!ENTITY mlfs-extra-commits "99d3c4a4c703a522509e087fb7c9dd7893241978">
 <![ %release; [
 <!ENTITY version       "%relnum;">
 <![ %sysv; [
 <!ENTITY lfs-version   "&xlfs-version;">
+<!ENTITY mlfs-version  "&xlfs-version;-sysv">
 <!ENTITY blfs-version  "&xlfs-version;">
 <!ENTITY patch-version "&xlfs-version;">
 ]]>
 <![ %systemd; [
 <!ENTITY lfs-version   "&xlfs-version;-systemd">
+<!ENTITY blfs-version  "&xlfs-version;">
 <!ENTITY blfs-version  "&xlfs-version;-systemd">
 <!ENTITY patch-version "&xlfs-version;">
 ]]>
@@ -46,16 +48,10 @@
 <!ENTITY maintainer-firstname "GLFS">
 <!ENTITY maintainer-address   "zeckma.tech@gmail.com;">
 
-<!ENTITY lfs-website  "https://www.&lfs-domainname;">
-<!ENTITY glfs-website "https://&glfs-domainname;/glfs">
-<!ENTITY slfs-website "https://&glfs-domainname;/slfs">
-<!-- downloads_root must have an entity because it is needed for scripts
-     Note:  s/_/-/ in comment to avoid grep error
-     It is also needed for systemd units
-     -->
-<!ENTITY downloads-root       "&lfs-website;/blfs/downloads/&blfs-version;">
-<!--<!ENTITY downloads-root-systemd "https://www.linuxfromscratch.org/blfs/downloads/systemd">
-<!ENTITY downloads-project    "https://downloads.&lfs-domainname;">-->
+<!ENTITY lfs-website    "https://www.&lfs-domainname;">
+<!ENTITY glfs-website   "https://&glfs-domainname;/glfs">
+<!ENTITY slfs-website   "https://&glfs-domainname;/slfs">
+<!ENTITY downloads-root "&lfs-website;/blfs/downloads/&blfs-version;">
 
 <!ENTITY sources-anduin-http  "https://anduin.linuxfromscratch.org/BLFS">
 <!ENTITY sources-anduin-ftp   "ftp://anduin.linuxfromscratch.org/BLFS">
@@ -68,15 +64,8 @@
 <!ENTITY blfs-ticket-root     "https://wiki.&lfs-domainname;/blfs/ticket/">
 <!ENTITY lfs-root             "&lfs-website;/lfs/view/&lfs-version;">
 
-<!ENTITY mlfs-base            "&lfs-website;/~thomas/multilib">
-<![ %sysv; [
-<!ENTITY mlfs-root            "&mlfs-base;">
-<!ENTITY lfs-filename         "mlfs-book">
-]]>
-<![ %systemd; [
-<!ENTITY mlfs-root            "&mlfs-base;-systemd">
-<!ENTITY lfs-filename         "mlfs-systemd">
-]]>
+<!ENTITY mlfs-base            "&lfs-website;/mlfs/view">
+<!ENTITY mlfs-root            "&mlfs-base;/&mlfs-version;">
 <!ENTITY mlfs-m32-root        "&mlfs-root;-m32">
 
 <!ENTITY lfs-dev              "&lfs-website;/lfs/view/development">
@@ -120,111 +109,6 @@
 <!ENTITY blfs-svn                     "&lfs-website;/blfs/view/&blfs-version;">
 
 <!ENTITY arch-pkgs                    "https://archlinux.org/packages">
-
-<![ %development; [
-  <!ENTITY important-stability "<para>
-  This book viewable online is in a constant flux of updates, and updates about
-  as often as the BLFS Git/SVN version. While there isn't a viewable online
-  version of the stable release, you can either render it yourself by following
-  <ulink url='&glfs-repo;'/>, or you can download a <ulink
-  url='&glfs-repo;/releases'>release</ulink>.
-</para>">
-]]>
-<![ %release; [
-  <!ENTITY important-stability "<para>
-  This is the stable release of this book and is known to have working
-  instructions and matches up with LFS, BLFS, and SLFS &xlfs-version;. External
-  links will point to stable sources. However, links that point to MLFS are
-  problematic as MLFS is rolling release, not stable, so information there may
-  be ahead of the results that appear from this book, and instructions in the
-  newer version of the book may lead to broken instructions in this one.
-  However, in <xref linkend='achievingml'/>, it will show you how to render a
-  stable release of MLFS.
-</para>">
-]]>
-<![ %development; [
-  <!ENTITY multilib-rendering1 "<para>You can render MLFS if you wish.</para>">
-<![ %sysv; [
-  <!ENTITY multilib-rendering2 "<para>First, install <ulink
-  url='&blfs-svn;/general/git.html'>Git</ulink>, then
-  clone the LFS repo and switch to the
-  <computeroutput>multilib</computeroutput> branch:
-</para>
-<screen><userinput>git clone https://git.linuxfromscratch.org/lfs.git mlfs &amp;&amp;
-cd mlfs &amp;&amp;
-git checkout multilib</userinput></screen>
-<para>
-  Now inspect the <filename>INSTALL</filename> file to check for the needed
-  dependencies in order to render the book. Once you have ensured you have
-  installed everything, render the book: 
-</para>
-<screen><userinput>make -j1 ARCH=ml_32</userinput></screen>">
-]]>
-<![ %systemd; [
-  <!ENTITY multilib-rendering2 " ">
-]]>
-]]>
-<![ %release; [
-  <!ENTITY multilib-rendering1 "<para>
-  The links above, however, are rolling release and are rendered frequently.
-  The known version of MLFS to work with this version of GLFS is
-  &mlfs-stable;<!-- with &mlfs-extra-commits; merged-->. You can render it by
-  following the instructions below.
-</para>">
-<![ %sysv; [
-  <!ENTITY multilib-rendering2 "<para>First, install <ulink
-  url='&blfs-svn;/general/git.html'>Git</ulink>, then
-  clone the LFS repo, switch to the
-  <computeroutput>multilib</computeroutput> branch, then switch to the stable
-  version:
-</para>
-<screen><userinput>git clone https://git.linuxfromscratch.org/lfs.git mlfs &amp;&amp;
-cd mlfs &amp;&amp;
-git checkout multilib &amp;&amp;
-git checkout &mlfs-stable; &amp;&amp;
-git merge --no-commit &mlfs-extra-commits;</userinput></screen>
-<para>
-  Now inspect the <filename>INSTALL</filename> file to check for the needed
-  dependencies in order to render the book. Once you have ensured you have
-  installed everything, render the book: 
-</para>
-<screen><userinput>make -j1 ARCH=ml_32</userinput></screen>">
-]]>
-<![ %systemd; [
-  <!ENTITY multilib-rendering2 "<para>
-  Now switch to the stable git hash:
-</para>
-<screen><userinput>git checkout &mlfs-stable; &amp;&amp;
-git merge --no-commit &mlfs-extra-commits;</userinput></screen>">
-]]>
-]]>
-<!ENTITY read-book "<para>
- This will render the book in
- <filename class='directory'>~/public_html/&lfs-filename;</filename>.
- You can change how much multilib support you wish to render the book
- with by changing the <envar>ARCH</envar> variable's value.
- The above command will render 64-bit and 32-bit support but leaves out
- x32-bit support, which is not needed for this book. If you want to get
- that support too, remove <computeroutput>ARCH=ml_32</computeroutput>.
- You can then point to the HTML using a browser like
- <ulink url='&blfs-svn;/xsoft/firefox.html'>Firefox</ulink> or
- <ulink url='&blfs-svn;/basicnet/lynx.html'>Lynx</ulink>.
-</para>
-
-<para>
-  For <application>Firefox</application>, type in the search bar:
-
-<computeroutput>file:///home/<replaceable>&lt;username&gt;</replaceable>/public_html/&lfs-filename;/index.html</computeroutput>,
-
-  and replace <replaceable>&lt;username&gt;</replaceable>
-  with the name of the username you rendered the book with.
-</para>
-
-<para>
-  For <application>Lynx</application>, run the following:
-</para>
-
-<screen><userinput>lynx ~/public_html/&lfs-filename;/index.html</userinput></screen>">
 
 <!ENTITY as_root "<note><para>When installing multiple packages in a script,
   the installation needs to be done as the root user. There are three general

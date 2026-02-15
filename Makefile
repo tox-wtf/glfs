@@ -31,11 +31,11 @@ else
 endif
 
 ifndef REV
-  REV = sysv
+  REV = systemd
 endif
-ifneq ($(REV), sysv)
-  ifneq ($(REV), systemd)
-    $(error REV must be 'sysv' (default) or 'systemd')
+ifneq ($(REV), systemd)
+  ifneq ($(REV), sysv)
+    $(error REV must be 'systemd' (default) or 'sysv' (not maintained))
   endif
 endif
 
@@ -55,18 +55,18 @@ ifeq ($(AUTO_CLEAN), 0)
   CLEAN =
 endif
 
-ifeq ($(REV), sysv)
+ifeq ($(REV), systemd)
   BASEDIR         ?= $(HTML_ROOT)/glfs
   DUMPDIR         ?= $(DUMP_ROOT)/glfs-commands
   GLFSHTML        ?= glfs-html.xml
   GLFSHTML2       ?= glfs-html2.xml
   GLFSFULL        ?= glfs-full.xml
 else
-  BASEDIR         ?= $(HTML_ROOT)/glfs-systemd
-  DUMPDIR         ?= $(DUMP_ROOT)/glfs-sysd-commands
-  GLFSHTML        ?= glfs-systemd-html.xml
-  GLFSHTML2       ?= glfs-systemd-html2.xml
-  GLFSFULL        ?= glfs-systemd-full.xml
+  BASEDIR         ?= $(HTML_ROOT)/glfs-sysv
+  DUMPDIR         ?= $(DUMP_ROOT)/glfs-sysv-commands
+  GLFSHTML        ?= glfs-sysv-html.xml
+  GLFSHTML2       ?= glfs-sysv-html2.xml
+  GLFSFULL        ?= glfs-sysv-full.xml
 endif
 
 glfs: html wget-list
@@ -79,15 +79,15 @@ help:
 	@echo ""
 	@echo "  REV=<rev>            Build variation of book"
 	@echo "                       Valid values for REV are:"
+	@echo "                       * systemd - Build book for Systemd"
 	@echo "                       * sysv    - Build book for SysV"
-	@echo "                       * systemd - Build book for systemd"
-	@echo "                       Defaults to 'sysv'"
+	@echo "                       Defaults to 'systemd'"
 	@echo ""
 	@echo "  BASEDIR=<dir>        Put the output in directory <dir>."
 	@echo "                       Defaults to"
-	@echo "                       '$(HTML_ROOT)/glfs' if REV=sysv (or unset)"
+	@echo "                       '$(HTML_ROOT)/glfs' if REV=systemd (or unset)"
 	@echo "                       or to"
-	@echo "                       '$(HTML_ROOT)/glfs-systemd' if REV=systemd"
+	@echo "                       '$(HTML_ROOT)/glfs-sysv' if REV=sysv"
 	@echo ""
 	@echo "  V=<val>              If <val> is a non-empty value, all"
 	@echo "                       steps to produce the output is shown."
@@ -96,8 +96,9 @@ help:
 	@echo "  THEME_PATH=<PATH>    Sets the path of themes (CSS files)."
 	@echo "                       stylesheets/lfs-xsl' is the default."
 	@echo ""
-	@echo "  THEME=<theme>        Sets the theme of the book, ie. light/dark."
-	@echo "                       'dark' is the default."
+	@echo "  THEME=<theme>        Sets the theme of the book, ie.
+	@echo "                       light/dark/dynamic."
+	@echo "                       'dynamic' is the default."
 	@echo ""
 	@echo "Targets:"
 	@echo "  help                 Show this help text."
