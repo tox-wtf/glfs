@@ -96,7 +96,7 @@ help:
 	@echo "  THEME_PATH=<PATH>    Sets the path of themes (CSS files)."
 	@echo "                       stylesheets/lfs-xsl' is the default."
 	@echo ""
-	@echo "  THEME=<theme>        Sets the theme of the book, ie.
+	@echo "  THEME=<theme>        Sets the theme of the book, ie."
 	@echo "                       light/dark/dynamic."
 	@echo "                       'dynamic' is the default."
 	@echo ""
