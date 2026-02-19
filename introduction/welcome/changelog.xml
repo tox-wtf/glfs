@@ -41,7 +41,16 @@
     -->
 
     <listitem>
-      <para>February 14th, 2025</para>
+      <para>February 19th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libgpg-error: 1.57 -&gt; 1.59.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>February 14th, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[zeckma] - Drop SysVinit and link to new MLFS location.</para>
@@ -64,7 +73,7 @@
     </listitem>
 
     <listitem>
-      <para>February 12th, 2025</para>
+      <para>February 12th, 2026</para>
       <itemizedlist>
         <listitem>
           <para>[zeckma] - Added DRI from Mesa, and made it and libgbm the
