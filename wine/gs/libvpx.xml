@@ -35,6 +35,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/libvpx-&libvpx-version;-security_fix-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">libvpx Dependencies</bridgehead>
 
     <para role="recommended">
@@ -58,8 +68,14 @@
     <screen><userinput>find -type f | xargs touch</userinput></screen>
 
     <para>
-      Install libvpx by running the
-      following commands:
+      Next, fix a security vulnerability:
+    </para>
+
+<screen><userinput
+  remap="pre">patch -Np1 -i ../libvpx-&libvpx-version;-security_fix-1.patch</userinput></screen>
+
+    <para>
+      Install libvpx by running the following commands:
     </para>
 
 <screen><userinput>sed -i 's/cp -p/cp/' build/make/Makefile &amp;&amp;
