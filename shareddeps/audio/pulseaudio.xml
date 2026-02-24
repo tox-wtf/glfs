@@ -30,6 +30,8 @@
       several sounds into one are easily achieved using a sound server.
     </para>
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>

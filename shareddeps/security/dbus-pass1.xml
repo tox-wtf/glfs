@@ -37,6 +37,8 @@
       <xref linkend="xorg7-lib"/> being installed beforehand.
     </para>
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>

@@ -31,6 +31,8 @@
       support, but provides decoding support for various codecs.
     </para>
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>

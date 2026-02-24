@@ -21,6 +21,15 @@
   "<important><para>Updating this package is known
   to break ABI.</para></important>">
 
+<!ENTITY meson-cross
+  "<important><para>For the lib32 installation instructions, they require new
+  Meson cross files from <ulink
+  url='&mlfs-m32-root;/chapter08/meson.html'>MLFS</ulink>, as
+  <parameter>--libdir=/usr/lib32</parameter> has been moved to the cross files
+  and no longer appear in the instructions. Install the new cross files so that
+  32-bit libraries don't get installed in <filename
+  class='directory'>/usr/lib</filename>.</para></important>">
+
 <!ENTITY parallel_issues
   "<note><para>This package may occasionally fail when
   building with multiple processors.  See <xref

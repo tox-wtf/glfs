@@ -37,6 +37,8 @@
       features for dependent packages.
     </para>
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
