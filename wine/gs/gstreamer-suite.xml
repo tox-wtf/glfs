@@ -32,9 +32,8 @@
     <bridgehead renderas="sect3">GStreamer Suite Dependencies</bridgehead>
 
     <para role="required">
-      <xref linkend="ffmpeg"/> (for libav support),
-      <xref linkend="glib2"/> (GObject Introspection required for GNOME), and
-      <xref linkend="mesonfiles"/> (for lib32)
+      <xref linkend="ffmpeg"/> (for libav support) and
+      <xref linkend="glib2"/> (GObject Introspection required for GNOME)
     </para>
 
     <para role="recommended">
@@ -241,7 +240,7 @@ do
     meson setup --prefix=/usr       \
                 --buildtype=release \
                 $(echo $extraflags) \
-                .. &amp;&amp;
+                ..
     ninja
     as_root ninja install
   popd
@@ -312,11 +311,10 @@ do
   mkdir build
   cd    build
     meson setup --prefix=/usr       \
-                --libdir=/usr/lib32 \
-                --cross-file=lib32  \
                 --buildtype=release \
+                --cross-file=lib32  \
                 $(echo $extraflags) \
-                .. &amp;&amp;
+                .. 
     ninja
     DESTDIR=$PWD/DESTDIR ninja install
     as_root cp -vR DESTDIR/usr/lib32/* /usr/lib32

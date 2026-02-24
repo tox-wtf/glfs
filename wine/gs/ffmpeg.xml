@@ -51,10 +51,6 @@
 
     <bridgehead renderas="sect3">FFmpeg Dependencies</bridgehead>
 
-    <para role="required">
-      <xref linkend="pkgconf"/> (for lib32)
-    </para>
-
     <para role="recommended">
       A complete list of recommended dependencies are in the
       <ulink url="&blfs-svn;/multimedia/ffmpeg.html">BLFS FFmpeg page</ulink>.

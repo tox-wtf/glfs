@@ -101,9 +101,10 @@
 
     <para>For <command>./configure</command>:</para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"                  \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig          \
-./configure --prefix=/usr --libdir=/usr/lib32 \
+<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+./configure --prefix=/usr            \
+            --libdir=/usr/lib32      \
             --host=i686-pc-linux-gnu &amp;&amp;
 
 make &amp;&amp;
@@ -118,13 +119,10 @@ ldconfig</userinput></screen>
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-meson setup --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --buildtype=release      \
+meson setup --prefix=/usr       \
+            --buildtype=release \
+            --cross-file=lib32  \
             .. &amp;&amp;
-
 ninja &amp;&amp;
 
 DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
@@ -160,11 +158,11 @@ ldconfig</userinput></screen>
         comparable to the following:
       </para>
 
-<screen><computeroutput>ELF 32-bit LSB shared object, Intel i386, version 1 (GNU/Linux), dynamically linked ...</computeroutput></screen>
+<screen><computeroutput>ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked ...</computeroutput></screen>
 
       <para>
         Note the <computeroutput>32-bit LSB shared object</computeroutput> part.
-        A 64-bit library would show as a <computeroutput>64-bit LSB shared
+        A 64-bit library would show up as a <computeroutput>64-bit LSB shared
         object</computeroutput>.
       </para>
     </note>
