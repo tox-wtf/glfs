@@ -56,7 +56,7 @@
 
     <para>
       <emphasis role="strong">Required patch to fix memory corruption issues
-      exposed by glibc-2.43:
+      exposed by glibc-2.43:</emphasis>
     </para>
     <itemizedlist spacing="compact">
       <listitem>
