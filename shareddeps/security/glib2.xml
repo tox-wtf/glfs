@@ -53,10 +53,10 @@
       </listitem>
     </itemizedlist>
 
-<!--
+
     <para>
-      <emphasis role="strong">Required patch to fix issues with
-      gobject-introspection-1.84.x:</emphasis>
+      <emphasis role="strong">Required patch to fix memory corruption issues
+      exposed by glibc-2.43:
     </para>
     <itemizedlist spacing="compact">
       <listitem>
@@ -66,7 +66,6 @@
         </para>
       </listitem>
     </itemizedlist>
--->
 
     <para>
       <emphasis role="strong">Patch for Log Level Selection (Optional)</emphasis>
@@ -97,13 +96,12 @@
   <sect2 role="installation">
     <title>Installation of GLib</title>
 
-<!--
+
     <para>
-      First, fix a runtime issue caused by gobject-introspection-1.84.x:
+      First, fix memory corruption issues exposed by glibc-2.43:
     </para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../glib-&glib2-version;-upstream_fixes-1.patch</userinput></screen>
--->
 
     <para>
       If desired, apply the optional patch. In many cases, applications that

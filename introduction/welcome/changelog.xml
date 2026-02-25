@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>February 25th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - glib: Fix memory corruption problems with glibc-2.43.
+          Fixes <ulink url="&glfs-issues;379">#379</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>Febraury 24th, 2026</para>
       <itemizedlist>
         <listitem>
