@@ -267,13 +267,15 @@ ldconfig</userinput></screen>
       <option>--enable-libmfx</option>: This option enables hardware
       acceleration for Intel GPUs from Broadwell to Tiger Lake, and it depends
       on the optional dependencies for systems with Intel graphics cards.
+      Cannot be used with <option>--enable-libvpl</option>.
     </para>
 
     <para>
       <option>--enable-libvpl</option>: This option enables hardware
       acceleration for Intel GPUs from Tiger Lake onwards, including the discrete
       graphics cards. It depends on the optional dependencies for systems with
-      Intel graphics cards.
+      Intel graphics cards. Cannot be used with
+      <option>--enable-libmfx</option>.
     </para>
 
     <para>
