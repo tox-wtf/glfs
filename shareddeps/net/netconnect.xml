@@ -29,22 +29,37 @@
   <sect2>
     <title>How to Connect to the Internet</title>
 
-    <para>
+    <para revision="systemd">
+      Systemd provides two daemons for DHCP: one which handles the network
+      interface, and another that handles DNS resolving
+      (<literal>systemd-networkd</literal> and
+      <literal>systemd-resolved</literal> respectively). The LFS book covers
+      how to set up both.
+    </para>
+
+    <para revision="sysv">
       In order to use DHCP, you will need a DHCP client,
       <ulink url="&blfs-svn;/basicnet/dhcpcd.html">
-      dhcpcd</ulink>. You may also be wanting to connect to the
+      dhcpcd</ulink>. 
+    </para>
+
+    <para>
+      You may also be wanting to connect to the
       internet wirelessly. In order to do that, you should first
       configure the kernel to support that, the instructions for
-      that being at
-      <ulink url="&blfs-svn;/basicnet/wireless-kernel.html"/>.
+      that are
+      <ulink url="&blfs-svn;/basicnet/wireless-kernel.html">here</ulink>.
       After that, you will need a tool to connect to the internet, suitable
       ones being
       <ulink url="&blfs-svn;/basicnet/iw.html">iw</ulink>,
       <ulink url="&blfs-svn;/basicnet/wireless_tools.html">
-      Wireless Tools</ulink>, and
+      Wireless Tools</ulink>, or
       <ulink url="&blfs-svn;/basicnet/wpa_supplicant.html">
       wpa_supplicant</ulink>.
       You will only need one of those, whichever one is up to you.
+      <phrase revision="systemd">Ensure that both the
+      <literal>systemd-networkd</literal> and
+      <literal>systemd-resolved</literal> services are enabled.</phrase>
     </para>
 
   </sect2>
