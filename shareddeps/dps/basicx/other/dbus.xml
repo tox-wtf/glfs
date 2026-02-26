@@ -55,7 +55,6 @@
       both packages are installed.)</phrase>-->
     </para>
 
-    <bridgehead renderas="sect4" revision="systemd">Optional</bridgehead>
     <para role="optional" revision="systemd">
       <phrase revision="systemd"><xref role="runtime" linkend="systemd"/>
       (runtime, for registering services launched by D-Bus session daemon as
