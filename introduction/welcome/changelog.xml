@@ -44,7 +44,11 @@
       <para>February 25th, 2026</para>
       <itemizedlist>
         <listitem>
-          <para>[renodr] - glib: Fix memory corruption problems with glibc-2.43.
+          <para>[zeckma] - GS: 1.28.0 -&gt; 1.28.1 (security). See BLFS ticket
+          <ulink url="&blfs-ticket-root;22868">#22868</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[renodr] - GLib: Fix memory corruption problems with glibc-2.43.
           Fixes <ulink url="&glfs-issues;379">#379</ulink>.</para>
         </listitem>
       </itemizedlist>
