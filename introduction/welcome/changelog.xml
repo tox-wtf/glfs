@@ -44,6 +44,14 @@
       <para>February 28th, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - NVIDIA-r580: 580.126.09 -&gt; 580.126.18. Fixes
+          <ulink url="&glfs-issues;/376">#376</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wine: 11.2 -&gt; 11.3. Fixes
+          <ulink url="&glfs-issues;/378">#378</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - Vulkan-SDK: Added Vulkan-Utility-Libraries and
           Vulkan-Tools. Fixes
           <ulink url="&glfs-issues;/377">#377</ulink>.</para>
