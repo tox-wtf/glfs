@@ -44,6 +44,11 @@
       <para>February 28th, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - Vulkan-SDK: Added Vulkan-Utility-Libraries and
+          Vulkan-Tools. Fixes
+          <ulink url="&glfs-issues;/377">#377</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - Changelog: Cleaned for next release cycle.</para>
         </listitem>
       </itemizedlist>
