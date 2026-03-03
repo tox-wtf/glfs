@@ -5,11 +5,18 @@
   %general-entities;
 ]>
 
-<sect1 id="netconnect" xreflabel="Connecting to the Internet">
-  <?dbhtml filename="netconnect.html"?>
-
+<sect1 id="connect" xreflabel="Connecting to the Internet">
+  <?dbhtml filename="connect.html"?>
 
   <title>Connecting to the Internet</title>
+
+  <para>
+    Some of the instructions in GLFS require an internet connection, namely in
+    <xref linkend="rustc"/> and when downloading all the files for a package
+    bundle like <xref linkend="llvm"/> and <xref linkend="vulkan-sdk"/>. Thus,
+    you will need an internet connection on the LFS target, whether in a
+    chroot, TTY, or GUI. Tools for downloading files will be installed in GLFS.
+  </para>
 
   <para>
     The LFS book covers setting up networking by connecting to a LAN

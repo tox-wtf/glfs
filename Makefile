@@ -105,7 +105,7 @@ help:
 	@echo "  html                 Builds the HTML pages of the book."
 	@echo ""
 	@echo "  wget-list            Produces a list of all packages to download."
-	@echo "                       Output is BASEDIR/wget-list"
+	@echo "                       Output is BASEDIR/download/wget-list"
 	@echo ""
 	@echo "  validate             Runs validation checks on the XML files."
 	@echo ""
@@ -189,13 +189,13 @@ $(RENDERTMP)/$(GLFSHTML): $(RENDERTMP)/$(GLFSFULL) version
                 stylesheets/lfs-xsl/profile.xsl      \
                 $(RENDERTMP)/$(GLFSFULL)
 
-wget-list: $(BASEDIR)/wget-list
-$(BASEDIR)/wget-list: $(RENDERTMP)/$(GLFSFULL) version
-	@echo "Generating wget list for $(REV) at $(BASEDIR)/wget-list ..."
-	$(Q)mkdir -p $(BASEDIR)
-	$(Q)xsltproc --nonet                       \
-                --output $(BASEDIR)/wget-list \
-                stylesheets/wget-list.xsl     \
+wget-list: $(BASEDIR)/download/wget-list
+$(BASEDIR)/download/wget-list: $(RENDERTMP)/$(GLFSFULL) version
+	@echo "Generating wget list for $(REV) at $(BASEDIR)/download/wget-list ..."
+	$(Q)mkdir -p $(BASEDIR)/download
+	$(Q)xsltproc --nonet                                \
+                --output $(BASEDIR)/download/wget-list \
+                stylesheets/wget-list.xsl              \
                 $(RENDERTMP)/$(GLFSFULL)
 
 test-links: $(BASEDIR)/test-links
