@@ -317,14 +317,18 @@ EOF</userinput></screen>
     <para>
       Read <ulink role='man'
       url='&man;systemd.environment-generator.7'>systemd.environment-generator(7)</ulink>
-      for details about the environment generators. Note that if
-      you've edited the content of
-      <filename class='directory'>/etc/profile.d</filename> when a desktop
-      environment is running, you need to run the <command>systemctl
-      --user daemon-reload</command> command to sync the change into the
-      systemd per-user instance, and then log out and log in again to sync
-      the change into the desktop environment.
+      for details about the environment generators.
     </para>
+
+    <note><para>
+      If you've edited the contents of <filename
+      class='directory'>/etc/profile.d</filename> when a desktop environment is
+      running, you must sync the changes as the normal user (the below commands
+      must be ran once for every user except &root; and must be ran as that
+      user):</para>
+<screen role='nodump'><userinput>systemctl --user unset-environment \
+  $(/etc/systemd/user-environment-generators/50-profile.sh | sed 's/=.*//')
+systemctl --user daemon-reload</userinput></screen></note>
 
     <important>
       <para>
