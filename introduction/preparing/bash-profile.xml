@@ -313,6 +313,61 @@ EOF</userinput></screen>
 
     </sect3>
 
+    <sect3 id="dircolors.sh">
+      <title>/etc/profile.d/dircolors.sh</title>
+
+      <indexterm zone="bash-profile dircolors.sh">
+        <primary sortas="e-etc-profile.d-dircolors.sh">/etc/profile.d/dircolors.sh</primary>
+      </indexterm>
+
+      <para>
+        This script uses the <filename>~/.dircolors</filename> and
+        <filename>/etc/dircolors</filename> files to control the colors of file
+        names in a directory listing. They control colorized output of things
+        like <command>ls --color</command>.
+      </para>
+
+<screen role="root"><userinput>cat &gt; /etc/profile.d/dircolors.sh &lt;&lt; "EOF"
+<literal># Setup for /bin/ls and /bin/grep to support color
+if [ -f "/etc/dircolors" ] ; then
+        eval $(dircolors -b /etc/dircolors)
+fi
+
+if [ -f "$HOME/.dircolors" ] ; then
+        eval $(dircolors -b $HOME/.dircolors)
+fi</literal>
+EOF</userinput></screen>
+
+      <para>
+        Now create the <literal>dircolors</literal> data:
+      </para>
+
+<screen role="root"><userinput>dircolors -p > /etc/dircolors</userinput></screen>
+
+    </sect3>
+
+    <sect3 id="aliases.sh">
+      <title>/etc/profile.d/aliases.sh</title>
+
+      <indexterm zone="bash-profile aliases.sh">
+        <primary sortas="e-etc-profile.d-aliases.sh">/etc/profile.d/aliases.sh</primary>
+      </indexterm>
+
+      <para>
+        This script aliases some tools to pass
+        <parameter>--color=auto</parameter> to use <literal>dircolors</literal>
+        functionality which depends on the script in the last section.
+      </para>
+
+<screen role="root"><userinput>cat &gt; /etc/profile.d/aliases.sh &lt;&lt; "EOF"
+<literal># Make ls, grep, and diff use --color=auto
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'</literal>
+EOF</userinput></screen>
+
+    </sect3>
+
     <sect3>
       <title>Sourcing All the Profile Scripts</title>
 
