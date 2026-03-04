@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="files" xreflabel="File Downloads">
+  <?dbhtml filename="files.html"?>
+
+  <title>File Downloads</title>
+
+  <para>On each page for most of the packages, there are download links for key
+  files needed by the installation process. Usually, these are tarballs of
+  source code and patches to solve various issues. If you are following GLFS
+  right after LFS or MLFS, you probably don't have the tools necessary on the
+  LFS target to download any of the necessary files, or an internet connection.
+  If you do, GLFS can be treated like BLFS in that you can download files as
+  you go, but can be pretty inconvenient.</para>
+
+  <para>In whatever case, you may want to download every file in bulk.</para>
+
+  <para>Firstly, whatever directory you choose to download to is up to you. But
+  you should do it in an environment that both has <xref linkend="wget"/> and
+  an internet connection. If you'll follow GLFS in a chroot, you could
+  download the files in <filename class="directory">$LFS/sources</filename>
+  outside the chroot, then follow GLFS in the chroot. If you'll follow GLFS
+  in a TTY, you could download the files on another distribution, put them on a
+  storage device, and hook up the storage device to the LFS target so the files
+  are accessible. You could also do a combination of all of the above or
+  something else. All of that is if you don't have <xref linkend="wget"/> and
+  an internet connection on the LFS target. If you do, you can follow the bulk
+  downloading process normally wherever you want.</para>
+
+  <para>Download the Wget file list, then download all the files listed in
+  it:</para>
+
+<screen><userinput>wget &dl-root;/wget-list &amp;&amp;
+wget -N --input-file=wget-list --continue</userinput></screen>
+
+  <note><para>If you rendered GLFS yourself, you may want to use the version
+  of <filename>wget-list</filename> that came with the render. In that case,
+  copy <ulink url="../download/wget-list"/> to the directory you want to
+  download the files to. <literal>file://</literal> or something else may be
+  prefixed in the link. Make sure to delete that prefix first to ensure the
+  file gets copied. The link will point to an online source if you didn't
+  render the book. The link should be unique to your render.</para></note>
+
+  <para>To verify every file has been downloaded, you can run the
+  following:</para>
+
+<screen><userinput>for file in $(grep -v '^#' wget-list); do
+  if [ ! -f $(basename $file) ]; then
+    echo "$(basename $file) NOT found"
+  fi
+done</userinput></screen>
+
+  <para>If every file got downloaded, there should be no output from the above
+  commands.</para>
+
+  <important><para>
+    The files for &nvidia; and &cuda; are not downloaded from the above
+    process as they are big files and would total to about 9G on their own.
+    However, files for packages like <xref
+    linkend="nvidia-vaapi-driver"/> are downloaded. You may wish to download
+    the files now ahead of time. To do so, first read <xref
+    linkend="nvidia-rev"/>, decide on a major NVIDIA revision, then download
+    the files in each page within that revision section.
+  </para><para>
+    Files for a package bundle like <xref linkend="vulkan-sdk"/>, <xref
+    linkend="llvm"/>, and <xref linkend="gstreamer-suite"/> will also not be
+    downloaded by the above instructions. They instead get downloaded when you
+    reach those package bundles, in which the tools to download them should
+    become available.
+  </para></important>
+
+</sect1>
