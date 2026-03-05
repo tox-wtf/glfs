@@ -50,15 +50,17 @@
   <xsl:template match="listitem/para/ulink">
       <!-- The next strings need be revised periodically to add missing
       files or to skip false positives. Skip also possible
-      duplicated URLs that may be splitted for PDF output -->
+      duplicated URLs that may be split for PDF output -->
     <xsl:if test="(contains(@url, '.gz') or contains(@url, '.bz2')
                   or contains(@url, '.tgz') or contains(@url, '.tar')
                   or contains(@url, 'patch.txt') or contains(@url, '.zip')
                   or contains(@url, '.patch') or contains(@url, '/patch.'))
+                  and not(ancestor-or-self::*/@condition = 'pdf')">
+<!--
                   or contains (@url, '.run')
                   or contains(@url, 'install-NVIDIA')
                   or contains(@url, 'manifest-NVIDIA')
-                  and not(ancestor-or-self::*/@condition = 'pdf')">
+-->
       <xsl:choose>
         <!-- Fix SourceForge links-->
         <xsl:when test="contains(@url,'?download')">
@@ -76,7 +78,7 @@
   <xsl:template match="ulink" mode="full">
       <!-- The next strings need be revised periodically to add missing
       files or to skip false positives. Skip also possible
-      duplicated URLs that may be splitted for PDF output -->
+      duplicated URLs that may be split for PDF output -->
     <xsl:if test="(contains(@url, '.gz') or contains(@url, '.bz2')
                   or contains(@url, '.tgz') or contains(@url, '.tar')
                   or contains(@url, '.txt') or contains(@url, 'compressdoc')

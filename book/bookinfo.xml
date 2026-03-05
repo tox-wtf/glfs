@@ -11,8 +11,7 @@
 
   <title>
     Gaming Linux<superscript>&reg;</superscript> From Scratch
-    <phrase revision="systemd">(Systemd</phrase>
-    <phrase revision="sysv">(System V</phrase> Edition)
+    <phrase revision="sysv">(System V Edition)</phrase>
   </title>
   <subtitle>Version &version;</subtitle>
   <subtitle>Published &releasedate;</subtitle>
@@ -49,9 +48,9 @@
   <abstract>
     <para>
       This book introduces and guides the reader through additions to the
-      system like Steam,
-      Wine, and their dependencies after the
-      LFS or Multilib-LFS book on x86_64 systems.
+      system like Steam, Wine, and their dependencies after the LFS or
+      Multilib LFS book on x86_64 systems.
+      &github-pages;
     </para>
   </abstract>
 

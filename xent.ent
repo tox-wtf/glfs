@@ -1,3 +1,18 @@
+<![ %ghp; [
+<!ENTITY github-pages
+  "<note><para>This is the GitHub Pages version of this book, which is used as
+  a backup to the main versions of the book. It may be slightly out of date and
+  is rolling release. If you want to use the main version, go <ulink
+  url='&glfs-website;/'>here</ulink>. More releases are found at
+  <ulink url='&lfs-website;/glfs/view/'/>.</para></note>">
+]]>
+<!ENTITY github-pages "">
+
+<!-- This may look awkward, but DocBook ENTITIES are defined once and cannot be
+     redefined from the looks of it, so the one version you want for it to
+     appear must be the one defined first. So this ends up looking like an
+     if-else statement without the else. -->
+
 <!ENTITY source-profile
   "<para>Now source the main profile:</para>
    <screen><userinput>source /etc/profile</userinput></screen>">
@@ -5,6 +20,15 @@
 <!ENTITY abi-break
   "<important><para>Updating this package is known
   to break ABI.</para></important>">
+
+<!ENTITY meson-cross
+  "<important><para>For the lib32 installation instructions, they require new
+  Meson cross files from <ulink
+  url='&mlfs-m32-root;/chapter08/meson.html'>MLFS</ulink>, as
+  <parameter>--libdir=/usr/lib32</parameter> has been moved to the cross files
+  and no longer appear in the instructions. Install the new cross files so that
+  32-bit libraries don't get installed in <filename
+  class='directory'>/usr/lib</filename>.</para></important>">
 
 <!ENTITY parallel_issues
   "<note><para>This package may occasionally fail when
@@ -62,6 +86,27 @@
 <!ENTITY long-build-time
   "<note><para>This may take a while to build. Feel free to do something else
   while this is building.</para></note>">
+<!-- Put &install-stdin; in <note> tags. This is done for revision-specific
+     commands. Trying to put &install-stdin; in <phrase> outside a <para> leads
+     to a validation error. -->
+<!ENTITY install-stdin
+  "<para>The above <command>install</command> command(s) need some
+  explanation. Typically in the books when configuration files get created,
+  <command>cat</command> is used. It uses a Bash feature called
+  <quote>heredoc</quote> which takes optionally multiple lines of input
+  until a given term, and forwards it to something. In the
+  <command>cat</command> command, heredoc is used to feed into
+  <filename>/dev/stdin</filename>, and <command>cat</command> writes from
+  <filename>/dev/stdin</filename> to the specified file.</para>
+  <para>As for <command>install</command>, its use is more in-depth and has a
+  lot more going on. In premise, it is doing the same thing as the
+  <command>cat</command> commands. It heredocs to
+  <filename>/dev/stdin</filename> and is forwarded to a file;
+  <command>install</command> does the writing. In a more straightforward way,
+  it copies <filename>/dev/stdin</filename> to the specified file, which was
+  filled by the heredoc. It has been used over <command>cat</command> so that
+  the permissions can be set and the directory the file needs to be in will be
+  created in the process.</para>">
 <!ENTITY meson-buildtype-release
   "<para><parameter>--buildtype=release</parameter>: Specify a buildtype
   suitable for stable releases of the package, as the default may
@@ -81,6 +126,10 @@
 <!ENTITY static-libraries
   "<para><parameter>--disable-static</parameter>: This switch prevents
   installation of static versions of the libraries.</para>">
+<!ENTITY gnulib
+  "<para>First, make a fix required by glibc-2.43 or later:</para>
+<screen><userinput remap='pre'>sed -r '/_GL_EXTERN_C/s/w?memchr|bsearch/(&amp;)/' \
+    -i $(find -name \*.in.h)</userinput></screen>">
 
 <!-- Save repetition for multiple passes of a package. -->
 <!ENTITY dbus-m64 "
@@ -117,36 +166,195 @@ ninja</userinput></screen>
 <screen role='root'><userinput>chown -v root:messagebus /usr/libexec/dbus-daemon-launch-helper &amp;&amp;
 chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper</userinput></screen>">
 
-<!ENTITY freetype-m64 "<para>
-  Install <application>FreeType2</application> by running the following
-  commands:
+<!ENTITY nvidia-common-deps "<para role='required'>
+  &gbm;,
+  <xref linkend='libglvnd'/>, and
+  <xref linkend='xorg7-lib'/>
 </para>
-<screen><userinput>./configure --prefix=/usr            \
-            --enable-freetype-config \
-            --disable-static &amp;&amp;
-make</userinput></screen>
-<para>
-  Now, as the &root; user:
-</para>
-<screen role='root'><userinput>make install</userinput></screen>">
-<!ENTITY freetype-m32 "<para>
-  Install lib32-<application>FreeType2</application> by running the following
-  commands:
-</para>
-<screen><userinput>make distclean &amp;&amp;
-CC=&quot;gcc -m32&quot; CXX=&quot;g++ -m32&quot;         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-./configure --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --host=i686-pc-linux-gnu \
-            --enable-freetype-config \
-            --disable-static &amp;&amp;
+<para role='recommended'>
+  <itemizedlist spacing='compact'>
+    <listitem>
+      <para>
+        <ulink url='&slfs-website;/general/cuda.html'>CUDA</ulink>
+        (for building in direct CUDA support into various packages like
+        FFmpeg or OBS-Studio; install after following this page)
+      </para>
+    </listitem>
+<!-- NOT READY
+    <listitem revision='sysv'>
+      <para>
+        <xref linkend='dbus'/> and <xref linkend='elogind'/> (for
+        NVIDIA-Powerd support)
+      </para>
+    </listitem>
+-->
+    <listitem>
+      <para>
+        <ulink url='&blfs-svn;/x/gtk3.html'>GTK-3</ulink> (for
+        <command>nvidia-settings</command>; install after following this
+        page)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend='nvidia-vaapi-driver'/> (for VA-API support; install
+        after following this page)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend='nvidia-egl'/> (for EGL driver support)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend='ocl-icd'/> (for using the OpenCL drivers)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend='vulkan-sdk'/> (for using the Vulkan drivers)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend='wayland'/> (needed for Wayland support)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <xref linkend='xorg-server'/> (required for running
+        <command>nvidia-xconfig</command>, like in <xref
+        linkend='whatnow'/>; install after following this page)
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>">
 
-make</userinput></screen>
-<para>
-  Now, as the &root; user:
+<!ENTITY nvidia-common-kernel "<para>
+First enable XFree86 DRI and Nouveau
+<footnote><para>
+  NVIDIA's kernel modules will fail to compile with TTY support
+  unless a graphics driver is included in the kernel. Nouveau is used
+  here, though alternate graphics drivers may also work.
+</para></footnote>
+support in the kernel and recompile if necessary.
 </para>
-<screen role='root'><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
-cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
-rm -rf DESTDIR                        &amp;&amp;
-ldconfig</userinput></screen>">
+
+<xi:include xmlns:xi='http://www.w3.org/2001/XInclude' href='nvidia-kernel.xml'/>
+
+<important><para>
+  Build these drivers as kernel modules so that they can properly be
+  blacklisted.
+</para></important>">
+
+<!ENTITY nvidia-common-build-modules "<note><para>
+If the currently running kernel is a different version than you are
+targeting, likely as a result of being in a chroot or haven't rebooted
+after a kernel upgrade yet, building the kernel modules will cause a
+build failure or will install modules for a kernel that is not the
+target. The default variable that the kernel build system uses to check
+for the kernel version will use <command>uname -r</command>, in turn
+reporting the kernel version of the currently running host kernel and
+not the target. This can be worked around by specifying
+<envar>KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></envar>
+which will override the kernel version to build against and install to.
+The target kernel version must have already been built for this to work.
+If the kernel version doesn't have a third digit, like 6.16 instead of
+6.16.1, append a <envar>.0</envar> at the end, like
+<envar>6.16.0</envar>. It should match the version found in <filename
+class='directory'>/usr/lib/modules</filename>.
+</para>
+<para>
+  If the above case apply to you, whether you're in a chroot or haven't
+  yet rebooted after a kernel upgrade, specify the kernel target by
+  exporting the variable now ahead of time to prevent needing to specify it
+  for every command:
+</para>
+<screen><userinput>export KERNEL_UNAME=<replaceable>&lt;x.x.x&gt;</replaceable></userinput></screen>
+</note>
+
+<para>
+  There will be 5 or 6 kernel modules that will be built. Depending on your
+  use case, you can skip building a module or two. The UVM (Unified Virtual
+  Memory) module is for use with <ulink
+  url='&slfs-website;/general/cuda.html'>CUDA</ulink>. If you won't use
+  it, nor wish to use its capabilities, you can skip building the UVM
+  kernel module. There is also the PeerMem module which is for datacenters.
+  For gaming, it can safely be disabled.
+</para>
+<para>
+  For UVM, the module is named <computeroutput>nvidia-uvm</computeroutput>.
+  For PeerMem, it will be named
+  <computeroutput>nvidia-peermem</computeroutput>. To skip these, add the
+  module names to the <envar>NV_EXCLUDE_KERNEL_MODULES</envar> for the
+  <command>make</command> command. The variable should be separated, as
+  such:
+  <computeroutput>NV_EXCLUDE_KERNEL_MODULES=&quot;nvidia-uvm nvidia-peermem&quot;</computeroutput>.
+  The <command>make</command> command will have the variable set to
+  nothing. Add to it as you see fit.
+</para>
+
+<para>
+  Now build the kernel modules by running the following command:
+</para>
+
+<screen><userinput>make NV_EXCLUDE_KERNEL_MODULES=</userinput></screen>
+
+<note><para>
+  The source code you built the kernel from must be in the same location
+  you built the kernel. For example, if you built the kernel in <filename
+  class='directory'>/sources/linux-6.16.1</filename>, the source
+  code should stay there and must not be deleted until the 3rd party
+  modules have been built. Some Linux distributions get around this by
+  installing development files in <filename
+  class='directory'>/usr/src</filename>, but that is out of the scope of
+  this book.
+</para></note>
+<note><para>
+  You may encounter various build failures. This usually happens because
+  the module code is incompatible with the current kernel version.
+  If this happens, in most cases it can be fixed by downgrading the
+  kernel. When a new driver release happens, the driver will then most
+  likely support the kernel version at the time. At the top of this
+  section, the recommended kernel series to use with this driver is
+  mentioned to give an idea of what is the idea kernel version to build
+  against.
+</para></note>
+
+<important>
+  <para>
+    When you rebuild/upgrade the kernel, you will also need to reinstall
+    the NVIDIA kernel modules.
+  </para>
+
+  <para>
+    Kernel modules are installed in a versioned directory that, when they
+    are built against a different kernel version, will no longer match the
+    booted kernel version and cannot be used. Furthermore, there is glue
+    built, so any changes to the kernel can break that glue. For kernel
+    modules in the Linux source tree, known as first-party modules, they
+    get updated and rebuilt alongside the kernel, so issues aren't ran
+    into for first-party modules. Third-party modules aren't, however,
+    and need to be updated/rebuilt.
+  </para>
+
+  <para>
+    When you rebuild/upgrade the kernel against the same NVIDIA driver
+    version, you will only need to reinstall the kernel modules. You will
+    have to reinstall the driver software as well if you are upgrading from
+    a previous driver version.
+  </para>
+</important>
+<para>
+  Now as the &root; user:
+</para>
+
+<screen role='root'><userinput>make modules_install &amp;&amp;
+cd ..</userinput></screen>
+
+<para>
+  If you set the <envar>KERNEL_UNAME</envar> variable, unset it now:
+</para>
+
+<screen><userinput>unset KERNEL_UNAME</userinput></screen>">

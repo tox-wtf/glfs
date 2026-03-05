@@ -24,6 +24,16 @@
       Wine is a compatibility layer for running Windows programs on Unix.
     </para>
 
+    <note><para>
+      You do not have to rebuild <xref linkend="dxvk"/> or <xref
+      linkend="vkd3d-proton"/> after updating Wine. This is because those
+      packages build against the MinGW-w64 static libraries built in that
+      package, and not against the DLLs provided in this package. When you
+      update this package, you don't have to worry about much else beyond maybe
+      having to download mono again, which is handled automatically whenever
+      you execute Wine after updating.
+    </para></note>
+
     &long-build-time;
 
     <itemizedlist spacing="compact">
@@ -60,7 +70,7 @@
 <!--
     <para>
       First apply an upstream patch so that delay-load import libraries are
-      unbroken with <xref linkend="mingw-w64-binutils"/> due to 
+      unbroken with <xref linkend="mingw-w64-binutils"/> due to
       Binutils merging .idata sections into read-only .rdata
       sections for PE formatted software upstream:
     </para>
@@ -69,7 +79,7 @@
 -->
 
     <para>
-      Wine has three build types. Scroll down to the build type you want.
+      Wine has four build types. Scroll down to the build type you want.
       Visit <xref linkend="winedeps"/> for more information about each
       build type.
     </para>
@@ -78,8 +88,31 @@
       <title>WoW64</title>
 
       <para>
-        Install WoW64 Wine by running
-        the following commands:
+        Install WoW64 Wine by running the following commands:
+      </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+../configure --prefix=/usr   \
+             --disable-tests \
+             --enable-archs=x86_64,i386 &amp;&amp;
+make</userinput></screen>
+
+      <para>
+        Now, as the &root; user:
+      </para>
+
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install</userinput></screen>
+
+    </sect3>
+
+    <sect3>
+      <title>Old WoW64</title>
+
+      <para>
+        Install the old WoW64 Wine by running the following commands:
       </para>
 
 <screen><userinput>mkdir build-win64 &amp;&amp;
@@ -103,11 +136,12 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 make</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
-<screen role="root"><userinput>make install      &amp;&amp;
-cd ../build-win64 &amp;&amp;
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install         &amp;&amp;
+cd ../build-win64    &amp;&amp;
 make install</userinput></screen>
 
     </sect3>
@@ -116,8 +150,7 @@ make install</userinput></screen>
       <title>64-bit Only</title>
 
       <para>
-        Install 64-bit only Wine by running
-        the following commands:
+        Install 64-bit only Wine by running the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -130,10 +163,11 @@ cd    build &amp;&amp;
 make</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install</userinput></screen>
 
     </sect3>
 
@@ -150,8 +184,7 @@ make</userinput></screen>
 -->
 
       <para>
-        Install 32-bit only Wine by running
-        the following commands:
+        Install 32-bit only Wine by running the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -163,13 +196,14 @@ PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
 make</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
+<screen role="root"><userinput>rm -rf /usr/lib/wine &amp;&amp;
+make install</userinput></screen>
 
     </sect3>
-  
+
   </sect2>
 
   <sect2 role="commands">
@@ -188,11 +222,19 @@ make</userinput></screen>
       the wine64 stage to enable support for both 32-bit and 64-bit.
     </para>
 
+    <para>
+      <command>rm -rf /usr/lib/wine</command>: This command removes potentially
+      conflicting Wine libraries before installation if Wine has been installed
+      previously. Issues normally arise when switching from one build type to
+      another. When this is done, Wine will say there's a version mismatch,
+      which comes from libraries that shouldn't exist anymore.
+    </para>
+
   </sect2>
 
   <sect2 role="configuration">
     <title>Configuring Wine</title>
-    
+
     <para>
       This installation should be good enough for most people but there may be
       a few things that you wish to change or do in relation to this package.
@@ -207,13 +249,17 @@ make</userinput></screen>
     <para>
       As for Direct3D 12, you may also wish to install
       <xref linkend="vkd3d-proton"/> which replaces
-      VKD3D provided by
-      Wine. VKD3D is less
+      VKD3D provided by Wine. VKD3D is less
       aggressive with optimizations and is geared for general use, whereas
       VKD3D-Proton has aggressive optimizations and
       is geared towards gaming. Despite the name, it can be used with
       Wine and works quite well.
     </para>
+
+    <note><para>
+      If you installed the newer WoW64 architecture, you will still need
+      32-bit/i686 DLLs for anything extra you wish to install, like DXVK.
+    </para></note>
 
     <para>
       The choice of what to install is up to you.
@@ -265,8 +311,8 @@ make</userinput></screen>
         </seg>
         <seg>Various dynamic and static libraries</seg>
         <seg>
-          /usr/include/wine/windows, /usr/lib/wine/x86_64-windows,
-          /usr/lib32/wine/i686-unix, and /usr/share/wine
+          /usr/include/wine, /usr/lib/wine, and
+          /usr/share/wine
         </seg>
       </seglistitem>
     </segmentedlist>
@@ -501,7 +547,7 @@ make</userinput></screen>
             is the Wine Minesweeper
              game; it is also just an example and not meant
             to be an accurate implementation of Minesweeper;
-            
+
             symlink to <command>wine</command>
           </para>
           <indexterm zone="wine winemine">

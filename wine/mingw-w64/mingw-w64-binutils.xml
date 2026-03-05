@@ -6,7 +6,7 @@
 
   <!ENTITY binutils-root "https://sourceware.org/pub/binutils/releases">
   <!ENTITY mingw-w64-binutils-download
-    "&binutils-root;/binutils-&binutils-version;.tar.xz">
+    "&binutils-root;/binutils-with-gold-&binutils-version;.tar.xz">
 ]>
 
 <sect1 id="mingw-w64-binutils" xreflabel="MinGW-w64-Binutils-&binutils-version;">
@@ -45,7 +45,7 @@
 
   <sect3>
     <title>x86_64 MinGW-w64-Binutils</title>
-    
+
     <para>
       Install x86_64 MinGW-w64-Binutils
       by running the following commands:
@@ -58,7 +58,8 @@ cd    build-x86_64 &amp;&amp;
              --target=x86_64-w64-mingw32                  \
              --infodir=/usr/share/info/x86_64-w64-mingw32 \
              --disable-nls                                \
-             --disable-werror &amp;&amp;
+             --disable-werror                             \
+             --with-gold=no &amp;&amp;
 
 make</userinput></screen>
 
@@ -89,7 +90,8 @@ cd    build-i686 &amp;&amp;
              --target=i686-w64-mingw32                  \
              --infodir=/usr/share/info/i686-w64-mingw32 \
              --disable-nls                              \
-             --disable-werror &amp;&amp;
+             --disable-werror                           \
+             --with-gold=no &amp;&amp;
 
 make</userinput></screen>
 
@@ -124,13 +126,20 @@ rm -rf DESTDIR</userinput></screen>
     </para>
 
     <para>
+      <parameter>--with-gold=no</parameter>: This option disables building
+      gold, which is now considered deathware by many. The tarball used for
+      the installation includes gold due to versioning issues, so this option
+      helps counteract that.
+    </para>
+
+    <para>
       <parameter>--target=*</parameter>: This option builds files for
       the architecture passed to it.
     </para>
 
     <para>
       <command>rm -v DESTDIR/usr/lib/bfd-plugins/libdep.so</command>:
-      This command removes an libary that conflicts with the original library
+      This command removes an library that conflicts with the original library
       provided by the original compilation of
       <ulink url="&mlfs-m32-root;/chapter08/binutils.html">Binutils</ulink>.
     </para>

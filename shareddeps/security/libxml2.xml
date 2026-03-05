@@ -28,6 +28,8 @@
 
     &abi-break;
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -42,7 +44,7 @@
       <listitem>
         <para>
           Required patch:
-          <ulink url="&dl-root;/libxml2/libxml2-&libxml2-version;-fix_parse_blanks-1.patch"/>
+          <ulink url="&dl-root;/libxml2/libxml2-&libxml2-version;-upstream_fix-1.patch"/>
         </para>
       </listitem>
     </itemizedlist>
@@ -50,7 +52,6 @@
 
     <bridgehead renderas="sect3">libxml2 Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="icu"/>
     </para>
@@ -62,39 +63,41 @@
 
 <!--
     <para>
-      First, apply a patch from upstream:
+      First, apply a patch from upstream to fix a failure parsing
+      attribute values that are not yet normalized:
     </para>
 
-<screen><userinput>patch -Np1 -i ../libxml2-&libxml2-version;-fix_parse_blanks-1.patch</userinput></screen>
+<screen><userinput>patch -Np1 -i ../libxml2-&libxml2-version;-upstream_fix-1.patch</userinput></screen>
 -->
+
+    <para>
+      First, remove an unnecessary call to <command>git</command> in
+      <filename>meson.build</filename>:
+    </para>
+
+<screen
+  remap="pre"><userinput>sed -i "/'git'/,+3d" meson.build</userinput></screen>
 
     <para>
       Install libxml2 by running the following
       commands:
     </para>
 
-<screen><userinput>./configure --prefix=/usr           \
-            --sysconfdir=/etc       \
-            --disable-static        \
-            --with-history          \
-            --with-icu              \
-            PYTHON=/usr/bin/python3 \
-            --docdir=/usr/share/doc/libxml2-&libxml2-version; &amp;&amp;
-make</userinput></screen>
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson setup --prefix=/usr       \
+            --buildtype=release \
+            -D history=enabled  \
+            -D icu=enabled &amp;&amp;
+ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
-
-    <para>
-      Finally, prevent some packages from unnecessarily linking to ICU using
-      the following commands as the &root; user:
-    </para>
-
-<screen role="root"><userinput>rm -vf /usr/lib/libxml2.la &amp;&amp;
-sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config</userinput></screen>
+<screen role="root"><userinput>ninja install &amp;&amp;
+sed 's/--static/--shared/' -i /usr/bin/xml2-config</userinput></screen>
 
   </sect2>
 
@@ -106,25 +109,19 @@ sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config</userinput></screen>
       commands:
     </para>
 
-<screen><userinput>make distclean &amp;&amp;
-CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-./configure --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --host=i686-pc-linux-gnu \
-            --sysconfdir=/etc        \
-            --disable-static         \
-            --with-history           \
-            --with-icu               \
-            --without-python &amp;&amp;
-make</userinput></screen>
+<screen><userinput>rm -rf * &amp;&amp;
+meson setup --prefix=/usr            \
+            --buildtype=release      \
+            --cross-file=lib32       \
+            -D history=enabled       \
+            -D icu=enabled &amp;&amp;
+ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
-<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
-rm -vf DESTDIR/usr/lib32/libxml2.la   &amp;&amp;
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
 cp -Rv DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
 rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
@@ -134,53 +131,19 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
-    &options-configure;
-
-    &static-libraries;
+    &options-meson;
 
     <para>
-      <parameter>--with-history</parameter>: This switch enables
-      Readline support when running
-      <command>xmlcatalog</command> or <command>xmllint</command> in shell mode.
+      <parameter>-D history=enabled</parameter>: This switch enables
+      Readline support when running <command>xmlcatalog</command> or
+      <command>xmllint</command> in shell mode.
     </para>
 
     <para>
-      <parameter>--with-icu</parameter>: This switch enables support for
-      ICU, which provides additional Unicode support.
-      This is needed for some packages outside of GLFS, such as for QtWebEngine.
+      <parameter>-D icu=enabled</parameter>: This switch enables support for
+      ICU, which provides additional Unicode support. This is needed for some
+      packages outside of GLFS, such as for QtWebEngine.
     </para>
-
-    <para>
-      <parameter>PYTHON=/usr/bin/python3</parameter>: Allows building
-      the libxml2 module with Python3 instead of Python2.
-    </para>
-
-    <para>
-      <parameter>--without-python</parameter>: This switch disables building
-      this package for 32-bit on a 64-bit system with Python support as it
-      cannot find Python.
-    </para>
-
-<!--
-    <para>
-      <option>- -with-icu</option>: Add this switch if you have built
-      <xref linkend="icu"/>, for better unicode support.
-    </para>
-
-    <note>
-      <para>
-        If the <option>- -with-icu</option> switch is used, the BLFS editors
-        recommend removing unneeded references to the ICU libraries. This
-        will prevent many packages that use libxml2 from unnecessarily linking
-        to the ICU libraries.  This, in turn, will prevent the need for
-        rebuilding many packages when upgrading ICU to a new major version.
-        After installing libxml2, as the &root; user, issue:
-      </para>
-
-<screen role="nodump"><userinput>rm -vf /usr/lib/libxml2.la &amp;&amp;
-sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config</userinput></screen>
-    </note>
--->
 
   </sect2>
 

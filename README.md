@@ -1,60 +1,72 @@
-# Gaming Linux From Scatch (GLFS)
+<div align="center">
+  <img src="https://github.com/glfs-book/glfs/blob/trunk/images/glfs-logo.png?raw=true" width="25%">
+  <h1>GLFS</h1>
+</div>
 
-Gaming Linux From Scratch is a book that covers how to install packages
-like Steam and Wine after the Linux From Scratch book.
+<h2 align="center">
+Gaming Linux From Scratch
+</h2>
 
-# Where to Read
+This book covers the installation of graphics drivers, Steam, Wine, and more
+following a Linux From Scratch install.
 
-Go to https://glfs-book.github.io/glfs/ and start going through the book!
+## Where to Read
 
-The book online is rolling release but there is a stable version in the GLFS
-source via the `stable` branch.
+Go to https://linuxfromscratch.org/glfs/view/dev/ or
+https://glfs-book.github.io/glfs/ and start going through the book!
 
-You can switch to it by running the following command:
-```Bash
-git checkout stable
-```
+You can find more online copies at https://linuxfromscratch.org/glfs/view/.
 
-Then render the book by running `make STAB=release`.
+There are also [releases](https://github.com/glfs-book/glfs/releases) available
+for download.
 
-There are also [Releases](https://github.com/glfs-book/glfs/releases) that you
-can download. All of them contain both the SysV and Systemd editions of the
-book, chunked HTML.
-
-# Installation
+## Installation
 
 How do I convert these XML files to HTML myself? You need to have some software
-installed that deal with these conversions. Please read the `INSTALL.md` file to
-determine what programs you need to install and where to get instructions to
-install that software.
+installed that deal with these conversions. Please read
+[INSTALL.md](./INSTALL.md) to determine which programs you need to install and
+where to get instructions to install that software.
 
-After that, you can build the HTML with a simple `make` command.
-You can change the revision, ie. systemd vs sysv by adding `REV=<rev>` to the
-`make` command. `<rev>` can be:
-- `sysv` (default)
-- `systemd`
+You can then build the HTML with a simple `make` command.
 
-Example: `make REV=systemd`.
+You can switch the theme by passing `THEME=<theme>` to the `make` command.
+`<theme>` can equal:
+- `dynamic` (default)
+- `dark`
+- `light`
+- any theme in `THEME_PATH`
 
-The default target (sysv) builds the HTML in `~/public_html/glfs`,
-whereas for systemd, it would be in `~/public_html/glfs-systemd`.
+**Example:**
+```Bash
+make THEME=dark
+```
 
-It will by default make each package and section its own page then link
-everything together for a smooth experience.
-
-You can set a path to the themes by running `make THEME_PATH=<path>`.
-The default is `stylesheets/lfs-xsl`. You can find more at
+You can set the theme path by passing `THEME_PATH=<path>` to the `make` command.
+The default is `stylesheets/lfs-xsl`. More themes are available at
 https://github.com/glfs-book/lfs-themes.
 
-The dark theme is also the default, but you can switch the theme by
-running `make THEME=<theme>`. `<theme>` can equal:
-- `light`
-- `dark`
+**Example:**
+```Bash
+make THEME_PATH=../lfs-themes/themes THEME=whitepink
+```
 
-Note that if you set `THEME_PATH`, you can set `THEME` to more than
-just what the available options are shown above, but only the available themes
-that are in that path.
+By default, `RENDERTMP`, which defaults to a temporary directory created by
+`mktemp -d`, will be removed after every file has been converted to a new format
+(e.g., HTML, wget-list, dumped commands, etc.). If you need to keep that
+directory, pass `AUTO_CLEAN=0` to the `make` command.
 
-Defaults can be changed in a file that isn't tracked (`local.mk`) by declaring
-variables found in `Makefile` in `local.mk`, such as `REV` and `THEME`.
-This file must be created manually.
+**Example:**
+```Bash
+make RENDERTMP=~/tmp AUTO_CLEAN=0
+```
+
+> [!NOTE]
+> Other variables exist. For a more comprehensive list of them, run `make help`,
+> and for a complete list, inspect the Makefile.
+
+The default values for the variables in the Makefile may be changed by declaring
+them in `local.mk`. For instance, if `local.mk` contains `REV=systemd` and
+`THEME=light`, calling `make` with no arguments will build the systemd revision
+with the light theme. `local.mk` is not tracked and must be created manually.
+
+The default target renders as chunked HTML in `~/public_html/glfs`.

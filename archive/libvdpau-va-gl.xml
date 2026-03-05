@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY vdpauvagl-root "https://github.com/i-rinat/libvdpau-va-gl/archive">
+  <!ENTITY libvdpau-va-gl-download
+    "&vdpauvagl-root;/v&libvdpau-va-gl-version;/libvdpau-va-gl-&libvdpau-va-gl-version;.tar.gz">
+]>
+
+  <sect1 id="libvdpau-va-gl" xreflabel="libvdpau-va-gl-&libvdpau-va-gl-version;">
+  <?dbhtml filename="libvdpau-va-gl.html"?>
+
+    <title>libvdpau-va-gl-&libvdpau-va-gl-version;</title>
+
+    <indexterm zone="libvdpau-va-gl">
+      <primary sortas="a-libvdpau-va-gl">libvdpau-va-gl</primary>
+    </indexterm>
+
+    <sect2 role="package">
+      <title>Introduction to libvdpau-va-gl</title>
+
+      <para>
+        The libvdpau-va-gl package contains a library
+        which implements the VDPAU library.  Libvdpau_va_gl uses OpenGL under the
+        hood to accelerate drawing and scaling and the VA-API (if available) to
+        accelerate video decoding. For now VA-API is available on some Intel
+        chips, and on some AMD video adapters with the help of the libvdpau
+        driver.
+      </para>
+
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>
+            Download: <ulink url="&libvdpau-va-gl-download;"/>
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <bridgehead renderas="sect3">libvdpau-va-gl Dependencies</bridgehead>
+
+      <para role="required">
+        <xref linkend="cmake"/>,
+        <xref linkend="libvdpau"/>,
+        <xref linkend="libva"/>, and
+        &opengl;
+      </para>
+
+    </sect2>
+
+    <sect2 role="installation">
+      <title>Installation of libvdpau-va-gl</title>
+
+      <para>
+        Install libvdpau-va-gl by running the following
+        commands:
+      </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -D CMAKE_BUILD_TYPE=Release         \
+      -D CMAKE_INSTALL_PREFIX=/usr        \
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
+      -W no-dev .. &amp;&amp;
+
+make</userinput></screen>
+
+      <para>
+        Now, as the <systemitem class="username">root</systemitem> user:
+      </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+
+    </sect2>
+
+    <sect2 role="installation">
+      <title>lib32 Installation of libvdpau-va-gl</title>
+
+      <para>
+        Install lib32-libvdpau-va-gl by running the
+        following commands:
+      </para>
+
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"              \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig      \
+cmake -D CMAKE_BUILD_TYPE=Release         \
+      -D CMAKE_INSTALL_PREFIX=/usr        \
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
+      -W no-dev .. &amp;&amp;
+
+make</userinput></screen>
+
+      <para>
+        Now, as the <systemitem class="username">root</systemitem> user:
+      </para>
+
+<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install                    &amp;&amp;
+cp -vr DESTDIR/usr/lib/* /usr/lib32                  &amp;&amp;
+rm -rf DESTDIR                                       &amp;&amp;
+ldconfig</userinput></screen>
+
+    </sect2>
+
+    <sect2 role="commands">
+      <title>Command Explanations</title>
+
+      &options-cmake;
+
+    </sect2>
+
+    <sect2 role="configuration">
+      <title>Configuration</title>
+
+      <para>
+        To allow libvdpau to find libvdpau-va-gl, set an environment variable
+        as the &root; user:
+      </para>
+
+<screen role="root"><userinput>export VDPAU_DRIVER=va_gl &amp;&amp;
+echo "export VDPAU_DRIVER=va_gl" >> /etc/profile.d/xorg.sh</userinput></screen>
+
+    </sect2>
+
+    <sect2 role="content">
+      <title>Contents</title>
+
+      <segmentedlist>
+        <segtitle>Installed Programs</segtitle>
+        <segtitle>Installed Library</segtitle>
+        <segtitle>Installed Directories</segtitle>
+
+        <seglistitem>
+          <seg>
+            None
+          </seg>
+          <seg>
+            libvdpau_va_gl
+          </seg>
+          <seg>
+            None
+          </seg>
+        </seglistitem>
+      </segmentedlist>
+
+      <variablelist>
+        <bridgehead renderas="sect2">Short Descriptions</bridgehead>
+        <?dbfo list-presentation="list"?>
+        <?dbhtml list-presentation="table"?>
+
+        <varlistentry id="libvdpau-va-gl-lib">
+          <term><filename class="libraryfile">libvdpau_va_gl</filename></term>
+          <listitem>
+            <para>
+              contains functions to implement the OpenGL backend to
+              the VDPAU (Video Decode and Presentation API for Unix) API
+            </para>
+            <indexterm zone="libvdpau-va-gl libvdpau-va-gl-lib">
+              <primary sortas="c-libvdpau-va-gl">libvdpau</primary>
+            </indexterm>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect2>
+
+  </sect1>

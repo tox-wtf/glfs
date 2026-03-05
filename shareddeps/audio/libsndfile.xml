@@ -36,20 +36,17 @@
 
     <bridgehead renderas="sect3">libsndfile Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="flac"/>,
       <xref linkend="opus"/>, and
       <xref linkend="libvorbis"/><!-- brings in libogg -->
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="alsa-lib"/>,
       <xref linkend="lame"/>,
-      <ulink url="&blfs-svn;/multimedia/mpg123.html">mgp123</ulink>,
-      <xref linkend="speex"/>, and
-      <xref linkend="sqlite"/>
+      <ulink url="&blfs-svn;/multimedia/mpg123.html">mgp123</ulink>, and
+      <xref linkend="speex"/>
     </para>
 
   </sect2>
@@ -105,7 +102,7 @@ make</userinput></screen>
 cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
 rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
-  
+
   </sect2>
 
   <sect2 role="commands">

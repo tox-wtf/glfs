@@ -28,7 +28,6 @@
 
     <bridgehead renderas="sect3">VKD3D-Proton Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="dxvk"/>
       (for <filename class="libraryfile">dxgi</filename> and
@@ -41,7 +40,7 @@
   </sect2>
 
   <sect2>
-    <title>Downloading DXVK</title>
+    <title>Downloading VKD3D-Proton</title>
 
     <para>
       This package depends on submodules and multiple of them will need to be
@@ -53,9 +52,11 @@
 KhronosGroup/SPIRV-Headers/archive/&vkd3d-proton-spirv;.tar.gz
 KhronosGroup/Vulkan-Headers/archive/&vkd3d-proton-vulkan;.tar.gz
 HansKristian-Work/dxil-spirv/archive/&vkd3d-proton-dxil-spirv;.tar.gz
-KhronosGroup/SPIRV-Cross/archive/&vkd3d-proton-spirv-cross;.tar.gz
-KhronosGroup/SPIRV-Headers/archive/&vkd3d-proton-dxil-spirv-headers;.tar.gz
-KhronosGroup/SPIRV-Tools/archive/&vkd3d-proton-spirv-tools;.tar.gz</literal>
+KhronosGroup/SPIRV-Cross/archive/&vkd3d-proton-spirv-cross;.tar.gz<!--
+KhronosGroup/SPIRV-Headers/archive/&vkd3d-proton-dxil-spirv-headers;.tar.gz-->
+KhronosGroup/SPIRV-Tools/archive/&vkd3d-proton-spirv-tools;.tar.gz
+doitsujin/dxbc-spirv/archive/&vkd3d-proton-dxbc;.tar.gz
+KhronosGroup/SPIRV-Headers/archive/&vkd3d-proton-dxbc-spirv;.tar.gz</literal>
 EOF</userinput></screen>
 
     <para>
@@ -86,18 +87,22 @@ done</userinput></screen>
       moved in place. Do so now:
     </para>
 
-<screen><userinput>mv -T SPIRV-Headers-&vkd3d-proton-spirv;                \
-      vkd3d-proton-&vkd3d-proton-version;/khronos/SPIRV-Headers                            &amp;&amp;
-mv -T Vulkan-Headers-*                                                      \
-      vkd3d-proton-&vkd3d-proton-version;/khronos/Vulkan-Headers                           &amp;&amp;
-mv -T dxil-spirv-*                                                          \
-      vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv                           &amp;&amp;
-mv -T SPIRV-Cross-*                                                         \
-      vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/third_party/SPIRV-Cross   &amp;&amp;
-mv -T SPIRV-Headers-&vkd3d-proton-dxil-spirv-headers;                \
-      vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/third_party/spirv-headers &amp;&amp;
-mv -T SPIRV-Tools-*                                                         \
-      vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/third_party/SPIRV-Tools</userinput></screen>
+<screen><userinput>cp -RT SPIRV-Headers-&vkd3d-proton-spirv;             \
+       vkd3d-proton-&vkd3d-proton-version;/khronos/SPIRV-Headers                            &amp;&amp;
+mv -T  Vulkan-Headers-*                                                   \
+       vkd3d-proton-&vkd3d-proton-version;/khronos/Vulkan-Headers                           &amp;&amp;
+mv -T  dxil-spirv-*                                                       \
+       vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv                           &amp;&amp;
+mv -T  SPIRV-Cross-*                                                      \
+       vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/third_party/SPIRV-Cross   &amp;&amp;
+mv -T  SPIRV-Headers-&vkd3d-proton-spirv;             \
+       vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/third_party/spirv-headers &amp;&amp;
+mv -T  SPIRV-Tools-*                                                      \
+       vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/third_party/SPIRV-Tools   &amp;&amp;
+mv -T  dxbc-spirv-*                                                       \
+       vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/subprojects/dxbc-spirv    &amp;&amp;
+mv -T  SPIRV-Headers-&vkd3d-proton-dxbc-spirv;             \
+       vkd3d-proton-&vkd3d-proton-version;/subprojects/dxil-spirv/subprojects/dxbc-spirv/submodules/spirv_headers</userinput></screen>
 <!-- Submodules will be the death of me and alignment. -->
 
 
@@ -109,6 +114,7 @@ mv -T SPIRV-Tools-*                                                         \
 
 <screen><userinput>cd vkd3d-proton-&vkd3d-proton-version;</userinput></screen>
 
+<!--
     <para>
       Fix broken version generation which creates a broken header file during
       compilation:
@@ -116,6 +122,7 @@ mv -T SPIRV-Tools-*                                                         \
 
 <screen><userinput>sed "165s/.*/  command : \['echo', '0'\],/" \
   -i meson.build</userinput></screen>
+-->
 
     <note><para>
       If you are doing multilib, it is up to you if you want to install the
@@ -136,10 +143,10 @@ mv -T SPIRV-Tools-*                                                         \
 <screen><userinput>mkdir build-win64 &amp;&amp;
 cd    build-win64 &amp;&amp;
 
-meson setup .. --cross-file=../build-win64.txt \
-               --buildtype=release             \
-               --prefix=$PWD/DESTDIR &amp;&amp;
-
+meson setup --cross-file=../build-win64.txt \
+            --buildtype=release             \
+            --prefix=$PWD/DESTDIR           \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
       <para>Now as the &root; user:</para>
@@ -148,8 +155,8 @@ ninja</userinput></screen>
 cd ..         &amp;&amp;
 
 mkdir   -pv     /usr/lib/vkd3d-proton/win64 &amp;&amp;
-install -vDm644 build-win64/DESTDIR/bin/*.dll \
-                /usr/lib/vkd3d-proton/win64</userinput></screen>
+&install-exec; build-win64/DESTDIR/bin/*.dll \
+             -t /usr/lib/vkd3d-proton/win64/</userinput></screen>
 
     </sect3>
 
@@ -164,10 +171,10 @@ install -vDm644 build-win64/DESTDIR/bin/*.dll \
 <screen><userinput>mkdir build-win32 &amp;&amp;
 cd    build-win32 &amp;&amp;
 
-meson setup .. --cross-file ../build-win32.txt \
-               --buildtype=release             \
-               --prefix=$PWD/DESTDIR &amp;&amp;
-
+meson setup --cross-file=../build-win32.txt \
+            --buildtype=release             \
+            --prefix=$PWD/DESTDIR           \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
       <para>Now as the &root; user:</para>
@@ -176,8 +183,8 @@ ninja</userinput></screen>
 cd ..         &amp;&amp;
 
 mkdir   -pv     /usr/lib/vkd3d-proton/win32 &amp;&amp;
-install -vDm644 build-win32/DESTDIR/bin/*.dll \
-                /usr/lib/vkd3d-proton/win32</userinput></screen>
+&install-exec; build-win32/DESTDIR/bin/*.dll \
+             -t /usr/lib/vkd3d-proton/win32/</userinput></screen>
 
     </sect3>
 
@@ -191,7 +198,7 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
     found by Wine, whilst allowing updating of this
     package without having to copy everything over again. Along with this, the
     registry must be updated to use the new DLLs. Do this for each
-    archetecture you have installed.</para>
+    architecture you have installed.</para>
 
     <sect3>
       <title>64-bit Setup</title>
@@ -235,13 +242,8 @@ done</userinput></screen>
     &options-meson;
 
     <para>
-      <command>git checkout v&vkd3d-proton-version;</command>: This command switches to
-      a stable release in the commit history.
-    </para>
-
-    <para>
       <parameter>--cross-file=../build-win{32,64}.txt</parameter>: This
-      parameter changes what Win archetecture to build for.
+      parameter changes what Win architecture to build for.
     </para>
 
     &meson-buildtype-release;

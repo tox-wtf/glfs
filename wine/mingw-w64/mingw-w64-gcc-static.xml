@@ -23,7 +23,7 @@
     <para>
       MinGW-w64-GCC provides
       GCC compilers for MinGW-w64,
-      allowing users and applications to compile code targetting
+      allowing users and applications to compile code targeting
       Windows. This will be done in steps to avoid the need for
       already present binaries. This is the static build, which
       will have limited support but will be able to compile software
@@ -40,9 +40,18 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/gcc/gcc-&gcc-version;-mingw_fixes-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">Static MinGW-w64-GCC Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="mingw-w64-binutils"/> and
       <xref linkend="mingw-w64-headers"/>
@@ -53,14 +62,12 @@
   <sect2 role="installation">
     <title>Installation of Static MinGW-w64-GCC</title>
 
-<!--
     <para>
-      Ensure compatibility with glibc-2.42 or later:
+      Fix a MinGW-w64 issue within libstdc++:
     </para>
 
-<screen><userinput remap="pre">sed -i '/struct_termio_sz/d' \
-  libsanitizer/sanitizer_common/*</userinput></screen>
--->
+<screen><userinput
+  remap="pre">patch -Np1 -i ../gcc-&gcc-version;-mingw_fixes-1.patch</userinput></screen>
 
     <sect3>
       <title>x86_64 Installation of Static MinGW-w64-GCC</title>
@@ -146,7 +153,7 @@ make all-gcc</userinput></screen>
       thread support due to building errors in GCC. This support will be
       built in later.
     </para>
-    
+
     <para>
       <parameter>--enable-languages=c,c++</parameter>:
       This command builds support for C and C++. Refer to <ulink
@@ -160,7 +167,7 @@ make all-gcc</userinput></screen>
     <title>Contents</title>
     <para>
       There are no binaries specific to this package besides the format
-      the compilers are targetting, and thus are prefixed with the architecture
+      the compilers are targeting, and thus are prefixed with the architecture
       triplet, such as <command>x86_64-w64-mingw32-gcc</command>. For in-depth
       descriptions, read <ulink
       url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>.

@@ -32,7 +32,7 @@
 
     &not-katamari;
 
-    
+
 
     <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
@@ -70,7 +70,6 @@
 
     <bridgehead renderas="sect3">xterm Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="luit"/>
     </para>
@@ -82,7 +81,6 @@
     </para>
 
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="emacs"/>, <!-- looks for ctags/etags -->
       <xref linkend="pcre2"/>,

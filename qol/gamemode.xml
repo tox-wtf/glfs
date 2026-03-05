@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+
+  <!ENTITY gm-root
+    "https://github.com/FeralInteractive/gamemode/releases/download">
+  <!ENTITY gamemode-download
+    "&gm-root;/&gamemode-version;/gamemode-&gamemode-version;.tar.xz">
+]>
+
+<sect1 id="gamemode" xreflabel="GameMode-&gamemode-version;">
+  <?dbhtml filename="gamemode.html" ?>
+
+  <title>GameMode-&gamemode-version;</title>
+
+  <indexterm zone="gamemode">
+    <primary sortas="a-gamemode">GameMode</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to GameMode</title>
+
+    <para>
+      The GameMode package provides a daemon, utilities, and libraries which
+      allows games to request optimizations which then get applied to the host
+      temporarily.
+    </para>
+
+    &meson-cross;
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&gamemode-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">GameMode Dependencies</bridgehead>
+
+    <para role="required">
+      <xref linkend="dbus"/>
+    </para>
+
+    <para role="recommended">
+      <xref linkend="inih"/>,
+      &logind;, and
+      <xref linkend="polkit"/> (for the daemon)
+    </para>
+
+    <para role="optional">
+      <ulink url="&blfs-svn;/general/appstream.html">AppStream</ulink>
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of GameMode</title>
+
+    <para>
+      Install GameMode by running the following commands:
+    </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson setup --prefix=/usr                      \
+            --libexecdir=/usr/libexec/gamemode \
+            --buildtype=release                \</userinput><userinput revision="sysv">
+            -D with-sd-bus-provider=elogind    \</userinput><userinput>
+            .. &amp;&amp;
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>ninja install</userinput></screen>
+
+    <para>
+      If you installed the recommended dependencies and haven't installed this
+      package just as a dependency, enable the daemon for every user as the
+      &root; user:
+    </para>
+
+<screen role="root"><userinput>systemctl enable --global gamemoded</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>lib32 Installation of GameMode</title>
+
+    <para>
+      Install lib32-GameMode by running the following commands:
+    </para>
+
+<screen><userinput>rm -rf * &amp;&amp;
+meson setup --prefix=/usr                     \
+            --buildtype=release               \
+            --cross-file=lib32                \
+            -D with-sd-bus-provider=no-daemon \
+            .. &amp;&amp;
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
+cp -vR DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-meson;
+
+    <para><parameter>--libexecdir=/usr/libexec/gamemode</parameter>: This
+    parameter ensures there are no binary conflicts in <filename
+    class="directory">/usr/libexec</filename>.</para>
+
+    &meson-buildtype-release;
+
+    <para revision="sysv"><parameter>-D with-sd-bus-provider=elogind</parameter>:
+    This parameter ensures that elogind gets used instead of systemd-logind,
+    as Systemd is the default in this package. You can override the requirement
+    for logind altogether via the next parameter.</para>
+
+    <para><parameter>-D with-sd-bus-provider=no-daemon</parameter>: This
+    parameter disables building the daemon which requires &logind; and
+    inih. This is used in the lib32 build since the daemon doesn't provide any
+    libraries.</para>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Program</segtitle>
+      <segtitle>Installed Library</segtitle>
+      <segtitle>Installed Directory</segtitle>
+
+      <seglistitem>
+        <seg>
+          gamemoded, gamemodelist, gamemoderun
+        </seg>
+        <seg>
+          libgamemodeauto and libgamemode
+        </seg>
+        <seg>
+          /usr/libexec/gamemode
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="gamemoded">
+        <term><command>gamemoded</command></term>
+        <listitem>
+          <para>
+            is the GameMode daemon
+          </para>
+          <indexterm zone="gamemode gamemoded">
+            <primary sortas="b-gamemoded">gamemoded</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gamemodelist">
+        <term><command>gamemodelist</command></term>
+        <listitem>
+          <para>
+            finds running process for GameMode
+          </para>
+          <indexterm zone="gamemode gamemodelist">
+            <primary sortas="b-gamemodelist">gamemodelist</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gamemoderun">
+        <term><command>gamemoderun</command></term>
+        <listitem>
+          <para>
+            loads GameMode for an application/game
+          </para>
+          <indexterm zone="gamemode gamemoderun">
+            <primary sortas="b-gamemoderun">gamemoderun</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgamemodeauto">
+        <term><filename class="libraryfile">libgamemodeauto</filename></term>
+        <listitem>
+          <para>
+            automatically requests GameMode upon loading
+          </para>
+          <indexterm zone="gamemode libgamemodeauto">
+            <primary sortas="c-libgamemodeauto">libgamemodeauto</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgamemode">
+        <term><filename class="libraryfile">libgamemode</filename></term>
+        <listitem>
+          <para>
+            dispatches requests to <command>gamemoded</command>
+          </para>
+          <indexterm zone="gamemode libgamemode">
+            <primary sortas="c-libgamemode">libgamemode</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

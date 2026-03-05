@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY slt-root "https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive">
+  <!ENTITY spirv-llvm-translator-download
+    "&slt-root;/v&spirv-llvm-translator-version;/SPIRV-LLVM-Translator-&spirv-llvm-translator-version;.tar.gz">
+]>
+
+<sect1 id="spirv-llvm-translator" xreflabel="SPIRV-LLVM-Translator-&spirv-llvm-translator-version;">
+  <?dbhtml filename="spirv-llvm-translator.html"?>
+
+  <title>SPIRV-LLVM-Translator-&spirv-llvm-translator-version;</title>
+
+  <indexterm zone="spirv-llvm-translator">
+    <primary sortas="a-spirv-llvm-translator">SPIRV-LLVM-Translator</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to SPIRV-LLVM-Translator</title>
+
+    <para>
+      SPIRV-LLVM-Translator is a tool and a library
+      for bi-directional translation between SPIR-V and LLVM IR.
+    </para>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&spirv-llvm-translator-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">SPIRV-LLVM-Translator Dependencies</bridgehead>
+
+    <para role="required">
+      <xref linkend="cmake"/>,
+      <xref linkend="libxml2"/>,
+      <xref linkend="llvm"/> (with Clang), and
+      <xref linkend="vulkan-sdk"/>
+    </para>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of SPIRV-LLVM-Translator</title>
+
+    <para>
+      Install SPIRV-LLVM-Translator by running the following
+      commands:
+    </para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr                   \
+      -D CMAKE_BUILD_TYPE=Release                    \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON                 \
+      -D BUILD_SHARED_LIBS=ON                        \
+      -D LLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=/usr \
+      -G Ninja .. &amp;&amp;
+
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>ninja install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>lib32 Installation of SPIRV-LLVM-Translator</title>
+
+    <para>
+      Install lib32-SPIRV-LLVM-Translator by running the following
+      commands:
+    </para>
+
+<screen><userinput>rm -rf * &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"                         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig                 \
+cmake -D CMAKE_INSTALL_PREFIX=/usr                   \
+      -D CMAKE_INSTALL_LIBDIR=lib32                  \
+      -D CMAKE_BUILD_TYPE=Release                    \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON                 \
+      -D BUILD_SHARED_LIBS=ON                        \
+      -D LLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=/usr \
+      -G Ninja .. &amp;&amp;
+
+ninja</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-cmake;
+
+    &cmake-skip-install-rpath;
+
+    <para>
+      <parameter>-D BUILD_SHARED_LIBS=ON</parameter>: This switch forces the
+      build system to install shared libraries instead of static libraries.
+    </para>
+
+    <para>
+      <parameter>-D LLVM_EXTERNAL_SPIRV_HEADERS_*</parameter>: These switches tells the
+      build system that <xref linkend="vulkan-sdk" role="nodep"/> is
+      installed in /usr. This is needed since the build system
+      tries to download and use the downloaded headers not on the system if the switch
+      isn't invoked.
+    </para>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Libraries</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          llvm-spirv
+        </seg>
+        <seg>
+          libLLVMSPIRVLib
+        </seg>
+        <seg>
+          /usr/include/libLLVMSPIRVLib
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="llvm-spirv">
+        <term><command>llvm-spirv</command></term>
+        <listitem>
+          <para>
+            translates LLVM bitcode and SPIR-V binaries
+          </para>
+          <indexterm zone="spirv-llvm-translator llvm-spirv">
+            <primary sortas="b-llvm-spirv">llvm-spirv</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libLLVMSPIRVLib">
+        <term><filename class="libraryfile">libLLVMSPIRVLib</filename></term>
+        <listitem>
+          <para>
+            contains functions for translating between SPIR-V and LLVM IR
+          </para>
+          <indexterm zone="spirv-llvm-translator libLLVMSPIRVLib">
+            <primary sortas="c-libLLVMSPIRVLib">libLLVMSPIRVLib</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </sect2>
+</sect1>

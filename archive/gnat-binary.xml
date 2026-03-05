@@ -6,7 +6,7 @@
 
   <!ENTITY gnat-binary-amd64-download-http "https://github.com/alire-project/GNAT-FSF-builds/releases/download/gnat-&gcc-version;-1/gnat-x86_64-linux-&gcc-version;-1.tar.gz">
   <!ENTITY gnat-binary-amd64-download-ftp  " ">
-  
+
   <!ENTITY gnat-binary-i686-download-http "https://community.download.adacore.com/v1/c5e9e6fdff5cb77ed90cf8c62536653e27c0bed6?filename=gnat-gpl-2014-x86-linux-bin.tar.gz&amp;rand=1247">
   <!ENTITY gnat-binary-i686-download-ftp  " ">
 ]>
@@ -22,7 +22,7 @@
 
   <sect2 role="package">
     <title>About GNAT</title>
-    
+
     <para>
 	Ada is a modern programming language designed for large, long-lived
 	applications &mdash; and embedded systems in particular &mdash; where
@@ -72,7 +72,7 @@
 	regardless of the recommendation against it, please run
 	the following the command before unpacking:
     </para>
-    
+
     <screen><userinput>mv c5e9e6fdff5cb77ed90cf8c62536653e27c0bed6\?filename\=gnat-gpl-2014-x86-linux-bin.tar.gz\&amp;rand\=1247 \
     gnat-gpl-2014-x86-linux-bin.tar.gz</userinput></screen>
 

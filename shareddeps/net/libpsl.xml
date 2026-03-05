@@ -26,6 +26,8 @@
       is a set of domain names beyond the standard suffixes, such as .com.
     </para>
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -36,13 +38,11 @@
 
     <bridgehead renderas="sect3">libpsl Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="libidn2"/> and
       <xref linkend='libunistring'/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="icu"/> (can be used instead of libidn2)
     </para>
@@ -80,12 +80,10 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-meson setup ..                       \
-      --prefix=/usr                  \
-      --libdir=/usr/lib32            \
-      --buildtype=release &amp;&amp;
+meson setup --prefix=/usr            \
+            --buildtype=release      \
+            --cross-file=lib32       \
+            .. &amp;&amp;
 
 ninja</userinput></screen>
 

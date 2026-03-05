@@ -38,7 +38,6 @@
 
     <bridgehead renderas="sect3">MinGW-w64-GCC Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="mingw-w64"/>
     </para>
@@ -49,20 +48,16 @@
     <title>Installation of MinGW-w64-GCC</title>
 
     <note><para>
-      Since you are targetting a triplet different from the host, running
+      Since you are targeting a triplet different from the host, running
       <command>make install</command> is generally safe, unlike a standard
       installation of a compiler which if it has been built wrong can brick
       the toolchain entirely.
     </para></note>
 
-<!--
     <para>
-      Ensure compatibility with glibc-2.42 or later:
+      If you are building from a new GCC source tree, be sure to apply the
+      patch from <xref linkend="mingw-w64-gcc-static"/>.
     </para>
-
-<screen><userinput remap="pre">sed -i '/struct_termio_sz/d' \
-  libsanitizer/sanitizer_common/*</userinput></screen>
--->
 
   <sect3>
     <title>x86_64 Installation of MinGW-w64-GCC</title>
@@ -265,7 +260,7 @@ rm -v a.exe main.{c,cpp}</userinput></screen>
     <title>Contents</title>
     <para>
       There are no binaries specific to this package besides the format
-      the compilers are targetting, and thus are prefixed with the architecture
+      the compilers are targeting, and thus are prefixed with the architecture
       triplet, such as <command>x86_64-w64-mingw32-gcc</command>. For in-depth
       descriptions, read <ulink
       url="&lfs-root;/chapter08/gcc.html#contents-gcc"/>.

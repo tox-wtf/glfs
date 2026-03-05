@@ -7,6 +7,10 @@
   <!ENTITY libpng-download "&sourceforge-dl;/libpng/libpng-&libpng-version;.tar.xz">
   <!ENTITY apng-patch
         "&sourceforge-dl;/sourceforge/libpng-apng/libpng-&apng-version;-apng.patch.gz">
+  <!--
+  <!ENTITY apng-patch
+        "&dl-root;/libpng/libpng-&apng-version;-apng.patch">
+  -->
 ]>
 
 <sect1 id="libpng" xreflabel="libpng-&libpng-version;">
@@ -53,10 +57,13 @@
     <title>Installation of libpng</title>
 
     <para>
-      If you want to patch libpng to support apng files, apply it here:
+      If you want to patch libpng to support apng files, do so now:
     </para>
 
 <screen><userinput>gzip -cd ../libpng-&apng-version;-apng.patch.gz | patch -p1</userinput></screen>
+<!--
+<screen><userinput>patch -Np1 -i ../libpng-&apng-version;-apng.patch</userinput></screen>
+-->
 
     <para>
       Install libpng by running the following

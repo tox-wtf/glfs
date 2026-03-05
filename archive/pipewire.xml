@@ -56,7 +56,6 @@
 
     <bridgehead renderas="sect3">Pipewire Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <ulink url="&blfs-svn;/general/bluez.html">BlueZ</ulink>,
       <xref linkend="dbus-pass2"/>,
@@ -68,7 +67,6 @@
       <xref role="runtime" linkend="wireplumber"/> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="alsa-lib"/>,
       <xref linkend="libdrm"/> (for one example and libcamera support),
@@ -110,10 +108,10 @@
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..                 \
-      --prefix=/usr            \
-      --buildtype=release      \
-      -D session-managers="[]" &amp;&amp;
+meson setup --prefix=/usr            \
+            --buildtype=release      \
+            -D session-managers="[]" \
+            .. &amp;&amp;
 
 ninja</userinput></screen>
 

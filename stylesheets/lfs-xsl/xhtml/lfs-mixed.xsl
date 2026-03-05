@@ -4,9 +4,9 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
-  <!-- This stylesheet contains misc templates for output formating.
+  <!-- This stylesheet contains misc templates for output formatting.
        This file is for that templates that don't fit in other files
-       and that not afect the chunk algorithm. -->
+       and that not affect the chunk algorithm. -->
 
   <!-- Individual elements templates -->
 
@@ -41,6 +41,26 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+    <!-- para role="required/recommended/optional": this makes it so dependency
+         lists are collapsible so they can take up less space in rendered
+         output. HTML only, but we only render HTML at the moment. -->
+
+  <xsl:template match="para[@role='required' or
+                            @role='recommended' or
+                            @role='optional']">
+    <details open="true">
+      <summary>
+        <xsl:value-of select="concat(translate(substring(@role, 1, 1),
+                              'abcdefghijklmnopqrstuvwxyz',
+                              'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+                              substring(@role, 2))"/>
+      </summary>
+      <br/>
+      <xsl:apply-templates/>
+    </details>
+    <br/>
   </xsl:template>
 
     <!-- footnote/para[1]: this template is in {docbook-xsl}/xhtml/footnote.xsl
@@ -198,7 +218,7 @@
   </xsl:template>
 
     <!-- para/simplelist:
-           Self-made template. Add a line break and process the childs.
+           Self-made template. Add a line break and process the children.
            If @type is specified, the original templates should be used,
            but not tested. -->
   <xsl:template match="para/simplelist">
@@ -219,7 +239,7 @@
   </xsl:template>
 
 
-  <!-- Named formating templates -->
+  <!-- Named formatting templates -->
 
     <!-- Body attributes:
            Add to the body XHTML output tag a class attribute with the book type

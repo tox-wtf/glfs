@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="connect" xreflabel="Connecting to the Internet">
+  <?dbhtml filename="connect.html"?>
+
+  <title>Connecting to the Internet</title>
+
+  <para>
+    Some of the instructions in GLFS require an internet connection, namely in
+    <xref linkend="rustc"/> and when downloading all the files for a package
+    bundle like <xref linkend="llvm"/> and <xref linkend="vulkan-sdk"/>. Thus,
+    you will need an internet connection on the LFS target, whether in a
+    chroot, TTY, or GUI. Tools for downloading files will be installed in GLFS.
+  </para>
+
+  <para>
+    The LFS book covers setting up networking by connecting to a LAN
+    with a static IP address. There are other methods used to obtain
+    an IP address and connect to a LAN and other networks (such as
+    the internet). The most popular method is DHCP.
+  </para>
+
+  <para>
+    DHCP stands for Dynamic Host Configuration Protocol. It is a
+    protocol used by many sites to automatically provide information
+    such as IP addresses, subnet masks and routing information to
+    computers. If your network uses DHCP, you will need a DHCP client
+    in order to connect to it.
+  </para>
+
+  <sect2>
+    <title>How to Connect to the Internet</title>
+
+    <para revision="systemd">
+      Systemd provides two daemons for DHCP: one which handles the network
+      interface, and another that handles DNS resolving
+      (<literal>systemd-networkd</literal> and
+      <literal>systemd-resolved</literal> respectively). The LFS book covers
+      how to set up both.
+    </para>
+
+    <para revision="sysv">
+      In order to use DHCP, you will need a DHCP client,
+      <ulink url="&blfs-svn;/basicnet/dhcpcd.html">
+      dhcpcd</ulink>. 
+    </para>
+
+    <para>
+      You may also be wanting to connect to the
+      internet wirelessly. In order to do that, you should first
+      configure the kernel to support that, the instructions for
+      that are
+      <ulink url="&blfs-svn;/basicnet/wireless-kernel.html">here</ulink>.
+      After that, you will need a tool to connect to the internet, suitable
+      ones being
+      <ulink url="&blfs-svn;/basicnet/iw.html">iw</ulink>,
+      <ulink url="&blfs-svn;/basicnet/wireless_tools.html">
+      Wireless Tools</ulink>, or
+      <ulink url="&blfs-svn;/basicnet/wpa_supplicant.html">
+      wpa_supplicant</ulink>.
+      You will only need one of those, whichever one is up to you.
+      <phrase revision="systemd">Ensure that both the
+      <literal>systemd-networkd</literal> and
+      <literal>systemd-resolved</literal> services are enabled.</phrase>
+    </para>
+
+  </sect2>
+
+</sect1>

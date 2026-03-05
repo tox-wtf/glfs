@@ -42,7 +42,6 @@
 
     <bridgehead renderas="sect3">SPIRV-Tools Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="cmake"/> and
       <xref linkend="spirv-headers"/>
@@ -139,7 +138,7 @@ ldconfig</userinput></screen>
       <parameter>-D BUILD_SHARED_LIBS=ON</parameter>: This switch forces the
       build system to install shared libraries instead of static libraries.
     </para>
-    
+
     <para>
       <parameter>-D SPIRV_TOOLS_BUILD_STATIC=OFF</parameter>: This switch
       disables building static versions of the libraries.

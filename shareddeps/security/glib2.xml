@@ -4,7 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY glib2-download "&gnome-download-http;/glib/&glib2-minor;/glib-&glib2-version;.tar.xz">
+  <!ENTITY glib2-download "&gnome-download-http;/glib/&glib2-major;.&glib2-minor;/glib-&glib2-version;.tar.xz">
 ]>
 
 <sect1 id="glib2" xreflabel="GLib-&glib2-version;">
@@ -29,6 +29,8 @@
 
     &long-build-time;
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -51,10 +53,9 @@
       </listitem>
     </itemizedlist>
 
-<!--
     <para>
-      <emphasis role="strong">Required patch to fix issues with
-      gobject-introspection-1.84.x:</emphasis>
+      <emphasis role="strong">Required patch to fix memory corruption issues
+      exposed by glibc-2.43:</emphasis>
     </para>
     <itemizedlist spacing="compact">
       <listitem>
@@ -64,7 +65,6 @@
         </para>
       </listitem>
     </itemizedlist>
--->
 
     <para>
       <emphasis role="strong">Patch for Log Level Selection (Optional)</emphasis>
@@ -80,26 +80,14 @@
 
     <bridgehead renderas="sect3">GLib Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
-    <para role="required">
-      <xref linkend="mesonfiles"/> (for lib32)
-    </para>
-
-    <bridgehead renderas="sect4">Recommended</bridgehead>
-    <para role="recommended">
-      <xref linkend="pcre2"/> (if not built, Meson will try to fetch a tarball
-      of PCRE2 source code from the internet)
-  </para>
-
-    <bridgehead renderas="sect4">Optional</bridgehead>
-    <para role="optional">
-      <ulink url="&blfs-svn;/general/libxslt.html">libxslt</ulink> (for man-pages)
-    </para>
-
-    <bridgehead renderas="sect4">Additional Runtime Dependencies</bridgehead>
     <para role="recommended">
       <xref role="runtime" linkend="shared-mime-info"/> and
       <xref role="runtime" linkend="desktop-file-utils"/>
+      (both at runtime)
+    </para>
+
+    <para role="optional">
+      <ulink url="&blfs-svn;/general/libxslt.html">libxslt</ulink> (for man-pages)
     </para>
 
   </sect2>
@@ -107,13 +95,12 @@
   <sect2 role="installation">
     <title>Installation of GLib</title>
 
-<!--
+
     <para>
-      First, fix a runtime issue caused by gobject-introspection-1.84.x:
+      First, fix memory corruption issues exposed by glibc-2.43:
     </para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../glib-&glib2-version;-upstream_fixes-1.patch</userinput></screen>
--->
 
     <para>
       If desired, apply the optional patch. In many cases, applications that
@@ -161,15 +148,14 @@ fi</userinput></screen>
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..                  \
-      --prefix=/usr             \
-      --buildtype=release       \
-      -D introspection=disabled \
-      -D glib_debug=disabled    \
-      -D man-pages=disabled     \
-      -D tests=false            \
-      -D sysprof=disabled       &amp;&amp;
-
+meson setup --prefix=/usr             \
+            --buildtype=release       \
+            -D introspection=disabled \
+            -D glib_debug=disabled    \
+            -D man-pages=disabled     \
+            -D tests=false            \
+            -D sysprof=disabled       \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
     <para>
@@ -222,16 +208,15 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-meson setup ..                  \
-      --cross-file=lib32        \
-      --prefix=/usr             \
-      --libdir=/usr/lib32       \
-      --buildtype=release       \
-      -D introspection=disabled \
-      -D glib_debug=disabled    \
-      -D man-pages=disabled     \
-      -D tests=false            \
-      -D sysprof=disabled       &amp;&amp;
+meson setup --prefix=/usr             \
+            --buildtype=release       \
+            --cross-file=lib32        \
+            -D introspection=disabled \
+            -D glib_debug=disabled    \
+            -D man-pages=disabled     \
+            -D tests=false            \
+            -D sysprof=disabled       \
+            .. &amp;&amp;
 
 ninja</userinput></screen>
 

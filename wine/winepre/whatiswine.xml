@@ -13,16 +13,16 @@
 
   <para>
     Wine is an application that allows users
-    to execute Windows software via a compatibilty layer. Although the
+    to execute Windows software via a compatibility layer. Although the
     acronym of WINE (Wine Is Not Emulation) describes itself as not an
-    emulator but as a compatabilty layer, many still see it as one.
+    emulator but as a compatibility layer, many still see it as one.
   </para>
 
   <para>
     Wine is geared towards running normal
     Windows software whereas Steam's Proton
     is more geared towards playing games at high performance. Trying
-    to run regular Windows software may be troublesome with 
+    to run regular Windows software may be troublesome with
     Proton but is no trouble to Wine.
     Even some games run better on Wine but
     struggle or simply don't launch with Proton.

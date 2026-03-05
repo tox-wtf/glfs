@@ -38,6 +38,14 @@
   <sect2 role="installation">
     <title>Installation of libtasn1</title>
 
+<!-- For CSS and image testing purposes.
+    <tip><para>Example tip.</para></tip>
+    <note><para>Example note.</para></note>
+    <important><para>Example important.</para></important>
+    <caution><para>Example caution.</para></caution>
+    <warning><para>Example warning.</para></warning>
+-->
+
     <para>
       Install libtasn1 by running the
       following commands:
@@ -63,7 +71,7 @@ make</userinput></screen>
 
   <sect2 role="installation">
     <title>lib32 Installation of libtasn1</title>
-    
+
     <para>
       Install lib32-libtasn1
       by running the following commands:
@@ -89,7 +97,7 @@ rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
 
   </sect2>
-  
+
   <sect2 role="commands">
     <title>Command Explanations</title>
 

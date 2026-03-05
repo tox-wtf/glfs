@@ -41,7 +41,7 @@
       is taken from the Mozilla Foundation, who have established very strict
       inclusion policies described <ulink
       url="https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/policy/">here</ulink>.
-    </para>   
+    </para>
 
     <itemizedlist spacing="compact">
       <listitem>
@@ -65,7 +65,6 @@
 
     <bridgehead renderas="sect3">make-ca Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="p11-kit"/>, <xref linkend="libtasn1"/>,
       and <xref role="runtime" linkend="nss"/>
@@ -106,12 +105,20 @@
 </literal>EOF</userinput></screen>
 
     <para>
+      The make-ca script uses a deprecated option for a command which can
+      produce unwanted behavior under certain conditions. Fix it by running the
+      following command:
+    </para>
+
+    <screen><userinput>sed '/mktemp/s/-t //' -i make-ca</userinput></screen>
+
+    <para>
       Now to install the make-ca script, it must be
       installed into the correct location as the &root; user:
     </para>
 
 <screen role="root"><userinput>make install &amp;&amp;
-install -vdm755 /etc/ssl/local</userinput></screen>
+&install-dir; /etc/ssl/local</userinput></screen>
 
    <note>
      <para>

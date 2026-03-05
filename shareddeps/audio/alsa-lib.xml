@@ -33,7 +33,7 @@
         </para>
       </listitem>
     </itemizedlist>
-    
+
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
@@ -54,13 +54,11 @@
 
     <bridgehead renderas="sect3">ALSA Library Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended (Runtime)</bridgehead>
-    <para role="runtime">
+    <para role="recommended">
       <phrase revision="sysv"><xref linkend="elogind"/></phrase>
-      <phrase revision="systemd"><xref linkend="systemd"/></phrase>
+      <phrase revision="systemd"><xref linkend="systemd"/></phrase> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="&blfs-svn;/general/doxygen.html">
       Doxygen</ulink> and
@@ -148,11 +146,11 @@ tar -C /usr/share/alsa --strip-components=1 -xf ../alsa-ucm-conf-&alsa-lib-versi
     </para>
 
 <screen role="root"
-        remap="doc"><userinput>install -v -d -m755 /usr/share/doc/alsa-lib-&alsa-lib-version;/html/search &amp;&amp;
-install -v -m644 doc/doxygen/html/*.* \
-                /usr/share/doc/alsa-lib-&alsa-lib-version;/html &amp;&amp;
-install -v -m644 doc/doxygen/html/search/* \
-                /usr/share/doc/alsa-lib-&alsa-lib-version;/html/search</userinput></screen>
+        remap="doc"><userinput>&install-dir; /usr/share/doc/alsa-lib-&alsa-lib-version;/html/search &amp;&amp;
+&install-file; doc/doxygen/html/*.* \
+             -t /usr/share/doc/alsa-lib-&alsa-lib-version;/html/ &amp;&amp;
+&install-file; doc/doxygen/html/search/* \
+             -t /usr/share/doc/alsa-lib-&alsa-lib-version;/html/search/</userinput></screen>
 
   </sect2>
 

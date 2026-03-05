@@ -26,6 +26,8 @@
 
     &long-build-time;
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -36,12 +38,10 @@
 
     <bridgehead renderas="sect3">Xorg Libraries Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="fontconfig"/> and
       <xref linkend="libxcb"/>
     </para>
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="&w3m-url;">W3m</ulink> (to generate additional PDF or text
       documentation for the libXfont package)
@@ -62,7 +62,7 @@
       First, create a list of files to be downloaded:
     </para>
 
-<screen><userinput>cat &gt; lib-&xorg-version;-list &lt;&lt; "EOF"
+<screen><userinput>cat &gt; x7lib-&xorg-version;-list &lt;&lt; "EOF"
 <literal>xtrans-&xtrans-version;.tar.xz
 libX11-&libX11-version;.tar.xz
 libXext-&libXext-version;.tar.xz
@@ -108,10 +108,11 @@ EOF</userinput></screen>
       use the following commands:
     </para>
 
-<screen><userinput>mkdir lib &amp;&amp;
-cd lib &amp;&amp;
-grep -v '^#' ../lib-&xorg-version;-list | wget -i- -c \
-    -B &x7libs-download;</userinput></screen>
+<screen><userinput>mkdir x7lib &amp;&amp;
+cd x7lib &amp;&amp;
+grep -v '^#' ../x7lib-&xorg-version;-list | wget -i- -c \
+    -B &x7libs-download;<!-- &amp;&amp;
+wget &dl-root;/libXmu/libXmu-&libXmu-version;-upstream_fixes-1.patch--></userinput></screen>
 
   </sect2>
 
@@ -130,7 +131,7 @@ grep -v '^#' ../lib-&xorg-version;-list | wget -i- -c \
       Install all of the packages by running the following commands:
     </para>
 
-<screen><userinput>for package in $(grep -v '^#' ../lib-&xorg-version;-list)
+<screen><userinput>for package in $(grep -v '^#' ../x7lib-&xorg-version;-list)
 do
   packagedir=${package%.tar.?z*}
   echo "Building $packagedir"
@@ -138,7 +139,10 @@ do
   tar -xf $package
   pushd $packagedir
   docdir="--docdir=/usr/share/doc/$packagedir"
-  
+
+  do_build()   { make; }
+  do_install() { as_root make install; }
+
   case $packagedir in
     libXfont2-[0-9]* )
       ./configure $XORG_CONFIG $docdir --disable-devel-docs
@@ -147,21 +151,21 @@ do
     libXt-[0-9]* )
       ./configure $XORG_CONFIG $docdir \
                   --with-appdefaultdir=/etc/X11/app-defaults
-    ;;
+    ;;<!--
+
+    libXmu-[0-9]* )
+      patch -Np1 -i ../libXmu-&libXmu-version;-upstream_fixes-1.patch
+      ./configure $XORG_CONFIG $docdir
+    ;;-->
 
     libXpm-[0-9]* )
       ./configure $XORG_CONFIG $docdir --disable-open-zfile
     ;;
-  
-    libpciaccess* )
-      mkdir build
-      cd    build
-        meson setup --prefix=/usr --buildtype=release ..
-        ninja
-        as_root ninja install
-      popd     # $packagedir
-      rm -rf $packagedir
-      continue # for loop
+
+    libpciaccess* | libxkbfile*)
+      meson setup --prefix=/usr --buildtype=release build
+      do_build()   { ninja -C build; }
+      do_install() { as_root ninja -C build install; }
     ;;
 
     * )
@@ -169,8 +173,10 @@ do
     ;;
   esac
 
-  make
-  as_root make install
+  do_build
+  do_install
+  unset do_build do_install
+
   popd
   rm -rf $packagedir
   as_root /sbin/ldconfig
@@ -181,7 +187,7 @@ done</userinput></screen>
       running the following commands:
     </para>
 
-<screen><userinput>for package in $(grep -v '^#' ../lib-&xorg-version;-list)
+<screen><userinput>for package in $(grep -v '^#' ../x7lib-&xorg-version;-list)
 do
   case $package in xtrans* )
     continue
@@ -195,7 +201,10 @@ do
   libdir="--libdir=/usr/lib32"
   docdir="--docdir=/usr/share/doc/$packagedir"
   host="--host=i686-pc-linux-gnu"
-  
+
+  do_build()        { make; }
+  do_dest_install() { make DESTDIR=$PWD/DESTDIR install; }
+
   case $packagedir in
     libXfont2-[0-9]* )
       CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig  \
@@ -206,26 +215,25 @@ do
       CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
       ./configure $XORG_CONFIG $libdir $host $docdir                    \
                   --with-appdefaultdir=/etc/X11/app-defaults
-    ;;
+    ;;<!--
+
+    libXmu-[0-9]* )
+      patch -Np1 -i ../libXmu-&libXmu-version;-upstream_fixes-1.patch
+      CC="gcc -m32" CXX="g++ -m32"         \
+      PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+      ./configure $XORG_CONFIG $libdir $host $docdir
+    ;;-->
 
     libXpm-[0-9]* )
       CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig  \
       ./configure $XORG_CONFIG $libdir $host $docdir --disable-open-zfile
     ;;
-  
-    libpciaccess* )
-      mkdir build
-      cd    build
-        CC="gcc -m32" CXX="g++ -m32" PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-        meson setup --prefix=/usr $libdir --buildtype=release ..
-        ninja
-        DESTDIR=$PWD/DESTDIR ninja install
-        as_root cp -vr DESTDIR/usr/lib32/* /usr/lib32
-        rm -rf DESTDIR
-        as_root /sbin/ldconfig
-      popd     # $packagedir
-      rm -rf $packagedir
-      continue # for loop
+
+    libpciaccess* | libxkbfile* )
+      meson setup --prefix=/usr --buildtype=release --cross-file=lib32 build
+
+      do_build()        { ninja -C build; }
+      do_dest_install() { DESTDIR=$PWD/DESTDIR ninja -C build install; }
     ;;
 
     * )
@@ -235,9 +243,11 @@ do
     ;;
   esac
 
-  make
-  make DESTDIR=$PWD/DESTDIR install
-  as_root cp -vr DESTDIR/usr/lib32/* /usr/lib32
+  do_build
+  do_dest_install
+  unset do_build do_dest_install
+
+  as_root cp -vR DESTDIR/usr/lib32/* /usr/lib32
   rm -rf DESTDIR
   popd
   rm -rf $packagedir

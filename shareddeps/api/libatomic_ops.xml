@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY laops-dl-root
+    "https://github.com/bdwgc/libatomic_ops/releases/download">
+  <!ENTITY libatomic_ops-download
+    "&laops-dl-root;/v&libatomic_ops-version;/libatomic_ops-&libatomic_ops-version;.tar.gz">
+]>
+
+<sect1 id="libatomic_ops" xreflabel="libatomic_ops-&libatomic_ops-version;">
+  <?dbhtml filename="libatomic_ops.html"?>
+
+  <title>libatomic_ops-&libatomic_ops-version;</title>
+
+  <indexterm zone="libatomic_ops">
+    <primary sortas="a-libatomic_ops">libatomic_ops</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to libatomic_ops</title>
+
+    <para>
+      <application>libatomic_ops</application> provides implementations for
+      atomic memory update operations on a number of architectures. This allows
+      direct use of these in reasonably portable code. Unlike earlier similar
+      packages, this one explicitly considers memory barrier semantics, and
+      allows the construction of code that involves minimum overhead across a
+      variety of architectures. Some systems, like various Intel CPUs, don't
+      support native atomic operations either, and this package offers as a
+      stand-in replacement.
+    </para>
+
+    <para>
+      Many systems won't need this package in GLFS or SLFS, but may be required
+      in BLFS. However, some Intel systems need this package to provide
+      atomics, needed by <xref linkend="libdrm"/>. Otherwise, the libdrm module
+      for the Intel platform will not be built, causing cascading issues for
+      packages like <xref linkend="mesa"/>. If you know your platform supports
+      atomics, you can safely skip this package.
+    </para>
+
+    <bridgehead renderas="sect3">Package Information</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&libatomic_ops-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of libatomic_ops</title>
+
+    <para>
+      Install libatomic_ops by running the following commands:
+    </para>
+
+<screen><userinput>./configure --prefix=/usr    \
+            --enable-shared  \
+            --disable-static \
+            --docdir=/usr/share/doc/libatomic_ops-&libatomic_ops-version; &amp;&amp;
+make</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of lib32-libatomic_ops</title>
+
+    <para>
+      Install lib32-libatomic_ops by running the following commands:
+    </para>
+
+<screen><userinput>make distclean &amp;&amp;
+CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+./configure --prefix=/usr            \
+            --libdir=/usr/lib32      \
+            --host=i686-pc-linux-gnu \
+            --enable-shared          \
+            --disable-static &amp;&amp;
+make</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
+rm -rf DESTDIR                        &amp;&amp;
+ldconfig</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-configure;
+
+    <para>
+      <parameter>--enable-shared</parameter>: This switch enables building of the
+      <filename class="libraryfile">libatomic_ops</filename> shared libraries.
+    </para>
+
+    &static-libraries;
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Libraries</segtitle>
+      <segtitle>Installed Directory</segtitle>
+
+      <seglistitem>
+        <seg>
+          None
+        </seg>
+        <seg>
+          libatomic_ops and libatomic_ops_gpl
+        </seg>
+        <seg>
+          /usr/include/libatomic_ops and
+          /usr/share/doc/libatomic_ops-&libatomic_ops-version;
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libatomic_ops-lib">
+        <term><filename class="libraryfile">libatomic_ops</filename></term>
+        <listitem>
+          <para>
+            contains functions for atomic memory operations under the MIT
+            license
+          </para>
+          <indexterm zone="libatomic_ops libatomic_ops-lib">
+            <primary sortas="c-libatomic_ops">libatomic_ops</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libatomic_ops_gpl">
+        <term><filename class="libraryfile">libatomic_ops_gpl</filename></term>
+        <listitem>
+          <para>
+            contains stack and malloc implementations under the GPL license
+          </para>
+          <indexterm zone="libatomic_ops libatomic_ops_gpl">
+            <primary sortas="c-libatomic_ops_gpl">libatomic_ops_gpl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

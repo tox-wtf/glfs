@@ -36,22 +36,15 @@
 
     <bridgehead renderas="sect3">Wget Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="libpsl"/>
+      <xref linkend="libpsl"/> and
+      <xref role="runtime" linkend="make-ca"/> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Recommended at runtime</bridgehead>
-    <para role="recommended">
-      <xref role="runtime" linkend="make-ca"/>
-    </para>
-
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="gnutls"/>,
-      <xref linkend="libidn2"/>,
-      <xref linkend="libunistring"/>, and
-      <xref linkend="pcre2"/>
+      <xref linkend="libidn2"/>, and
+      <xref linkend="libunistring"/>
     </para>
 
   </sect2>

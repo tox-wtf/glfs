@@ -19,9 +19,9 @@
 
   <sect2>
     <title>Steam</title>
-    
+
     <para>
-      Most gamers would not know this unless they push the
+      Some don't not know this unless they push the
       limits of the games they play, but many games on Steam
       are 32-bit. Some games are no longer receiving updates
       while some are still being updated but are still 32-bit
@@ -43,23 +43,16 @@
 
   <sect2>
     <title>Wine</title>
-      
-    <para>
-      Unlike Steam, Wine does not require that you have 32-bit libraries
-      or the i686-w64-mingw32 toolchain. Moreover, to get multilib
-      support in Wine, it must be compiled twice: a w64 build and a w32
-      w/ w64 build. However, it was discussed eariler in the Steam
-      section that many games are 32-bit and are no longer maintained or
-      will take a while to switch to 64-bit. This is the case with
-      Windows applications as well. This means that if you do a 64-bit
-      only build, compatabilty for all those 32-bit applications will
-      be lost.
-    </para>
 
     <para>
-      A Wine WoW64 (can run 32-bit and 64-bit applications) build is
-      recommended. You can however skip lib32 and i686 instructions
-      to get a pure w64 Wine installation.
+      Wine can depend on certain things, differing upon the architecture
+      being built. As these architectures require a more in-depth explanation
+      and a roadmap on how to approach things, see <xref linkend="winedeps"/>
+      which will help you better understand whether you need 32-bit libraries.
+      If you need a given architecture and it says it needs 32-bit libraries,
+      lib32, or MLFS, proceed to the next page. If you don't need those
+      libraries but need the i686 MinGW-w64 toolchain, you won't need multilib
+      for Wine.
     </para>
 
   </sect2>

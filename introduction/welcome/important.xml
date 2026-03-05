@@ -12,7 +12,7 @@
 
   <para>
     BLFS has more information regarding compilation, /usr vs /usr/local,
-    boot scripts, etc. at 
+    boot scripts, etc. at
     <ulink url="&blfs-svn;/introduction/important.html"/>.
     Unlike this book, this would be a chapter in BLFS.
     A lot of that information has been omitted as this book is more linear
@@ -43,33 +43,6 @@
       32-bit libraries for 32-bit software compatibility, ie. multilib support.
       If you don't need the 32-bit libraries from a given package, you may skip
       the lib32 installation instructions of that package.
-    </para>
-
-  </sect2>
-
-  <sect2>
-    <title>Stability</title>
-
-    &important-stability;
-
-  </sect2>
-
-  <sect2>
-    <title>Init System</title>
-
-    <para revision="sysv">
-      This version of this book is meant for SysV LFS systems. The Systemd
-      version of the book is not viewable online by &copyholder; due to Github
-      Pages restraints. Thus you will need to download or render the book
-      yourself. Follow the <ulink url="&glfs-repo;">GLFS rendering
-      instructions</ulink> in order to render the book yourself. You will need
-      <ulink url='&blfs-svn;/general/git.html'>Git</ulink> to clone the
-      repository. You can download the book <ulink
-      url="&glfs-repo;/releases">here</ulink>.
-    </para>
-
-    <para revision="systemd">
-      This version of this book is meant for Systemd LFS systems.
     </para>
 
   </sect2>
@@ -123,14 +96,15 @@
     <para>Then proceed with the lib32 compilation instructions.</para>
 
     <para>
-      Generally, the format of targetting lib32 goes like this:
+      Generally, the format of targeting lib32 goes like this:
     </para>
 
     <para>For <command>./configure</command>:</para>
 
-<screen><userinput>CC="gcc -m32" CXX="g++ -m32"                  \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig          \
-./configure --prefix=/usr --libdir=/usr/lib32 \
+<screen><userinput>CC="gcc -m32" CXX="g++ -m32"         \
+PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
+./configure --prefix=/usr            \
+            --libdir=/usr/lib32      \
             --host=i686-pc-linux-gnu &amp;&amp;
 
 make &amp;&amp;
@@ -145,13 +119,10 @@ ldconfig</userinput></screen>
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-meson setup --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --buildtype=release      \
+meson setup --prefix=/usr       \
+            --buildtype=release \
+            --cross-file=lib32  \
             .. &amp;&amp;
-
 ninja &amp;&amp;
 
 DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
@@ -187,11 +158,11 @@ ldconfig</userinput></screen>
         comparable to the following:
       </para>
 
-<screen><computeroutput>ELF 32-bit LSB shared object, Intel i386, version 1 (GNU/Linux), dynamically linked ...</computeroutput></screen>
+<screen><computeroutput>ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked ...</computeroutput></screen>
 
       <para>
         Note the <computeroutput>32-bit LSB shared object</computeroutput> part.
-        A 64-bit library would show as a <computeroutput>64-bit LSB shared
+        A 64-bit library would show up as a <computeroutput>64-bit LSB shared
         object</computeroutput>.
       </para>
     </note>

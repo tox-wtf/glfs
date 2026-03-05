@@ -6,13 +6,13 @@
 
   <!ENTITY lxkbc-root "https://github.com/xkbcommon/libxkbcommon/archive">
   <!ENTITY libxkbcommon-download
-    "&lxkbc-root;/xkbcommon-&libxkbcommon-version;.tar.gz">
+    "&lxkbc-root;/&libxkbcommon-version;/libxkbcommon-&libxkbcommon-version;.tar.gz">
 ]>
 
-<sect1 id="libxkbcommon" xreflabel="libxkbcommon-&libxkbcommon-version;">
+<sect1 id="libxkbcommon" xreflabel="libxkbcommon-&libxkbcommon-minor; (&libxkbcommon-real;)">
   <?dbhtml filename="libxkbcommon.html"?>
 
-  <title>libxkbcommon-&libxkbcommon-version;</title>
+  <title>libxkbcommon-&libxkbcommon-minor; (&libxkbcommon-real;)</title>
 
   <indexterm zone="libxkbcommon">
     <primary sortas="a-libxkbcommon">libxkbcommon</primary>
@@ -27,6 +27,16 @@
       defined by the XKB specification.
     </para>
 
+    <para>
+      This package will have a download using a Git snapshot. This is the
+      same snapshot used for libxkbcommon-&libxkbcommon-real;. It's used
+      because upstream tags releases in a poor manner that is both
+      unsatisfactory to reliable download filenames and extracted directories.
+      A git hash ensures some reliability for the version.
+    </para>
+
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -37,19 +47,16 @@
 
     <bridgehead renderas="sect3">libxkbcommon Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref role="runtime" linkend="xkeyboard-config"/> (runtime)
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
        <xref linkend="libxcb"/>,
        <xref linkend="wayland"/>, and
        <xref linkend="wayland-protocols"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <command>Xvfb</command> from
       <xref linkend='xorg-server'/> or
@@ -69,11 +76,10 @@
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..            \
-      --prefix=/usr       \
-      --buildtype=release \
-      -D enable-docs=false &amp;&amp;
-
+meson setup --prefix=/usr        \
+            --buildtype=release  \
+            -D enable-docs=false \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
     <para>
@@ -93,14 +99,11 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-CC="gcc -m32" CXX="g++ -m32"         \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-meson setup ..                       \
-      --prefix=/usr                  \
-      --libdir=/usr/lib32            \
-      --buildtype=release            \
-      -D enable-docs=false &amp;&amp;
-
+meson setup --prefix=/usr        \
+            --buildtype=release  \
+            --cross-file=lib32   \
+            -D enable-docs=false \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
     <para>

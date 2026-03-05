@@ -55,13 +55,13 @@
 
     <bridgehead renderas="sect3">Polkit Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="duktape"/> and
-      <xref linkend="glib2"/>
+      <xref linkend="duktape"/><phrase revision="systemd">,</phrase>
+      <phrase revision="sysv">and</phrase>
+      <xref linkend="glib2"/><phrase revision="systemd">, and
+      <xref role="runtime" linkend="systemd"/> (runtime)</phrase>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="linux-pam"/><phrase revision="sysv"> and
       <xref linkend="elogind"/></phrase>
@@ -79,17 +79,10 @@
       </para>
     </note>
 
-    <bridgehead renderas="sect4" revision="systemd">Required Runtime Dependencies</bridgehead>
-    <para role="required" revision="systemd">
-      <xref role="runtime" linkend="systemd"/>
-    </para>
-
-    <bridgehead renderas="sect4" id="polkit-agent" xreflabel="Polkit Authentication Agent">
-      Optional Runtime Dependencies
-    </bridgehead>
     <para role="optional">
-      One polkit authentication agent for using polkit in the graphical
-      environment; this will greatly depend on what desktop you are running.
+      A polkit authentication agent for using polkit in the graphical
+      environment at runtime; this will greatly depend on what desktop you are
+      running, like KDE Plasma, GNOME, Hyprland, etc.
     </para>
 
   </sect2>
@@ -118,28 +111,26 @@ useradd -c "PolicyKit Daemon Owner" -d /etc/polkit-1 -u 27 \
 <screen revision="systemd"><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..                   \
-      --prefix=/usr              \
-      --buildtype=release        \
-      -D os_type=lfs             \
-      -D man=false               \
-      -D session_tracking=logind \
-      -D tests=false &amp;&amp;
-
+meson setup --prefix=/usr              \
+            --buildtype=release        \
+            -D os_type=lfs             \
+            -D man=false               \
+            -D session_tracking=logind \
+            -D tests=false             \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
 <screen revision="sysv"><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..                     \
-      --prefix=/usr                \
-      --buildtype=release          \
-      -D os_type=lfs               \
-      -D man=false                 \
-      -D session_tracking=elogind  \
-      -D systemdsystemunitdir=/tmp \
-      -D tests=false &amp;&amp;
-
+meson setup --prefix=/usr                \
+            --buildtype=release          \
+            -D os_type=lfs               \
+            -D man=false                 \
+            -D session_tracking=elogind  \
+            -D systemdsystemunitdir=/tmp \
+            -D tests=false               \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
     <para>

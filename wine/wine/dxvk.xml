@@ -29,7 +29,6 @@
 
     <bridgehead renderas="sect3">DXVK Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="mingw-w64-gcc"/> (compiled with POSIX thread support),
       <xref linkend="vulkan-sdk"/>, and
@@ -112,10 +111,10 @@ mv -T Vulkan-Headers-*                        \
 <screen><userinput>mkdir build-win64 &amp;&amp;
 cd    build-win64 &amp;&amp;
 
-meson setup .. --cross-file=../build-win64.txt \
-               --buildtype=release             \
-               --prefix=$PWD/DESTDIR &amp;&amp;
-
+meson setup --cross-file=../build-win64.txt \
+            --buildtype=release             \
+            --prefix=$PWD/DESTDIR           \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
       <para>Now as the &root; user:</para>
@@ -124,8 +123,8 @@ ninja</userinput></screen>
 cd ..         &amp;&amp;
 
 mkdir   -pv     /usr/lib/dxvk/win64 &amp;&amp;
-install -vDm644 build-win64/DESTDIR/bin/*.dll \
-                /usr/lib/dxvk/win64</userinput></screen>
+&install-exec; build-win64/DESTDIR/bin/*.dll \
+             -t /usr/lib/dxvk/win64/</userinput></screen>
 
     </sect3>
 
@@ -140,10 +139,10 @@ install -vDm644 build-win64/DESTDIR/bin/*.dll \
 <screen><userinput>mkdir build-win32 &amp;&amp;
 cd    build-win32 &amp;&amp;
 
-meson setup .. --cross-file ../build-win32.txt \
-               --buildtype=release             \
-               --prefix=$PWD/DESTDIR &amp;&amp;
-
+meson setup --cross-file=../build-win32.txt \
+            --buildtype=release             \
+            --prefix=$PWD/DESTDIR           \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
       <para>Now as the &root; user:</para>
@@ -152,8 +151,8 @@ ninja</userinput></screen>
 cd ..         &amp;&amp;
 
 mkdir   -pv     /usr/lib/dxvk/win32 &amp;&amp;
-install -vDm644 build-win32/DESTDIR/bin/*.dll \
-                /usr/lib/dxvk/win32</userinput></screen>
+&install-exec; build-win32/DESTDIR/bin/*.dll \
+             -t /usr/lib/dxvk/win32/</userinput></screen>
 
     </sect3>
 
@@ -187,7 +186,7 @@ install -vDm644 build-win32/DESTDIR/bin/*.dll \
     found by Wine, whilst allowing updating of this
     package without having to copy everything over again. Along with this, the
     registry must be updated to use the new DLLs. Do this for each
-    archetecture you have installed.</para>
+    architecture you have installed.</para>
 
     <sect3>
       <title>64-bit Setup</title>
@@ -231,13 +230,8 @@ done</userinput></screen>
     &options-meson;
 
     <para>
-      <command>git checkout v&dxvk-version;</command>: This command switches to
-      a stable release in the commit history.
-    </para>
-
-    <para>
       <parameter>--cross-file=../build-win{32,64}.txt</parameter>: This
-      parameter changes what Win archetecture to build for.
+      parameter changes what Win architecture to build for.
     </para>
 
     &meson-buildtype-release;

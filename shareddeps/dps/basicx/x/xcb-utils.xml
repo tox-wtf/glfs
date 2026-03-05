@@ -4,7 +4,7 @@
   <!ENTITY % general-entities SYSTEM "../../../../general.ent">
   %general-entities;
 
-  <!ENTITY xcb-utils-download "https://xcb.freedesktop.org/dist/">
+  <!ENTITY xcb-utils-download "https://xorg.freedesktop.org/archive/individual/lib/">
 ]>
 
 <sect1 id="xcb-utils" xreflabel="XCB Utils">
@@ -35,7 +35,6 @@
 
     <bridgehead renderas="sect3">XCB Utils Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="libxcb"/> and
       <xref linkend="xcb-proto"/>
@@ -116,7 +115,7 @@ done</userinput></screen>
 <screen><userinput>exit</userinput></screen>
 
   </sect2>
-  
+
   <sect2 role="content">
     <title>Contents</title>
 
@@ -200,7 +199,7 @@ done</userinput></screen>
           <indexterm zone="xcb-utils libxcb-ewmh">
             <primary sortas="c-libxcb-ewmh">libxcb-ewmh</primary>
           </indexterm>
-        </listitem> 
+        </listitem>
       </varlistentry>
 
       <varlistentry id="libxcb-icccm">

@@ -28,6 +28,8 @@
 
     &long-build-time;
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -35,16 +37,14 @@
         </para>
       </listitem>
     </itemizedlist>
-    
+
     <bridgehead renderas="sect3">HarfBuzz Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="glib2"/> (required for Pango; GObject Introspection
       required for building GNOME),
-      <xref linkend="icu"/>,
-      <xref role="first" linkend="freetype2-pass1"/>, and
-      <xref linkend="mesonfiles"/> (for lib32)
+      <xref linkend="icu"/>, and
+      <xref role="first" linkend="freetype2"/>
     </para>
 
   </sect2>
@@ -60,16 +60,16 @@
 <screen><userinput>mkdir build &amp;&amp;
 cd    build &amp;&amp;
 
-meson setup ..              \
-      --prefix=/usr         \
-      --buildtype=release   \
-      -D graphite2=disabled \
-      -D tests=disabled &amp;&amp;
+meson setup --prefix=/usr         \
+            --buildtype=release   \
+            -D graphite2=disabled \
+            -D tests=disabled     \
+            .. &amp;&amp;
 
 ninja</userinput></screen>
 
     <para>
-      
+
     </para>
 
     <para>
@@ -77,7 +77,7 @@ ninja</userinput></screen>
     </para>
 
 <screen role="root"><userinput>ninja install</userinput></screen>
-  
+
   </sect2>
 
   <sect2 role="installation">
@@ -89,14 +89,13 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-meson setup ..              \
-      --cross-file=lib32    \
-      --prefix=/usr         \
-      --libdir=/usr/lib32   \
-      --buildtype=release   \
-      -D cairo=disabled     \
-      -D graphite2=disabled \
-      -D tests=disabled &amp;&amp;
+meson setup --prefix=/usr         \
+            --buildtype=release   \
+            --cross-file=lib32    \
+            -D cairo=disabled     \
+            -D graphite2=disabled \
+            -D tests=disabled     \
+            .. &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -150,7 +149,7 @@ ldconfig</userinput></screen>
       prevents that.
     </para>
 -->
-    
+
   </sect2>
 
   <sect2 role="content">

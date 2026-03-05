@@ -4,135 +4,101 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY sdl2-download "https://www.libsdl.org/release/SDL2-&sdl2-version;.tar.gz">
+  <!ENTITY sdl2-download "https://www.libsdl.org/release/sdl2-compat-&sdl2-version;.tar.gz">
 ]>
 
-<sect1 id="sdl2" xreflabel="SDL2-&sdl2-version;">
+<sect1 id="sdl2" xreflabel="sdl2-compat-&sdl2-version;">
   <?dbhtml filename="sdl2.html"?>
 
-  <title>SDL2-&sdl2-version;</title>
+  <title>sdl2-compat-&sdl2-version;</title>
 
   <indexterm zone="sdl2">
-    <primary sortas="a-SDL2">SDL2</primary>
+    <primary sortas="a-SDL2">sdl2-compat</primary>
   </indexterm>
 
   <sect2 role="package">
-    <title>Introduction to SDL2</title>
+    <title>Introduction to sdl2-compat</title>
 
     <para>
-      The Simple DirectMedia Layer Version 2 (SDL2
-      for short) is a cross-platform library designed to make it easy to write
-      multimedia software, such as games and emulators.
+      The sdl2-compat package provides a compatibility layer for packages
+      that require SDL2, utilizing SDL3 as the backend.
     </para>
-
-    <note><para>
-      If you want, you can instead install <ulink
-      url="&slfs-website;/graph/sdl3.html">SDL3</ulink> and
-      <ulink url="&slfs-website;/graph/sdl2.html">sdl2-compat</ulink> as
-      suitable replacements for this package. Wine and
-      <command>ffplay</command> from FFmpeg are known to work with sdl2-compat.
-    </para></note>
-
-    &long-build-time;
 
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Download: <ulink url="&sdl2-download;"/>
+          Download (HTTP): <ulink url="&sdl2-download;"/>
         </para>
       </listitem>
     </itemizedlist>
 
-<!--
-    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-          Required patch (for i686 systems):
-           <ulink url="&patch-root;/SDL2-&sdl2-version;-opengl_include_fix-1.patch"/>
-        </para>
-      </listitem>
-    </itemizedlist>
--->
-    <bridgehead renderas="sect3">SDL2 Dependencies</bridgehead>
+    <bridgehead renderas="sect3">sdl2-compat Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
-    <para role="recommended">
-      <xref linkend="libxkbcommon"/>,
-      <xref linkend="wayland-protocols"/>, and
-      <xref linkend="xorg7-lib"/> (if those are not present, the corresponding modules are not built)
-    </para>
-
-    <bridgehead renderas="sect4">Optional</bridgehead>
-    <para role="optional">
-      <xref linkend="alsa-lib"/>,
-      <ulink url="&blfs-svn;/general/ibus.html">ibus</ulink>,
-      <ulink url="&blfs-svn;/multimedia/libsamplerate.html">libsamplerate</ulink>,
-      <ulink url="&blfs-svn;/general/nasm.html">nasm</ulink>,
-      <ulink url="&blfs-svn;/multimedia/pipewire.html">pipewire</ulink>,
-      <xref linkend="pulseaudio"/>,
-      a window manager or desktop environment,
-      <ulink url="https://pkgs.fedoraproject.org/repo/pkgs/directfb/">DirectFB</ulink>,
-      <ulink url="https://fcitx-im.org/">fcitx</ulink>,
-      <ulink url="https://jackaudio.org/">jack</ulink>, and
-      <ulink url="https://sndio.org/">sndio</ulink>
+    <para role="required">
+      <xref linkend="cmake"/> and
+      <xref linkend="sdl3"/>
     </para>
 
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of SDL2</title>
-
-<!--
-    <para>
-      First, fix an overly restrictive build option:
-    </para>
-
-<screen><userinput remap="pre">sed -i "s/-Werror=declaration-after-statement//" configure</userinput></screen>
--->
+    <title>Installation of sdl2-compat</title>
 
     <para>
-      Install SDL2 by running the
-      following commands:
+      Install sdl2-compat by running the following
+      commands:
     </para>
 
-<screen><userinput>./configure --prefix=/usr &amp;&amp;
-make</userinput></screen>
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr   \
+      -D CMAKE_BUILD_TYPE=Release    \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON \
+      -D SDL2COMPAT_STATIC=OFF       \
+      -D SDL2COMPAT_TESTS=OFF        \
+      -W no-dev -G Ninja ..         &amp;&amp;
+
+ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
-<screen role="root"><userinput>make install              &amp;&amp;
-rm -v /usr/lib/libSDL2*.a</userinput></screen>
+<screen role="root"><userinput>ninja install &amp;&amp;
+rm -vf /usr/lib/libSDL2_test.a</userinput></screen>
 
   </sect2>
 
   <sect2 role="installation">
-    <title>lib32 Installation of SDL2</title>
+    <title>lib32 Installation of sdl2-compat</title>
 
     <para>
-      Install lib32-SDL2 by running the
+      Install lib32-sdl2-compat by running the
       following commands:
     </para>
 
-<screen><userinput>make distclean &amp;&amp;
+<screen><userinput>rm -rf * &amp;&amp;
 CC="gcc -m32" CXX="g++ -m32"         \
 PKG_CONFIG_PATH=/usr/lib32/pkgconfig \
-./configure --prefix=/usr            \
-            --libdir=/usr/lib32      \
-            --host=i686-pc-linux-gnu &amp;&amp;
+cmake -D CMAKE_INSTALL_PREFIX=/usr   \
+      -D CMAKE_INSTALL_LIBDIR=lib32  \
+      -D CMAKE_BUILD_TYPE=Release    \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON \
+      -D SDL2COMPAT_STATIC=OFF       \
+      -D SDL2COMPAT_TESTS=OFF        \
+      -W no-dev -G Ninja ..         &amp;&amp;
 
-make</userinput></screen>
+ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
-<screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
-rm -v DESTDIR/usr/lib32/libSDL2*.a    &amp;&amp;
-cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
-rm -rf DESTDIR                        &amp;&amp;
+<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install      &amp;&amp;
+rm -vf DESTDIR/usr/lib32/libSDL2_test.a &amp;&amp;
+cp -vr DESTDIR/usr/lib32/* /usr/lib32   &amp;&amp;
+rm -rf DESTDIR                          &amp;&amp;
 ldconfig</userinput></screen>
 
   </sect2>
@@ -140,28 +106,23 @@ ldconfig</userinput></screen>
   <sect2 role="commands">
     <title>Command Explanations</title>
 
-    &options-configure;
+    &options-cmake;
+
+    &cmake-skip-install-rpath;
 
     <para>
-      <command>rm -v /usr/lib/libSDL2*.a</command>: Normally
-      static libraries can be disabled with a <option>--disable-static</option>
-      option to configure, but that breaks the build in this package.
+      <parameter>-D SDL2COMPAT_STATIC=OFF</parameter>: This parameter disables
+      building the static libraries.
     </para>
 
     <para>
-      <option>--disable-alsa-shared</option>: This switch disables
-      dynamically loading ALSA shared libraries.
+      <parameter>-D SDL2COMPAT_TESTS=OFF</parameter>: This parameter disables
+      building the tests.
     </para>
 
     <para>
-      <option>--disable-sdl-dlopen</option>: This switch disables using
-      dlopen for shared object loading. Loading image backend libraries like
-      libpng dynamically on the fly does not work.
-    </para>
-
-    <para>
-      <option>--disable-x11-shared</option>: This switch disables
-      dynamically loading X11 shared libraries.
+      <command>rm -vf /usr/lib/libSDL2_test.a</command>: This command removes a
+      useless static library.
     </para>
 
   </sect2>
@@ -205,9 +166,7 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libSDL2</filename></term>
         <listitem>
           <para>
-            contains functions that provide low level access to audio,
-            keyboard, mouse, joystick, 3D hardware via OpenGL, and
-            2D frame buffer across multiple platforms
+            provides compatibility functions for SDL2 applications using SDL3
           </para>
           <indexterm zone="sdl2 libsdl2">
             <primary sortas="c-libsdl2">libSDL2</primary>

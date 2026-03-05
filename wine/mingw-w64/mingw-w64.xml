@@ -40,7 +40,6 @@
 
     <bridgehead renderas="sect3">MinGW-w64 Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="mingw-w64-binutils"/>,
       <xref linkend="mingw-w64-headers"/>, and
@@ -54,7 +53,7 @@
 
   <sect3>
     <title>x86_64 MinGW-w64</title>
-    
+
     <para>
       Install x86_64 MinGW-w64
       by running the following commands:

@@ -81,7 +81,7 @@
       </para>
     </note>
 
-    
+
 
     <bridgehead renderas="sect3">Package Information</bridgehead>
     <itemizedlist spacing="compact">
@@ -114,7 +114,6 @@
 
     <bridgehead renderas="sect3">Xorg Legacy Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="xorg7-font"/>
     </para>

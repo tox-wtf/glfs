@@ -51,7 +51,6 @@
 
     <bridgehead renderas="sect3">cURL Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="libpsl"/>
     </para>
@@ -65,7 +64,6 @@
       </para>
     </note>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <xref linkend="libidn2"/>
     </para>
@@ -77,10 +75,10 @@
 
 <!--
     <para>
-      First fix a regression that was fixed upstream:
+      First, fix a problem with a security fix:
     </para>
 
-<screen><userinput>patch -Np1 -i ../curl-&curl-version;-upstream_fix-1.patch</userinput></screen>
+<screen><userinput>sed -i 's/2F 5C/%2F %5C/' scripts/wcurl</userinput></screen>
 -->
 
     <para>
@@ -128,7 +126,7 @@ cp -v -R docs -T /usr/share/doc/curl-&curl-version;</userinput></screen>
 
   <sect2>
     <title>lib32 Installation of cURL</title>
-    
+
     <para>
       Install lib32-cURL
       by running the following commands:
@@ -136,12 +134,13 @@ cp -v -R docs -T /usr/share/doc/curl-&curl-version;</userinput></screen>
 
 <screen><userinput>rm -rf * &amp;&amp;
 CC="gcc -m32" CXX="g++ -m32"           \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig   \
+PKGCONFIG=i686-pc-linux-gnu-pkg-config \
 ../configure --prefix=/usr             \
              --libdir=/usr/lib32       \
              --host=i686-pc-linux-gnu  \
              --disable-static          \
              --with-openssl            \
+             --without-brotli          \
              --with-ca-path=/etc/ssl/certs &amp;&amp;
 
 make</userinput></screen>
@@ -233,7 +232,7 @@ ldconfig</userinput></screen>
 
       <seglistitem>
         <seg>
-           curl and curl-config
+           curl, curl-config, and wcurl
         </seg>
         <seg>
            libcurl
@@ -271,6 +270,18 @@ ldconfig</userinput></screen>
           </para>
           <indexterm zone="curl curl-config">
             <primary sortas="b-curl-config">curl-config</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="wcurl">
+        <term><command>wcurl</command></term>
+        <listitem>
+         <para>
+           is a wrapper around cURL that emulates wget behavior
+         </para>
+          <indexterm zone="curl wcurl">
+            <primary sortas="b-wcurl">wcurl</primary>
           </indexterm>
         </listitem>
       </varlistentry>

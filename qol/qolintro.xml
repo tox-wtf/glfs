@@ -12,7 +12,7 @@
   <title>Quality of Life</title>
 
   <para>
-    Now that you have installed Steam, 
+    Now that you have installed Steam,
     Wine, or both, you may be satisfied with your current setup.
     However, there are some quality of life improvements that may be of use to
     you. This chapter goes through a handful of those improvements.
@@ -20,5 +20,7 @@
 
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gamepad.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="binary.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="inih.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="gamemode.xml"/>
 
 </chapter>

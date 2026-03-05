@@ -10,7 +10,6 @@
 <sect1 id="ffmpeg" xreflabel="FFmpeg-&ffmpeg-version;">
   <?dbhtml filename="ffmpeg.html"?>
 
-
   <title>FFmpeg-&ffmpeg-version;</title>
 
   <indexterm zone="ffmpeg">
@@ -52,56 +51,65 @@
 
     <bridgehead renderas="sect3">FFmpeg Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
-    <para role="required">
-      <xref linkend="pkgconf"/> (for lib32)
-    </para>
-
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
-      <xref linkend="libaom"/>,
-      <ulink url="&blfs-svn;/multimedia/libass.html">libass</ulink>,
-      <xref linkend="fdk-aac"/>,
-      <xref linkend="freetype2-pass2"/>,
-      <xref linkend="lame"/>,
-      <xref linkend="libvorbis"/>,
-      <xref linkend="libvpx"/>,
-      <xref linkend="opus"/>,
-      <xref linkend="x264"/>,
-      <xref linkend="x265"/>, and
-      <xref linkend="nasm"/>
+      A complete list of recommended dependencies are in the
+      <ulink url="&blfs-svn;/multimedia/ffmpeg.html">BLFS FFmpeg page</ulink>.
+      <itemizedlist>
+        <para>For codecs, indevs/outdevs, and connections</para>
+        <listitem>
+          <para>
+            <xref linkend="dav1d"/>,
+            <xref linkend="fdk-aac"/>,
+            <xref linkend="freetype2"/>,
+            <xref linkend="lame"/>,
+            <xref linkend="libaom"/>,
+            <xref linkend="libvorbis"/>,
+            <xref linkend="libvpx"/>,
+            <xref linkend="opus"/>,
+            <xref linkend="svt-av1"/>,
+            <xref linkend="x264"/>,
+            <xref linkend="x265"/>, and
+            <xref linkend="nasm"/>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <para>For desktop use</para>
+        <listitem>
+          <para>
+            <xref linkend="alsa-lib"/>,
+            <xref linkend="libva"/>, and
+            &sdl2;
+          </para>
+        </listitem>
+      </itemizedlist>
     </para>
 
-    <bridgehead renderas="sect4">Recommended for desktop use</bridgehead>
-    <para role="recommended">
-      <xref linkend="alsa-lib"/>,
-      <xref linkend="libva"/>, and
-      &sdl2;
-    </para>
-
-    <bridgehead renderas="sect4">Recommended for systems with Intel graphics cards</bridgehead>
-    <para role="recommended">
-      <xref linkend="libvdpau"/> and
-      <xref linkend="libvdpau-va-gl"/>
-    </para>
-
-    <bridgehead renderas="sect4">Optional for systems with NVIDIA graphics cards</bridgehead>
-    <para role="optional">
-      <ulink url="&slfs-website;/general/cuda.html">CUDA</ulink> and
-      <ulink url="&slfs-website;/general/nv-codec-headers.html">nv-codec-headers</ulink>
-    </para>
-
-    <bridgehead renderas="sect4">Optional for systems with Intel graphics cards</bridgehead>
-    <para role="optional">
-      <ulink url="&slfs-website;/general/intel-mediasdk.html">Intel-MediaSDK</ulink>,
-      <ulink url="&slfs-website;/general/intel-onevpl.html">intel-onevpl</ulink>, and
-      <ulink url="&slfs-website;/general/libvpl.html">libvpl</ulink>
-    </para>
-
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       A complete list of optional dependencies are in the
       <ulink url="&blfs-svn;/multimedia/ffmpeg.html">BLFS FFmpeg page</ulink>.
+      <itemizedlist>
+        <para>For systems with NVIDIA graphics cards</para>
+        <listitem>
+          <para>
+            &cuda; and
+            <xref linkend="nv-codec-headers"/>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <para>For systems with Intel graphics cards</para>
+        <listitem>
+          <para>
+            <ulink
+              url="&slfs-website;/graph/intel-mediasdk.html">Intel-MediaSDK</ulink>,
+            <ulink
+              url="&slfs-website;/graph/intel-onevpl.html">intel-onevpl</ulink>, and
+            <ulink
+              url="&slfs-website;/graph/libvpl.html">libvpl</ulink>
+          </para>
+        </listitem>
+      </itemizedlist>
     </para>
 
   </sect2>
@@ -118,11 +126,11 @@
 <screen><userinput remap="pre">patch -Np1 -i ../ffmpeg-&ffmpeg-version;-chromium_method-1.patch</userinput></screen>
 
     <para>
-      Now fix an issue caused by the latest version of <xref linkend="x265"/>:
+      Ensure FFmpeg can build against SVT-AV1-4.x or later:
     </para>
 
-<screen><userinput remap="pre">sed -e 's/X265_BUILD >= 210/(&amp;) \&amp;\&amp; (X265_BUILD &lt; 213)/' \
-    -i libavcodec/libx265.c</userinput></screen>
+<screen><userinput remap="pre">sed -e '/adaptive/c\ param->aq_mode = 0;' \
+  -i libavcodec/libsvtav1.c</userinput></screen>
 
     <para>
       Install FFmpeg by running the following
@@ -137,16 +145,17 @@
             --enable-shared      \
             --disable-debug      \
             --enable-libaom      \
+            --enable-libdav1d    \
             --enable-libfdk-aac  \
             --enable-libfreetype \
             --enable-libmp3lame  \
             --enable-libopus     \
+            --enable-libsvtav1   \
             --enable-libvorbis   \
             --enable-libvpx      \
             --enable-libx264     \
             --enable-libx265     \
-            --enable-openssl<!--     \
-            - -ignore-tests=enhanced-flv-av1-->     \
+            --enable-openssl     \
             --docdir=/usr/share/doc/ffmpeg-&ffmpeg-version; &amp;&amp;
 
 make &amp;&amp;
@@ -154,14 +163,14 @@ make &amp;&amp;
 gcc tools/qt-faststart.c -o tools/qt-faststart</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make install &amp;&amp;
 
-install -v -m755    tools/qt-faststart /usr/bin &amp;&amp;
-install -v -m755 -d           /usr/share/doc/ffmpeg-&ffmpeg-version; &amp;&amp;
-install -v -m644    doc/*.txt /usr/share/doc/ffmpeg-&ffmpeg-version;</userinput></screen>
+&install-exec; tools/qt-faststart -t /usr/bin/ &amp;&amp;
+&install-dir;              /usr/share/doc/ffmpeg-&ffmpeg-version; &amp;&amp;
+&install-file; doc/*.txt -t /usr/share/doc/ffmpeg-&ffmpeg-version;/</userinput></screen>
 
   </sect2>
 
@@ -186,21 +195,22 @@ install -v -m644    doc/*.txt /usr/share/doc/ffmpeg-&ffmpeg-version;</userinput>
             --enable-shared                           \
             --disable-debug                           \
             --enable-libaom                           \
+            --enable-libdav1d                         \
             --enable-libfdk-aac                       \
             --enable-libfreetype                      \
             --enable-libmp3lame                       \
             --enable-libopus                          \
+            --enable-libsvtav1                        \
             --enable-libvorbis                        \
             --enable-libvpx                           \
             --enable-libx264                          \
             --enable-libx265                          \
-            --enable-openssl<!--                          \
-            - -ignore-tests=enhanced-flv-av1--> &amp;&amp;
+            --enable-openssl &amp;&amp;
 
 make</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make DESTDIR=$PWD/DESTDIR install     &amp;&amp;
@@ -248,59 +258,6 @@ ldconfig</userinput></screen>
     </para>
 
     <para>
-      <parameter>--enable-libaom</parameter>: Enables AV1 audio and video
-      decoding via <filename class="libraryfile">libaom</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libfdk-aac</parameter>: Enables AAC audio encoding via
-      <filename class="libraryfile">libfdk-aac</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libmp3lame</parameter>: Enables MP3 audio encoding
-      via <filename class="libraryfile">libmp3lame</filename>.
-    </para>
-<!--
-    <para>
-      <parameter>- -enable-libvorbis</parameter>
-      <parameter>- -enable-libtheora</parameter>: Enables
-      Theora video encoding via <filename
-      class="libraryfile">libvorbis</filename> and <filename
-      class="libraryfile">libtheora</filename>.
-    </para>
--->
-    <para>
-      <parameter>--enable-libvorbis</parameter>
-      <parameter>--enable-libvpx</parameter>: Enables WebM
-      encoding via <filename class="libraryfile">libvorbis</filename> and
-      <filename class="libraryfile">libvpx</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libx264</parameter>: Enables high-quality
-      H.264/MPEG-4 AVC encoding via <filename
-      class="libraryfile">libx264</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-libx265</parameter>: Enables high-quality
-      H.265/HEVC encoding via <filename
-      class="libraryfile">libx265</filename>.
-    </para>
-
-    <para>
-      <parameter>--enable-openssl</parameter>:
-      Enables HTTPS protocol for network streams.
-    </para>
-
-    <para>
-      <option>--enable-libdrm</option>: Use this switch if
-      <xref linkend="libdrm"/> is installed to build the <quote>kmsgrab</quote>
-      input module which is useful for screen capturing or streaming.
-    </para>
-
-    <para>
       <option>--enable-nvenc --enable-nvdec</option>: These options enable
       hardware acceleration for NVIDIA GPUs, and depend on the optional
       dependencies for systems with NVIDIA graphics cards.
@@ -310,32 +267,16 @@ ldconfig</userinput></screen>
       <option>--enable-libmfx</option>: This option enables hardware
       acceleration for Intel GPUs from Broadwell to Tiger Lake, and it depends
       on the optional dependencies for systems with Intel graphics cards.
+      Cannot be used with <option>--enable-libvpl</option>.
     </para>
 
     <para>
       <option>--enable-libvpl</option>: This option enables hardware
       acceleration for Intel GPUs from Tiger Lake onwards, including the discrete
       graphics cards. It depends on the optional dependencies for systems with
-      Intel graphics cards.
+      Intel graphics cards. Cannot be used with
+      <option>--enable-libmfx</option>.
     </para>
-
-    <!--
-    <para>
-      <parameter>- -disable-vulkan</parameter>: Disables Vulkan for the
-      current version of <xref linkend="vulkan-loader"/> due to
-      an API conflict.
-    </para>
-    -->
-
-    <!--
-    <para>
-      <parameter>- -ignore-tests=...</parameter>: Disables tests that fail to
-      run on
-      BLFS without the optional packages. Currently the AV1 test is disabled 
-      as it needs dav1d to do AV1 decoding on the CPU. The test might work if 
-      you have a GPU that can decode AV1, but this was not tested.
-    </para>
-    -->
 
     <para>
       <option>--enable-gnutls</option>: Use this option instead of
@@ -348,11 +289,6 @@ ldconfig</userinput></screen>
       <option>--disable-doc</option>: Disables building html documentation.
       This is only needed if doxygen is installed and you
       do not want to build the html documentation.
-    </para>
-
-    <para>
-      <option>--enable-libpulse</option>: Enables support for
-      Pulseaudio for audio output.
     </para>
 
     <para>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../../general.ent">
+  %general-entities;
+
+  <!ENTITY hwdata-root "https://github.com/vcrhonek/hwdata/archive">
+  <!ENTITY hwdata-download
+    "&hwdata-root;/v&hwdata-version;/hwdata-&hwdata-version;.tar.gz">
+]>
+
+<sect1 id="hwdata" xreflabel="hwdata-&hwdata-version;">
+  <?dbhtml filename="hwdata.html"?>
+
+  <title>hwdata-&hwdata-version;</title>
+
+  <indexterm zone="hwdata">
+    <primary sortas="g-hwdata">hwdata</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to hwdata</title>
+
+    <para>
+      The hwdata package contains current PCI and vendor id data.
+    </para>
+
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download: <ulink url="&hwdata-download;"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of hwdata</title>
+
+    <para>
+      Install hwdata by running the following commands:
+    </para>
+
+<screen><userinput>./configure --prefix=/usr --disable-blacklist</userinput></screen>
+
+    <para>
+      Now, as the &root; user:
+    </para>
+
+<screen role="root"><userinput>make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    &options-configure;
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Library</segtitle>
+      <segtitle>Installed Directory</segtitle>
+
+      <seglistitem>
+        <seg>None</seg>
+        <seg>None</seg>
+        <seg>
+          /usr/share/hwdata
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+  </sect2>
+
+</sect1>

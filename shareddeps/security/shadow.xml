@@ -51,7 +51,6 @@
 -->
     <bridgehead renderas="sect3">Shadow Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
       <xref linkend="linux-pam"/>
     </para>
@@ -72,22 +71,20 @@
 
     <warning>
       <para>
-        If reinstalling shadow for a version update, be sure to 
+        If reinstalling shadow for a version update, be sure to
         reaccomplish the Linux-PAM configuration below.  The installation
-        of shadow overwrites many of the files in 
+        of shadow overwrites many of the files in
         <filename class="directory">/etc/pam.d/</filename>.
       </para>
     </warning>
 
     <para>
-      Reinstall Shadow by running the following
-      commands:
+      First, disable the installation of <command>groups</command>, manpages,
+      use <emphasis>YESCRYPT</emphasis>, change mailbox locations, and remove
+      symlinked directories from <envar>PATH</envar>:
     </para>
-<!--
-<screen><userinput>patch -Np1 -i ../shadow-4.10-useradd_segfault-1.patch &amp;&amp;
--->
-<screen><userinput>sed -i 's/groups$(EXEEXT) //' src/Makefile.in          &amp;&amp;
 
+<screen><userinput remap="pre">sed -i 's/groups$(EXEEXT) //' src/Makefile.in                     &amp;&amp;
 find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \; &amp;&amp;
 find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \; &amp;&amp;
 find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \; &amp;&amp;
@@ -95,24 +92,29 @@ find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \; &amp;&amp;
 sed -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD YESCRYPT@' \
     -e 's@/var/spool/mail@/var/mail@'                   \
     -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                  \
-    -i etc/login.defs                                   &amp;&amp;
+    -i etc/login.defs</userinput></screen>
 
-./configure --sysconfdir=/etc   \
+    <para>
+      Reinstall Shadow by running the following
+      commands:
+    </para>
+
+<screen><userinput>./configure --sysconfdir=/etc   \
             --disable-static    \
-            --without-libbsd    \
-            --with-{b,yes}crypt &amp;&amp;<!--
-This is the default:            - -with-group-name-max-length=32 &amp;&amp;-->
+            --without-libbsd    \</userinput><userinput revision="sysv">
+            --disable-logind    \</userinput><userinput>
+            --with-{b,yes}crypt &amp;&amp;
 make</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>make exec_prefix=/usr pamddir= install</userinput></screen>
 
     <para>
       The man pages were installed in LFS, but if reinstallation is
-      desired, run (as the <systemitem class="username">root</systemitem> user):
+      desired, run (as the &root; user):
     </para>
 
 <screen role="root"><userinput>make -C man install-man</userinput></screen>
@@ -160,6 +162,12 @@ make</userinput></screen>
       <filename class="libraryfile">libbsd</filename>, which is not in GLFS.
       An internal implementation of <command>readpassphrase</command> is used
       instead.
+    </para>
+
+    <para revision="sysv">
+      <parameter>--disable-logind</parameter>: This option is required
+      for systems without <filename class="libraryfile">libsystemd</filename>.
+      <xref linkend="elogind"/> does not provide that library.
     </para>
 
     <para>
@@ -279,7 +287,7 @@ make</userinput></screen>
           <primary sortas="e-etc-login.defs">/etc/login.defs</primary>
         </indexterm>
 
-<screen role="root"><userinput>install -v -m644 /etc/login.defs /etc/login.defs.orig &amp;&amp;
+<screen role="root"><userinput>&install-file; /etc/login.defs /etc/login.defs.orig &amp;&amp;
 for FUNCTION in FAIL_DELAY               \
                 FAILLOG_ENAB             \
                 LASTLOG_ENAB             \
@@ -461,7 +469,7 @@ EOF</userinput></screen>
 <screen role="root"><userinput>for PROGRAM in chfn chgpasswd chsh groupadd groupdel \
                groupmems groupmod useradd userdel usermod
 do
-    install -v -m644 /etc/pam.d/chage /etc/pam.d/${PROGRAM}
+    &install-file; /etc/pam.d/chage /etc/pam.d/${PROGRAM}
     sed -i "s/chage/$PROGRAM/" /etc/pam.d/${PROGRAM}
 done</userinput></screen>
 

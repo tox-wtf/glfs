@@ -30,6 +30,8 @@
       several sounds into one are easily achieved using a sound server.
     </para>
 
+    &meson-cross;
+
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -40,13 +42,10 @@
 
     <bridgehead renderas="sect3">PulseAudio Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
-      <xref linkend="libsndfile"/> and
-      <xref linkend="mesonfiles"/> (for lib32)
+      <xref linkend="libsndfile"/>
     </para>
 
-    <bridgehead renderas="sect4">Recommended</bridgehead>
     <para role="recommended">
       <xref linkend="alsa-lib"/>,
       <phrase revision="sysv">
@@ -60,7 +59,6 @@
       <xref linkend="xorg7-lib"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="&blfs-svn;/basicnet/avahi.html">Avahi</ulink>,
       <ulink url="&blfs-svn;/general/bluez.html">BlueZ</ulink>,
@@ -142,10 +140,9 @@ ninja</userinput></screen>
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
-meson setup --cross-file=lib32  \
-            --prefix=/usr       \
-            --libdir=/usr/lib32 \
+meson setup --prefix=/usr       \
             --buildtype=release \
+            --cross-file=lib32  \
             -D database=gdbm    \
             -D doxygen=false    \
             -D bluez5=disabled  \
@@ -162,7 +159,7 @@ ninja</userinput></screen>
 cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
 rm -rf DESTDIR                        &amp;&amp;
 ldconfig</userinput></screen>
-  
+
   </sect2>
 
   <sect2 role="commands">

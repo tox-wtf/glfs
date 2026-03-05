@@ -4,8 +4,10 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY xud-root "https://user-dirs.freedesktop.org/releases">
-  <!ENTITY xdg-user-dirs-download "&xud-root;/xdg-user-dirs-&xdg-user-dirs-version;.tar.gz">
+  <!ENTITY xud-root
+    "https://gitlab.freedesktop.org/xdg/xdg-user-dirs/-/archive">
+  <!ENTITY xdg-user-dirs-download
+    "&xud-root;/v&xdg-user-dirs-version;/xdg-user-dirs-v&xdg-user-dirs-version;.tar.gz">
 ]>
 
 <sect1 id="xdg-user-dirs" xreflabel="Xdg-user-dirs-&xdg-user-dirs-version;">
@@ -39,30 +41,33 @@
   <sect2 role="installation">
     <title>Installation of Xdg-user-dirs</title>
 
+    <para>Install xdg-user-dirs by running the following commands:</para>
+
+<screen><userinput>mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson setup --prefix=/usr       \
+            --buildtype=release \
+            -D docs=false       \
+            .. &amp;&amp;
+ninja</userinput></screen>
+
     <para>
-      Install xdg-user-dirs by running the following
-      commands:
+      Now, as the &root; user:
     </para>
 
-<screen><userinput>./configure --prefix=/usr           \
-            --sysconfdir=/etc       \
-            --disable-documentation &amp;&amp;
-make</userinput></screen>
+<screen role="root"><userinput>ninja install</userinput><userinput revision="sysv"> &amp;&amp;
+rm -rvf /usr/lib/systemd</userinput></screen>
 
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>make install</userinput></screen>
   </sect2>
 
   <sect2 role="commands">
     <title>Command Explanations</title>
 
-    &options-configure;
+    &options-meson;
 
     <para>
-      <parameter>--disable-documentation</parameter>: Disable the
+      <parameter>-D docs=false</parameter>: Disables the
       installation of the man pages.
     </para>
   </sect2>

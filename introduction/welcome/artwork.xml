@@ -28,10 +28,10 @@
 
     <sect3>
       <title>Legacy - tip.png</title>
-      
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/legacy/tip.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/oldadmon/tip.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -58,10 +58,10 @@
 
     <sect3>
       <title>Legacy - note.png</title>
-        
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/legacy/note.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/oldadmon/note.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -80,10 +80,10 @@
 
     <sect3>
       <title>Legacy - important.png</title>
-        
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/legacy/important.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/oldadmon/important.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -102,10 +102,10 @@
 
     <sect3>
       <title>Legacy - caution.png</title>
-        
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/legacy/caution.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/oldadmon/caution.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -124,10 +124,10 @@
 
     <sect3>
       <title>Legacy - warning.png</title>
-        
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/legacy/warning.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/oldadmon/warning.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -145,11 +145,11 @@
     </sect3>
 
     <sect3>
-      <title>Current - tip.png</title>
-      
+      <title>Retired - tip.png</title>
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/tip.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/newadmon/tip.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -168,11 +168,11 @@
     </sect3>
 
     <sect3>
-      <title>Current - note.png</title>
-        
+      <title>Retired - note.png</title>
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/note.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/newadmon/note.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -192,11 +192,11 @@
     </sect3>
 
     <sect3>
-      <title>Current - important.png</title>
-        
+      <title>Retired - important.png</title>
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/important.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/newadmon/important.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -215,11 +215,11 @@
     </sect3>
 
     <sect3>
-      <title>Current - caution.png</title>
-        
+      <title>Retired - caution.png</title>
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/caution.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/newadmon/caution.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -238,11 +238,11 @@
     </sect3>
 
     <sect3>
-      <title>Current - warning.png</title>
-        
+      <title>Retired - warning.png</title>
+
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/warning.png" format="PNG"/>
+          <imagedata fileref="../images/legacy/newadmon/warning.png" format="PNG"/>
         </imageobject>
       </mediaobject>
 
@@ -262,7 +262,7 @@
 
     <sect3>
       <title>Legacy - glfs-logo.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/legacy/glfs-logo.png" format="PNG"/>
@@ -304,7 +304,7 @@
 
     <sect3>
       <title>Current - glfs-logo.png</title>
-        
+
       <mediaobject>
         <imageobject>
           <imagedata fileref="../images/glfs-logo.png"
@@ -325,16 +325,8 @@
       </para>
 
       <para>
-        There isn't much meaning within the logo, although there is some.
-        Namely, the dragon and tech elements of the design is meant to convey
-        the general theme of gaming. The dragon itself as depicted has its
-        gender ambiguous, but nonetheless stoic and focused to better represent
-        the wide variety of people that may wish to follow this book.
-      </para>
-
-      <para>
         The dragon, or GLFS mascot, does not actually have a name (yet), but
-        may recieve one in the future and may recieve more art depicting the
+        may receive one in the future and may receive more art depicting the
         character.
       </para>
 
@@ -345,7 +337,8 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../images/favicon-high.ico" format="BMP"/>
+          <imagedata fileref="../images/favicon-high.ico" format="BMP"
+          width="300"/>
         </imageobject>
       </mediaobject>
 

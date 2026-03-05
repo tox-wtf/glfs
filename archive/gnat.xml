@@ -44,12 +44,10 @@
 
     <bridgehead renderas="sect3">GNAT Dependencies</bridgehead>
 
-    <bridgehead renderas="sect4">Required</bridgehead>
     <para role="required">
 	<xref linkend="gnat-binary"/>
     </para>
 
-    <bridgehead renderas="sect4">Optional</bridgehead>
     <para role="optional">
       <ulink url="https://www.linuxfromscratch.org/blfs/view/svn/general/gdb.html">
       GDB</ulink>,
@@ -76,7 +74,7 @@
         will overwrite your existing GCC C and C++ compilers and
         libraries. Running the full suite of tests is recommended.
       </para>
-      
+
       <para>
         Do not continue with the <command>make install</command>
         command until you are confident the build was successful.
@@ -93,7 +91,7 @@
       “bootstrap” process. Bootstrapping is needed for robustness
       and is highly recommended when upgrading the compilers version.
       To disable bootstrap anyway, add <parameter>--disable-bootstrap
-      </parameter> to the <command>../configure</command> options below. 
+      </parameter> to the <command>../configure</command> options below.
     </para>
 
     <para>
@@ -332,7 +330,7 @@ rm -v testgnat*</userinput></screen>
       This command builds support for ADA, C, and C++. Refer to <ulink
       url="https://www.linuxfromscratch.org/blfs/view/svn/general/gcc.html"/>
       to find what other languages are supported. Make sure to add
-      <parameter>ada</parameter> to the option if you recompile 
+      <parameter>ada</parameter> to the option if you recompile
       GCC.
     </para>
 

@@ -37,12 +37,9 @@
     </itemizedlist>
 
     <bridgehead renderas="sect3">p11-kit Dependencies</bridgehead>
-
-    <!-- There is a check for libsystemd. It seems to install a systemd service
-    in /usr/lib/systemd/user.-->
-    <bridgehead renderas="sect4">Required (for <xref linkend="steam"/>, otherwise recommended)</bridgehead>
     <para role="required">
        <xref linkend="libtasn1"/> and <xref role="runtime" linkend="nss"/>
+       (both required for <xref linkend="steam"/>)
     </para>
 
   </sect2>
@@ -72,11 +69,10 @@ EOF</userinput></screen>
 <screen><userinput>mkdir p11-build &amp;&amp;
 cd    p11-build &amp;&amp;
 
-meson setup ..            \
-      --prefix=/usr       \
-      --buildtype=release \
-      -D trust_paths=/etc/pki/anchors &amp;&amp;
-
+meson setup --prefix=/usr                   \
+            --buildtype=release             \
+            -D trust_paths=/etc/pki/anchors \
+            .. &amp;&amp;
 ninja</userinput></screen>
 
     <para>
@@ -88,39 +84,6 @@ ln -sfv /usr/libexec/p11-kit/trust-extract-compat \
         /usr/bin/update-ca-certificates</userinput></screen>
 
   </sect2>
-
-<!--
-  <sect2>
-    <title>lib32 Installation of p11-kit</title>
-
-    <para>
-      Install lib32-p11-kit
-      by running the following commands:
-    </para>
-
-<screen><userinput>rm -rf * &amp;&amp;
-CC="gcc -m32" CXX="g++ -m32"                     \
-PKG_CONFIG_PATH=/usr/lib32/pkgconfig             \
-CFLAGS+=" -Wno-error=incompatible-pointer-types" \
-meson setup ..                                   \
-      - -prefix=/usr                              \
-      - -libdir=/usr/lib32                        \
-      - -buildtype=release                        \
-      -D trust_paths=/etc/pki/anchors &amp;&amp;
-
-ninja</userinput></screen>
-
-    <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
-    </para>
-
-<screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install    &amp;&amp;
-cp -vr DESTDIR/usr/lib32/* /usr/lib32 &amp;&amp;
-rm -rf DESTDIR                        &amp;&amp;
-ldconfig</userinput></screen>
-
-  </sect2>
--->
 
   <sect2 role="commands">
     <title>Command Explanations</title>
