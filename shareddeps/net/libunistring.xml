@@ -41,7 +41,7 @@
   <sect2 role="installation">
     <title>Installation of libunistring</title>
 
-    &gnulib;
+<!--    &gnulib;  -->
 
     <para>
       Install libunistring by running the following
