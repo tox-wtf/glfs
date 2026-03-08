@@ -126,10 +126,18 @@
 <!ENTITY static-libraries
   "<para><parameter>--disable-static</parameter>: This switch prevents
   installation of static versions of the libraries.</para>">
+
+<!-- Fixes needed by various packages -->
 <!ENTITY gnulib
   "<para>First, make a fix required by glibc-2.43 or later:</para>
 <screen><userinput remap='pre'>sed -r '/_GL_EXTERN_C/s/w?memchr|bsearch/(&amp;)/' \
     -i $(find -name \*.in.h)</userinput></screen>">
+<!ENTITY x-nettle
+  "<para>Allow building against Nettle-4.0 and higher:</para>
+<screen remap='pre'><userinput>sed -e '/sha.h/s/sha/sha1/'                  \
+    -e '/sha1/a #include &lt;nettle/version.h&gt;' \
+    -e 's/ctx, 20/ctx/'                      \
+    -i os/xsha1.c</userinput></screen>">
 
 <!-- Save repetition for multiple passes of a package. -->
 <!ENTITY dbus-m64 "

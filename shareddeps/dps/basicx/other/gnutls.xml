@@ -57,6 +57,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/gnutls/gnutls-&gnutls-version;-nettle4_fixes-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">GnuTLS Dependencies</bridgehead>
 
     <para role="required">
@@ -81,23 +91,18 @@
   <sect2 role="installation">
     <title>Installation of GnuTLS</title>
 
+    <para>Apply a patch to allow building with Nettle-4.0 and later:</para>
+
+<screen><userinput>patch -Np1 -i ../gnutls-&gnutls-version;-nettle4_fixes-1.patch</userinput></screen>
+
     <para>
-      Install GnuTLS by running the
-      following commands:
+      Install GnuTLS by running the following commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr \
             --docdir=/usr/share/doc/gnutls-&gnutls-version; \
             --with-default-trust-store-pkcs11="pkcs11:" &amp;&amp;
 make</userinput></screen>
-<!-- - -disable-rpath \
-     Old gnutls versions (around 3.5) had a problem with rpath, because
-     libraries in the build tree were linked with rpath pointing to the
-     system libraries, so that tests failed. Present versions don't have
-     this problem, and do exactly what is expected without using the
-     disable-rpath option: rpath pointing to the build tree when libraries
-     are first linked, but rpath removed when libraries are relinked at
-     install time. -->
 
     <para>
       Now, as the &root; user:
