@@ -23,7 +23,7 @@
 
       <para>
         The libclc package contains library requirements of the OpenCL C
-        programming language (provides header files but no libraries itself).
+        programming language (providing header files but no libraries).
       </para>
 
       <note><para>
