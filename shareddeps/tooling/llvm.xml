@@ -4,8 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY llvm-root "https://github.com/llvm/llvm-project/releases/download">
-  <!ENTITY llvm-download "&llvm-root;/llvmorg-&llvm-version;/">
+  <!ENTITY llvm-root     "https://github.com/llvm/llvm-project/releases/download">
+  <!ENTITY llvm-org      "&llvm-root;/llvmorg-&llvm-version;">
+  <!ENTITY llvm-download "&llvm-org;/llvm-project-&llvm-version;.src.tar.xz">
 ]>
 
 <sect1 id="llvm" xreflabel="LLVM-&llvm-version;">
@@ -21,33 +22,40 @@
     <title>Introduction to LLVM</title>
 
     <para>
-      The LLVM package contains a collection of
-      modular and reusable compiler and toolchain technologies. The Low Level
-      Virtual Machine (LLVM) Core libraries provide a modern source and
-      target-independent optimizer, along with code generation support for many
-      popular CPUs, as well as some less common ones. These libraries are
-      built around a well specified code representation known as the LLVM
-      intermediate representation ("LLVM IR").
+      The LLVM package contains a collection of modular and reusable compiler
+      and toolchain technologies. The Low Level Virtual Machine (LLVM) Core
+      libraries provide a modern source and target-independent optimizer, along
+      with code generation support for many popular CPUs, as well as some less
+      common ones. These libraries are built around a well specified code
+      representation known as the LLVM intermediate representation ("LLVM IR").
     </para>
 
     <para>
-      Clang provides new C, C++, Objective C
-      and Objective C++ front-ends for LLVM and is
-      required by some desktop packages such as
-      <ulink url="&blfs-svn;/xsoft/firefox.html">Firefox</ulink>
-      and for <xref linkend="rustc"/> if that is built using the system
-      LLVM.
+      Many toolchains, including Rustc and Zig, use LLVM as a backend because
+      of its flexibility and ability to turn input into LLVM IR, which can turn
+      into an executable with other LLVM IR.
     </para>
 
     <para>
-      The Compiler RT package provides
-      runtime sanitizer and profiling libraries for developers who use
-      Clang and LLVM.
+      Since there are so many modules and there are only a few that are needed,
+      which still leads to an often long build time, the following installation
+      instructions only install a small handful, namely LLVM itself, Clang, and
+      Compiler-RT.
     </para>
 
     <para>
-      The below instructions will install all of these projects, though you may
-      wish to skip installing some of the optional packages.
+      Clang is a compiler frontend to LLVM. It's an alternative to GCC, though
+      installing only Clang and not GCC is both difficult and usually a bad
+      idea. Various packages using LLVM will want Clang instead of GCC.
+    </para>
+
+    <para>
+      Compiler-RT contains runtime support for compilers, and does a lot for
+      compatibility across architectures and the ISO C++ standard. It's akin to
+      <filename class="libraryfile">libgcc</filename> for GCC, but with LLVM.
+      If Clang is the only C/C++ compiler, Compiler-RT is absolutely necessary.
+      This book will not cover an LLVM-only setup. Even after LLVM is
+      installed, projects using LLVM will still want GCC anyway.
     </para>
 
     &long-build-time;
@@ -68,112 +76,24 @@
 
   </sect2>
 
-  <sect2>
-    <title>Downloading LLVM tarballs</title>
-
-    <para>
-      The tarballs that are to be downloaded are poorly named and may conflict
-      with other present tarballs that may be in the current directory. The
-      instructions below work around this by putting the tarballs in a new
-      directory so they are isolated.
-    </para>
-
-    <para>
-      First, create a list of files to be downloaded:
-    </para>
-
-<screen><userinput>cat &gt; llvm-&llvm-version;-list &lt;&lt; "EOF"
-<literal># The three tarballs below are required
-llvm-&llvm-version;.src.tar.xz
-cmake-&llvm-version;.src.tar.xz
-third-party-&llvm-version;.src.tar.xz
-
-# The following clang tarball is for Clang (Recommended)
-clang-&llvm-version;.src.tar.xz
-
-# The following compiler-rt tarball is for Compiler RT (Recommended)
-compiler-rt-&llvm-version;.src.tar.xz</literal>
-EOF</userinput></screen>
-
-    <para>
-      To download the needed files using <xref linkend='wget'/>,
-      use the following commands:
-    </para>
-
-<screen><userinput>mkdir llvm &amp;&amp;
-cd llvm &amp;&amp;
-grep -v '^#' ../llvm-&llvm-version;-list | wget -i- -c \
-    -B &llvm-download;</userinput></screen>
-
-  </sect2>
-
   <sect2 role="installation">
     <title>Installation of LLVM</title>
 
     <para>
-      Extract the <filename>llvm-&llvm-version;.src.tar.xz</filename> tarball
-      and navigate to the extracted
-      <filename class="directory">llvm-&llvm-version;.src</filename> directory:
-    </para>
-
-<screen><userinput>tar -xf llvm-&llvm-version;.src.tar.xz &amp;&amp;
-cd llvm-&llvm-version;.src</userinput></screen>
-
-    <para>
-      The <filename>cmake-&llvm-version;.src.tar.xz</filename> and
-      <filename>third-party-&llvm-version;.src.tar.xz</filename> tarballs are
-      necessary for the LLVM building process. The
-      <filename>cmake-&llvm-version;.src.tar.xz</filename> tarball includes
-      CMake modules that LLVM uses, such as properly setting the version
-      number. The <filename>third-party-&llvm-version;.src.tar.xz</filename>
-      tarball includes dependencies, such as benchmark and unittest. Upstream
-      expects both tarballs to be extracted at the same level as the
-      <filename>llvm-&llvm-version;.src.tar.xz</filename> tarball.
-      Additionally, the extracted directories must be renamed to
-      <filename class="directory">cmake</filename> and
-      <filename class="directory">third-party</filename> respectively. Extract
-      them and modify the build system to avoid creating ambiguously-named
-      directories outside the
-      <filename class="directory">llvm-&llvm-version;.src</filename> hierarchy:
-    </para>
-
-<screen><userinput>tar -xf ../cmake-&llvm-version;.src.tar.xz &amp;&amp;
-tar -xf ../third-party-&llvm-version;.src.tar.xz &amp;&amp;
-sed '/LLVM_COMMON_CMAKE_UTILS/s@../cmake@cmake-&llvm-version;.src@' \
-    -i CMakeLists.txt &amp;&amp;
-sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-&llvm-version;.src@' \
-    -i cmake/modules/HandleLLVMOptions.cmake</userinput></screen>
-
-    <para>
-      Extract clang into
-      the source tree by running the following commands:
-    </para>
-
-<screen><userinput>tar -xf ../clang-&llvm-version;.src.tar.xz -C tools &amp;&amp;
-mv tools/clang-&llvm-version;.src tools/clang</userinput></screen>
-
-    <para>
-      Extract compiler-rt into
-      the source tree by running the following commands:
-    </para>
-
-<screen><userinput>tar -xf ../compiler-rt-&llvm-version;.src.tar.xz -C projects    &amp;&amp;
-mv projects/compiler-rt-&llvm-version;.src projects/compiler-rt</userinput></screen>
-
-    <para>
      There are many Python scripts in this package which use
-     <command>/usr/bin/env python</command> to access the system Python
-     which on LFS is Python3. Use the following
-     command to fix these scripts:
+     <command>/usr/bin/env python</command>. However, on LFS, there is no
+     <command>python</command> normally, which on most distributions point to
+     <command>python3</command>. Make the scripts use
+     <command>python3</command> instead:
     </para>
 
-<screen><userinput>grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'</userinput></screen>
+<screen><userinput>grep -rl '#!.*python$' | xargs sed -i '1s/python$/python3/'</userinput></screen>
 
     <para>
-      Ensure installing the <command>FileCheck</command> program:
+      Ensure <command>FileCheck</command> gets installed:
     </para>
 
-    <screen><userinput>sed 's/utility/tool/' -i utils/FileCheck/CMakeLists.txt</userinput></screen>
+    <screen><userinput>sed 's/utility/tool/' -i llvm/utils/FileCheck/CMakeLists.txt</userinput></screen>
 
     <para>
       Install LLVM by running the following
@@ -192,11 +112,13 @@ cmake -D CMAKE_INSTALL_PREFIX=/usr                     \
       -D LLVM_LINK_LLVM_DYLIB=ON                       \
       -D LLVM_ENABLE_RTTI=ON                           \
       -D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU;NVPTX" \
+      -D LLVM_ENABLE_PROJECTS=clang                    \
+      -D LLVM_ENABLE_RUNTIMES=compiler-rt              \
       -D LLVM_BINUTILS_INCDIR=/usr/include             \
       -D LLVM_INCLUDE_BENCHMARKS=OFF                   \
       -D CLANG_DEFAULT_PIE_ON_LINUX=ON                 \
       -D CLANG_CONFIG_FILE_SYSTEM_DIR=/etc/clang       \
-      -W no-dev -G Ninja .. &amp;&amp;
+      -W no-dev -G Ninja ../llvm &amp;&amp;
 
 ninja</userinput></screen>
 
@@ -213,7 +135,11 @@ ninja</userinput></screen>
 
     <para>
       If you are doing multilib, you will also need to install the
-      32-bit runtime libraries. Install them by doing the following:
+      32-bit runtime libraries, even if LLVM has i386 support built in.
+    </para>
+
+    <para>
+      Build lib32-LLVM with a limited set of components:
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;
@@ -233,11 +159,17 @@ cmake -D CMAKE_INSTALL_PREFIX=/usr                      \
       -D LLVM_DEFAULT_TARGET_TRIPLE="i686-pc-linux-gnu" \
       -D LLVM_TARGETS_TO_BUILD="X86;host;AMDGPU;NVPTX"  \
       -D LLVM_HOST_TRIPLE="x86_64-pc-linux-gnu"         \
+      -D LLVM_ENABLE_PROJECTS=clang                     \
+      -D LLVM_ENABLE_RUNTIMES=compiler-rt               \
+      -D LLVM_BUILD_UTILS=OFF                           \
+      -D LLVM_BUILD_TOOLS=OFF                           \
+      -D LLVM_INCLUDE_TESTS=OFF                         \
       -D LLVM_BINUTILS_INCDIR=/usr/include              \
       -D LLVM_INCLUDE_BENCHMARKS=OFF                    \
+      -D CLANG_BUILD_TOOLS=OFF                          \
       -D CLANG_DEFAULT_PIE_ON_LINUX=ON                  \
       -D CLANG_CONFIG_FILE_SYSTEM_DIR=/etc/clang        \
-      -W no-dev -G Ninja .. &amp;&amp;
+      -W no-dev -G Ninja ../llvm &amp;&amp;
 
 ninja</userinput></screen>
 

@@ -4,9 +4,9 @@
   <!ENTITY % general-entities SYSTEM "../../general.ent">
   %general-entities;
 
-  <!ENTITY libclc-root "https://github.com/llvm/llvm-project/releases/download">
-  <!ENTITY libclc-download
-    "&libclc-root;/llvmorg-&libclc-version;/libclc-&libclc-version;.src.tar.xz">
+  <!ENTITY llvm-root       "https://github.com/llvm/llvm-project/releases/download">
+  <!ENTITY llvm-org        "&llvm-root;/llvmorg-&llvm-version;">
+  <!ENTITY libclc-download "&llvm-org;/llvm-project-&llvm-version;.src.tar.xz">
 ]>
 
   <sect1 id="libclc" xreflabel="libclc-&libclc-version;">
@@ -22,10 +22,15 @@
       <title>Introduction to libclc</title>
 
       <para>
-        The libclc package contains library requirements
-        of the OpenCL C programming language (provides header files but no
-        libraries itself).
+        The libclc package contains library requirements of the OpenCL C
+        programming language (provides header files but no libraries itself).
       </para>
+
+      <note><para>
+        The libclc package is part of the main LLVM tarball. You can either
+        reuse the extracted directory, or remove it then re-extract the tarball
+        again.
+      </para></note>
 
       <itemizedlist spacing="compact">
         <listitem>
@@ -48,8 +53,14 @@
       <title>Installation of libclc</title>
 
       <para>
-        Install libclc by running the following
-        commands:
+        If you're reusing the previously extracted LLVM directory from the LLVM
+        build, remove the build directory first before proceeding:
+      </para>
+
+      <screen remap="pre"><userinput>rm -rf build</userinput></screen>
+
+      <para>
+        Install libclc by running the following commands:
       </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -57,12 +68,12 @@ cd    build &amp;&amp;
 
 cmake -D CMAKE_INSTALL_PREFIX=/usr \
       -D CMAKE_BUILD_TYPE=Release  \
-      -G Ninja .. &amp;&amp;
+      -G Ninja ../libclc &amp;&amp;
 
 ninja</userinput></screen>
 
       <para>
-        Now, as the <systemitem class="username">root</systemitem> user:
+        Now, as the &root; user:
       </para>
 
 <screen role="root"><userinput>ninja install</userinput></screen>

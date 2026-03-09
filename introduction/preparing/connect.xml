@@ -13,9 +13,9 @@
   <para>
     Some of the instructions in GLFS require an internet connection, namely in
     <xref linkend="rustc"/> and when downloading all the files for a package
-    bundle like <xref linkend="llvm"/> and <xref linkend="vulkan-sdk"/>. Thus,
-    you will need an internet connection on the LFS target, whether in a
-    chroot, TTY, or GUI. Tools for downloading files will be installed in GLFS.
+    bundle like <xref linkend="vulkan-sdk"/>. Thus, you will need an internet
+    connection on the LFS target, whether in a chroot, TTY, or GUI. Tools for
+    downloading files will be installed in GLFS.
   </para>
 
   <para>
