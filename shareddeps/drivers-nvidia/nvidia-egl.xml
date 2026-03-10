@@ -46,10 +46,12 @@
 <literal>eglexternalplatform/archive/&eglexternalplatform-version;/eglexternalplatform-&eglexternalplatform-version;.tar.gz
 egl-gbm/archive/&egl-gbm-version;/egl-gbm-&egl-gbm-version;.tar.gz
 egl-wayland/archive/&egl-wayland-version;/egl-wayland-&egl-wayland-version;.tar.gz
+egl-wayland2/archive/v&egl-wayland2-version;/egl-wayland2-&egl-wayland2-version;.tar.gz
 egl-x11/archive/v&egl-x11-version;/egl-x11-&egl-x11-version;.tar.gz</literal>
 EOF</userinput></screen>
 
-    <!-- Keep watch for egl-x11 dl link having a v<x.x.x> for a tag. -->
+    <!-- Keep watch for egl-x11 and egl-wayland2 dl links having v<x.x.x> for
+         tags. -->
 
     <para>
       To download the needed files using <xref linkend='wget'/>,
@@ -117,6 +119,7 @@ done</userinput></screen>
         <seg>
           libnvidia-egl-gbm,
           libnvidia-egl-wayland,
+          libnvidia-egl-wayland2,
           libnvidia-egl-xcb, and
           libnvidia-egl-xlib
         </seg>
@@ -149,6 +152,20 @@ done</userinput></screen>
           <para>
             provides client-side Wayland EGL
             application support
+          </para>
+          <indexterm zone="nvidia-egl libnvidia-egl-wayland">
+            <primary sortas="c-libnvidia-egl-wayland">libnvidia-egl-wayland</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libnvidia-egl-wayland2">
+        <term><filename class="libraryfile">libnvidia-egl-wayland2</filename></term>
+        <listitem>
+          <para>
+            is the new version of <filename
+            class="libraryfile">libnvidia-egl-wayland</filename>, aiming to be
+            more simplified and improves certain functions
           </para>
           <indexterm zone="nvidia-egl libnvidia-egl-wayland">
             <primary sortas="c-libnvidia-egl-wayland">libnvidia-egl-wayland</primary>

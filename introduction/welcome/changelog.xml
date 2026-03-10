@@ -41,6 +41,21 @@
     -->
 
     <listitem>
+      <para>March 9th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - egl-wayland2: Added.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - egl-gbm: 1.1.2.1 -&gt; 1.1.3.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - egl-x11: 1.0.4 -&gt; 1.0.5. Fixes
+          <ulink url="&glfs-issues;/390">#390</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+
+    <listitem>
       <para>March 8th, 2026</para>
       <itemizedlist>
         <listitem>
