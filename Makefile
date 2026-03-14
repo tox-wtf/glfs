@@ -160,7 +160,7 @@ $(RENDERTMP)/$(GLFSHTML): $(RENDERTMP)/$(GLFSFULL) version
 
 downloads: $(BASEDIR)/download
 $(BASEDIR)/download: html
-	@echo "Copying downloadable content at $(BASEDIR)/download ..."
+	@echo "Copying downloadable content to $(BASEDIR)/download..."
 	$(Q)mkdir -p $(BASEDIR)/download
 	$(Q)rm -rf $(BASEDIR)/download/*
 	$(Q)cp -R download/* $(BASEDIR)/download
@@ -169,7 +169,7 @@ $(BASEDIR)/download: html
 
 wget-list: $(BASEDIR)/download/wget-list
 $(BASEDIR)/download/wget-list: $(RENDERTMP)/$(GLFSFULL) version html downloads
-	@echo "Generating wget list for $(REV) at $(BASEDIR)/download/wget-list ..."
+	@echo "Generating $(REV) wget-list to $(BASEDIR)/download..."
 	$(Q)xsltproc --nonet                                \
                 --output $(BASEDIR)/download/wget-list \
                 stylesheets/wget-list.xsl              \
@@ -183,13 +183,13 @@ $(BASEDIR)/archive: html
 
 assets: $(BASEDIR)/stylesheets $(BASEDIR)/images
 $(BASEDIR)/stylesheets: html
-	@echo "Copying CSS ..."
+	@echo "Copying CSS..."
 	$(Q)mkdir -p $(BASEDIR)/stylesheets
 	$(Q)cp $(THEME_PATH)/$(THEME).lfs.css $(BASEDIR)/stylesheets/lfs.css
 	$(Q)cp stylesheets/lfs-xsl/lfs-print.css $(BASEDIR)/stylesheets
 	$(Q)sed -i 's|../stylesheet|stylesheet|' $(BASEDIR)/index.html
 $(BASEDIR)/images: html
-	@echo "Copying images ..."
+	@echo "Copying images..."
 	$(Q)mkdir -p $(BASEDIR)/images
 	$(Q)cp -R images/* $(BASEDIR)/images
 	$(Q)cd $(BASEDIR)/; sed -e "s@../images@images@g" -i *.html
