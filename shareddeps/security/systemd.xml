@@ -359,7 +359,7 @@ systemctl --user daemon-reload</userinput></screen></note>
       <para>
         A list of the installed files, along with their short
         descriptions can be found at
-        <ulink url="&mlfs-m32-root;/chapter08/systemd.html#contents-systemd"/>.
+        <ulink url="&mlfs-root;/chapter08/systemd.html#contents-systemd"/>.
       </para>
 
       <para>
