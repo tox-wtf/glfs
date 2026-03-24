@@ -43,6 +43,9 @@
     <listitem>
       <para>March 24th, 2026</para>
       <itemizedlist>
+        <listitem revision="openrc">
+          <para>[zeckma] - OpenRC: Added for Linux-PAM rebuild.</para>
+        </listitem>
         <listitem>
           <para>[zeckma] - Provide OpenRC support in book sources.</para>
         </listitem>

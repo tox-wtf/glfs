@@ -43,6 +43,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3" revision="openrc">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact" revision="openrc">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/elogind/elogind-&elogind-version;-openrc-user.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">elogind Dependencies</bridgehead>
 
     <para role="recommended">
@@ -72,6 +82,14 @@
 
   <sect2 role="installation">
     <title>Installation of elogind</title>
+
+    <para revision="openrc">
+      There is special handling for <literal>openrc-user</literal>, a helper of
+      OpenRC that handles user services, that breaks functionality claiming
+      necessary variables are unset. Fix that behavior:
+    </para>
+
+<screen revision="openrc"><userinput>patch -Np1 -i ../elogind-&elogind-version;-openrc-user.patch</userinput></screen>
 
     <para>
       Install elogind by running the following
