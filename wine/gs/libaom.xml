@@ -38,6 +38,7 @@
       </listitem>
     </itemizedlist>
 
+<!--
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
@@ -47,6 +48,7 @@
         </para>
       </listitem>
     </itemizedlist>
+-->
 
     <bridgehead renderas="sect3">libaom Dependencies</bridgehead>
 
@@ -59,6 +61,7 @@
   <sect2 role="installation">
     <title>Installation of libaom</title>
 
+<!--
     <para>
       First, ensure libaom gets every bit of info it needs from NASM to
       prevent a configuration issue as a result of NASM updating how the help
@@ -66,6 +69,7 @@
     </para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../libaom-&libaom-version;-nasm3-1.patch</userinput></screen>
+-->
 
     <para>
       Next, prevent libaom from installing static libraries:
