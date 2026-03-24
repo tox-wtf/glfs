@@ -44,7 +44,7 @@
       how to set up both.
     </para>
 
-    <para revision="sysv">
+    <para revision="openrc,sysv">
       In order to use DHCP, you will need a DHCP client,
       <ulink url="&blfs-svn;/basicnet/dhcpcd.html">
       dhcpcd</ulink>. 

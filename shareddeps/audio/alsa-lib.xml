@@ -55,7 +55,7 @@
     <bridgehead renderas="sect3">ALSA Library Dependencies</bridgehead>
 
     <para role="recommended">
-      <phrase revision="sysv"><xref linkend="elogind"/></phrase>
+      <phrase revision="openrc,sysv"><xref linkend="elogind"/></phrase>
       <phrase revision="systemd"><xref linkend="systemd"/></phrase> (runtime)
     </para>
 
@@ -220,9 +220,9 @@ ldconfig</userinput></screen>
 
       <para>
         Furthermore, if this package was not built with
-        <phrase revision="sysv"><xref linkend="elogind"/> support,</phrase>
-        <phrase revision="systemd">
-        <xref linkend="systemd"/>,</phrase> add any non-root users to the
+        <phrase revision="openrc,sysv"><xref linkend="elogind"/>
+        support,</phrase> <phrase revision="systemd"><xref
+        linkend="systemd"/>,</phrase> add any non-root users to the
         <systemitem class='groupname'>audio</systemitem> group as the
         <systemitem class="username">root</systemitem> user:
       </para>

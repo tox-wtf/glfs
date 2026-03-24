@@ -66,7 +66,7 @@
 
     <para role="recommended">
       <xref linkend='dbus'/>,
-      <phrase revision="sysv">
+      <phrase revision="openrc,sysv">
       <xref role="runtime" linkend="elogind"/> (runtime;
       <systemitem class='library'>libelogind</systemitem> also referred
       at build time but it's not really useful),</phrase>
@@ -223,7 +223,7 @@ fi</userinput></screen>
     <para>
       <option>-Dsystemd_logind=false</option>:
       This switch disables <phrase revision="systemd">systemd-logind</phrase>
-      <phrase revision="sysv">elogind</phrase> integration, allowing Xorg Server
+      <phrase revision="openrc,sysv">elogind</phrase> integration, allowing Xorg Server
       to work without having the <phrase revision="systemd">systemd</phrase>
       <phrase revision="elogind">elogind</phrase> PAM module configured.
     </para>
@@ -248,9 +248,9 @@ fi</userinput></screen>
 
     <para>
       Furthermore, if this package was not built with
-      <phrase revision="sysv"><xref linkend="elogind"/> support,</phrase>
-      <phrase revision="systemd">
-      <xref linkend="systemd"/>,</phrase> add any non-root users to the
+      <phrase revision="openrc,sysv"><xref linkend="elogind"/>
+      support,</phrase> <phrase revision="systemd"><xref
+      linkend="systemd"/>,</phrase> add any non-root users to the
       <systemitem class="groupname">input</systemitem> and
       <systemitem class="groupname">video</systemitem> groups as the
       &root; user:

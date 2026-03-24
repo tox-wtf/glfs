@@ -33,8 +33,10 @@ else
 endif
 
 ifneq ($(REV), systemd)
-  ifneq ($(REV), sysv)
-    $(error REV must be 'systemd' (default) or 'sysv' (not maintained))
+  ifneq ($(REV), openrc)
+    ifneq ($(REV), sysv)
+      $(error REV must be 'systemd' (default), 'openrc', or 'sysv' (not maintained))
+    endif
   endif
 endif
 
@@ -52,7 +54,15 @@ ifeq ($(REV), systemd)
   GLFSHTML        ?= glfs-html.xml
   GLFSHTML2       ?= glfs-html2.xml
   GLFSFULL        ?= glfs-full.xml
-else
+endif
+ifeq ($(REV), openrc)
+  BASEDIR         ?= $(HTML_ROOT)/glfs-openrc
+  DUMPDIR         ?= $(DUMP_ROOT)/glfs-openrc-commands
+  GLFSHTML        ?= glfs-openrc-html.xml
+  GLFSHTML2       ?= glfs-openrc-html2.xml
+  GLFSFULL        ?= glfs-openrc-full.xml
+endif
+ifeq ($(REV), sysv)
   BASEDIR         ?= $(HTML_ROOT)/glfs-sysv
   DUMPDIR         ?= $(DUMP_ROOT)/glfs-sysv-commands
   GLFSHTML        ?= glfs-sysv-html.xml
@@ -71,12 +81,14 @@ help:
 	@echo "  REV=<rev>            Build variation of book"
 	@echo "                       Valid values for REV are:"
 	@echo "                       * systemd - Build book for Systemd"
-	@echo "                       * sysv    - Build book for SysV"
+	@echo "                       * openrc  - Build book for OpenRC"
+	@echo "                       * sysv    - Build book for SysVinit"
 	@echo "                       Defaults to 'systemd'"
 	@echo ""
 	@echo "  BASEDIR=<dir>        Put the output in directory <dir>."
 	@echo "                       Defaults to"
-	@echo "                       '$(HTML_ROOT)/glfs' if REV=systemd (or unset)"
+	@echo "                       '$(HTML_ROOT)/glfs' if REV=systemd (or unset),"
+	@echo "                       '$(HTML_ROOT)/glfs-openrc' if REV=openrc,"
 	@echo "                       or to"
 	@echo "                       '$(HTML_ROOT)/glfs-sysv' if REV=sysv"
 	@echo ""

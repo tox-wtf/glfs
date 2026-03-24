@@ -7,7 +7,7 @@
   <!ENTITY dbus-download "https://dbus.freedesktop.org/releases/dbus/dbus-&dbus-version;.tar.xz">
 ]>
 
-<sect1 id="dbus-pass1" xreflabel="D-Bus-&dbus-version; - Pass 1" revision="sysv">
+<sect1 id="dbus-pass1" xreflabel="D-Bus-&dbus-version; - Pass 1" revision="openrc,sysv">
   <?dbhtml filename="dbus-pass1.html"?>
 
   <title>D-Bus-&dbus-version; - Pass 1</title>
@@ -33,8 +33,9 @@
 
     <para>
       This is the first pass. A useful program, <command>dbus-launch</command>,
-      will be compiled later, but is not needed now. It depends on
-      <xref linkend="xorg7-lib"/> being installed beforehand.
+      needs some support from the Xorg Libraries but they must be present
+      before-hand so that the program will have useful functionality provided.
+      That support will be provided later.
     </para>
 
     &meson-cross;
