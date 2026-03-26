@@ -41,6 +41,16 @@
 -->
 
     <listitem>
+      <para>March 26th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - libpng: 1.6.55 -&gt; 1.6.56 (Security Update). Fixes
+          <ulink url="&glfs-issues;/396">#396</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>March 24th, 2026</para>
       <itemizedlist>
         <listitem revision="openrc">
