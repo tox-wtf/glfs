@@ -81,7 +81,22 @@
 
     <bridgehead renderas="sect3">NVIDIA Dependencies</bridgehead>
 
-    &nvidia-common-deps;
+    <para role="required">
+      &nvidia-common-req;
+    </para>
+
+    <para role='recommended'>
+      <itemizedlist spacing='compact'>
+        <listitem>
+          <para>
+            <xref linkend="cuda"/>
+            (for building in direct CUDA support into various packages like
+            FFmpeg or OBS-Studio; install after following this page)
+          </para>
+        </listitem>
+        &nvidia-common-rec;
+      </itemizedlist>
+    </para>
 
   </sect2>
 
