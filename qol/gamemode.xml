@@ -139,8 +139,8 @@ ldconfig</userinput></screen>
 
   </sect2>
 
-  <sect2 id="gamemode-init">
-    <title revision="openrc">OpenRC Service</title>
+  <sect2 revision="openrc" id="gamemode-init">
+    <title>OpenRC Service</title>
 
     <para>
       To automatically start the <command>gamemoded</command> daemon when the
