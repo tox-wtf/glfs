@@ -118,7 +118,7 @@ ldconfig</userinput></screen>
           libgbm
         </seg>
         <seg>
-          None
+          /usr/share/doc/libgbm-&libgbm-version;
         </seg>
       </seglistitem>
     </segmentedlist>
