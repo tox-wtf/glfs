@@ -44,6 +44,10 @@
       <para>March 31st, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[renodr] - freetype: 2.14.2 -&gt; 2.14.3 (Security Update).
+          Fixes <ulink url="&glfs-issues;/403">#403</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[renodr] - systemd: 259.5 -&gt; 260.1. Fixes
           <ulink url="&glfs-issues;/402">#402</ulink>.</para>
         </listitem>
