@@ -25,7 +25,7 @@
   <itemizedlist>
     <title>Changelog Entries:</title>
 
-<!-- ChangeLog Template
+    <!-- Changelog Template
     <listitem>
       <para>Month DD{nd,st,th}, YYYY</para>
       <itemizedlist>
@@ -38,7 +38,16 @@
         </listitem>
       </itemizedlist>
     </listitem>
--->
+    -->
+
+    <listitem>
+      <para>April 2nd, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - SPIRV-LLVM-Translator: 22.1.0 -&gt; 22.1.1.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
 
     <listitem>
       <para>March 31st, 2026</para>
