@@ -41,10 +41,10 @@
     <bridgehead renderas="sect3">HarfBuzz Dependencies</bridgehead>
 
     <para role="recommended">
+      <xref role="first" linkend="freetype2"/>,
       <xref linkend="glib2"/> (required for Pango; GObject Introspection
-      required for building GNOME),
-      <xref linkend="icu"/>, and
-      <xref role="first" linkend="freetype2"/>
+      required for building GNOME), and
+      <xref linkend="icu"/>
     </para>
 
   </sect2>
