@@ -224,7 +224,7 @@ ldconfig</userinput></screen>
         <term><command>hb-raster</command></term>
         <listitem>
           <para>
-            is uesd to render shaped text as a raster image using a given font
+            is used to render shaped text as a raster image using a given font
           </para>
           <indexterm zone="harfbuzz hb-raster">
             <primary sortas="b-hb-raster">hb-raster</primary>
@@ -313,8 +313,9 @@ ldconfig</userinput></screen>
         <term><filename class="libraryfile">libharfbuzz-gpu</filename></term>
         <listitem>
           <para>
-            provides for encoding glyph outlines on the CPU into compact blobs
-            that the GPU decodes and rasterizes directly in the fragment shader
+            provides API functions for encoding glyph outlines on the CPU into
+            compact blobs that the GPU decodes and rasterizes directly into a
+            fragment shader
           </para>
           <indexterm zone="harfbuzz libharfbuzz-gpu">
             <primary sortas="c-libharfbuzz-gpu">libharfbuzz-gpu</primary>
