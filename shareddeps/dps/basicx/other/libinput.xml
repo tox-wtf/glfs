@@ -97,14 +97,13 @@ cp -rv Documentation/* /usr/share/doc/libinput-&libinput-version;/html</userinpu
 
     <para>
       <parameter>-D debug-gui=false</parameter>: This switch
-      disables creation of a visual debug helper for libinput. Remove
-      if you want it, and you have GTK3 installed.
+      disables creation of a visual debug helper for libinput. Remove this
+      switch if you want the debug helper, and you have GTK3 installed.
     </para>
 
     <para>
       <parameter>-D libwacom=false</parameter>: Remove this option if you
-      have libwacom installed, or if you are installing
-      GNOME.
+      have libwacom installed, or if you are installing GNOME.
     </para>
 
   </sect2>
