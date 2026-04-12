@@ -129,8 +129,6 @@ fi
 # Set up some environment variables.
 export HISTSIZE=1000
 export HISTIGNORE="&amp;:[bf]g:exit"
-
-# Set some defaults for graphical systems
 export XDG_DATA_DIRS=${XDG_DATA_DIRS:-/usr/share}
 export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:-/etc/xdg}
 export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/tmp/xdg-$USER}
@@ -380,13 +378,15 @@ EOF</userinput></screen>
       <title>Sourcing All the Profile Scripts</title>
 
       <para>
-        Each login, the scripts above will be sourced and will establish
-        environment variables and functions. However, doing a continuous run
-        of this book, BLFS, and/or SLFS that started before creating the above
-        scripts will lead to the scripts not being sourced automatically. They
-        must be sourced manually first before the environment variables and
-        functions are available to the current login session. You should make
-        it a point to source the profile scripts after creating them.
+        Upon each login, the scripts created above will establish
+        environment variables and functions. If you have just followed LFS/MLFS
+        and want to continue to GLFS immediately, these files should be sourced
+        so that important behavior and variables are recognized, as they aren't
+        sourced automatically until you login once more. In order to source the
+        scripts, the main one (<filename>/etc/profile</filename>) is sourced
+        which then sources all the other scripts. This allows pulling in new
+        changes to the scripts to be rather simple. This action will be done
+        various times throughout the book when the environment must be changed.
       </para>
 
       &source-profile;
