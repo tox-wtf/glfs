@@ -105,6 +105,7 @@ meson setup --prefix=/usr       \
             -D database=gdbm    \
             -D doxygen=false    \
             -D bluez5=disabled  \
+            -D man=false        \
             -D tests=false      \
             .. &amp;&amp;
 
@@ -146,6 +147,7 @@ meson setup --prefix=/usr       \
             -D database=gdbm    \
             -D doxygen=false    \
             -D bluez5=disabled  \
+            -D man=false        \
             -D tests=false      \
             .. &amp;&amp;
 
@@ -179,6 +181,13 @@ ldconfig</userinput></screen>
       a runtime error if dbus and SBC
       are both installed but BlueZ is not installed.
       Remove this if you have installed all three packages.
+    </para>
+
+    <para>
+      <parameter>-D man=false</parameter>: This switch disables generation
+      of man pages, which require XML::Parser, staged to enter BLFS which
+      requires more modules. If you have XML::Parser, you can remove this
+      parameter.
     </para>
 
     <para>
