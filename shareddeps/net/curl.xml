@@ -52,15 +52,16 @@
     <bridgehead renderas="sect3">cURL Dependencies</bridgehead>
 
     <para role="recommended">
-      <xref linkend="libpsl"/>
+      <xref linkend="libpsl"/> and
+      <xref linkend="nghttp2"/> (required for <xref linkend="rustc"/>)
     </para>
 
     <note>
       <para>
-        While you can build the package without libpsl,
-        the upstream developers highly recommend building support for libpsl.
-        It prevents sites from using super cookies which pose security
-        risks.
+        The recommended dependencies, while not strictly required, are heavily
+        recommended to protect against super cookies which poses security
+        issues as well as to bring HTTP/2 support which some packages and sites
+        outright require.
       </para>
     </note>
 
@@ -82,8 +83,7 @@
 -->
 
     <para>
-      Install cURL by running the following
-      commands:
+      Install cURL by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
