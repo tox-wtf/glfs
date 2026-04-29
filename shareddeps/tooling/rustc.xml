@@ -104,17 +104,15 @@
       </listitem>
     </itemizedlist>
 
-<!--
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
         <para>
-          Required patch:
-          <ulink url="&dl-root;/rustc/rustc-&rustc-version;-upstream_fixes_llvm-1.patch"/>
+          Required crate:
+          <ulink url="https://github.com/rust-openssl/rust-openssl/archive/&rustc-openssl;/rust-openssl-&rustc-openssl;.tar.gz"/>
         </para>
       </listitem>
     </itemizedlist>
--->
 
     <bridgehead renderas="sect3">Rustc Dependencies</bridgehead>
 
@@ -266,28 +264,30 @@ fi</userinput></screen>
       </para>
     </note>
 
+    <para>
+      Make Rustc use an updated version of the OpenSSL crate for both OpenSSL-4
+      support and to fix several security vulnerabilities:
+    </para>
+
+<screen remap="pre"><userinput>tar -xf ../rust-openssl-&rustc-openssl;.tar.gz &amp;&amp;
+
+cat &gt;&gt; src/tools/cargo/Cargo.toml &lt;&lt; EOF &amp;&amp;
+<literal>[patch.crates-io]
+openssl = { path = "../../../rust-openssl-&rustc-openssl;/openssl" }
+openssl-sys = { path = "../../../rust-openssl-&rustc-openssl;/openssl-sys" }</literal>
+EOF
+
+sed -ri src/tools/cargo/Cargo.lock \
+    -e '/name = "openssl-sys"/,/^$/{/source|checksum/d;s/0.9.111/&rustc-openssl-sys-nice;/}' \
+    -e '/name = "openssl"/,/^$/{/source|checksum/d;s/0.10.75/&rustc-openssl-nice;/}'     \
+    -e '/name = "openssl-macros"/,/^$/{/source|checksum/d}'</userinput></screen>
+
 <!--
     <para>
       Now apply a patch to fix building with <xref linkend="llvm"/>:
     </para>
 
 <screen><userinput>patch -Np1 -i ../rustc-&rustc-version;-upstream_fixes_llvm-1.patch</userinput></screen>
--->
-
-<!--
-    <note>
-      <para>
-        The <command>./x.py</command> commands may output a warning
-        message complaining <quote><computeroutput>no codegen-backends
-        config matched the requested path to build a codegen
-        backend</computeroutput></quote>. And the provided
-        <quote>suggestion</quote> (<computeroutput>add backend to
-        codegen-backends in bootstrap.toml</computeroutput>) will not silence
-        it.  This warning is <ulink
-        url='https://github.com/rust-lang/rust/issues/110692'>bogus</ulink>
-        and it should be ignored.
-      </para>
-    </note>
 -->
 
     <para>
