@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>April 30th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[renodr] - Wine: 11.5 -&gt; 11.7. Fixes
+          <ulink url="&glfs-issues;/410">#410</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>April 29th, 2026</para>
       <itemizedlist>
         <listitem>
