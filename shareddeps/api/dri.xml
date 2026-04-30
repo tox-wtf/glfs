@@ -32,11 +32,11 @@
     </para>
 
     <para>
-      Nonetheless, installing the DRI interface is a good idea. DRI comes from
-      Mesa, and there's a few ways to install the interface and necessary
-      headers. You could download the headers, and skip downloading the Mesa
-      tarball. If you already have the tarball downloaded, then installing the
-      files from it may be a better idea.
+      Installing the DRI interface is a good idea. DRI comes from
+      Mesa, and there's a couple of ways to install the interface. The
+      interface itself can be downloaded without needing the Mesa tarball. If
+      the tarball is already present, then installing the interface from the
+      tarball can be done instead. The choice is yours.
     </para>
 
     <itemizedlist spacing="compact">
@@ -60,24 +60,19 @@
     <title>Installation of DRI from the Mesa Tarball</title>
 
     <para>
-      If you have chosen to install the files from the Mesa tarball, extract it
-      and go into the extracted directory as normal.
+      If you have chosen to install DRI from the Mesa tarball, extract the
+      tarball and go into the extracted directory as normal.
     </para>
 
     <para>
-      After that, install the headers for the interface, as well as some other
-      expected headers, as the &root; user:
+      After that, install the interface as the &root; user:
     </para>
 
 <screen role="root"><userinput>&install-file; include/GL/internal/dri_interface.h \
-        -t      /usr/include/GL/internal/          &amp;&amp;
-&install-file; include/EGL/eglmesaext.h            \
-        -t      /usr/include/EGL/                  &amp;&amp;
-&install-file; include/EGL/eglext_angle.h          \
-        -t      /usr/include/EGL/</userinput></screen>
+        -t      /usr/include/GL/internal/</userinput></screen>
 
     <para>
-      Now that interface has been installed, you need the pkg-config file
+      Now that the interface has been installed, you need the pkg-config file
       showing that the interface is present. Create it now as the &root; user:
     </para>
 
@@ -99,7 +94,7 @@ sed -i "s/MESA_VERSION/`cat VERSION`/" dri.pc &amp;&amp;
 rm -vf dri.pc</userinput></screen>
 
     <para>
-      All the files have now been installed.
+      DRI has now been installed.
     </para>
 
   </sect2>
@@ -122,17 +117,12 @@ rm -vf dri.pc</userinput></screen>
     </para>
 
     <para>
-      Now go ahead and download the interface and other necessary headers as
-      the &root; user:
+      Now go ahead and download the interface as the &root; user:
     </para>
 
-<screen role="root"><userinput>&install-dir; /usr/include/GL/internal /usr/include/EGL &amp;&amp;
+<screen role="root"><userinput>&install-dir; /usr/include/GL/internal &amp;&amp;
 wget &mesa-raw-repo;/include/GL/internal/dri_interface.h \
-  -O /usr/include/GL/internal/dri_interface.h &amp;&amp;
-wget &mesa-raw-repo;/include/EGL/eglmesaext.h \
-  -O /usr/include/EGL/eglmesaext.h &amp;&amp;
-wget &mesa-raw-repo;/include/EGL/eglext_angle.h \
-  -O /usr/include/EGL/eglext_angle.h</userinput></screen>
+  -O /usr/include/GL/internal/dri_interface.h</userinput></screen>
 
     <para>
       Now that the interface has been installed, you need the pkg-config file
@@ -153,7 +143,7 @@ Cflags: -I${includedir}</literal>
 EOF</userinput></screen>
 
     <para>
-      Every file has now been downloaded and installed.
+      DRI has now been downloaded and installed.
     </para>
 
   </sect2>
@@ -172,7 +162,7 @@ EOF</userinput></screen>
           None
         </seg>
         <seg>
-          /usr/include/GL/internal and /usr/include/EGL
+          /usr/include/GL/internal
         </seg>
       </seglistitem>
     </segmentedlist>

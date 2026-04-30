@@ -371,11 +371,26 @@ cd ..</userinput></screen>
   <itemizedlist>
     <listitem>
       <para><ulink url='&blfs-svn;/gnome/mutter.html'>Mutter</ulink>:
-      Compile this package with
-      <parameter>-D wayland_eglstream=true</parameter> and
-      <parameter>-D egl_device=true</parameter> to enable launching with
-      Wayland. Ensure the <xref linkend='nvidia-egl'/> are
-      installed.</para>
+      Compile this package by applying patches and sed commands mentioned in
+      BLFS first, then run the proceeding commands:</para>
+<screen role='nodump'><userinput>find -name \*.c \
+  -exec sed -i '/&lt;EGL\/eglmesaext.h&gt;/d' {} \; &amp;&amp;
+find -name \*.h \
+  -exec sed -i '/&lt;EGL\/eglmesaext.h&gt;/d' {} \; &amp;&amp;
+
+mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson setup --prefix=/usr             \
+            --buildtype=release       \
+            -D tests=disabled         \
+            -D profiler=false         \
+            -D bash_completion=false  \
+            -D wayland_eglstream=true \
+            -D egl_device=true        \
+            ..                       &amp;&amp;
+ninja</userinput></screen>
+      <para>Install as &root; with <command>ninja install</command>.</para>
     </listitem>
     <listitem>
       <para>
