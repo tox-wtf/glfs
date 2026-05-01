@@ -57,6 +57,7 @@
       </listitem>
     </itemizedlist>
 
+<!--
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
@@ -66,6 +67,7 @@
         </para>
       </listitem>
     </itemizedlist>
+-->
 
     <bridgehead renderas="sect3">GnuTLS Dependencies</bridgehead>
 
@@ -91,9 +93,11 @@
   <sect2 role="installation">
     <title>Installation of GnuTLS</title>
 
+<!--
     <para>Apply a patch to allow building with Nettle-4.0 and later:</para>
 
 <screen><userinput>patch -Np1 -i ../gnutls-&gnutls-version;-nettle4_fixes-1.patch</userinput></screen>
+-->
 
     <para>
       Install GnuTLS by running the following commands:
