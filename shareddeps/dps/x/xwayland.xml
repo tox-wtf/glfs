@@ -34,12 +34,21 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/xwayland/xwayland-&xwayland-version;-dri.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">Xwayland Dependencies</bridgehead>
 
     <para role="required">
       A userland graphics driver (<xref linkend='mesa'/> and/or
       &nvidia;) (runtime),
-      <xref linkend="dri"/>,
       <xref linkend="libxcvt"/>,
       <xref linkend="pixman"/>,
       <xref linkend="wayland-protocols"/>,
@@ -48,12 +57,13 @@
     </para>
 
     <para role="recommended">
-      &gbm;,
-      <xref linkend="libepoxy"/>, and
+      <xref linkend="libepoxy"/>,
+      &gbm;, and
       &opengl;
     </para>
 
     <para role="optional">
+      <xref linkend="mesa"/> (for loading GLX llvmpipe/softpipe drivers) and
       <xref linkend="nettle"/>
     </para>
 
@@ -61,6 +71,13 @@
 
   <sect2 role="installation">
     <title>Installation of Xwayland</title>
+
+    <para>
+      Allow building the package if the DRI interface isn't installed (used for
+      Mesa software drivers) by applying a patch:
+    </para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../xwayland-&xwayland-version;-dri.patch</userinput></screen>
 
 <!--
     &x-nettle;

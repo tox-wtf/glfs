@@ -39,6 +39,12 @@
     <itemizedlist spacing="compact">
       <listitem>
         <para>
+          Required patch:
+          <ulink url="&dl-root;/xorg-server/xorg-server-&xorg-server-version;-dri.patch"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           Upstream has added the TearFree option to the default modesetting
           driver (NVIDIA is not able to use it). This patch
           adds this feature. Apply this patch if you are going to use Xorg in
@@ -57,7 +63,6 @@
     <para role="required">
       A userland graphics driver (<xref linkend='mesa'/> and/or
       &nvidia;) (runtime),
-      <xref linkend="dri"/>,
       <xref linkend="libxcvt"/>,
       <xref linkend="pixman"/>,
       <xref linkend="xorg7-font"/> (only font-util), and at runtime:
@@ -71,12 +76,14 @@
       <systemitem class='library'>libelogind</systemitem> also referred
       at build time but it's not really useful),</phrase>
       <xref linkend="libepoxy"/> (needed for glamor),
+      &gbm;,
       <phrase revision="systemd"><xref linkend="systemd"/>,</phrase>
       and <xref role='runtime' linkend='xorg-libinput-driver'/> (runtime)
     </para>
 
     <para role="optional">
       <xref linkend="libunwind"/>,
+      <xref linkend="mesa"/> (for loading GLX llvmpipe/softpipe drivers),
       <xref linkend="nettle"/>,
       <xref linkend="xcb-utils"/> (to build Xephyr), and
       <ulink
@@ -154,7 +161,14 @@
     <title>Installation of Xorg Server</title>
 
     <para>
-      First, if you need the TearFree option to work around screen tearing,
+      Allow building the package if the DRI interface isn't installed (used for
+      Mesa software drivers) by applying a patch:
+    </para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../xorg-server-&xorg-server-version;-dri.patch</userinput></screen>
+
+    <para>
+      If you need the TearFree option to work around screen tearing,
       apply the patch:
     </para>
 
