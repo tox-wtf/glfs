@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>May 2nd, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - libpciaccess: 0.18.1 -&gt; 0.19. Fixes
+          <ulink url="&glfs-issues;/428">#428</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>May 1st, 2026</para>
       <itemizedlist>
         <listitem>
