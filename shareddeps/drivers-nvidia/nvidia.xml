@@ -351,9 +351,12 @@ EOF</userinput></screen>
     <title>Proceeding</title>
 
     <para>
-      If you installed <xref linkend="libglvnd"/>, <xref linkend="libgbm"/>,
-      and <xref linkend="dri"/>, you should not need Mesa as a dependency for
-      any package in any of the LFS books.
+      If you installed <xref linkend="libglvnd"/> and <xref linkend="libgbm"/>,
+      you should not need Mesa as a dependency for any package in any of the
+      LFS books. You must ensure you install <xref linkend="xorg-server"/>
+      and/or <xref linkend="xwayland"/> from this book as those packages
+      include important patches that get around needing a Mesa-specific
+      interface used for loading Mesa-specific software rendering drivers.
     </para>
 
     <para>
