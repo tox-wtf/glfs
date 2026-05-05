@@ -53,6 +53,10 @@
       <para>May 2nd, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[tox] - cURL: 8.19.0 -&gt; 8.20.0. Fixes
+          <ulink url="&glfs-issues;/427">#427</ulink>.</para>
+        </listitem>
+        <listitem>
           <para>[tox] - libpciaccess: 0.18.1 -&gt; 0.19. Fixes
           <ulink url="&glfs-issues;/428">#428</ulink>.</para>
         </listitem>
