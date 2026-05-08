@@ -43,8 +43,12 @@
       <bridgehead renderas="sect3">libclc Dependencies</bridgehead>
 
       <para role="required">
-        <xref linkend="llvm"/> (with Clang) and
-        <xref linkend="spirv-llvm-translator"/>
+        <xref linkend="llvm"/> (with Clang)
+      </para>
+
+      <para role="recommended">
+        <xref linkend="spirv-llvm-translator"/> (required by some Mesa
+        drivers)
       </para>
 
     </sect2>

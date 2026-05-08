@@ -97,8 +97,9 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="libclc"/> (required for the Intel Iris Gallium3D and
-            Nouveau Vulkan)
+            <xref linkend="libclc"/> (with <xref
+            linkend="spirv-llvm-translator"/>;
+            required for Iris Gallium3D and Nouveau Vulkan)
           </para>
         </listitem>
         <listitem>
@@ -127,15 +128,15 @@
         </listitem>
         <listitem>
           <para>
-            <xref linkend="llvm"/> (required for the r300, r600, and radeonsi
-            drivers, and the LLVMpipe software rasterizer; Clang in LLVM is
-            required for Swrast Vulkan)
+            <xref linkend="llvm"/> (required for r300, r600, RadeonSI
+            and LLVMPipe Gallium3D; Clang in LLVM is
+            required for SWRast Vulkan)
           </para>
         </listitem>
         <listitem>
           <para>
             <xref linkend="vulkan-sdk"/> (required for Vulkan and Zink
-            Gallium3D support)
+            Gallium3D)
           </para>
         </listitem>
         <listitem>

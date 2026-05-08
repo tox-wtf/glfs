@@ -41,6 +41,25 @@
     -->
 
     <listitem>
+      <para>May 8th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - GLib: 2.88.0 -&gt; 2.88.1 (security). Fixes
+          <ulink url="&glfs-issues;/431">#431</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libgpg-error: 1.60 -&gt; 1.61 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23264">#23264</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg: 8.1 -&gt; 8.1.1 (security). Fixes
+          <ulink url="&glfs-issues;/437">#437</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>May 5th, 2026</para>
       <itemizedlist>
         <listitem>
