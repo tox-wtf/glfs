@@ -27,7 +27,7 @@
     <para>
       As with many other programming languages, Rustc (the Rust compiler) needs
       a binary from which to bootstrap. It will download a stage0 binary at the
-      start of the build, so you must have an internet connection to build this
+      start of the build, so you must have a network connection to build this
       package.
     </para>
 
@@ -92,7 +92,7 @@
       </para>
     </note>
 
-    &build-use-internet;
+    &build-use-network;
 
     &long-build-time;
 

@@ -11,7 +11,7 @@
   <title>Networking</title>
 
   <para>
-    This chapter covers networking/internet dependencies and setup that
+    This chapter covers networking dependencies and setup that
     packages later in this book may depend on or are useful in their own right.
   </para>
 

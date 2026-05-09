@@ -103,9 +103,9 @@ rm -vf dri.pc</userinput></screen>
     <title>Downloading DRI from Mesa</title>
 
     <para>
-      If you opted to downloaded the DRI interface from the internet instead,
+      If you opted to downloaded the DRI interface from the Internet instead,
       then there is no setup needed before downloading the interface besides
-      ensuring that you have an internet connection, installed <xref
+      ensuring that you have an Internet connection, installed <xref
       linkend="make-ca"/>, and ensured <xref linkend="wget"/> is operational.
       <xref linkend="curl"/> can be used instead of Wget if you wish.
     </para>

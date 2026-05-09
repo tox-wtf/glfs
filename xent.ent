@@ -48,8 +48,8 @@
   <command>meson configure</command> command will reset this
   option.">
 
-<!ENTITY build-use-internet
-  "<note><para>An Internet connection is needed for building this
+<!ENTITY build-use-network
+  "<note><para>A network connection is needed for building this
   package. The system certificate store may need to be set up with
   <xref role='required' linkend='make-ca'/> before building this
   package.</para></note>">

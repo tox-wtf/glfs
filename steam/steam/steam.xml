@@ -111,7 +111,7 @@ mv -v /usr/share/doc/steam{,-&steam-version;}</userinput></screen>
         Wayland session</para>
       </listitem>
       <listitem>
-        <para>Have a working internet connection</para>
+        <para>Have a working network connection</para>
       </listitem>
     </itemizedlist>
 
