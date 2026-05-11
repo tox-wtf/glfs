@@ -69,7 +69,7 @@ make</userinput></screen>
       Now, as the &root; user:
     </para>
 
-<screen role="root"><userinput>make install</userinput></screen>
+<screen role="root"><userinput>XDG_DATA_HOME=/tmp make install</userinput></screen>
 
     <note>
       <para>
@@ -135,6 +135,13 @@ bundle update rake</userinput></screen>
     <para>
       <option>--disable-install-capi</option>: This switch disables building
       and installing C API documents.
+    </para>
+
+    <para>
+      <literal>XDG_DATA_HOME=/tmp</literal>: This variable will prevent
+      <filename class="directory"><envar>$HOME</envar>/.local/share</filename>
+      from being owned by &root; if the directory doesn't already exist and
+      the user who is running <command>ruby</command> is not the &root; user.
     </para>
 
   </sect2>
