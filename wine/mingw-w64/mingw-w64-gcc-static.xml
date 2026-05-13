@@ -63,7 +63,7 @@
     <title>Installation of Static MinGW-w64-GCC</title>
 
     <para>
-      Fix a MinGW-w64 issue within libstdc++:
+      Prevent build failures when C code is compiled to Intel syntax assembly:
     </para>
 
 <screen><userinput
