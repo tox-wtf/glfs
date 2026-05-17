@@ -42,7 +42,7 @@
     If you haven't installed any packages relying on OpenGL yet, go ahead and
     install <xref linkend="libglvnd"/> and the driver for your GPU. If you
     have installed Mesa from BLFS, you probably have the OpenGL libraries
-    provided by Mesa. The main issues you will come across by transtioning are
+    provided by Mesa. The main issues you will come across by transitioning are
     soname differences in <filename class="libraryfile">libGL</filename> as
     well as potential ABI issues. As a result, many packages will require
     reinstallation in order to use the right libraries. For that reason,
