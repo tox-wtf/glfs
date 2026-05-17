@@ -124,7 +124,7 @@ ldconfig</userinput></screen>
         In order to use VA-API, you need a VA-API driver. Which one you will
         need depends on your GPU and driver in use for that GPU. The drivers
         are needed at runtime. For VA-API drivers that come from Mesa, there
-        is a cirular dependency. Read from the <xref linkend="mesa"/> page
+        is a circular dependency. Read from the <xref linkend="mesa"/> page
         to see how to break it.
       </para>
 

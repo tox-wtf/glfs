@@ -413,7 +413,7 @@ ninja</userinput></screen>
         extensions: <literal>EGL_EXT_device_query</literal> and
         <literal>EGL_EXT_device_enumeration</literal>. The driver does provide
         function definitions for querying devices via EGL, however. This means
-        that whenever a package checks for the extensions explictly, if <xref
+        that whenever a package checks for the extensions explicitly, if <xref
         linkend='mesa'/> is not installed, the package will handle the case for
         those extensions being missing, whether or not the functions that
         handle device querying actually exist or not.
