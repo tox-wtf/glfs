@@ -5,12 +5,11 @@
   %general-entities;
 
   <!ENTITY elogind-root     "https://github.com/elogind/elogind/archive">
-  <!ENTITY elogind-download "&elogind-root;/V&elogind-version;/elogind-&elogind-version;.tar.gz">
+  <!ENTITY elogind-download "&elogind-root;/v&elogind-version;/elogind-&elogind-version;.tar.gz">
 ]>
 
 <sect1 id="elogind" revision="openrc,sysv" xreflabel="elogind-&elogind-version;">
   <?dbhtml filename="elogind.html"?>
-
 
   <title>elogind-&elogind-version;</title>
 
@@ -22,14 +21,12 @@
     <title>Introduction to elogind</title>
 
     <para>
-      elogind is the
-      systemd project's "logind", extracted to
-      be a standalone daemon.  It integrates with <xref linkend="linux-pam"/>
-      to track all the users logged in to a system, and whether they
-      are logged in graphically, on the console, or remotely.
-      Elogind exposes this information via the
-      standard org.freedesktop.login1 D-Bus
-      interface, and also through the file system using systemd's standard
+      The elogind package is an extracted "logind" from Systemd, including the
+      daemon and some other Systemd projects like UserDB. It integrates with
+      <xref linkend="linux-pam"/> to track all the users logged in to a system,
+      and whether they are logged in graphically, on the console, or remotely.
+      It exposes this information via the standard org.freedesktop.login1 D-Bus
+      interface, and also through the file system using Systemd's standard
       <filename class="directory">/run/systemd</filename> layout.
     </para>
 
@@ -43,6 +40,7 @@
       </listitem>
     </itemizedlist>
 
+<!--
     <bridgehead renderas="sect3" revision="openrc">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact" revision="openrc">
       <listitem>
@@ -52,6 +50,7 @@
         </para>
       </listitem>
     </itemizedlist>
+-->
 
     <bridgehead renderas="sect3">elogind Dependencies</bridgehead>
 
@@ -83,6 +82,7 @@
   <sect2 role="installation">
     <title>Installation of elogind</title>
 
+<!--
     <para revision="openrc">
       There is special handling for <literal>openrc-user</literal>, a helper of
       OpenRC that handles user services, that breaks functionality claiming
@@ -90,10 +90,10 @@
     </para>
 
 <screen revision="openrc"><userinput>patch -Np1 -i ../elogind-&elogind-version;-openrc-user.patch</userinput></screen>
+-->
 
     <para>
-      Install elogind by running the following
-      commands:
+      Install elogind by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -109,7 +109,7 @@ meson setup --prefix=/usr                          \
 ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>ninja install                                           &amp;&amp;
@@ -137,7 +137,7 @@ meson setup --prefix=/usr                         \
 ninja</userinput></screen>
 
     <para>
-      Now, as the <systemitem class="username">root</systemitem> user:
+      Now, as the &root; user:
     </para>
 
 <screen role="root"><userinput>DESTDIR=$PWD/DESTDIR ninja install                       &amp;&amp;
@@ -229,9 +229,8 @@ ldconfig</userinput></screen>
       <para>
         The installed file <filename>/etc/elogind/logind.conf</filename>
         contains all the possible options with their defaults, commented
-        out. You may wish to disable automatically killing user processes when the user logs
-        out, by running, as the <systemitem class="username">root</systemitem>
-        user:
+        out. You may wish to disable automatically killing user processes when
+        the user logs out. You can do so as the &root; user:
       </para>
 
 <screen role="root"><userinput>sed -e '/\[Login\]/a KillUserProcesses=no' \
@@ -273,6 +272,39 @@ password required    pam_deny.so
 # End /etc/pam.d/elogind-user</literal>
 EOF</userinput></screen>
 
+    <para>
+      This package provides a Name Service Switch (NSS) module. Previously,
+      a Systemd-less system didn't have a dedicated NSS module used for better
+      name resolution, while Systemd systems have one that is tightly ingrained
+      with that software suite. Now, such a module is provided. In order to use
+      it, the <filename>/etc/nsswitch.conf</filename> file that was installed
+      in LFS must be altered. Overwrite the file as the &root; user:
+    </para>
+
+<screen role="root"><userinput>cat &gt; /etc/nsswitch.conf &lt;&lt; "EOF" &amp;&amp;
+<literal># Begin /etc/nsswitch.conf
+
+passwd: files elogind
+group: files elogind
+shadow: files elogind
+
+hosts: files dns
+networks: files
+
+protocols: files
+services: files
+ethers: files
+rpc: files
+
+# End /etc/nsswitch.conf</literal>
+EOF</userinput></screen>
+
+    <note><para>
+      The <literal>myhostname</literal>, <literal>mymachines</literal>, and
+      <literal>resolve</literal> NSS modules are still not provided (they come
+      from Systemd). The installed file cannot use them yet.
+    </para></note>
+
     <note>
       <para>Now continue on until you reach <xref linkend="dbus"/>,
       install it, and follow the configuration instructions on that page to see
@@ -293,11 +325,13 @@ EOF</userinput></screen>
       <seglistitem>
         <seg>
           busctl,
-          elogind-inhibit, and
-          loginctl
+          elogind-inhibit,
+          loginctl,
+          userdbctl, and
+          varlinkctl
         </seg>
         <seg>
-          libelogind
+          libelogind and libnss_elogind
         </seg>
         <seg>
           /usr/lib/elogind,
@@ -351,6 +385,30 @@ EOF</userinput></screen>
         </listitem>
       </varlistentry>
 
+      <varlistentry id="userdbctl">
+        <term><command>userdbctl</command></term>
+        <listitem>
+          <para>
+            is used to inspect users, groups, and group memberships
+          </para>
+          <indexterm zone="elogind userdbctl">
+            <primary sortas="b-userdbctl">userdbctl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="varlinkctl">
+        <term><command>varlinkctl</command></term>
+        <listitem>
+          <para>
+            is used to interact with and invoke Varlink services
+          </para>
+          <indexterm zone="elogind varlinkctl">
+            <primary sortas="b-varlinkctl">varlinkctl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="libelogind">
         <term><filename class="libraryfile">libelogind</filename></term>
         <listitem>
@@ -359,6 +417,18 @@ EOF</userinput></screen>
           </para>
           <indexterm zone="elogind libelogind">
             <primary sortas="c-libelogind">libelogind</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libnss_elogind">
+        <term><filename class="libraryfile">libnss_elogind</filename></term>
+        <listitem>
+          <para>
+            is the Name Service Switch (NSS) module for elogind
+          </para>
+          <indexterm zone="elogind libnss_elogind">
+            <primary sortas="c-libnss_elogind">libnss_elogind</primary>
           </indexterm>
         </listitem>
       </varlistentry>
