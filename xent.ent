@@ -211,7 +211,7 @@ rc-update --user add">
     </listitem>
     <listitem>
       <para>
-        <xref linkend='ocl-icd'/> (for using the OpenCL drivers)
+        <xref linkend='opencl-sdk'/> (for using the OpenCL drivers)
       </para>
     </listitem>
     <listitem>

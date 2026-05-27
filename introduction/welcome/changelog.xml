@@ -41,6 +41,24 @@
     -->
 
     <listitem>
+      <para>May 27th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - OpenCL-Headers -> OpenCL-SDK.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - OpenCL-ICD-Loader: Added into OpenCL-SDK.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - OCL-ICD: Removed.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Ruby: Removed.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>May 23nd, 2026</para>
       <itemizedlist>
         <listitem revision="openrc,sysv">
