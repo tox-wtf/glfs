@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>June 2nd, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - Libdrm: 2.4.133 -&gt; 2.4.134. Fixes
+          <ulink url="&glfs-issues;/466">#466</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 1st, 2026</para>
       <itemizedlist>
         <listitem>
