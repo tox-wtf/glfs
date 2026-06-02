@@ -30,10 +30,6 @@
       for NVIDIA cards from Maxwell through Blackwell.
     </para>
 
-    <note revision="sysv"><para>
-      NVIDIA-Powerd is only supported on Systemd.
-    </para></note>
-
     <itemizedlist spacing="compact">
       <listitem>
         <para>
@@ -47,37 +43,17 @@
       </listitem>
     </itemizedlist>
 
+<!--
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
-<!--
       <listitem>
         <para>
           Required patch:
           <ulink url="&dl-root;/NVIDIA/NVIDIA-&nvidia-r580-version;-kernel_gpl_cachyos-1.patch"/>
         </para>
       </listitem>
--->
-      <listitem>
-        <para>
-          Required install script:
-          <ulink url="&dl-root;/NVIDIA/install-NVIDIA-&nv-r580-manifest-version;"/>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          Required manifest file for the install script:
-          <ulink url="&dl-root;/NVIDIA/manifest-NVIDIA-&nv-r580-manifest-version;"/>
-        </para>
-      </listitem>
-<!-- NOT READY
-      <listitem revision="sysv">
-        <para>
-          Recommended SysVinit bootscripts for NVIDIA-Powerd:
-          <ulink url="&dl-root;/NVIDIA/NVIDIA-sysv-bootscripts-&nv-r580-sysv-bs;.tar.xz"/>
-        </para>
-      </listitem>
--->
     </itemizedlist>
+-->
 
     <bridgehead renderas="sect3">NVIDIA-r580 Dependencies</bridgehead>
 
@@ -101,187 +77,17 @@
   </sect2>
 
   <sect2>
-    <title>Preparing for the NVIDIA-r580 Installation</title>
-
-    &nvidia-common-kernel;
+    <title>Installation of the NVIDIA Driver</title>
 
     <para>
-      Extract the NVIDIA-r580 driver runfile and
-      navigate to the extracted directory:
-    </para>
-
-<screen><userinput>sh NVIDIA-Linux-x86_64-&nvidia-r580-version;.run -x &amp;&amp;
-cd NVIDIA-Linux-x86_64-&nvidia-r580-version;</userinput></screen>
-
-<!--
-    <para>
-      Apply a patch for the proprietary kernel module type for the driver for
-      compatibility with linux-6.15:
-    </para>
-
-<screen><userinput>patch -d kernel -Np1 -i ../../NVIDIA-&nvidia-r580-version;-kernel_gpl_cachyos-1.patch</userinput></screen>
--->
-
-  </sect2>
-
-  <sect2>
-    <title>Installation of the NVIDIA-r580 Kernel Modules</title>
-
-    <para>
-      Now you will need to build the kernel modules for the driver. There are
-      two types: <emphasis role="bold">open</emphasis> and
-      <emphasis role="bold">proprietary</emphasis>. If you have the
-      NVIDIA Grace Hopper or NVIDIA Blackwell cards, you must
-      compile the <emphasis role="bold">open</emphasis> kernel modules.
-      If you have a Turing, Ampere, Ada Lovelace,
-      or Hopper card, it is recommended to build the
-      <emphasis role="bold">open</emphasis> kernel modules.
-      If you have a Maxwell, Pascal, or Volta card, build the
-      <emphasis role="bold">proprietary</emphasis> kernel modules.
-      If you are using both an older and newer card, but not the newest cards,
-      build the <emphasis role="bold">proprietary</emphasis> kernel modules.
-    </para>
-
-    <para>
-      If you are going to build the <emphasis role="bold">open</emphasis>
-      kernel modules, navigate to the <filename
-      class="directory">kernel-open</filename> directory:
-    </para>
-
-<screen><userinput>cd kernel-open</userinput></screen>
-
-    <para>
-      If you are going to instead build the <emphasis
-      role="bold">proprietary</emphasis> kernel modules, navigate to the
-      <filename class="directory">kernel</filename> directory:
-    </para>
-
-<!-- proprietary is the exception, not the rule -->
-<screen><computeroutput>cd kernel</computeroutput></screen>
-
-    &nvidia-common-build-modules;
-
-    <para>
-      Install the firmware as the &root; user:
-    </para>
-
-<screen role="root"><userinput>rm -rvf /usr/lib/firmware/nvidia/[0-9]* &amp;&amp;
-mkdir -pv /usr/lib/firmware/nvidia/&nvidia-r580-version; &amp;&amp;
-cp -v firmware/*.bin /usr/lib/firmware/nvidia/&nvidia-r580-version;</userinput></screen>
-
-  </sect2>
-
-  <sect2 role="installation">
-    <title>Installing the NVIDIA-r580 Driver Software</title>
-
-<!--
-    <note><para>
-      If you have an existing installation, it may be a good idea to follow
-      <xref linkend="nvidia-r580-uninstalling"/> first before going through this
-      section to remove some cruft and leftover libraries. This is not strictly
-      necessary, though.
-    </para></note>
--->
-
-    <para>
-      Install the install script and manifest file for the script as the &root;
+      Install the NVIDIA driver by running the following command as the &root;
       user:
     </para>
 
-<screen role="root"><userinput>&install-dir; /usr/share/nvidia &amp;&amp;
-&install-exec; ../install-NVIDIA-&nv-r580-manifest-version; /usr/sbin/nvidia-install &amp;&amp;
-&install-file; ../manifest-NVIDIA-&nv-r580-manifest-version; /usr/share/nvidia/manifest</userinput></screen>
+<screen><userinput>sh NVIDIA-Linux-x86_64-&nvidia-version;.run &nvidia-runfile-common;</userinput></screen>
 
-    <para>
-      Now see what options there are and what you want to install by running
-      <command>/sbin/nvidia-install --help</command>.
-    </para>
+    &nvidia-runfile-explanation;
 
-    <para>
-      If you want to do the default installation, you can just run the
-      following command as the &root; user:
-    </para>
-
-<screen role="root"><userinput>/sbin/nvidia-install</userinput></screen>
-
-    <important><para>
-      If you are booted into the system you are running the commands for, doing
-      so for the above command in a graphical environment may crash that
-      environment and drop you back to a TTY. Don't do that, just run it from a
-      TTY or in a chroot where the display doesn't rely on the libraries
-      provided from this driver. As for the TTY, it is actually driven by the
-      kernel or its modules, not the libraries. That is why running the above
-      command in a TTY is safe&mdash;it doesn't overwrite the kernel modules.
-    </para></important>
-
-  </sect2>
-
-<!-- UNFINISHED, DOES NOT WORK!
-
-  <sect2 revision="sysv">
-    <title>Installation of NVIDIA-Powerd</title>
-    <para>
-      If you want NVIDIA-Powerd, which can suspend
-      and hibernate if asked to, then run the following commands as the &root;
-      user to install the daemon and the bootscripts:
-    </para>
-<screen role="root"><userinput>mkdir -pv /usr/share/dbus-1/system.d        &amp;&amp;
-&install-exec; nvidia-powerd -t /usr/bin/       &amp;&amp;
-cp -v nvidia-dbus.conf                       \
-      /usr/share/dbus-1/system.d            &amp;&amp;
-tar -xf ../NVIDIA-sysv-bootscripts-&nv-r580-sysv-bs;.tar.xz &amp;&amp;
-pushd NVIDIA-sysv-bootscripts-&nv-r580-sysv-bs;             &amp;&amp;
-  make install-nvidia-powerd                &amp;&amp;
-popd                                        &amp;&amp;
-rm -rf NVIDIA-sysv-bootscripts-&nv-r580-sysv-bs;</userinput></screen>
-  </sect2>
--->
-
-  <sect2 revision="systemd">
-    <title>Installation of NVIDIA-Powerd</title>
-    <para>
-      If you want NVIDIA-Powerd, which can suspend
-      and hibernate if asked to, then run the following commands as the &root;
-      user to install the daemon and the Systemd unit files:
-    </para>
-<screen role="root"><userinput>mkdir -pv /usr/lib/systemd/system               \
-          /usr/lib/systemd/system-sleep         \
-          /usr/share/dbus-1/system.d           &amp;&amp;
-&install-exec; nvidia-powerd -t /usr/bin/     &amp;&amp;
-&install-exec; systemd/nvidia-sleep.sh         \
-             -t /usr/bin/                      &amp;&amp;
-&install-exec; systemd/system-sleep/nvidia     \
-             -t /usr/lib/systemd/system-sleep/ &amp;&amp;
-cp -v systemd/system/*.service                  \
-      /usr/lib/systemd/system                  &amp;&amp;
-cp -v nvidia-dbus.conf                          \
-      /usr/share/dbus-1/system.d               &amp;&amp;
-
-cat &gt; systemd-homed-override.conf &lt;&lt; "EOF" &amp;&amp;
-<literal>[Service]
-Environment="SYSTEMD_HOME_LOCK_FREEZE_SESSION=false"</literal>
-EOF
-cat &gt; systemd-suspend-override.conf &lt;&lt; "EOF" &amp;&amp;
-<literal>[Service]
-Environment="SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"</literal>
-EOF
-
-for service in {homed,suspend,suspend-then-hibernate,hibernate,hybrid-sleep}; do
-  mkdir -pv /usr/lib/systemd/system/systemd-"$service".service.d
-done &amp;&amp;
-cp -v systemd-homed-override.conf                                                       \
-      /usr/lib/systemd/system/systemd-homed.service.d/10-nvidia-no-freeze-session.conf &amp;&amp;
-for service in {suspend,suspend-then-hibernate,hibernate,hybrid-sleep}; do
-  cp -v systemd-suspend-override.conf \
-    /usr/lib/systemd/system/systemd-"$service".service.d/10-nvidia-no-freeze-session.conf
-done</userinput></screen>
-    <para>
-      The Systemd units will need to be ran at startup. Enable them as the
-      &root; user:
-    </para>
-<screen role="root"><userinput>for service in nvidia-{resume,hibernate,suspend}; do
-  systemctl enable $service
-done</userinput></screen>
   </sect2>
 
   <sect2 role="configuration">
@@ -400,76 +206,6 @@ EOF</userinput></screen>
       expect smooth sailing. If you want to however, you can also install CUDA
       in this subsection to help performance, which up to you.
     </para>
-
-  </sect2>
-
-  <sect2 role="content">
-    <title>Contents</title>
-
-    <segmentedlist>
-      <segtitle>Installed Programs</segtitle>
-      <segtitle>Installed Firmware</segtitle>
-      <segtitle>Installed Libraries</segtitle>
-      <segtitle>Installed Directories</segtitle>
-
-      <seglistitem>
-        <seg>
-          nvidia-install,
-          nvidia-modprobe,
-          nvidia-settings,
-          nvidia-smi, and
-          nvidia-xconfig
-        </seg>
-        <seg>
-          gsp_ga10x.bin and
-          gsp_tu10x.bin
-        </seg>
-        <seg>
-          libcudadebugger,
-          libcuda,
-          libEGL_nvidia,
-          libGLESv1_CM_nvidia,
-          libGLESv2_nvidia,
-          libGLX_nvidia,
-          libglxserver_nvidia,
-          libnvcuvid,
-          libnvoptix,
-          libnvidia-allocator,
-          libnvidia-api,
-          libnvidia-cfg,
-          libnvidia-eglcore,
-          libnvidia-encode,
-          libnvidia-fbc,
-          libnvidia-glcore,
-          libnvidia-glsi,
-          libnvidia-glvkspirv,
-          libnvidia-gpucomp,
-          libnvidia-gtk3,
-          libnvidia-ml,
-          libnvidia-ngx,
-          libnvidia-nvvm{70,},
-          libnvidia-opencl,
-          libnvidia-opticalflow,
-          libnvidia-pkcs11-openssl3,
-          libnvidia-pkcs11,
-          libnvidia-ptxjitcompiler,
-          libnvidia-rtcore,
-          libnvidia-tls,
-          libnvidia-wayland-client,
-          nvidia-drm_gbm,
-          nvidia_drv, and
-          for <xref linkend="wine"/> (_nvngx,
-          nvngx, and
-          nvngx_dlssg; all three are DLLs)
-        </seg>
-        <seg>
-          /usr/lib/firmware/nvidia/&nvidia-r580-version;,
-          /usr/lib/nvidia/wine,
-          /usr/share/glvnd/egl_vendor.d, and
-          /usr/share/nvidia
-        </seg>
-      </seglistitem>
-    </segmentedlist>
 
   </sect2>
 
