@@ -47,6 +47,10 @@
           <para>[tox] - Libdrm: 2.4.133 -&gt; 2.4.134. Fixes
           <ulink url="&glfs-issues;/466">#466</ulink>.</para>
         </listitem>
+        <listitem>
+          <para>[tox] - hwdata: 0.407 -&gt; 0.408. Fixes
+          <ulink url="&glfs-issues;/460">#460</ulink>.</para>
+        </listitem>
       </itemizedlist>
     </listitem>
 
