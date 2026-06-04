@@ -44,7 +44,7 @@
       <para>June 4th, 2026</para>
       <itemizedlist>
         <listitem>
-          <para>[tox] - libinput: 1.31.2 -&gt; 1.31.3. Fixes
+          <para>[tox] - libinput: 1.31.2 -&gt; 1.31.3 (security). Fixes
           <ulink url="&glfs-issues;/471">#471</ulink>.</para>
         </listitem>
       </itemizedlist>
