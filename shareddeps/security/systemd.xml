@@ -47,6 +47,7 @@
       </listitem>
     </itemizedlist>
 
+<!--
     <bridgehead renderas="sect3">Additional Downloads</bridgehead>
     <itemizedlist spacing="compact">
       <listitem>
@@ -56,18 +57,8 @@
         </para>
       </listitem>
     </itemizedlist>
-
-<!--  Comment out (instead of remove) in case a patch will be needed.
-    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
-    <itemizedlist spacing="compact">
-      <listitem>
-        <para>
-         Required patch:
-         <ulink url="&patch-root;/systemd-&systemd-version;-upstream_fixes-1.patch"/>
-        </para>
-      </listitem>
-    </itemizedlist>
 -->
+
     <bridgehead renderas="sect3">Systemd Dependencies</bridgehead>
 
     <para role="recommended">
@@ -94,11 +85,13 @@
   <sect2 role="installation">
     <title>Installation of Systemd</title>
 
+<!--
     <para>
       Apply a patch to make the package compatible with OpenSSL-4:
     </para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../systemd-&systemd-version;-buildfix-1.patch</userinput></screen>
+-->
 
     <para>
       Remove two unneeded groups,
