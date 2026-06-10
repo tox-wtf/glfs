@@ -21,9 +21,9 @@
     <title>Introduction to libpsl</title>
 
     <para>
-      The libpsl package provides a library for
-      accessing and resolving information from the Public Suffix List (PSL). The PSL
-      is a set of domain names beyond the standard suffixes, such as .com.
+      The libpsl package provides a library for accessing and resolving
+      information from the Public Suffix List (PSL). The PSL is a set of domain
+      names beyond the standard suffixes, such as <literal>.com</literal>.
     </para>
 
     &meson-cross;
@@ -53,8 +53,7 @@
     <title>Installation of libpsl</title>
 
     <para>
-      Install libpsl by running the following
-      commands:
+      Install libpsl by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -75,8 +74,7 @@ ninja</userinput></screen>
     <title>lib32 Installation of libpsl</title>
 
     <para>
-      Install lib32-libpsl
-      by running the following commands:
+      Install lib32-libpsl by running the following commands:
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;

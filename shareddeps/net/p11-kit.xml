@@ -22,8 +22,8 @@
     <title>Introduction to p11-kit</title>
 
     <para>
-      The p11-kit package provides a way to load and
-      enumerate PKCS #11 (a Cryptographic Token Interface Standard) modules.
+      The p11-kit package provides a way to load and enumerate PKCS #11 (a
+      Cryptographic Token Interface Standard) modules.
     </para>
 
     &long-build-time;
@@ -62,8 +62,7 @@ cat &gt;&gt; trust/trust-extract-compat &lt;&lt; "EOF"
 EOF</userinput></screen>
 
     <para>
-      Install p11-kit by running the following
-      commands:
+      Install p11-kit by running the following commands:
     </para>
 
 <screen><userinput>mkdir p11-build &amp;&amp;
@@ -127,8 +126,7 @@ ldconfig</userinput></screen>
 
     <para>
       <option>-D hash_impl=freebl</option>: Use this switch if you want to
-      use the Freebl library from NSS for SHA1 and
-      MD5 hashing.
+      use the Freebl library from NSS for SHA1 and MD5 hashing.
     </para>
 
   </sect2>
@@ -139,7 +137,7 @@ ldconfig</userinput></screen>
     <para>
       Make system CAs available transparently to NSS aware
       applications by running the following commands as the
-      <systemitem class="username">root</systemitem> user:
+      &root; user:
     </para>
 
 <screen role="root"><userinput>for lib in lib{,32}; do

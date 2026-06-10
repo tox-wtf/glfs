@@ -77,27 +77,27 @@
     <title>Installation of make-ca and Generation of the CA-certificates stores</title>
 
     <para>
-      The make-ca script will download and process
-      the certificates included in the <filename>certdata.txt</filename> file
-      for use as trust anchors for the <xref linkend="p11-kit"/> trust module.
-      Additionally, it will generate system certificate stores used by BLFS
-      applications (if the recommended and optional applications are present
-      on the system). Any local certificates stored in
-      <filename>/etc/ssl/local</filename> will be imported to both the trust
-      anchors and the generated certificate stores (overriding Mozilla's
-      trust). Additionally, any modified trust values will be copied from the
-      trust anchors to <filename>/etc/ssl/local</filename> prior to any
-      updates, preserving custom trust values that differ from Mozilla when
-      using the <command>trust</command> utility from
-      p11-kit to operate on the trust store.
+      The make-ca script will download and process the certificates included in
+      the <filename>certdata.txt</filename> file for use as trust anchors for
+      the <xref linkend="p11-kit"/> trust module. Additionally, it will
+      generate system certificate stores used by BLFS applications (if the
+      recommended and optional applications are present on the system). Any
+      local certificates stored in <filename>/etc/ssl/local</filename> will be
+      imported to both the trust anchors and the generated certificate stores
+      (overriding Mozilla's trust). Additionally, any modified trust values
+      will be copied from the trust anchors to
+      <filename>/etc/ssl/local</filename> prior to any updates, preserving
+      custom trust values that differ from Mozilla when using the
+      <command>trust</command> utility from p11-kit to operate on the trust
+      store.
     </para>
 
     <para>
       Before you can install the package, you should add an extra instruction
-      to the make-ca script that makes a
-      compatibility symlink that is used by Debian Linux packages and is
-      required by <xref linkend="steam"/> as its main development is done on
-      Debian Linux. Add that instruction to the script now:
+      to the make-ca script that makes a compatibility symlink that is used by
+      Debian Linux packages and is required by <xref linkend="steam"/> as its
+      main development is done on Debian Linux. Add that instruction to the
+      script now:
     </para>
 
 <screen><userinput>cat &gt;&gt; make-ca &lt;&lt; "EOF"
@@ -113,8 +113,8 @@
     <screen><userinput>sed '/mktemp/s/-t //' -i make-ca</userinput></screen>
 
     <para>
-      Now to install the make-ca script, it must be
-      installed into the correct location as the &root; user:
+      Now to install the make-ca script, it must be installed into the correct
+      location as the &root; user:
     </para>
 
 <screen role="root"><userinput>make install &amp;&amp;
@@ -123,31 +123,28 @@
    <note>
      <para>
        Technically, this package is already installed at this point.
-       But most packages listing make-ca as
-       a dependency actually require the system certificate store set up
-       by this package, rather than the <command>make-ca</command>
-       program itself.  So the instructions for using
+       But most packages listing make-ca as a dependency actually require the
+       system certificate store set up by this package, rather than the
+       <command>make-ca</command> program itself. So the instructions for using
        <command>make-ca</command> for setting up the system certificate
        store are included in this section.
      </para>
    </note>
 
    <para>
-     As the <systemitem class="username">root</systemitem> user,
-     download the certificate source and
-     prepare for system use with the following command:
+     As the &root; user, download the certificate source and prepare for system
+     use with the following command:
    </para>
 
     <note>
       <para>
         If running the script a second time with the same version of
         <filename>certdata.txt</filename>, for instance, to update the
-        stores when make-ca is upgraded, or to
-        add additional stores as the requisite software is installed,
-        replace the <parameter>-g</parameter> switch with the
-        <parameter>-r</parameter> switch in the command line. If packaging,
-        run <command>make-ca --help</command> to see all available command
-        line options.
+        stores when make-ca is upgraded, or to add additional stores as the
+        requisite software is installed, replace the <parameter>-g</parameter>
+        switch with the <parameter>-r</parameter> switch in the command line.
+        If packaging, run <command>make-ca --help</command> to see all
+        available command line options.
       </para>
     </note>
 
@@ -169,8 +166,7 @@
       version included in <xref linkend="nss"/>. Additional upstream downloads
       are available at the links included in
       <filename>/etc/make-ca/make-ca.conf.dist</filename>. Simply copy the
-      file to
-      <filename>/etc/make-ca.conf</filename> and edit as appropriate.
+      file to <filename>/etc/make-ca.conf</filename> and edit as appropriate.
     </para>
 
     <indexterm zone="make-ca make-ca-config">
@@ -180,25 +176,21 @@
     <bridgehead renderas="sect3">About Trust Arguments</bridgehead>
 
     <para>
-      There are three trust types that are recognized by the
-      make-ca script, SSL/TLS, S/Mime, and code
-      signing. For OpenSSL, these are
+      There are three trust types that are recognized by the make-ca script,
+      SSL/TLS, S/Mime, and code signing. For OpenSSL, these are
       <parameter>serverAuth</parameter>,
       <parameter>emailProtection</parameter>, and
       <parameter>codeSigning</parameter> respectively. If one of the three
       trust arguments is omitted, the certificate is neither trusted, nor
-      rejected for that role. Clients that use
-      OpenSSL or NSS
+      rejected for that role. Clients that use OpenSSL or NSS
       encountering this certificate will present a warning to the user.
-      Clients using
-      GnuTLS without
-      p11-kit support are not aware of trusted
+      Clients using GnuTLS without p11-kit support are not aware of trusted
       certificates. To include this CA into the
       <filename>ca-bundle.crt</filename>,
       <filename>email-ca-bundle.crt</filename>, or
       <filename>objsign-ca-bundle.crt</filename> files
-      (the GnuTLS legacy bundles), it must have the
-      appropriate trust arguments.
+      (the GnuTLS legacy bundles), it must have the appropriate trust
+      arguments.
     </para>
 
     <bridgehead renderas="sect3">Adding Additional CA Certificates</bridgehead>
@@ -209,21 +201,21 @@
       This directory is also used to store certificates that were added to or
       modified  in the system trust store by <xref linkend="p11-kit"/> so that
       trust values are maintained across upgrades. Files in this directory must
-      be in the OpenSSL trusted certificate format.
-      Certificates imported using the <command>trust</command> utility from
-      <xref linkend="p11-kit"/> will utilize the x509 Extended Key Usage values
-      to assign default trust values for the system anchors.
+      be in the OpenSSL trusted certificate format. Certificates imported using
+      the <command>trust</command> utility from <xref linkend="p11-kit"/> will
+      utilize the x509 Extended Key Usage values to assign default trust values
+      for the system anchors.
     </para>
 
-    <para>If you need to override trust values, or otherwise need to create
-      an OpenSSL trusted certificate manually
-      from a regular PEM encoded file, you need to add trust arguments to the
-      <command>openssl</command> command, and create a new certificate. For
-      example, using the <ulink url="http://www.cacert.org/">CAcert</ulink>
-      roots, if you want to trust both for all three roles, the following
-      commands will create appropriate OpenSSL trusted certificates (run as
-      the <systemitem class="username">root</systemitem> user after <!-- xref
-      linkend="wget"/ --> is installed):
+    <para>
+      If you need to override trust values, or otherwise need to create an
+      OpenSSL trusted certificate manually from a regular PEM encoded file, you
+      need to add trust arguments to the <command>openssl</command> command,
+      and create a new certificate. For example, using the <ulink
+      url="http://www.cacert.org/">CAcert</ulink> roots, if you want to trust
+      both for all three roles, the following commands will create appropriate
+      OpenSSL trusted certificates (run as the &root; user after <xref
+      linkend="wget"/> is installed):
     </para>
 
 <screen role="nodump"><userinput>wget http://www.cacert.org/certs/root.crt &amp;&amp;
@@ -263,46 +255,43 @@ openssl x509 -in class3.crt -text -fingerprint -setalias "CAcert Class 3 root" \
   </sect2>
 
   <sect2 role="configuration" id="make-ca-python">
-    <title>Using make-ca with Python3</title>
+    <title>Using make-ca with Python</title>
 
     <para>
-      When Python3 was installed in LFS/MLFS, it
-      included the pip3 module with vendored
-      certificates from the Certifi module. That was
-      necessary, but it means that whenever <command>pip3</command> is used it
-      can reference those certificates, primarily when creating a virtual
-      environment or when installing a module with all its wheel dependencies
-      in one go.
+      When Python was installed in LFS/MLFS, it included the pip3 module with
+      vendored certificates from the Certifi module. That was necessary, but it
+      means that whenever <command>pip3</command> is used it can reference
+      those certificates, primarily when creating a virtual environment or when
+      installing a module with all its wheel dependencies in one go.
     </para>
 
     <para>
       It is generally considered that the System Administrator should be in
       charge of which certificates are available. Now that <xref
       linkend="make-ca"/> and <xref linkend="p11-kit"/> have been installed and
-      make-ca has been configured, it is possible to
-      make <command>pip3</command> use the system certificates.
+      make-ca has been configured, it is possible to make
+      <command>pip3</command> use the system certificates.
     </para>
 
     <para>
       The vendored certificates installed in LFS are a snapshot from when the
-      pulled-in version of Certifi was created. If
-      you regularly update the system certificates, the vendored version will
-      become out of date.
+      pulled-in version of Certifi was created. If you regularly update the
+      system certificates, the vendored version will become out of date.
     </para>
 
     <para>
-      To use the system certificates in Python3, you
-      should set <envar>_PIP_STANDALONE_CERT</envar> to point to them, e.g for
-      the bash shell:
+      To use the system certificates in Python, you should set
+      <envar>_PIP_STANDALONE_CERT</envar> to point to them, e.g for
+      the Bash shell:
     </para>
 
 <screen><userinput>export _PIP_STANDALONE_CERT=/etc/pki/tls/certs/ca-bundle.crt</userinput></screen>
 
     <warning>
       <para>
-        If you have created virtual environments, for example when testing modules,
-        and those include the Requests and
-        Certifi modules in <filename
+        If you have created virtual environments, for example when testing
+        modules, and those include the Requests and Certifi modules in
+        <filename
         class="directory">~/.local/lib/python&python3-majorver;/</filename>
         then those local modules will be used instead of the system
         certificates unless you remove the local modules.

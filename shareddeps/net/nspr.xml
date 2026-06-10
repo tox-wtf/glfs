@@ -20,8 +20,9 @@
     <title>Introduction to NSPR</title>
 
     <para>
-      Netscape Portable Runtime (NSPR) provides a
-      platform-neutral API for system level and libc like functions.
+      Netscape Portable Runtime (NSPR) provides a platform-neutral API for
+      system level and <filename class="libraryfile">libc</filename>-like
+      functions.
     </para>
 
     <itemizedlist spacing="compact">

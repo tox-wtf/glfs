@@ -23,11 +23,10 @@
     <title>Introduction to ICU</title>
 
     <para>
-      The International Components for Unicode (ICU)
-      package is a mature, widely used set of C/C++ libraries providing Unicode
-      and Globalization support for software applications.
-      ICU is widely portable and gives applications
-      the same results on all platforms.
+      The International Components for Unicode (ICU) package is a mature,
+      widely used set of C/C++ libraries providing Unicode and Globalization
+      support for software applications. ICU is widely portable and gives
+      applications the same results on all platforms.
     </para>
 
     <warning>
@@ -37,8 +36,8 @@
         packages. If some packages that use the libraries built by
         icu4c-&icu-major; are rebuilt, they will use the new libraries while
         current packages will use the previous libraries.  If the Linux
-        application loader
-        (<filename class='libraryfile'>/usr/lib/ld-linux-x86-64.so.2</filename>)
+        application loader (<filename
+        class='libraryfile'>/usr/lib/ld-linux-x86-64.so.2</filename>)
         determines that both the old and new libraries are needed, and a
         symbol (name of data or function) exists in both versions of the
         library, all references to the symbol will be resolved to the
@@ -51,14 +50,14 @@
       </para>
 
       <para>
-        To determine what external libraries are needed (directly or indirectly)
-        by an application or a library, run:
+        To determine what external libraries are needed (directly or
+        indirectly) by an application or a library, run:
       </para>
 
 <screen role='nodump'><userinput>ldd &lt;application or library&gt; </userinput></screen>
 
       <para>
-        or to see only programs and libraries that directly use a library:
+        To see only programs and libraries that directly use a library, run:
       </para>
 
 <screen role='nodump'><userinput>readelf -d  &lt;application or library&gt; | grep NEEDED</userinput></screen>

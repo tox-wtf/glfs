@@ -22,8 +22,8 @@
     <title>Introduction to libxml2</title>
 
     <para>
-      The libxml2 package contains libraries
-      and utilities used for parsing XML files.
+      The libxml2 package contains libraries and utilities used for parsing XML
+      files.
     </para>
 
     &abi-break;
@@ -79,8 +79,7 @@
   remap="pre"><userinput>sed -i "/'git'/,+3d" meson.build</userinput></screen>
 
     <para>
-      Install libxml2 by running the following
-      commands:
+      Install libxml2 by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -105,8 +104,7 @@ sed 's/--static/--shared/' -i /usr/bin/xml2-config</userinput></screen>
     <title>lib32 Installation of libxml2</title>
 
     <para>
-      Install lib32-libxml2 by running the following
-      commands:
+      Install lib32-libxml2 by running the following commands:
     </para>
 
 <screen><userinput>rm -rf * &amp;&amp;

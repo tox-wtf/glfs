@@ -20,9 +20,9 @@
     <title>Introduction to nghttp2</title>
 
     <para>
-      nghttp2 is an implementation of HTTP/2 and
-      its header compression algorithm, HPACK. Packages use this to support
-      HTTP/2, which is starting to become more commonly used on the Internet.
+      nghttp2 is an implementation of HTTP/2 and its header compression
+      algorithm, HPACK. Packages use this to support HTTP/2, which is starting
+      to become more commonly used on the Internet.
     </para>
 
     <itemizedlist spacing="compact">
@@ -45,8 +45,7 @@
     <title>Installation of nghttp2</title>
 
     <para>
-      Install nghttp2 by running the following
-      commands:
+      Install nghttp2 by running the following commands:
     </para>
 
 <screen><userinput>./configure --prefix=/usr     \
