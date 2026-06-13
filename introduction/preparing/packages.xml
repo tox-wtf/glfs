@@ -68,7 +68,7 @@ done</userinput></screen>
     the files in each page within that revision section.
   </para><para>
     Files for a package bundle like <xref linkend="vulkan-sdk"/> and <xref
-    linkend="gstreamer-suite"/> will also not be downloaded by the above
+    linkend="gstreamer"/> will also not be downloaded by the above
     instructions. They instead get downloaded when you reach those package
     bundles, in which the tools to download them should become available.
   </para></important>

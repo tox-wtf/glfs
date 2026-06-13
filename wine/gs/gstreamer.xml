@@ -5,37 +5,36 @@
   %general-entities;
 ]>
 
-<sect1 id="gstreamer-suite" xreflabel="GStreamer-Suite-&gstreamer10-version;">
-  <?dbhtml filename="gstreamer-suite.html"?>
+<sect1 id="gstreamer" xreflabel="GStreamer-&gstreamer-version;">
+  <?dbhtml filename="gstreamer.html"?>
 
-  <title>GStreamer Suite &gstreamer10-version;</title>
+  <title>GStreamer-&gstreamer-version;</title>
 
-  <indexterm zone="gstreamer-suite">
-    <primary sortas="a-gstreamer-suite">GStreamer Suite</primary>
+  <indexterm zone="gstreamer">
+    <primary sortas="a-gstreamer">GStreamer</primary>
   </indexterm>
 
   <sect2 role="package">
-    <title>Introduction to the GStreamer Suite</title>
+    <title>Introduction to GStreamer</title>
 
     <para>
-      GStreamer is a streaming media framework that
-      enables applications to share a common set of plugins for tasks such as
-      video encoding and decoding, audio encoding and decoding, audio and video
-      filters, audio visualisation, web streaming and anything else that
-      streams in real-time or otherwise. This page provides most of the set of
-      packages for ease of installation as they mostly have the same
-      instructions.
+      GStreamer is a multimedia framework that enables applications to share a
+      common set of plugins for tasks such as video encoding and decoding,
+      audio encoding and decoding, audio and video filters, audio
+      visualisation, web streaming and anything else that streams in real-time
+      or otherwise. This page provides most of the set of packages for ease of
+      installation as they mostly have the same instructions.
     </para>
 
     &long-build-time;
 
     &meson-cross;
 
-    <bridgehead renderas="sect3">GStreamer Suite Dependencies</bridgehead>
+    <bridgehead renderas="sect3">GStreamer Dependencies</bridgehead>
 
     <para role="required">
-      <xref linkend="ffmpeg"/> (for libav support) and
-      <xref linkend="glib2"/> (GObject Introspection required for GNOME)
+      <xref linkend="ffmpeg"/> and
+      <xref linkend="glib2"/>
     </para>
 
     <para role="recommended">
@@ -155,19 +154,19 @@
   </sect2>
 
   <sect2>
-    <title>Downloading the GStreamer Suite</title>
+    <title>Downloading GStreamer</title>
 
     <para>
       First create a list of files that will be downloaded:
     </para>
 
-<screen><userinput>cat &gt; gstreamer-suite-&gstreamer10-version;-list &lt;&lt; EOF
-<literal>gstreamer/gstreamer-&gstreamer10-version;.tar.xz
-gst-plugins-base/gst-plugins-base-&gst10-plugins-base-version;.tar.xz
-gst-plugins-good/gst-plugins-good-&gst10-plugins-good-version;.tar.xz
-gst-plugins-bad/gst-plugins-bad-&gst10-plugins-bad-version;.tar.xz
-gst-plugins-ugly/gst-plugins-ugly-&gst10-plugins-ugly-version;.tar.xz
-gst-libav/gst-libav-&gst10-libav-version;.tar.xz</literal>
+<screen><userinput>cat &gt; gstreamer-&gstreamer-version;-list &lt;&lt; EOF
+<literal>gstreamer/gstreamer-&gstreamer-version;.tar.xz
+gst-plugins-base/gst-plugins-base-&gstreamer-version;.tar.xz
+gst-plugins-good/gst-plugins-good-&gstreamer-version;.tar.xz
+gst-plugins-bad/gst-plugins-bad-&gstreamer-version;.tar.xz
+gst-plugins-ugly/gst-plugins-ugly-&gstreamer-version;.tar.xz
+gst-libav/gst-libav-&gstreamer-version;.tar.xz</literal>
 EOF</userinput></screen>
 
     <para>
@@ -175,20 +174,20 @@ EOF</userinput></screen>
       following commands:
     </para>
 
-<screen><userinput>mkdir gstreamer-suite &amp;&amp;
-cd    gstreamer-suite &amp;&amp;
-grep -v '^#' ../gstreamer-suite-&gstreamer10-version;-list | wget -i- -c \
+<screen><userinput>mkdir gstreamer &amp;&amp;
+cd    gstreamer &amp;&amp;
+grep -v '^#' ../gstreamer-&gstreamer-version;-list | wget -i- -c \
     -B &gstreamer-dl;/</userinput></screen>
 
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of the GStreamer Suite</title>
+    <title>Installation of GStreamer</title>
 
     &as_root;
 
     <para>
-      First do a test to see if the suite is installed, and if it is, remove
+      First do a test to see if GStreamer is installed, and if it is, remove
       the previous installation
       <footnote><para>
         Removal of previous installation is required or else processes may
@@ -211,7 +210,7 @@ fi</userinput></screen>
       Install all of the packages by running the following commands:
     </para>
 
-<screen><userinput>for package in $(grep -v '^#' ../gstreamer-suite-&gstreamer10-version;-list)
+<screen><userinput>for package in $(grep -v '^#' ../gstreamer-&gstreamer-version;-list)
 do
   package=$(basename "$package")
   packagedir=${package%.tar.?z*}
@@ -258,10 +257,10 @@ done</userinput></screen>
   </sect2>
 
   <sect2 role="installation">
-    <title>lib32 Installation of the GStreamer Suite</title>
+    <title>lib32 Installation of GStreamer</title>
 
     <para>
-      First do a test to see if the suite is installed, and if it is, remove
+      First do a test to see if GStreamer is installed, and if it is, remove
       the previous installation:
     </para>
 
@@ -280,7 +279,7 @@ fi</userinput></screen>
       Install all of the packages by running the following commands:
     </para>
 
-<screen><userinput>for package in $(grep -v '^#' ../gstreamer-suite-&gstreamer10-version;-list)
+<screen><userinput>for package in $(grep -v '^#' ../gstreamer-&gstreamer-version;-list)
 do
   package=$(basename "$package")
   packagedir=${package%.tar.?z*}
@@ -459,7 +458,7 @@ done</userinput></screen>
             is a command line tool that can be used to test
             GStreamer's device monitoring functionality
           </para>
-          <indexterm zone="gstreamer-suite gst-device-monitor-1.0">
+          <indexterm zone="gstreamer gst-device-monitor-1.0">
             <primary sortas="b-gst-device-monitor-1.0">gst-device-monitor-1.0</primary>
           </indexterm>
         </listitem>
@@ -472,7 +471,7 @@ done</userinput></screen>
             is a tool that can be used to print basic metadata and
             stream information about a media file
           </para>
-          <indexterm zone="gstreamer-suite gst-discoverer-1.0">
+          <indexterm zone="gstreamer gst-discoverer-1.0">
             <primary sortas="b-gst-discoverer-1.0">gst-discoverer-1.0</primary>
           </indexterm>
         </listitem>
@@ -487,7 +486,7 @@ done</userinput></screen>
             information about a particular plugin, or information
             about a particular element
           </para>
-          <indexterm zone="gstreamer-suite gst-inspect-1.0">
+          <indexterm zone="gstreamer gst-inspect-1.0">
             <primary sortas="b-gst-inspect-1.0">gst-inspect-1.0</primary>
           </indexterm>
         </listitem>
@@ -500,7 +499,7 @@ done</userinput></screen>
             is a tool that builds and runs basic
             GStreamer pipelines
           </para>
-          <indexterm zone="gstreamer-suite gst-launch-1.0">
+          <indexterm zone="gstreamer gst-launch-1.0">
             <primary sortas="b-gst-launch-1.0">gst-launch-1.0</primary>
           </indexterm>
         </listitem>
@@ -513,7 +512,7 @@ done</userinput></screen>
             is a command line tool that can be used to test basic
             playback using the playbin element
           </para>
-          <indexterm zone="gstreamer-suite gst-play-1.0">
+          <indexterm zone="gstreamer gst-play-1.0">
             <primary sortas="b-gst-play-1.0">gst-play-1.0</primary>
           </indexterm>
         </listitem>
@@ -526,7 +525,7 @@ done</userinput></screen>
             is a tool used to gather statistics about
             GStreamer operations
           </para>
-          <indexterm zone="gstreamer-suite gst-stats-1.0">
+          <indexterm zone="gstreamer gst-stats-1.0">
             <primary sortas="b-gst-stats-1.0">gst-stats-1.0</primary>
           </indexterm>
         </listitem>
@@ -539,7 +538,7 @@ done</userinput></screen>
             runs a test plan in TAP compatible format while integrating with
             the meson test harness
           </para>
-          <indexterm zone="gstreamer-suite gst-tester-1.0">
+          <indexterm zone="gstreamer gst-tester-1.0">
             <primary sortas="b-gst-tester-1.0">gst-tester-1.0</primary>
           </indexterm>
         </listitem>
@@ -551,7 +550,7 @@ done</userinput></screen>
           <para>
             is used to transcode a stream into a different format
           </para>
-          <indexterm zone="gstreamer-suite gst-transcoder-1.0">
+          <indexterm zone="gstreamer gst-transcoder-1.0">
             <primary sortas="b-gst-transcoder-1.0">gst-transcoder-1.0</primary>
           </indexterm>
         </listitem>
@@ -565,7 +564,7 @@ done</userinput></screen>
             to determine the relevant GStreamer
             plugin to parse or decode files, and the corresponding MIME type
           </para>
-          <indexterm zone="gstreamer-suite gst-typefind-1.0">
+          <indexterm zone="gstreamer gst-typefind-1.0">
             <primary sortas="b-gst-typefind-1.0">gst-typefind-1.0</primary>
           </indexterm>
         </listitem>
@@ -578,7 +577,7 @@ done</userinput></screen>
             is an example application used to sequentially play a list of
             audio-video files
           </para>
-          <indexterm zone="gstreamer-suite playout">
+          <indexterm zone="gstreamer playout">
             <primary sortas="b-playout">playout</primary>
           </indexterm>
         </listitem>
@@ -591,7 +590,7 @@ done</userinput></screen>
             provides some base classes to be extended by elements and utility
             classes that are most useful for plugin developers
           </para>
-          <indexterm zone="gstreamer-suite libgstbase-1.0">
+          <indexterm zone="gstreamer libgstbase-1.0">
             <primary sortas="c-libgstbase-1.0">libgstbase-1.0</primary>
           </indexterm>
         </listitem>
@@ -604,7 +603,7 @@ done</userinput></screen>
             provides functionality for writing unit tests that use the check
             framework
           </para>
-          <indexterm zone="gstreamer-suite libgstcheck-1.0">
+          <indexterm zone="gstreamer libgstcheck-1.0">
             <primary sortas="c-libgstcheck-1.0">libgstcheck-1.0</primary>
           </indexterm>
         </listitem>
@@ -616,7 +615,7 @@ done</userinput></screen>
           <para>
             provides functionality to animate element properties over time
           </para>
-          <indexterm zone="gstreamer-suite libgstcontroller-1.0">
+          <indexterm zone="gstreamer libgstcontroller-1.0">
             <primary sortas="c-libgstcontroller-1.0">libgstcontroller-1.0</primary>
           </indexterm>
         </listitem>
@@ -628,7 +627,7 @@ done</userinput></screen>
           <para>
             provides network elements and objects
           </para>
-          <indexterm zone="gstreamer-suite libgstnet-1.0">
+          <indexterm zone="gstreamer libgstnet-1.0">
             <primary sortas="c-libgstnet-1.0">libgstnet-1.0</primary>
           </indexterm>
         </listitem>
@@ -643,7 +642,7 @@ done</userinput></screen>
             as well as the object hierarchy that defines elements and bins,
             along with some more specialized elements
           </para>
-          <indexterm zone="gstreamer-suite libgstreamer-1.0">
+          <indexterm zone="gstreamer libgstreamer-1.0">
             <primary sortas="c-libgstreamer-1.0">libgstreamer-1.0</primary>
           </indexterm>
         </listitem>
