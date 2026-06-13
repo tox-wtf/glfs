@@ -52,6 +52,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/libglvnd/libglvnd-v&libglvnd-version;-ext_device-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">libglvnd Dependencies</bridgehead>
 
     <para role="recommended">
@@ -72,6 +82,20 @@
 
   <sect2 role="installation">
     <title>Installation of libglvnd</title>
+
+    <para>
+      Some non-Mesa drivers will expose one or two EGL device extensions from
+      <literal>EGL_EXT_device_base</literal>,
+      <literal>EGL_EXT_device_enumeration</literal>, and
+      <literal>EGL_EXT_device_query</literal>. Some packages require that all
+      three extensions are present, although historically
+      <literal>base</literal> proves that <literal>enumeration</literal> and
+      <literal>query</literal> is possible, since the latter two are newer
+      extensions that separate the former into two. Apply a patch to make
+      libglvnd advertise all three if one is present:
+    </para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../libglvnd-v&libglvnd-version;-ext_device-1.patch</userinput></screen>
 
     <para>
       Install libglvnd by running the following commands:
