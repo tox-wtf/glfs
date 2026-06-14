@@ -5,3 +5,5 @@ xxx
 *.swp
 *.bak
 local.mk
+
+target
