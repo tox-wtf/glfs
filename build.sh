@@ -4,6 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 TARGET_DIR="$SCRIPT_DIR/target"
+THEMES_DIR="${THEMES_DIR:-"$SCRIPT_DIR/../themes/themes"}"
+RENDER_TMP="$(mktemp -d)"
 cd "$SCRIPT_DIR"
 
 cleanup() {
@@ -11,9 +13,6 @@ cleanup() {
 }
 
 trap 'cleanup' EXIT INT HUP
-
-THEMES_DIR="$SCRIPT_DIR/../lfs-themes/themes"
-RENDER_TMP="$(mktemp -d)"
 
 make                                \
     REV=systemd                     \
