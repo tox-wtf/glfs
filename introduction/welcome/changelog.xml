@@ -41,6 +41,23 @@
     -->
 
     <listitem>
+      <para>June 21st, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - CMake: 4.3.3 -&gt; 4.3.4.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - ALSA: 1.2.16 -&gt; 1.2.16.1.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - FFmpeg: 8.1.1 -&gt; 8.1.2 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23472">#23472</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 13th, 2026</para>
       <itemizedlist>
         <listitem>
