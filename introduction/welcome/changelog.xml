@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>June 24th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - libpsl: 0.21.5 -&gt; 0.22.0. Fixes
+          <ulink url="&glfs-issues;/480">#480</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 21st, 2026</para>
       <itemizedlist>
         <listitem>
