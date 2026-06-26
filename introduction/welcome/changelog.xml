@@ -44,6 +44,9 @@
       <para>June 24th, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - XCB-Utils: Add xcb-util-errors.</para>
+        </listitem>
+        <listitem>
           <para>[zeckma] - LLVM: 22.1.0 -&gt; 22.1.8.</para>
         </listitem>
         <listitem>
