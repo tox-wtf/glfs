@@ -47,6 +47,18 @@
           <para>[tox] - XKeyboard-Config: 2.47 -&gt; 2.48. Fixes
           <ulink url="&glfs-issues;/483">#483</ulink>.</para>
         </listitem>
+        <listitem>
+          <para>[tox] - Cython: 3.2.5 -&gt; 3.2.6. Fixes
+          <ulink url="&glfs-issues;/482">#482</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[tox] - libpsl: 0.21.5 -&gt; 0.22.0. Fixes
+          <ulink url="&glfs-issues;/480">#480</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[tox] - cURL: 8.20.0 -&gt; 8.21.0 (security). Fixes
+          <ulink url="&glfs-issues;/479">#479</ulink>.</para>
+        </listitem>
       </itemizedlist>
     </listitem>
 
