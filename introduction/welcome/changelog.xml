@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>June 24th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - cURL: 8.20.0 -&gt; 8.21.0 (security). Fixes
+          <ulink url="&glfs-issues;/479">#479</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>June 21st, 2026</para>
       <itemizedlist>
         <listitem>
