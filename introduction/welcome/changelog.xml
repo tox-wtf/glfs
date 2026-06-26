@@ -44,6 +44,9 @@
       <para>June 24th, 2026</para>
       <itemizedlist>
         <listitem>
+          <para>[zeckma] - LLVM: 22.1.0 -&gt; 22.1.8.</para>
+        </listitem>
+        <listitem>
           <para>[tox] - Vulkan-SDK: 1.4.350.0 -&gt; 1.4.350.1. Fixes
           <ulink url="&glfs-issues;/488">#488</ulink>.</para>
         </listitem>
