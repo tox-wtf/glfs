@@ -52,6 +52,11 @@
   <sect2 role="installation">
     <title>Installation of MinGW-w64</title>
 
+    <para>
+      If you are building from a new MinGW-w64 source tree, be sure to apply
+      the patch from <xref linkend="mingw-w64-headers"/>.
+    </para>
+
   <sect3>
     <title>x86_64 MinGW-w64</title>
 
