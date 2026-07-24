@@ -68,6 +68,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing='compact'>
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="&dl-root;/llvm-project/llvm-project-&llvm-version;-upstream_fix-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">LLVM Dependencies</bridgehead>
 
     <para role="required">
@@ -78,6 +88,12 @@
 
   <sect2 role="installation">
     <title>Installation of LLVM</title>
+
+    <para>
+      Apply a patch to fix incorrect code generation:
+    </para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../llvm-project-&llvm-version;-upstream_fix-1.patch</userinput></screen>
 
     <para>
      There are many Python scripts in this package which use
@@ -96,8 +112,18 @@
     <screen><userinput>sed 's/utility/tool/' -i llvm/utils/FileCheck/CMakeLists.txt</userinput></screen>
 
     <para>
-      Install LLVM by running the following
-      commands:
+      Create two configuration files to make <xref linkend='gSSP'/> enabled by
+      default, so that when LLVM is built, SSP will be enabled and consistent
+      with GCC, as the &root; user:
+    </para>
+
+<screen role='root'><userinput>mkdir -pv /etc/clang &amp;&amp;
+for i in clang clang++; do
+  echo -fstack-protector-strong &gt; /etc/clang/$i.cfg
+done</userinput></screen>
+
+    <para>
+      Install LLVM by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
@@ -275,27 +301,6 @@ ldconfig</userinput></screen>
       libraries instead of static.
     </para>
 
-  </sect2>
-
-  <sect2 role="configuration">
-    <title>Configuring LLVM</title>
-
-    <sect3 id="llvm-config-info">
-      <title>Configuration Information</title>
-
-      <para>
-        If you've built Clang, as the &root; user create two configuration
-        files to make <xref linkend='gSSP'/> enabled by default for
-        <command>clang</command> and <command>clang++</command>, so
-        the default configuration of their SSP feature will be consistent
-        with GCC:
-      </para>
-
-<screen role='root'><userinput>mkdir -pv /etc/clang &amp;&amp;
-for i in clang clang++; do
-  echo -fstack-protector-strong &gt; /etc/clang/$i.cfg
-done</userinput></screen>
-    </sect3>
   </sect2>
 
   <sect2 role="content">
