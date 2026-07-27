@@ -73,7 +73,7 @@ mv -v /usr/share/doc/steam{,-&steam-version;}</userinput></screen>
       &root; user:
     </para>
 
-<screen role="root"><userinput>install -vDm644 subprojects/steam-devices/*.rules \
+<screen role="root"><userinput>&install-file; subprojects/steam-devices/*.rules \
   -t /usr/lib/udev/rules.d/</userinput></screen>
 
   </sect2>
