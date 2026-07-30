@@ -41,6 +41,114 @@
     -->
 
     <listitem>
+      <para>July 27th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - Steam: install Udev rulesets. Fixes
+          <ulink url="&glfs-issues;/494">#494</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 23rd, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - NSS: 3.125 -&gt; 3.126.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - p11-kit: 0.26.2 -&gt; 0.26.4 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23588">#23588</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libpsl: 0.22.0 -&gt; 0.23.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - CMake: 4.3.4 -&gt; 4.4.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Rustc: 1.96.0 -&gt; 1.97.1.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Fontconfig: 2.18.1 -&gt; 2.18.2.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libXfont2: 2.0.7 -&gt; 2.0.8 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23573">#23573</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Wayland: 1.25.0 -&gt; 1.26.0.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - libva: 2.24.0 -&gt; 2.24.1.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xkbutils: 1.0.6 -&gt; 1.0.7.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xlsatoms: 1.1.4 -&gt; 1.1.5.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xrdb: 1.2.2 -&gt; 1.2.3.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xrefresh: 1.1.0 -&gt; 1.1.1.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xset: 1.2.5 -&gt; 1.2.6.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xsetroot: 1.1.3 -&gt; 1.1.4.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xvinfo: 1.1.5 -&gt; 1.1.6.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xwd: 1.0.9 -&gt; 1.1.10.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - xwud: 1.0.7 -&gt; 1.0.8.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Xorg-Server: 21.1.23 -&gt; 21.1.24 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23577">#23577</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Xwayland: 24.1.12 -&gt; 24.1.13 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23576">#23576</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - Steam: 1.0.0.85 -&gt; 1.0.0.87. Fixes
+          <ulink url="&glfs-issues;/492">#492</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - dav1d: 1.5.3 -&gt; 1.5.4.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - GStreamer: 1.28.4 -&gt; 1.28.5 (security).
+          See BLFS ticket
+          <ulink url="&blfs-ticket-root;23579">#23579</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>July 21st, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - NVIDIA: 610.43.02 -&gt; 610.43.03.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - NVIDIA-r580: 580.159.04 -&gt; 580.173.02.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 18th, 2026</para>
       <itemizedlist>
         <listitem>
