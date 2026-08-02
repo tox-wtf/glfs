@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>August 1st, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - hwdata: 0.409 -&gt; 0.410. Fixes
+          <ulink url="&glfs-issues;/504">#504</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 27th, 2026</para>
       <itemizedlist>
         <listitem>
