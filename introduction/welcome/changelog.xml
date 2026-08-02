@@ -47,6 +47,18 @@
           <para>[tox] - libpsl: 0.23.0 -&gt; 0.23.1. Fixes
           <ulink url="&glfs-issues;/496">#496</ulink>.</para>
         </listitem>
+        <listitem>
+          <para>[tox] - hwdata: 0.409 -&gt; 0.410. Fixes
+          <ulink url="&glfs-issues;/504">#504</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[tox] - xwininfo: 1.1.6 -&gt; 1.1.7. Fixes
+          <ulink url="&glfs-issues;/508">#508</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[tox] - xmodmap: 1.0.11 -&gt; 1.0.12. Fixes
+          <ulink url="&glfs-issues;/507">#507</ulink>.</para>
+        </listitem>
       </itemizedlist>
     </listitem>
 
