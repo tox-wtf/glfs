@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>August 1st, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - xmodmap: 1.0.11 -&gt; 1.0.12. Fixes
+          <ulink url="&glfs-issues;/507">#507</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 27th, 2026</para>
       <itemizedlist>
         <listitem>
