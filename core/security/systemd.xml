@@ -105,15 +105,15 @@
 
     <warning>
       <para>
-        If a previous version of systemd has been installed, remove a service
-        as the &root; user that will generate errors on following boots:
+        If the currently installed Systemd is below version v260, remove a
+        service that will generate errors on following boots, as the &root;
+        user:
       </para>
 <screen role="root"><userinput remap="pre">rm -v /usr/lib/systemd/system/systemd-update-utmp-runlevel.service</userinput></screen>
     </warning>
 
     <para>
-      Rebuild Systemd by running the
-      following commands:
+      Rebuild Systemd by running the following commands:
     </para>
 
 <screen><userinput>mkdir build &amp;&amp;
