@@ -41,6 +41,16 @@
     -->
 
     <listitem>
+      <para>August 1st, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[tox] - Cython: 3.2.8 -&gt; 3.2.9. Fixes
+          <ulink url="&glfs-issues;/501">#501</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>July 27th, 2026</para>
       <itemizedlist>
         <listitem>
