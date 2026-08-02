@@ -80,8 +80,9 @@
 
     <para>
       First, disable the installation of some manpages,
-      use <emphasis>YESCRYPT</emphasis>, change mailbox locations, and remove
-      symlinked directories from <envar>PATH</envar>:
+      use <emphasis>YESCRYPT</emphasis>, change mailbox locations, remove
+      symlinked directories from <envar>PATH</envar>, and include
+      proper headers in some C files:
     </para>
 
 <screen><userinput remap="pre">find man -name Makefile.in                \
@@ -92,7 +93,10 @@
 sed -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD YESCRYPT@' \
     -e 's@/var/spool/mail@/var/mail@'                   \
     -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                  \
-    -i etc/login.defs</userinput></screen>
+    -i etc/login.defs &amp;&amp;
+
+sed -e '/stdio.h/i #include &lt;stdint.h&gt;' \
+    -i lib/find_new_sub_*ids.c</userinput></screen>
 
     <para>
       Reinstall Shadow by running the following
