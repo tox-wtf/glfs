@@ -41,6 +41,18 @@
     -->
 
     <listitem>
+      <para>August 11th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - MinGW-w64-w64-Binutils: 2.46.1 -&gt; 2.47.</para>
+        </listitem>
+        <listitem>
+          <para>[zeckma] - MinGW-w64-w64-GCC: 16.1.0 -&gt; 16.2.0.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>August 8th, 2026</para>
       <itemizedlist>
         <listitem>
@@ -51,14 +63,15 @@
             <ulink url="&glfs-issues;/529">#529</ulink>.</para>
         </listitem>
         <listitem>
-          <para>[Sicarine] - libXfont2 (Xorg library): 2.0.8 -&gt; 2.0.9 (security). Fixes
-            <ulink url="&glfs-issues;/527">#527</ulink>. See BLFS ticket
-            <ulink url="&blfs-ticket-root;23697">#23697</ulink>.</para>
+          <para>[Sicarine] - libXfont2 (Xorg library): 2.0.8 -&gt; 2.0.9
+          (security). Fixes
+          <ulink url="&glfs-issues;/527">#527</ulink>. See BLFS ticket
+          <ulink url="&blfs-ticket-root;23697">#23697</ulink>.</para>
         </listitem>
         <listitem>
           <para>[Sicarine] - mpg123: 1.33.6 -&gt; 1.33.7 (security). Fixes
-            <ulink url="&glfs-issues;/528">#528</ulink>. See BLFS ticket
-            <ulink url="&blfs-ticket-root;23686">#23686</ulink>.</para>
+          <ulink url="&glfs-issues;/528">#528</ulink>. See BLFS ticket
+          <ulink url="&blfs-ticket-root;23686">#23686</ulink>.</para>
         </listitem>
         <listitem>
           <para>[Sicarine] - GStreamer: 1.28.5 -&gt; 1.28.6 (security). Fixes
