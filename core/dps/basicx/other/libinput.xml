@@ -23,7 +23,7 @@
   </indexterm>
 
   <sect2 role="package">
-    <title>Introduction to Libinput</title>
+    <title>Introduction to libinput</title>
 
     <para>
       libinput is a library that handles input devices for display servers and
@@ -49,7 +49,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Libinput</title>
+    <title>Installation of libinput</title>
 
     <para>
       Install libinput by running the following
