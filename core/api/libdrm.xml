@@ -10,19 +10,19 @@
 <sect1 id="libdrm" xreflabel="libdrm-&libdrm-version;">
   <?dbhtml filename="libdrm.html"?>
 
-  <title>Libdrm-&libdrm-version;</title>
+  <title>libdrm-&libdrm-version;</title>
 
   <indexterm zone="libdrm">
     <primary sortas="a-libdrm">libdrm</primary>
   </indexterm>
 
   <sect2 role="package">
-    <title>Introduction to Libdrm</title>
+    <title>Introduction to libdrm</title>
 
     <para>
-      Libdrm provides a userspace library for
+      libdrm provides a userspace library for
       accessing the direct rendering manager (DRM) on operating systems that
-      support the ioctl interface. Libdrm is a low-level library, typically used
+      support the ioctl interface. libdrm is a low-level library, typically used
       by graphics drivers such as the Mesa DRI drivers, the X drivers, libva and
       similar projects.
     </para>
@@ -48,7 +48,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Libdrm</title>
+    <title>Installation of libdrm</title>
 
 <!--
     <para>
@@ -84,7 +84,7 @@ ninja</userinput></screen>
   </sect2>
 
   <sect2 role="installation">
-    <title>lib32 Installation of Libdrm</title>
+    <title>lib32 Installation of libdrm</title>
 
     <para>
       Install lib32-libdrm by running the following
