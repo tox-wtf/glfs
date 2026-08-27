@@ -40,6 +40,15 @@
     </listitem>
     -->
 
+    <listitem revision="openrc">
+      <para>August 25th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - OpenRC: 0.63 -&gt; 0.63.3.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
     <listitem>
       <para>August 14th, 2026</para>
       <itemizedlist>
@@ -1231,7 +1240,7 @@
           <para>[zeckma] - LLVM; libclc: 21.1.8 -&gt; 22.1.0.</para>
         </listitem>
         <listitem>
-          <para>[zeckma] - Added lib32 installation instructions for p11-kit,
+          <para>[zeckma] - Added lib32 installation instructions for GnuTLS,
           Nettle, and p11-kit.</para>
         </listitem>
       </itemizedlist>
