@@ -40,6 +40,15 @@
     </listitem>
     -->
 
+    <listitem>
+      <para>August 27th, 2026</para>
+      <itemizedlist>
+        <listitem>
+          <para>[zeckma] - libclc: Removed.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
     <listitem revision="openrc">
       <para>August 25th, 2026</para>
       <itemizedlist>
