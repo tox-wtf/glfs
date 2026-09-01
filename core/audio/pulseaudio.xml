@@ -67,6 +67,8 @@
       <xref linkend="gstreamer"/>,
       <ulink url="&blfs-svn;/x/gtk3.html">GTK-3</ulink>,
       <ulink url="&blfs-svn;/multimedia/libsamplerate.html">libsamplerate</ulink>,
+      <ulink url="&blfs-svn;/multimedia/wireplumber.html">Wireplumber</ulink>
+      (with <ulink url="&blfs-svn;/multimedia/pipewire.html">Pipewire</ulink>),
       <ulink url="&blfs-svn;/multimedia/sbc.html">SBC</ulink> (Bluetooth support),
       <ulink url="&blfs-svn;/general/valgrind.html">Valgrind</ulink>,
       <ulink url="https://jackaudio.org/">JACK</ulink>,
@@ -85,6 +87,19 @@
 
   <sect2 role="installation">
     <title>Installation of PulseAudio</title>
+
+    <tip><para>
+      You may wish to use Pipewire as the audio system, rather than PulseAudio.
+      You will still need the libraries from this package, but you can disable
+      building the daemon. <ulink
+      url="&blfs-svn;/multimedia/wireplumber.html">Wireplumber</ulink> will be
+      needed. There are no complications with 32-bit, and you won't need 32-bit
+      libraries of Pipewire. Use <option>-D daemon=false</option> to disable
+      building the PulseAudio daemon. This isn't required if you want to use
+      Pipewire, so you can install this first normally, then install Pipewire
+      later.
+    </para></tip>
+
 <!--
     <para>
       If <xref linkend="doxygen"/> is not installed, workaround a building
@@ -202,7 +217,13 @@ ldconfig</userinput></screen>
       programs and libraries.
     </para>-->
 
+    <para>
+      <option>-D daemon=false</option>: This option disables building the
+      daemon if you want to use Pipewire as the audio system instead.
+    </para>
+
   </sect2>
+
   <sect2 role="configuration">
     <title>Configuring PulseAudio</title>
 
