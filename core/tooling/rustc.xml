@@ -104,6 +104,16 @@
       </listitem>
     </itemizedlist>
 
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing='compact'>
+      <listitem>
+        <para>
+          Required patch: <ulink
+          url="&dl-root;/rustc/rustc-&rustc-version;-llvm_23-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
     <bridgehead renderas="sect3">Rustc Dependencies</bridgehead>
 
     <para role="required">
@@ -254,13 +264,11 @@ fi</userinput></screen>
       </para>
     </note>
 
-<!--
     <para>
       Now apply a patch to fix building with <xref linkend="llvm"/>:
     </para>
 
-<screen><userinput>patch -Np1 -i ../rustc-&rustc-version;-upstream_fixes_llvm-1.patch</userinput></screen>
--->
+<screen><userinput>patch -Np1 -i ../rustc-&rustc-version;-llvm_23-1.patch</userinput></screen>
 
     <para>
       Compile Rust by running the following
